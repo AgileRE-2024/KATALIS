@@ -67,16 +67,21 @@ Route::get('/infoDosbing', function () {
     return view('home/infoDosbing');
 });
 
-<<<<<<< HEAD
 Route::get('/formPKL', function () {
     return view('home/formPKL');
 });
-=======
 Route::get('/infoPKL', function () {
     return view('home/infoPKL');
 });
 
->>>>>>> 56ef923457a1489e1856aafc2c27a07e0560d65b
+Route::get('/login', function () {
+    return view('login');
+});
+
+Route::get('/profiledosen', function () {
+    return view('profiledosen');
+});
+
 
 /*
 

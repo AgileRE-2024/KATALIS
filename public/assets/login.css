@@ -1,0 +1,166 @@
+/* Reset margin dan padding default browser */
+html, body {
+  margin: 0;
+  padding: 0;
+  overflow: hidden; /* Menghindari scroll default pada body */
+}
+
+/* Mengatur kontainer yang bisa di-scroll jika konten lebih besar dari viewport */
+.scroll-container {
+  width: auto;
+  height: auto;
+  overflow: auto;
+  white-space: nowrap;
+  position: relative;
+}
+
+/* Elemen utama latar belakang */
+.v2_330 {
+  width: 100vw;
+  height: 100vh;
+  background: rgba(235,223,215,1);
+  position: relative;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+}
+
+/* Elemen gambar background */
+.v2_331 {
+  width: 100vw;
+  height: 100vh;
+  background: url("./images/v2_331.png") no-repeat center center;
+  background-size: cover;
+  opacity: 0.5;
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+/* Kontainer form login */
+.v2_335 {
+  width: 604px;
+  height: auto;
+  background: rgba(235,223,215,1);
+  position: absolute;
+  top: 50px;
+  left: 500px;
+  border-radius: 30px;
+  padding: 30px 20px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+/* Styling untuk form login */
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center; /* Menyelaraskan item form ke tengah */
+}
+
+/* Styling untuk judul login */
+.login-form h1 {
+  font-family: 'Inter', sans-serif;
+  font-weight: 800;
+  font-size: 32px;
+  color: rgba(0,0,0,1);
+  text-align: center;
+  margin-bottom: 0px;
+}
+
+/* Styling untuk deskripsi di bawah judul login */
+.login-form h2 {
+  font-family: 'Inter', sans-serif;
+  font-size: 15px;
+  color: rgba(0,0,0,1);
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* Styling label pada form */
+.login-form label {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  color: rgba(17, 17, 17, 0.7);
+  margin-bottom: 5px;
+  text-align: left; /* Rata kiri */
+  display: block; /* Agar label memanfaatkan seluruh lebar kontainer */
+  width: 100%; /* Lebar label sama dengan lebar kontainer input */
+}
+
+/* Kontainer untuk email dan password agar sejajar */
+.input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 10px; /* Jarak antar input */
+  width: 100%; /* Mengisi lebar kontainer */
+  max-width: 500px; /* Batasi lebar kontainer input */
+}
+
+/* Styling untuk input email dan password */
+.input-group .email-input, 
+.input-group .password-input {
+  width: 100%; /* Mengisi lebar kontainer */
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+}
+
+/* Styling untuk tombol login */
+.login-button {
+  width: 100%;
+  max-width: 200px; /* Ukuran tombol yang responsif */
+  padding: 12px;
+  background: #ffffff;
+  color: #000000;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+  text-align: center;
+  transition: background-color 0.3s ease;
+}
+
+
+/* Hover efek pada tombol */
+.login-button:hover {
+  background: #f0f0f0;
+}
+
+/* Styling kolom kiri (branding) */
+.v2_333 {
+  width: 326px;
+  height: 100vh;
+  background: rgba(6,6,6,1);
+  border-top-right-radius: 70px;
+  border-bottom-right-radius: 70px;
+  position: relative;
+}
+
+/* Teks branding "EduWorkTrack" */
+.v2_334 {
+  font-family: 'Inter', sans-serif;
+  font-weight: 800;
+  font-size: 25px;
+  color: rgba(255,255,255,1);
+  position: absolute;
+  top: 320px;
+  left: 0;
+  text-align: center;
+  width: 100%;
+}
+
+/* Gambar di kolom branding */
+.v3_365 {
+  width: 240px;
+  height: 250px;
+  background: url("./images/v3_365.png") no-repeat center center;
+  background-size: cover;
+  position: absolute;
+  top: 90px;
+  left: 43px;
+}
