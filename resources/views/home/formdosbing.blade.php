@@ -79,7 +79,7 @@
         <span class="v61_1298">Dosen Pembimbing</span>
         <div class="v61_1426">
             <div class="v61_1427"></div>
-            <span class="v61_1428">Simpan</span>
+            <a href="formDosbing"><span class="v61_1427v61_1217">Ajukan Permohonan Dosen Pembimbing</span></a>
         </div>
         <div class="v61_1449">
             <div class="v61_1450"></div>
