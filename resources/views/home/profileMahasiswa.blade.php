@@ -12,7 +12,7 @@
             <div class="v42_465">
                 <div class="name"></div>
                 <div class="name"></div>
-                <span class="v42_468">Eunike Alfrita MW</span>
+                <span class="v42_468">Eunike Alfrita</span>
                 <span class="v42_469">187345678</span>
             </div>
         </div>
@@ -29,7 +29,7 @@
                     <div class="v42_483">
                         <div class="name"></div>
                         <span class="v42_485">Informasi PKL</span>
-                        <div class="name"></div>
+                        <div class="name"></div>    
                     </div>
                 </div>
                 <div class="v44_416">
