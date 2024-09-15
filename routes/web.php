@@ -51,8 +51,32 @@ Route::get('/tes', function () {
     return view('home/tes');
 });
 
+Route::get('/profileMahasiswa', function () {
+    return view('home/profileMahasiswa');
+});
 
+Route::get('/dosenPembimbing', function () {
+    return view('home/dosenPembimbing');
+});
 
+Route::get('/formDosbing', function () {
+    return view('home/formDosbing');
+});
+
+Route::get('/infoDosbing', function () {
+    return view('home/infoDosbing');
+});
+
+<<<<<<< HEAD
+Route::get('/formPKL', function () {
+    return view('home/formPKL');
+});
+=======
+Route::get('/infoPKL', function () {
+    return view('home/infoPKL');
+});
+
+>>>>>>> 56ef923457a1489e1856aafc2c27a07e0560d65b
 
 /*
 
