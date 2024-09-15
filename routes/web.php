@@ -55,6 +55,14 @@ Route::get('/profileMahasiswa', function () {
     return view('home/profileMahasiswa');
 });
 
+Route::get('/dosenPembimbing', function () {
+    return view('home/dosenPembimbing');
+});
+
+Route::get('/formDosbing', function () {
+    return view('home/formDosbing');
+});
+
 
 
 
