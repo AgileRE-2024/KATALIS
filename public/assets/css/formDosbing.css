@@ -19,7 +19,7 @@ body {
 }
 .v61_1252 {
   width: 157px;
-  height: 39px;
+  height: 50px;
   background: url("../images/v61_1252.png");
   background-repeat: no-repeat;
   background-position: center center;
@@ -560,6 +560,7 @@ body {
 }
 .v61_1452 {
   width: 121px;
+  height: 100;
   color: rgba(0,0,0,1);
   position: absolute;
   top: 7px;
@@ -570,6 +571,8 @@ body {
   opacity: 1;
   text-align: left;
 }
+
+
 .v61_1453 {
   width: 303px;
   height: 24px;

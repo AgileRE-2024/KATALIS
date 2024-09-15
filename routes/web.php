@@ -67,6 +67,9 @@ Route::get('/infoDosbing', function () {
     return view('home/infoDosbing');
 });
 
+Route::get('/formPKL', function () {
+    return view('home/formPKL');
+});
 
 /*
 

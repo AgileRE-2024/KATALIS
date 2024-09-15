@@ -36,12 +36,13 @@
                     <div class="v44_415">
                         <div class="v42_483">
                             <div class="name"></div>
-                            <span class="v42_485">Informasi PKL</span>
+                            <span class="v42_485"><a href="dosenPembimbing">Profil</a></span>
                             <div class="name"></div>
                         </div>
                     </div>
                     <div class="v44_416">
                         <div class="v42_487">
+                        <span class="42_487"><a href="profileMahasiswa">Profil</a></span>
                             <span class="v42_488">Monitoring PKL</span>
                             <div class="name"></div>
                         </div>
@@ -49,7 +50,7 @@
                     <div class="v44_417">
                         <div class="v42_493">
                             <div class="name"></div>
-                            <span class="v42_495">Laporan</span>
+                            <span class="v42_493"><a href="logbook">Profil</a></span>
                             <div class="name"></div>
                         </div>
                     </div>
