@@ -51,6 +51,10 @@ Route::get('/tes', function () {
     return view('home/tes');
 });
 
+Route::get('/profileMahasiswa', function () {
+    return view('home/profileMahasiswa');
+});
+
 
 
 
