@@ -71,6 +71,10 @@ Route::get('/infoPKL', function () {
     return view('home/infoPKL');
 });
 
+Route::get('/sidebar', function () {
+    return view('layouts/sidebar');
+});
+
 
 /*
 
