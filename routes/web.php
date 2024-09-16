@@ -75,6 +75,21 @@ Route::get('/sidebar', function () {
     return view('layouts/sidebar');
 });
 
+Route::get('/profil', function () {
+    return view('home/profil');
+});
+
+Route::get('/dosbing', function () {
+    return view('home/dosbing');
+});
+
+Route::get('/formPengajuanDosbing', function () {
+    return view('home/formPengajuanDosbing');
+});
+
+Route::get('/fixDosbing', function () {
+    return view('home/fixDosbing');
+});
 
 /*
 

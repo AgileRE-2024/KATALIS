@@ -10,13 +10,18 @@
 </head>
 <body>
     <!-- Include the Sidebar Component -->
-    <x-sidebar />
+    <x-sidebar></x-sidebar>
     
     <!-- Main Content -->
-    <div class="content">
-        <h1>Profil</h1>
-        <!-- Your content here -->
-    </div>
+        <div class="content">
+            <header>
+                <h1>Profil</h1>
+            </header>
+
+            <div class="main-content">
+                <p>Welcome to the Profil page!</p>
+            </div>
+        </div>
 </body>
 </html>
 

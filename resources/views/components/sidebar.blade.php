@@ -1,10 +1,10 @@
 <div class="sidebar">
     <div class="center-text">Monitoring PKL</div>
 
-    <a href="#" class="nav-item">
+    <a href="profil" class="nav-item">
         <i class="fas fa-user-circle"></i> Profil
     </a>    
-    <a href="#" class="nav-item">
+    <a href="dosbing" class="nav-item">
         <i class="fas fa-chalkboard-teacher"></i> Dosen Pembimbing
     </a>
     <a href="#" class="nav-item">
