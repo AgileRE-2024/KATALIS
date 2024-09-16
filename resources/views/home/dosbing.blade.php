@@ -7,6 +7,12 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <style>
+        body {
+            background-color: #EBDFD7; /* Background color for the entire page */
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
         .content {
             margin-left: 250px;
             padding: 20px;
@@ -34,6 +40,7 @@
             padding: 20px;
             max-width: 600px;
             margin: 0 auto;
+            background-color: #EBDFD7; /* Background color for the message container */
         }
 
         .message-text {

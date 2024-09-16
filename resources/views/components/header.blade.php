@@ -54,7 +54,7 @@
     }
 
     .logout a {
-        color: black;
+        color: #B80A0A;
         font-size: 20px;
         text-decoration: none;
     }

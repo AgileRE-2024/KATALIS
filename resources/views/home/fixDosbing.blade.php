@@ -6,9 +6,16 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <style>
+        body {
+            background-color: #EBDFD7; /* Page background color */
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
         .content {
             margin-left: 250px;
             padding: 20px;
+            background-color: #EBDFD7; /* Content background color */
         }
 
         .header {
@@ -21,37 +28,21 @@
             margin-bottom: 20px; /* Add space below header */
         }
 
-        .left-header h1 {
-            margin: 0;
-        }
-
-        .right-header {
-            display: flex;
-            align-items: center;
-        }
-
-        .user-info {
-            margin-right: 20px;
-            text-align: right;
-        }
-
-        .user-info p {
-            margin: 0;
-            font-weight: bold;
-        }
-
         .profile-container {
             display: flex;
             align-items: center; /* Vertically center */
             justify-content: center; /* Horizontally center */
             gap: 20px;
-            border-bottom: 1px solid #D9CEC6; /* Optional: Add border-bottom to profile container */
+            border-bottom: 1px solid #D9CEC6; /* Border color for profile container */
             padding-bottom: 20px; /* Add padding below profile container */
+            background-color: #EBDFD7; /* Light background for readability */
+            border-radius: 4px; /* Rounded corners */
+            border: 1px solid #ddd; /* Border around the profile container */
         }
 
         .profile-photo, .profile-form {
             flex: 1;
-            max-width: 500px; /* Optional: Ensure content doesn't exceed a certain width */
+            max-width: 500px; /* Ensure content doesn't exceed a certain width */
         }
 
         .profile-photo {
@@ -74,25 +65,22 @@
             gap: 15px;
         }
 
-        .profile-form p {
-            padding: 8px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            background-color: #f9f9f9; /* Light background for readability */
-        }
-
-        .form-group {
+        .profile-form .form-group {
             display: flex;
             flex-direction: column;
         }
 
-        .form-group label {
+        .profile-form label {
             margin-bottom: 5px;
             font-weight: bold;
         }
 
-        .form-group p {
+        .profile-form p {
             margin: 0;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            background-color: #f9f9f9; /* Light background for readability */
         }
 
         button {

@@ -7,9 +7,16 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <style>
+        body {
+            background-color: #EBDFD7; /* Ganti dengan warna latar belakang yang diinginkan */
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
         .content {
             margin-left: 250px;
             padding: 20px;
+            background-color: #EBDFD7; /* Warna latar belakang khusus untuk konten */
         }
 
         .header {
@@ -43,28 +50,28 @@
 
         .profile-container {
             display: flex;
-            align-items: center; /* Vertically center */
-            justify-content: center; /* Horizontally center */
+            align-items: center;
+            justify-content: center;
             gap: 20px;
-            border-bottom: 1px solid #D9CEC6; /* Optional: Add border-bottom to profile container */
-            padding-bottom: 20px; /* Add padding below profile container */
+            border-bottom: 1px solid #D9CEC6;
+            padding-bottom: 20px;
         }
 
         .profile-photo, .profile-form {
             flex: 1;
-            max-width: 500px; /* Optional: Ensure content doesn't exceed a certain width */
+            max-width: 500px;
         }
 
         .profile-photo {
             display: flex;
-            justify-content: center; /* Center the photo within its container */
-            align-items: center; /* Center the photo vertically */
+            justify-content: center;
+            align-items: center;
         }
 
         .profile-photo img {
             width: 100%;
             height: auto;
-            max-width: 150px; /* Ensure image is not too large */
+            max-width: 150px;
             object-fit: cover;
             border-radius: 50%;
         }
@@ -79,7 +86,7 @@
             padding: 8px;
             border: 1px solid #ddd;
             border-radius: 4px;
-            background-color: #f9f9f9; /* Light background for readability */
+            background-color: #f9f9f9;
         }
 
         .form-group {

@@ -7,9 +7,16 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <style>
+        body {
+            background-color: #EBDFD7; /* Warna latar belakang halaman */
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
         .content {
             margin-left: 250px;
             padding: 20px;
+            background-color: #EBDFD7; /* Warna latar belakang khusus untuk konten */
         }
 
         .header {
@@ -45,7 +52,7 @@
             padding: 20px;
             border: 1px solid #ddd;
             border-radius: 4px;
-            background-color: #f9f9f9;
+            background-color: #f9f9f9; /* Warna latar belakang form */
         }
 
         .form-group {
@@ -132,6 +139,15 @@
 
         th {
             background-color: #f4f4f4;
+        }
+
+        a {
+            color: #2980b9;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
         }
     </style>
 </head>

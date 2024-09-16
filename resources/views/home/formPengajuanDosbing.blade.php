@@ -7,6 +7,12 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <style>
+        body {
+            background-color: #EBDFD7; /* Page background color */
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
         .content {
             margin-left: 250px;
             padding: 20px;
@@ -21,31 +27,12 @@
             border-bottom: 1px solid #D9CEC6;
         }
 
-        .left-header h1 {
-            margin: 0;
-        }
-
-        .right-header {
-            display: flex;
-            align-items: center;
-        }
-
-        .user-info {
-            margin-right: 20px;
-            text-align: right;
-        }
-
-        .user-info p {
-            margin: 0;
-            font-weight: bold;
-        }
-
         .form-container {
             margin-top: 20px;
             padding: 20px;
             border: 1px solid #ddd;
             border-radius: 4px;
-            background-color: #f9f9f9;
+            background-color: #f9f9f9; /* Background color for the form container */
         }
 
         .form-group {
@@ -63,11 +50,7 @@
             padding: 10px;
             border: 1px solid #ddd;
             border-radius: 4px;
-        }
-
-        .form-group textarea {
-            resize: vertical; /* Allows vertical resizing */
-            height: 100px; /* Default height */
+            background-color: #fff; /* Input background color for readability */
         }
 
         .form-group input[type="checkbox"] {
@@ -115,7 +98,6 @@
         .button-link:hover {
             background-color: #f5f5f5;
         }
-
     </style>
 </head>
 <body>

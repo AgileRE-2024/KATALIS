@@ -3,14 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <style>
+        body {
+            background-color: #EBDFD7; /* Warna latar belakang halaman */
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
         .content {
             margin-left: 250px;
             padding: 20px;
+            background-color: #EBDFD7; /* Warna latar belakang khusus untuk konten */
         }
 
         .header {
@@ -84,7 +89,7 @@
     <x-sidebar></x-sidebar>
     
     <div class="content">
-    <x-header>Seminar</x-header>
+        <x-header>Seminar</x-header>
 
         <div class="main-content">
             <div class="message-container">

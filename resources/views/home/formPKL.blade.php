@@ -7,9 +7,16 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <style>
+        body {
+            background-color: #EBDFD7;
+            margin: 0; /* Ensures no margin is added by the body */
+            font-family: Arial, sans-serif; /* Consistent font */
+        }
+
         .content {
-            margin-left: 250px;
+            margin-left: 250px; /* Ensure this matches the sidebar width */
             padding: 20px;
+            background-color: #EBDFD7; /* Light background for the content area */
         }
 
         .header {
@@ -19,6 +26,7 @@
             padding: 10px 20px;
             color: black;
             border-bottom: 1px solid #D9CEC6;
+            margin-bottom: 20px;
         }
 
         .left-header h1 {
@@ -45,7 +53,7 @@
             padding: 20px;
             border: 1px solid #ddd;
             border-radius: 4px;
-            background-color: #f9f9f9;
+            background-color: #f9f9f9; /* Light background for the form container */
         }
 
         .form-group {
@@ -58,7 +66,9 @@
             margin-bottom: 5px;
         }
 
-        .form-group input[type="text"], .form-group input[type="file"], .form-group input[type="date"] {
+        .form-group input[type="text"], 
+        .form-group input[type="file"], 
+        .form-group input[type="date"] {
             width: 100%;
             padding: 10px;
             border: 1px solid #ddd;
@@ -96,26 +106,25 @@
             border-radius: 4px;
             font-size: 16px;
             cursor: pointer;
-            position: relative; /* Position relative for ::before */
+            position: relative;
             transition: background-color 0.3s ease;
         }
 
         .button-link::before {
-            content: ''; /* Empty content to create a box */
+            content: '';
             position: absolute;
-            top: -10px; /* Adjust positioning */
+            top: -10px;
             left: -10px;
             right: -10px;
             bottom: -10px;
-            background-color: rgba(0, 0, 0, 0.1); /* Light gray box */
-            z-index: -1; /* Ensure it's behind the button */
-            border-radius: 8px; /* Border radius for the rectangle */
+            background-color: rgba(0, 0, 0, 0.1);
+            z-index: -1;
+            border-radius: 8px;
         }
 
         .button-link:hover {
             background-color: #f5f5f5;
         }
-
     </style>
 </head>
 <body>

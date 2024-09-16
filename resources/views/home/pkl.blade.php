@@ -7,9 +7,16 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <style>
+        body {
+            background-color: #EBDFD7;
+            margin: 0; /* Ensure no margin is added by the body */
+            font-family: Arial, sans-serif; /* Ensure a consistent font */
+        }
+
         .content {
-            margin-left: 250px;
+            margin-left: 250px; /* Adjust this value to match the sidebar width */
             padding: 20px;
+            background-color: #EBDFD7; /* Light background for the content area */
         }
 
         .header {
@@ -19,7 +26,7 @@
             padding: 10px 20px;
             color: black;
             border-bottom: 1px solid #D9CEC6;
-            margin-bottom: 20px; /* Add space below header */
+            margin-bottom: 20px;
         }
 
         .message-container {
@@ -34,6 +41,7 @@
             padding: 20px;
             max-width: 600px;
             margin: 0 auto;
+            background-color: #EBDFD7; /* Fixed background color */
         }
 
         .message-text {
@@ -46,7 +54,7 @@
         .message-text i {
             font-size: 24px;
             margin-right: 10px;
-            color: #f39c12; /* Set color of alert icon */
+            color: #f39c12;
         }
 
         .button-link {
@@ -58,20 +66,20 @@
             border-radius: 4px;
             font-size: 16px;
             cursor: pointer;
-            position: relative; /* Position relative for ::before */
+            position: relative;
             transition: background-color 0.3s ease;
         }
 
         .button-link::before {
-            content: ''; /* Empty content to create a box */
+            content: '';
             position: absolute;
-            top: -10px; /* Adjust positioning */
+            top: -10px;
             left: -10px;
             right: -10px;
             bottom: -10px;
-            background-color: rgba(0, 0, 0, 0.1); /* Light gray box */
-            z-index: -1; /* Ensure it's behind the button */
-            border-radius: 8px; /* Border radius for the rectangle */
+            background-color: rgba(0, 0, 0, 0.1);
+            z-index: -1;
+            border-radius: 8px;
         }
 
         .button-link:hover {
