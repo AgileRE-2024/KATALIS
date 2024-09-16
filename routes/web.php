@@ -13,58 +13,32 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-
-
-Route::get('/', function () {
-    return view('welcome');
-});
-
-Route::get('/download', function () {
-    return view('home/download');
-});
-
-Route::get('/bimbingan', function () {
-    return view('home/bimbingan');
-});
-
-Route::get('/informasi', function () {
-    return view('home/informasi');
-});
-
-Route::get('/laporan', function () {
-    return view('home/laporan');
-});
-
-Route::get('/logbook', function () {
-    return view('home/logbook');
-});
-
-Route::get('/pengajuan', function () {
-    return view('home/pengajuan');
+Route::get('/sidebar', function () {
+    return view('layouts/sidebar');
 });
 
 Route::get('/profil', function () {
     return view('home/profil');
 });
 
-Route::get('/tes', function () {
-    return view('home/tes');
+Route::get('/dosbing', function () {
+    return view('home/dosbing');
 });
 
-Route::get('/profileMahasiswa', function () {
-    return view('home/profileMahasiswa');
+Route::get('/formPengajuanDosbing', function () {
+    return view('home/formPengajuanDosbing');
 });
 
-Route::get('/dosenPembimbing', function () {
-    return view('home/dosenPembimbing');
+Route::get('/fixDosbing', function () {
+    return view('home/fixDosbing');
 });
 
-Route::get('/formDosbing', function () {
-    return view('home/formDosbing');
+Route::get('/pkl', function () {
+    return view('home/pkl');
 });
 
-Route::get('/infoDosbing', function () {
-    return view('home/infoDosbing');
+Route::get('/formPKL', function () {
+    return view('home/formPKL');
 });
 
 Route::get('/formPKL', function () {
@@ -82,6 +56,33 @@ Route::get('/profiledosen', function () {
     return view('profiledosen');
 });
 
+Route::get('/fixPKL', function () {
+    return view('home/fixPKL');
+});
+
+Route::get('/logbook', function () {
+    return view('home/logbook');
+});
+
+Route::get('/seminar', function () {
+    return view('home/seminar');
+});
+
+Route::get('/fixSeminar', function () {
+    return view('home/fixSeminar');
+});
+
+Route::get('/formPengajuanSeminar', function () {
+    return view('home/formPengajuanSeminar');
+});
+
+Route::get('/laporan', function () {
+    return view('home/laporan');
+});
+
+Route::get('/download', function () {
+    return view('home/download');
+});
 
 /*
 

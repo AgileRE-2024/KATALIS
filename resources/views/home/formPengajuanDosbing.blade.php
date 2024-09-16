@@ -58,10 +58,7 @@
             margin-bottom: 5px;
         }
 
-        .form-group input[type="text"], 
-        .form-group input[type="file"], 
-        .form-group input[type="date"], 
-        .form-group textarea {
+        .form-group input[type="text"], .form-group input[type="file"] {
             width: 100%;
             padding: 10px;
             border: 1px solid #ddd;
@@ -69,8 +66,12 @@
         }
 
         .form-group textarea {
-            resize: vertical;
-            height: 100px;
+            resize: vertical; /* Allows vertical resizing */
+            height: 100px; /* Default height */
+        }
+
+        .form-group input[type="checkbox"] {
+            margin-right: 10px;
         }
 
         .form-group button {
@@ -95,44 +96,26 @@
             border-radius: 4px;
             font-size: 16px;
             cursor: pointer;
-            position: relative;
+            position: relative; /* Position relative for ::before */
             transition: background-color 0.3s ease;
         }
 
         .button-link::before {
-            content: '';
+            content: ''; /* Empty content to create a box */
             position: absolute;
-            top: -10px;
+            top: -10px; /* Adjust positioning */
             left: -10px;
             right: -10px;
             bottom: -10px;
-            background-color: rgba(0, 0, 0, 0.1);
-            z-index: -1;
-            border-radius: 8px;
+            background-color: rgba(0, 0, 0, 0.1); /* Light gray box */
+            z-index: -1; /* Ensure it's behind the button */
+            border-radius: 8px; /* Border radius for the rectangle */
         }
 
         .button-link:hover {
             background-color: #f5f5f5;
         }
 
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-        }
-
-        table, th, td {
-            border: 1px solid #ddd;
-        }
-
-        th, td {
-            padding: 10px;
-            text-align: left;
-        }
-
-        th {
-            background-color: #f4f4f4;
-        }
     </style>
 </head>
 <body>
@@ -142,46 +125,33 @@
         <x-header></x-header>
 
         <div class="main-content">
-            <p>Ini adalah halaman Profil.</p>
-
-            <!-- Laporan Akhir PKL Section -->
             <div class="form-container">
-                <h2>Laporan Akhir PKL</h2>
-                <form id="laporan-pkl-form">
+                <form id="pkl-form">
                     <div class="form-group">
-                        <label for="laporan-pkl-file">Upload Laporan Akhir PKL:</label>
-                        <input type="file" id="laporan-pkl-file" name="laporan-pkl-file">
+                        <label for="topik-pkl">Rencana Judul/Topik PKL:</label>
+                        <input type="text" id="topik-pkl" name="topik-pkl">
                     </div>
-                    <button type="submit">Tambah Laporan Akhir PKL</button>
+                    <div class="form-group">
+                        <label for="nama-perusahaan">Nama Perusahaan/Organisasi:</label>
+                        <input type="text" id="nama-perusahaan" name="nama-perusahaan">
+                    </div>
+                    <div class="form-group">
+                        <label for="draft-proposal">Draft Proposal PKL *:</label>
+                        <input type="file" id="draft-proposal" name="draft-proposal">
+                    </div>
+                    <div class="form-group">
+                        <label>Apakah Anda PKL secara berkelompok?</label>
+                        <input type="checkbox" id="pkl-berkelompok" name="pkl-berkelompok">
+                        <label for="pkl-berkelompok">Ya</label>
+                    </div>
+                    <div class="form-group">
+                        <label for="nama-kelompok">Nama Kelompok Lainnya (jika ada):</label>
+                        <input type="text" id="nama-kelompok" name="nama-kelompok">
+                    </div>
+                    <a href="fixDosbing" class="button-link">Kirim</a>
                 </form>
             </div>
-
-            <!-- Submission Status Section -->
-            <div class="form-container">
-                <h2>Submission Status</h2>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Submission Status</th>
-                            <th>Grading Status</th>
-                            <th>Time Remaining</th>
-                            <th>Last Modified</th>
-                            <th>Submission Comments</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Submitted</td>
-                            <td>Graded</td>
-                            <td>2 days</td>
-                            <td>2024-09-14</td>
-                            <td>Good progress, keep it up!</td>
-                        </tr>
-                        <!-- Add more rows as needed -->
-                    </tbody>
-                </table>
-            </div>
         </div>
-    </div>
+    </div>  
 </body>
 </html>
