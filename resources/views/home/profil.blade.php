@@ -114,7 +114,7 @@
     <x-sidebar></x-sidebar>
     
     <div class="content">
-        <x-header></x-header>
+        <x-header>Profil</x-header>
 
         <div class="main-content">
             <div class="profile-container">

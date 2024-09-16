@@ -1,6 +1,6 @@
 <header class="header">
     <div class="left-header">
-        <h1>Profil</h1>
+        <h1>{{ $slot }}</h1>  {{-- Menampilkan konten slot sebagai judul --}}
     </div>
 
     <div class="right-header">
@@ -15,6 +15,8 @@
         </div>
     </div>
 </header>
+
+
 
 <style>
     .header {

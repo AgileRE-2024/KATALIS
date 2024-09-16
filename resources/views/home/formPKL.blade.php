@@ -122,7 +122,7 @@
     <x-sidebar></x-sidebar>
     
     <div class="content">
-        <x-header></x-header>
+        <x-header>Informasi PKL</x-header>
 
         <div class="main-content">
             <div class="form-container">
