@@ -8,15 +8,13 @@
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <style>
         body {
-            background-color: #EBDFD7; /* Warna latar belakang halaman */
-            margin: 0;
-            font-family: Arial, sans-serif;
+            background-color: #EBDFD7; /* Set the background color */
         }
 
         .content {
             margin-left: 250px;
             padding: 20px;
-            background-color: #EBDFD7; /* Warna latar belakang khusus untuk konten */
+            background-color: #EBDFD7; /* Set content background to the same color */
         }
 
         .header {
@@ -25,7 +23,8 @@
             align-items: center;
             padding: 10px 20px;
             color: black;
-            border-bottom: 1px solid #D9CEC6 !important;
+            border-bottom: 1px solid #D9CEC6;
+            margin-bottom: 20px; 
         }
 
         .left-header h1 {
@@ -47,36 +46,79 @@
             font-weight: bold;
         }
 
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
+        .profile-container {
+            display: flex;
+            align-items: center; /* Vertically center */
+            justify-content: center; /* Horizontally center */
+            gap: 20px;
+            border-bottom: 1px solid #D9CEC6; /* Optional: Add border-bottom to profile container */
+            padding-bottom: 20px; /* Add padding below profile container */
         }
 
-        table, th, td {
+        .profile-photo, .profile-form {
+            flex: 1;
+            max-width: 500px; /* Optional: Ensure content doesn't exceed a certain width */
+        }
+
+        .profile-photo {
+            display: flex;
+            justify-content: center; /* Center the photo within its container */
+            align-items: center; /* Center the photo vertically */
+        }
+
+        .profile-photo img {
+            width: 320px;
+            height: 340px;
+            background: url("./images/v3_710.png");
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-size: cover;
+            opacity: 1;
+            position: absolute;
+            top: 110px;
+            left: 350px;
+            border-radius: 113px;
+            overflow: hidden;
+        }
+
+        .profile-form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .profile-form p {
+            padding: 8px;
             border: 1px solid #ddd;
+            border-radius: 4px;
+            background-color: #EBDFD7; /* Match background color */
         }
 
-        th, td {
-            padding: 10px;
-            text-align: left;
+        .form-group {
+            display: flex;
+            flex-direction: column;
         }
 
-        th {
-            background-color: #f4f4f4;
+        .form-group label {
+            margin-bottom: 5px;
+            font-weight: bold;
         }
 
-        .download-button {
-            display: inline-block;
-            color: #2980b9;
-            text-decoration: none;
-            font-size: 16px;
+        .form-group p {
+            margin: 0;
+        }
+
+        button {
+            padding: 10px 15px;
+            background-color: #2980b9;
+            color: white;
+            border: none;
+            border-radius: 4px;
             cursor: pointer;
-            margin-right: 10px;
         }
 
-        .download-button i {
-            margin-right: 5px;
+        button:hover {
+            background-color: #1c60a7;
         }
     </style>
 </head>
@@ -84,62 +126,42 @@
     <x-sidebar></x-sidebar>
     
     <div class="content">
-        <x-header>Download</x-header>
+        <x-header></x-header>
 
         <div class="main-content">
+            <div class="profile-container">
+                <!-- Foto Profil -->
+                <div class="profile-photo">
+                    <img src="{{ asset('assets/images/v3_710.png') }}"></img> 
+                </div>
 
-            <!-- Tabel Logo -->
-            <div class="form-container">
-                <h2>Logo</h2>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Nama Logo</th>
-                            <th>Download</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Logo Unair (Biru)</td>
-                            <td><a href="#" class="download-button"><i class="fas fa-download"></i> Download</a></td>
-                        </tr>
-                        <tr>
-                            <td>Lambang Universitas Airlangga</td>
-                            <td><a href="#" class="download-button"><i class="fas fa-download"></i> Download</a></td>
-                        </tr>
-                        <tr>
-                            <td>Logo Smart University</td>
-                            <td><a href="#" class="download-button"><i class="fas fa-download"></i> Download</a></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-
-            <!-- Tabel Template -->
-            <div class="form-container">
-                <h2>Template</h2>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Nama Template</th>
-                            <th>Download</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Template Surat Pengantar PKL</td>
-                            <td><a href="#" class="download-button"><i class="fas fa-download"></i> Download</a></td>
-                        </tr>
-                        <tr>
-                            <td>Template Proposal</td>
-                            <td><a href="#" class="download-button"><i class="fas fa-download"></i> Download</a></td>
-                        </tr>
-                        <tr>
-                            <td>Template Laporan Akhir</td>
-                            <td><a href="#" class="download-button"><i class="fas fa-download"></i> Download</a></td>
-                        </tr>
-                    </tbody>
-                </table>
+                <!-- Pernyataan Profil -->
+                <div class="profile-form">
+                    <div class="form-group">
+                        <label for="full-name">Nama Lengkap:</label>
+                        <p id="full-name">Eunike Alfrita MW</p>
+                    </div>
+                    <div class="form-group">
+                        <label for="nim">NIM:</label>
+                        <p id="nim">187221053</p>
+                    </div>
+                    <div class="form-group">
+                        <label for="program-study">Program Studi:</label>
+                        <p id="program-study">Sistem Informasi</p>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email:</label>
+                        <p id="email">winwinhara@gmail.com</p>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Nomor HP:</label>
+                        <p id="phone">123456789</p>
+                    </div>
+                    <div class="form-group">
+                        <label for="dosen-wali">Dosen Wali:</label>
+                        <p id="dosen-wali">Pak xys</p>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

@@ -7,11 +7,33 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <style>
-        .content {
-            margin-left: 250px;
-            padding: 20px;
+        body {
+            margin: 0; /* Reset body margin */
+            font-family: Arial, sans-serif;
+            background-color: #EBDFD7; /* Background color for the body */
         }
 
+        /* Sidebar Styling */
+        x-sidebar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 250px; /* Sidebar width */
+            background-color: #333; /* Dark sidebar */
+            color: #fff;
+            padding-top: 20px;
+            padding-left: 10px;
+        }
+
+        /* Content Section */
+        .content {
+            margin-left: 250px; /* Ensure content does not overlap the sidebar */
+            padding: 20px;
+            background-color: #EBDFD7; /* Background color for content area */
+        }
+
+        /* Header Styling */
         .header {
             display: flex;
             justify-content: space-between;
@@ -41,43 +63,36 @@
             font-weight: bold;
         }
 
+        /* Profile Section Styling */
         .profile-container {
             display: flex;
             align-items: center; /* Vertically center */
             justify-content: center; /* Horizontally center */
             gap: 20px;
-            border-bottom: 1px solid #D9CEC6; /* Optional: Add border-bottom to profile container */
-            padding-bottom: 20px; /* Add padding below profile container */
+            border-bottom: 1px solid #D9CEC6;
+            padding-bottom: 20px;
         }
 
         .profile-photo, .profile-form {
             flex: 1;
-            max-width: 500px; /* Optional: Ensure content doesn't exceed a certain width */
+            max-width: 500px;
         }
 
         .profile-photo {
             display: flex;
-            justify-content: center; /* Center the photo within its container */
-            align-items: center; /* Center the photo vertically */
+            justify-content: center;
+            align-items: center;
         }
 
         .profile-photo img {
-    width: 320px;
-    height: 340px;
-    background: url("./images/v3_710.png");
-    background-repeat: no-repeat;
-    background-position: center center;
-    background-size: cover;
-    opacity: 1;
-    position: absolute;
-    top: 110px;
-    left: 350px;
-    border-top-left-radius: 113px;
-    border-top-right-radius: 113px;
-    border-bottom-left-radius: 113px;
-    border-bottom-right-radius: 113px;
-    overflow: hidden;
-}
+            width: 320px;
+            height: 340px;
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-size: cover;
+            opacity: 1;
+            border-radius: 113px;
+            overflow: hidden;
         }
 
         .profile-form {
@@ -88,9 +103,9 @@
 
         .profile-form p {
             padding: 8px;
-            border: 1px solid #ddd;
+            border: 1px solid #D9CEC6;
             border-radius: 4px;
-            background-color: #f9f9f9; /* Light background for readability */
+            background-color: #ffffff; /* White background for profile info */
         }
 
         .form-group {
@@ -107,6 +122,7 @@
             margin: 0;
         }
 
+        /* Button Styling */
         button {
             padding: 10px 15px;
             background-color: #2980b9;
@@ -119,25 +135,27 @@
         button:hover {
             background-color: #1c60a7;
         }
-
-        
-
     </style>
 </head>
 <body>
-    <x-sidebar></x-sidebar>
+    <!-- Sidebar -->
+    <x-sidebar>
+        <!-- Add your sidebar content here -->
+        <p>Sidebar content</p>
+    </x-sidebar>
     
+    <!-- Main Content -->
     <div class="content">
-        <x-header></x-header>
+        <x-header>Profil</x-header>
 
         <div class="main-content">
             <div class="profile-container">
-                <!-- Foto Profil -->
+                <!-- Profile Photo -->
                 <div class="profile-photo">
-                    <img src="{{ asset('assets/images/v3_710.png') }}"></img> 
+                    <img src="{{ asset('assets/images/v3_710.png') }}" alt="Profile Photo"> 
                 </div>
 
-                <!-- Pernyataan Profil -->
+                <!-- Profile Information -->
                 <div class="profile-form">
                     <div class="form-group">
                         <label for="full-name">Nama Lengkap:</label>
@@ -153,15 +171,15 @@
                     </div>
                     <div class="form-group">
                         <label for="email">Email:</label>
-                        <p id="email">winwinhara@gamil.com</p>
+                        <p id="email">winwinhara@gmail.com</p>
                     </div>
                     <div class="form-group">
                         <label for="phone">Nomor HP:</label>
                         <p id="phone">123456789</p>
                     </div>
                     <div class="form-group">
-                        <label for="phone">Dosen Wali:</label>
-                        <p id="phone">Pak xys</p>
+                        <label for="dosen-wali">Dosen Wali:</label>
+                        <p id="dosen-wali">Pak xys</p>
                     </div>
                 </div>
             </div>
