@@ -14,13 +14,33 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
-});
-
-Route::get('/login', function () {
     return view('login');
 });
 
 Route::get('/profiledosen', function () {
     return view('profiledosen');
+});
+
+Route::get('/datamahasiswa', function () {
+    return view('datamahasiswa');
+});
+
+Route::get('/logbookdosen', function () {
+    return view('logbookdosen');
+});
+
+Route::get('/navbar', function () {
+    return view('navbar');
+});
+
+Route::get('/bimbingandosen', function () {
+    return view('bimbingandosen');
+});
+
+Route::get('/laporandosen', function () {
+    return view('laporandosen');
+});
+
+Route::get('/penilaiandosen', function () {
+    return view('penilaiandosen');
 });
