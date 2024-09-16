@@ -69,16 +69,17 @@
         <span class="v3_583">Data Mahasiswa</span>
         <div class="name"></div>
         <div class="v3_587">
-            <span class="v3_588">NIM</span>
-            <span class="v3_589">No</span>
-            <span class="v3_590">Nama Mahasiswa</span>
-            <span class="v3_591">Program Studi</span>
-            <span class="v3_592">Tempat PKL</span>
+        <div class="form-container">
+            <div class="form-box">
+                <form>
+                    <input type="text" name="nim" placeholder="NIM" required>
+                    <input type="text" name="nama" placeholder="Nama Mahasiswa" required>
+                    <input type="text" name="program_studi" placeholder="Program Studi" required>
+                    <input type="text" name="tempat_pkl" placeholder="Tempat PKL" required>
+                    <button type="submit" class="btn btn-outline-primary">Submit</button>
+                </form>
+            </div>
         </div>
-        <div class="v3_593">
-            <a href="tambahdatamahasiswa" class="name">
-                <span class="v3_595">Tambah Data Mahasiswa</span>
-            </a>
         </div>
     </div>
 </body>

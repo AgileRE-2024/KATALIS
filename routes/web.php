@@ -120,6 +120,10 @@ Route::get('/download', function () {
     return view('home/download');
 });
 
+Route::get('/tambahdatamahasiswa', function () {
+    return view('tambahdatamahasiswa');
+});
+
 /*
 
 | Jangan lupa php artisan route:clear
