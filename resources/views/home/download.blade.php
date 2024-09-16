@@ -1,136 +1,139 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <link href="https://fonts.googleapis.com/css?family=Inter&display=swap" rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet" />
-    <link href="./assets/css/donlot.css" rel="stylesheet" />
-    <title>Document</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profil</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+    <style>
+        .content {
+            margin-left: 250px;
+            padding: 20px;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            color: black;
+            border-bottom: 1px solid #D9CEC6;
+        }
+
+        .left-header h1 {
+            margin: 0;
+        }
+
+        .right-header {
+            display: flex;
+            align-items: center;
+        }
+
+        .user-info {
+            margin-right: 20px;
+            text-align: right;
+        }
+
+        .user-info p {
+            margin: 0;
+            font-weight: bold;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f4f4f4;
+        }
+
+        .download-button {
+            display: inline-block;
+            color: #2980b9;
+            text-decoration: none;
+            font-size: 16px;
+            cursor: pointer;
+            margin-right: 10px;
+        }
+
+        .download-button i {
+            margin-right: 5px;
+        }
+    </style>
 </head>
 <body>
-    <div class="v70_869">
-        <div class="v70_870"></div>
-        <div class="v70_871">
-            <div class="v70_872">
-                <div class="name"></div>
-                <div class="name"></div>
-                <span class="v70_875">Eunike Alfrita MW</span>
-                <span class="v70_876">187345678</span>
+    <x-sidebar></x-sidebar>
+    
+    <div class="content">
+        <x-header></x-header>
+
+        <div class="main-content">
+            <p>Ini adalah halaman Profil.</p>
+
+            <!-- Tabel Logo -->
+            <div class="form-container">
+                <h2>Logo</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Nama Logo</th>
+                            <th>Download</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Logo Unair (Biru)</td>
+                            <td><a href="#" class="download-button"><i class="fas fa-download"></i> Download</a></td>
+                        </tr>
+                        <tr>
+                            <td>Lambang Universitas Airlangga</td>
+                            <td><a href="#" class="download-button"><i class="fas fa-download"></i> Download</a></td>
+                        </tr>
+                        <tr>
+                            <td>Logo Smart University</td>
+                            <td><a href="#" class="download-button"><i class="fas fa-download"></i> Download</a></td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
-        </div>
-        <div class="v70_877">
-            <span class="v70_878">Monitoring PKL</span>
-            <div class="v70_1134">
-                <div class="v70_880">
-                    <div class="v70_881">
-                        <a href="profileMahasiswa"><span class="v70_882">Profil</span></a>
-                        <div class="name"></div>
-                    </div>
-                </div>
-                <div class="v70_884">
-                    <div class="v70_885">
-                        <div class="name"></div>
-                        <a href="profileMahasiswa"><span class="v70_882">Informasi PKL</span></a>
-                        <div class="name"></div>
-                    </div>
-                </div>
-                <div class="v70_889">
-                    <div class="v70_890">
-                        <span class="v70_891">Monitoring PKL</span>
-                        <div class="name"></div>
-                    </div>
-                </div>
-                <div class="v70_893">
-                    <div class="v70_894">
-                        <div class="name"></div>
-                        <span class="v70_896">Laporan</span>
-                        <div class="name"></div>
-                    </div>
-                </div>
-                <div class="v70_898">
-                    <div class="name"></div>
-                    <span class="v70_900">Seminar</span>
-                    <div class="name"></div>
-                    <div class="name"></div>
-                </div>
-                <div class="v70_903">
-                    <div class="v70_904">
-                        <span class="v70_905">Download</span>
-                        <div class="name"></div>
-                    </div>
-                </div>
-                <div class="v70_907">
-                    <div class="v70_908">
-                        <div class="name"></div>
-                        <span class="v70_910">Dosen Pembimbing</span>
-                        <div class="v70_911"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="v70_912"></div>
-        <div class="v70_913">
-            <div class="v70_914">
-                <div class="name"></div>
-                <div class="name"></div>
-            </div>
-        </div>
-        <div class="v70_917">
-            <div class="v70_918">
-                <span class="v70_919">Dokumen</span>
-            </div>
-            <div class="v70_920">
-                <span class="v70_921">Template Surat Pengantar PKL</span>
-                <div class="v70_922">
-                    <span class="v70_923">Download</span>
-                    <div class="v70_924"></div>
-                </div>
-            </div>
-            <div class="v70_925">
-                <span class="v70_926">Template Proposal</span>
-                <div class="v70_927">
-                    <span class="v70_928">Download</span>
-                    <div class="v70_929"></div>
-                </div>
-            </div>
-            <div class="v70_930">
-                <span class="v70_931">Template Laporan Akhir</span>
-                <div class="v70_932">
-                    <span class="v70_933">Download</span>
-                    <div class="v70_934"></div>
-                </div>
-            </div>
-        </div>
-        <span class="v70_935">Download</span>
-        <div class="v70_936">
-            <div class="v70_937">
-                <div class="name"></div>
-                <div class="name"></div>
-            </div>
-        </div>
-        <div class="v70_940">
-            <div class="v70_941">
-                <span class="v70_942">Logo</span>
-            </div>
-            <div class="v70_943">
-                <span class="v70_944">Logo Unair (Biru)</span>
-                <div class="v70_945">
-                    <span class="v70_946">Download</span>
-                    <div class="v70_947"></div>
-                </div>
-            </div>
-            <div class="v70_948">
-                <span class="v70_949">Lambang Universitas Airlangga</span>
-                <div class="v70_950">
-                    <span class="v70_951">Download</span>
-                    <div class="v70_952"></div>
-                </div>
-            </div>
-            <div class="v70_953">
-                <span class="v70_954">Logo Smart University</span>
-                <div class="v70_955">
-                    <span class="v70_956">Download</span>
-                    <div class="v70_957"></div>
-                </div>
+
+            <!-- Tabel Template -->
+            <div class="form-container">
+                <h2>Template</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Nama Template</th>
+                            <th>Download</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Template Surat Pengantar PKL</td>
+                            <td><a href="#" class="download-button"><i class="fas fa-download"></i> Download</a></td>
+                        </tr>
+                        <tr>
+                            <td>Template Proposal</td>
+                            <td><a href="#" class="download-button"><i class="fas fa-download"></i> Download</a></td>
+                        </tr>
+                        <tr>
+                            <td>Template Laporan Akhir</td>
+                            <td><a href="#" class="download-button"><i class="fas fa-download"></i> Download</a></td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>

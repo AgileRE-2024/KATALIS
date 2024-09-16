@@ -7,19 +7,19 @@
     <a href="dosbing" class="nav-item">
         <i class="fas fa-chalkboard-teacher"></i> Dosen Pembimbing
     </a>
-    <a href="#" class="nav-item">
+    <a href="pkl" class="nav-item">
         <i class="fas fa-info-circle"></i> Informasi PKL
     </a>
-    <a href="#" class="nav-item">
+    <a href="logbook" class="nav-item">
         <i class="fas fa-book"></i> Monitoring PKL
     </a>
-    <a href="#" class="nav-item">
+    <a href="laporan" class="nav-item">
         <i class="fas fa-file-alt"></i> Laporan
     </a>
-    <a href="#" class="nav-item">
+    <a href="seminar" class="nav-item">
         <i class="fas fa-laptop"></i> Seminar
     </a>
-    <a href="#" class="nav-item">
+    <a href="download" class="nav-item">
         <i class="fas fa-download"></i> Download
     </a>
 </div>
