@@ -44,3 +44,7 @@ Route::get('/laporandosen', function () {
 Route::get('/penilaiandosen', function () {
     return view('penilaiandosen');
 });
+
+Route::get('/profil', function () {
+    return view('profil');
+});
