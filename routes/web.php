@@ -51,6 +51,8 @@ Route::get('/penilaiandosen', function () {
 
 Route::get('/profil', function () {
     return view('profil');
+});
+
 Route::get('/profil', function () {
     return view('home/profil');
 });
