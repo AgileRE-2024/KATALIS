@@ -87,7 +87,6 @@
         <x-header>Download</x-header>
 
         <div class="main-content">
-            <p>Ini adalah halaman Profil.</p>
 
             <!-- Tabel Logo -->
             <div class="form-container">

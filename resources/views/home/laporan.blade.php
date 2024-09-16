@@ -149,7 +149,6 @@
         <x-header>Laporan</x-header>
 
         <div class="main-content">
-            <p>Ini adalah halaman Profil.</p>
 
             <!-- Laporan Akhir PKL Section -->
             <div class="form-container">
