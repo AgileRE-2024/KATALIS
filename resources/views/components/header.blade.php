@@ -9,7 +9,7 @@
             <small>187221053</small>
         </div>
         <div class="logout">
-            <a href="#" onclick="logout();">
+            <a href="login" onclick="logout();">
                 <i class="fas fa-sign-out-alt"></i>
             </a>
         </div>
@@ -25,7 +25,7 @@
         align-items: center;
         padding: 10px 20px;
         color: black;
-        border-bottom: 1px solid #2980b9;
+        border-bottom: 1px solid #D9CEC6;
     }
 
     .left-header h1 {

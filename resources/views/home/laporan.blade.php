@@ -25,7 +25,7 @@
             align-items: center;
             padding: 10px 20px;
             color: black;
-            border-bottom: 1px solid #D9CEC6;
+            border-bottom: 1px solid #D9CEC6 !important;
         }
 
         .left-header h1 {

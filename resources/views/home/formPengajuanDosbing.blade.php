@@ -24,7 +24,7 @@
             align-items: center;
             padding: 10px 20px;
             color: black;
-            border-bottom: 1px solid #D9CEC6;
+            border-bottom: 1px solid #D9CEC6 !important;
         }
 
         .form-container {
@@ -119,7 +119,7 @@
                     </div>
                     <div class="form-group">
                         <label for="draft-proposal">Draft Proposal PKL *:</label>
-                        <input type="file" id="draft-proposal" name="draft-proposal">
+                        <input type="file" id="draft-proposal" name="draft-proposal" accept="application/pdf"> <!-- Only PDF files -->
                     </div>
                     <div class="form-group">
                         <label>Apakah Anda PKL secara berkelompok?</label>
