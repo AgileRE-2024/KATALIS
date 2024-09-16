@@ -12,8 +12,8 @@ html, body {
 }
 
   .v63_801 {
-    width: 100%;
-    height: 590px;
+    width: 100vw;
+    height: 100vh;
     background: rgba(235,223,215,1);
     opacity: 1;
     position: relative;
@@ -80,7 +80,7 @@ html, body {
   }
   .v63_808 {
     width: 326px;
-    height: 590px;
+    height: 100vh;
     background: rgb(26, 25, 25);
     opacity: 1;
     position: relative;
