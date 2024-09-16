@@ -139,7 +139,7 @@
     <x-sidebar></x-sidebar>
     
     <div class="content">
-        <x-header></x-header>
+        <x-header>Laporan</x-header>
 
         <div class="main-content">
             <p>Ini adalah halaman Profil.</p>

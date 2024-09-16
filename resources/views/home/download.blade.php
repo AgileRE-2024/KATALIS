@@ -77,7 +77,7 @@
     <x-sidebar></x-sidebar>
     
     <div class="content">
-        <x-header></x-header>
+        <x-header>Download</x-header>
 
         <div class="main-content">
             <p>Ini adalah halaman Profil.</p>
