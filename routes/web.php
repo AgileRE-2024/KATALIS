@@ -13,10 +13,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/sidebar', function () {
-    return view('layouts/sidebar');
-});
-
 Route::get('/profil', function () {
     return view('home/profil');
 });
