@@ -158,7 +158,6 @@
         <x-header>Monitoring PKL</x-header>
 
         <div class="main-content">
-            <p>Ini adalah halaman Profil.</p>
 
             <!-- Logbook Section -->
             <div class="form-container">
