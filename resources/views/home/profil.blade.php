@@ -7,16 +7,9 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <style>
-        body {
-            background-color: #EBDFD7; /* Ganti dengan warna latar belakang yang diinginkan */
-            margin: 0;
-            font-family: Arial, sans-serif;
-        }
-
         .content {
             margin-left: 250px;
             padding: 20px;
-            background-color: #EBDFD7; /* Warna latar belakang khusus untuk konten */
         }
 
         .header {
@@ -25,7 +18,7 @@
             align-items: center;
             padding: 10px 20px;
             color: black;
-            border-bottom: 1px solid #D9CEC6 !important;
+            border-bottom: 1px solid #D9CEC6;
             margin-bottom: 20px; 
         }
 
@@ -50,30 +43,41 @@
 
         .profile-container {
             display: flex;
-            align-items: center;
-            justify-content: center;
+            align-items: center; /* Vertically center */
+            justify-content: center; /* Horizontally center */
             gap: 20px;
-            border-bottom: 1px solid #D9CEC6;
-            padding-bottom: 20px;
+            border-bottom: 1px solid #D9CEC6; /* Optional: Add border-bottom to profile container */
+            padding-bottom: 20px; /* Add padding below profile container */
         }
 
         .profile-photo, .profile-form {
             flex: 1;
-            max-width: 500px;
+            max-width: 500px; /* Optional: Ensure content doesn't exceed a certain width */
         }
 
         .profile-photo {
             display: flex;
-            justify-content: center;
-            align-items: center;
+            justify-content: center; /* Center the photo within its container */
+            align-items: center; /* Center the photo vertically */
         }
 
         .profile-photo img {
-            width: 100%;
-            height: auto;
-            max-width: 150px;
-            object-fit: cover;
-            border-radius: 50%;
+    width: 320px;
+    height: 340px;
+    background: url("./images/v3_710.png");
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    opacity: 1;
+    position: absolute;
+    top: 110px;
+    left: 350px;
+    border-top-left-radius: 113px;
+    border-top-right-radius: 113px;
+    border-bottom-left-radius: 113px;
+    border-bottom-right-radius: 113px;
+    overflow: hidden;
+}
         }
 
         .profile-form {
@@ -86,7 +90,7 @@
             padding: 8px;
             border: 1px solid #ddd;
             border-radius: 4px;
-            background-color: #f9f9f9;
+            background-color: #f9f9f9; /* Light background for readability */
         }
 
         .form-group {
@@ -115,19 +119,22 @@
         button:hover {
             background-color: #1c60a7;
         }
+
+        
+
     </style>
 </head>
 <body>
     <x-sidebar></x-sidebar>
     
     <div class="content">
-        <x-header>Profil</x-header>
+        <x-header></x-header>
 
         <div class="main-content">
             <div class="profile-container">
                 <!-- Foto Profil -->
                 <div class="profile-photo">
-                    <img src="path-to-your-photo.jpg" alt="Foto Profil">
+                    <img src="{{ asset('assets/images/v3_710.png') }}"></img> 
                 </div>
 
                 <!-- Pernyataan Profil -->
