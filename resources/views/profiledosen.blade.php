@@ -11,8 +11,8 @@
         .icon-right {
             color: #ffffff;
             font-size: 1rem;
-            margin-left: 0.7rem;
-            margin-top: 0.5rem;
+            margin-left: 0.8rem;
+            margin-top: 0.8rem;
         }
         .profile-icon {
             color: black; /* Color for the profile icon */
@@ -27,30 +27,31 @@
             <div class="v3_609"></div>
             <div class="v3_610">
                 <div class="v3_611">
-                    <span class="v3_612">Profil</span>
+                    <span class="v3_612"><a href="{{ url('/profiledosen') }}">Profil</a></span>
                     <i class="fas fa-user icon-right profile-icon"></i> 
                 </div>
                 <div class="v34_725">
                     <div class="name"></div>
-                    <span class="v34_727">Data Mahasiswa</span>
+                    <span class="v34_727"><a href="{{ url('/datamahasiswa') }}">Data Mahasiswa</a></span>
                     <i class="fas fa-user-graduate icon-right"></i>
                 </div>
                 <div class="v3_617">
-                    <span class="v3_618">Logbook</span>
+                    <div class="name"></div>
+                    <span class="v3_618"><a href="{{ url('/logbookdosen') }}">Logbook</a></span>
                     <i class="fas fa-book icon-right"></i>
                 </div>
                 <div class="v3_620">
-                    <span class="v3_621">Bimbingan</span>
+                    <span class="v3_621"><a href="{{ url('/bimbingandosen') }}">Bimbingan</a></span>
                     <i class="fas fa-chalkboard-teacher icon-right"></i>
                 </div>
                 <div class="v3_623">
                     <div class="name"></div>
-                    <span class="v3_625">Penilaian PKL</span>
+                    <span class="v3_625"><a href="{{ url('/penilaiandosen') }}">Penilaian PKL</a></span>
                     <i class="fas fa-chart-line icon-right"></i>
                 </div>
                 <div class="v3_627">
                     <div class="name"></div>
-                    <span class="v3_629">Laporan</span>
+                    <span class="v3_629"><a href="{{ url('/laporandosen') }}">Laporan</a></span>
                     <i class="fas fa-file-alt icon-right"></i>
                 </div>
             </div>
@@ -70,7 +71,7 @@
         <div class="v3_710"></div>
         <div id="signout-button" class="v4_718">
             <div class="name"></div>
-            <span class="v4_720"><a href="{{ url('login') }}">Sign Out</a></span>
+            <span class="v4_720"><a href="{{ url('') }}">Sign Out</a></span>
         </div>
     </div>
 </html>

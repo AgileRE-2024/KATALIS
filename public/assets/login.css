@@ -164,3 +164,15 @@ html, body {
   top: 90px;
   left: 43px;
 }
+
+.a {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  color: rgba(17, 17, 17, 0.7);
+  margin-bottom: 5px;
+  text-align: left; /* Rata kiri */
+  display: block; /* Agar label memanfaatkan seluruh lebar kontainer */
+  width: 100%; /* Lebar label sama dengan lebar kontainer input */
+  text-decoration: none;
+}
