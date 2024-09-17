@@ -9,14 +9,14 @@
     <style>
         body {
             background-color: #EBDFD7;
-            margin: 0; /* Ensures no margin is added by the body */
-            font-family: Arial, sans-serif; /* Consistent font */
+            margin: 0;
+            font-family: Arial, sans-serif;
         }
 
         .content {
-            margin-left: 250px; /* Ensure this matches the sidebar width */
+            margin-left: 250px;
             padding: 20px;
-            background-color: #EBDFD7; /* Light background for the content area */
+            background-color: #EBDFD7;
         }
 
         .header {
@@ -53,7 +53,7 @@
             padding: 20px;
             border: 1px solid #ddd;
             border-radius: 4px;
-            background-color: #f9f9f9; /* Light background for the form container */
+            background-color: #f9f9f9;
         }
 
         .form-group {
@@ -66,8 +66,12 @@
             margin-bottom: 5px;
         }
 
-        .form-group input[type="text"], 
-        .form-group input[type="file"], 
+        .form-group label span {
+            color: #B80A0A; /* Menggunakan warna merah sesuai permintaan */
+        }
+
+        .form-group input[type="text"],
+        .form-group input[type="file"],
         .form-group input[type="date"] {
             width: 100%;
             padding: 10px;
@@ -76,8 +80,8 @@
         }
 
         .form-group textarea {
-            resize: vertical; /* Allows vertical resizing */
-            height: 100px; /* Default height */
+            resize: vertical;
+            height: 100px;
         }
 
         .form-group input[type="checkbox"] {
@@ -137,38 +141,55 @@
             <div class="form-container">
                 <form id="pkl-form">
                     <div class="form-group">
-                        <label for="topik-pkl">Nama Perusahaan:</label>
-                        <input type="text" id="topik-pkl" name="topik-pkl">
+                        <label for="topik-pkl">Nama Perusahaan: <span>*</span></label>
+                        <input type="text" id="topik-pkl" name="topik-pkl" required>
                     </div>
                     <div class="form-group">
-                        <label for="alamat-perusahaan">Alamat Perusahaan:</label>
-                        <input type="text" id="alamat-perusahaan" name="alamat-perusahaan">
+                        <label for="alamat-perusahaan">Alamat Perusahaan: <span>*</span></label>
+                        <input type="text" id="alamat-perusahaan" name="alamat-perusahaan" required>
                     </div>
                     <div class="form-group">
-                        <label for="role">Role:</label>
-                        <input type="text" id="role" name="role">
+                        <label for="role">Role: <span>*</span></label>
+                        <input type="text" id="role" name="role" required>
                     </div>
                     <div class="form-group">
-                        <label for="durasi-pkl-start">Durasi PKL (Tanggal Mulai):</label>
-                        <input type="date" id="durasi-pkl-start" name="durasi-pkl-start">
+                        <label for="durasi-pkl-start">Durasi PKL (Tanggal Mulai): <span>*</span></label>
+                        <input type="date" id="durasi-pkl-start" name="durasi-pkl-start" required>
                     </div>
                     <div class="form-group">
-                        <label for="durasi-pkl-end">Durasi PKL (Tanggal Akhir):</label>
-                        <input type="date" id="durasi-pkl-end" name="durasi-pkl-end">
+                        <label for="durasi-pkl-end">Durasi PKL (Tanggal Akhir): <span>*</span></label>
+                        <input type="date" id="durasi-pkl-end" name="durasi-pkl-end" required>
                     </div>
                     <div class="form-group">
-                        <label for="surat-permohonan">Surat Permohonan PKL:</label>
-                        <input type="file" id="surat-permohonan" name="surat-permohonan">
+                        <label for="surat-permohonan">Surat Permohonan PKL (PDF): <span>*</span></label>
+                        <input type="file" id="surat-permohonan" name="surat-permohonan" accept="application/pdf" required>
                     </div>
                     <div class="form-group">
-                        <label for="surat-penerimaan">Surat Penerimaan PKL:</label>
-                        <input type="file" id="surat-penerimaan" name="surat-penerimaan">
+                        <label for="surat-penerimaan">Surat Penerimaan PKL (PDF): <span>*</span></label>
+                        <input type="file" id="surat-penerimaan" name="surat-penerimaan" accept="application/pdf" required>
                     </div>
 
-                    <a href="fixPKL" class="button-link">Simpan</a>
+                    <button type="submit" class="button-link">Simpan</button>
                 </form>
             </div>
         </div>
     </div>  
+
+    <script>
+        document.getElementById('pkl-form').addEventListener('submit', function(event) {
+            const filesPermohonan = document.getElementById('surat-permohonan').files[0];
+            const filesPenerimaan = document.getElementById('surat-penerimaan').files[0];
+
+            if (filesPermohonan && filesPermohonan.type !== 'application/pdf') {
+                alert('Surat Permohonan harus berupa file PDF');
+                event.preventDefault();  // Prevent form submission
+            }
+
+            if (filesPenerimaan && filesPenerimaan.type !== 'application/pdf') {
+                alert('Surat Penerimaan harus berupa file PDF');
+                event.preventDefault();  // Prevent form submission
+            }
+        });
+    </script>
 </body>
 </html>

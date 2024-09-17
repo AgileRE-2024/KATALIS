@@ -16,7 +16,7 @@
         .content {
             margin-left: 250px;
             padding: 20px;
-            background-color: #EBDFD7; /* Light background for the content area */
+            background-color: #EBDFD7;
         }
 
         .header {
@@ -52,7 +52,7 @@
             padding: 20px;
             border: 1px solid #ddd;
             border-radius: 4px;
-            background-color: #f9f9f9; /* Light background for the form container */
+            background-color: #f9f9f9;
         }
 
         .form-group {
@@ -66,63 +66,20 @@
         }
 
         .form-group input[type="text"], 
-        .form-group input[type="file"], 
-        .form-group input[type="date"] {
+        .form-group input[type="date"], 
+        .form-group input[type="file"],
+        .form-group input[disabled] {
             width: 100%;
             padding: 10px;
             border: 1px solid #ddd;
             border-radius: 4px;
+            background-color: #f5f5f5;
+            color: #555;
         }
 
         .form-group textarea {
-            resize: vertical; /* Allows vertical resizing */
-            height: 100px; /* Default height */
-        }
-
-        .form-group input[type="checkbox"] {
-            margin-right: 10px;
-        }
-
-        .form-group button {
-            padding: 10px 15px;
-            background-color: #2980b9;
-            color: white;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-
-        .form-group button:hover {
-            background-color: #1c60a7;
-        }
-
-        .button-link {
-            display: inline-block;
-            padding: 10px 15px;
-            background-color: #D9CEC6;
-            color: black;
-            text-decoration: none;
-            border-radius: 4px;
-            font-size: 16px;
-            cursor: pointer;
-            position: relative;
-            transition: background-color 0.3s ease;
-        }
-
-        .button-link::before {
-            content: '';
-            position: absolute;
-            top: -10px;
-            left: -10px;
-            right: -10px;
-            bottom: -10px;
-            background-color: rgba(0, 0, 0, 0.1);
-            z-index: -1;
-            border-radius: 8px;
-        }
-
-        .button-link:hover {
-            background-color: #f5f5f5;
+            resize: vertical;
+            height: 100px;
         }
     </style>
 </head>
@@ -137,36 +94,34 @@
                 <form id="pkl-form">
                     <div class="form-group">
                         <label for="topik-pkl">Nama Perusahaan:</label>
-                        <input type="text" id="topik-pkl" name="topik-pkl" value="Perusahaan xyz">
+                        <input type="text" id="topik-pkl" name="topik-pkl" value="Perusahaan xyz" disabled>
                     </div>
                     <div class="form-group">
                         <label for="alamat-perusahaan">Alamat Perusahaan:</label>
-                        <input type="text" id="alamat-perusahaan" name="alamat-perusahaan" value="Jalan jsdheieife">
+                        <input type="text" id="alamat-perusahaan" name="alamat-perusahaan" value="Jalan jsdheieife" disabled>
                     </div>
                     <div class="form-group">
                         <label for="role">Role:</label>
-                        <input type="text" id="role" name="role" value="Data Analyst">
+                        <input type="text" id="role" name="role" value="Data Analyst" disabled>
                     </div>
                     <div class="form-group">
                         <label for="durasi-pkl-start">Durasi PKL (Tanggal Mulai):</label>
-                        <input type="date" id="durasi-pkl-start" name="durasi-pkl-start" value="2024-10-12">
+                        <input type="date" id="durasi-pkl-start" name="durasi-pkl-start" value="2024-10-12" disabled>
                     </div>
                     <div class="form-group">
                         <label for="durasi-pkl-end">Durasi PKL (Tanggal Akhir):</label>
-                        <input type="date" id="durasi-pkl-end" name="durasi-pkl-end" value="2025-01-12">
+                        <input type="date" id="durasi-pkl-end" name="durasi-pkl-end" value="2025-01-12" disabled>
                     </div>
                     <div class="form-group">
                         <label for="surat-permohonan">Surat Permohonan PKL:</label>
-                        <input type="file" id="surat-permohonan" name="surat-permohonan">
-                        <p id="file-name-surat-permohonan">laporan.pdf</p> <!-- Display the file name here -->
+                        <input type="text" id="surat-permohonan" name="surat-permohonan" value="laporan.pdf" disabled>
                     </div>
                     <div class="form-group">
                         <label for="surat-penerimaan">Surat Penerimaan PKL:</label>
-                        <input type="file" id="surat-penerimaan" name="surat-penerimaan">
-                        <p id="file-name-surat-penerimaan">laporan.pdf</p> <!-- Display the file name here -->
+                        <input type="text" id="surat-penerimaan" name="surat-penerimaan" value="laporan.pdf" disabled>
                     </div>
 
-                    <a href="fixPKL" class="button-link">Ubah</a>
+                    <!-- Button 'Ubah' telah dihapus -->
                 </form>
             </div>
         </div>

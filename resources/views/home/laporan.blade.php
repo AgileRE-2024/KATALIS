@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <style>
         body {
-            background-color: #EBDFD7; /* Warna latar belakang halaman */
+            background-color: #EBDFD7;
             margin: 0;
             font-family: Arial, sans-serif;
         }
@@ -16,7 +16,7 @@
         .content {
             margin-left: 250px;
             padding: 20px;
-            background-color: #EBDFD7; /* Warna latar belakang khusus untuk konten */
+            background-color: #EBDFD7;
         }
 
         .header {
@@ -140,6 +140,11 @@
         th {
             background-color: #f4f4f4;
         }
+
+        .error {
+            color: red;
+            margin-top: 10px;
+        }
     </style>
 </head>
 <body>
@@ -155,8 +160,9 @@
                 <h2>Laporan Akhir PKL</h2>
                 <form id="laporan-pkl-form">
                     <div class="form-group">
-                        <label for="laporan-pkl-file">Upload Laporan Akhir PKL:</label>
-                        <input type="file" id="laporan-pkl-file" name="laporan-pkl-file">
+                        <label for="laporan-pkl-file">Upload Laporan Akhir PKL (PDF):</label>
+                        <input type="file" id="laporan-pkl-file" name="laporan-pkl-file" accept=".pdf">
+                        <div id="file-error" class="error" style="display:none;">Only PDF files are allowed.</div>
                     </div>
                     <button type="submit">Tambah Laporan Akhir PKL</button>
                 </form>
@@ -183,11 +189,26 @@
                             <td>2024-09-14</td>
                             <td>Good progress, keep it up!</td>
                         </tr>
-                        <!-- Add more rows as needed -->
                     </tbody>
                 </table>
             </div>
         </div>
     </div>
+
+    <script>
+        document.getElementById('laporan-pkl-form').addEventListener('submit', function(event) {
+            var fileInput = document.getElementById('laporan-pkl-file');
+            var filePath = fileInput.value;
+            var allowedExtensions = /(\.pdf)$/i;
+            var errorDiv = document.getElementById('file-error');
+
+            if (!allowedExtensions.exec(filePath)) {
+                errorDiv.style.display = 'block'; // Menampilkan pesan error jika bukan PDF
+                event.preventDefault(); // Menghentikan form submission
+            } else {
+                errorDiv.style.display = 'none'; // Menyembunyikan pesan error jika valid
+            }
+        });
+    </script>
 </body>
 </html>
