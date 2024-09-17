@@ -65,11 +65,16 @@
             margin-bottom: 5px;
         }
 
-        .form-group input[type="text"], .form-group input[type="file"], .form-group input[type="date"] {
+        .form-group input[type="text"], .form-group input[type="date"] {
             width: 100%;
             padding: 10px;
             border: 1px solid #ddd;
             border-radius: 4px;
+            background-color: #e9e9e9; /* Warna latar belakang untuk elemen non-aktif */
+        }
+
+        .form-group input[readonly] {
+            background-color: #e9e9e9; /* Warna latar belakang untuk elemen non-aktif */
         }
 
         .form-group textarea {
@@ -136,29 +141,27 @@
                 <form id="pkl-form">
                     <div class="form-group">
                         <label for="topik-pkl">Judul PKL:</label>
-                        <input type="text" id="topik-pkl" name="topik-pkl" value="Analisis xyszds">
+                        <input type="text" id="topik-pkl" name="topik-pkl" value="Analisis xyszds" readonly>
                     </div>
                     <div class="form-group">
                         <label for="alamat-perusahaan">Tempat PKL:</label>
-                        <input type="text" id="alamat-perusahaan" name="alamat-perusahaan" value="BCA">
+                        <input type="text" id="alamat-perusahaan" name="alamat-perusahaan" value="BCA" readonly>
                     </div>
                     <div class="form-group">
                         <label for="role">Dosen Pembimbing PKL:</label>
-                        <input type="text" id="role" name="role" value="Pak xysaidai">
+                        <input type="text" id="role" name="role" value="Pak xysaidai" readonly>
                     </div>
                     <div class="form-group">
                         <label for="durasi-pkl-start">Tanggal Seminar:</label>
-                        <input type="date" id="durasi-pkl-start" name="durasi-pkl-start" value="2024-10-12">
+                        <input type="date" id="durasi-pkl-start" name="durasi-pkl-start" value="2024-10-12" readonly>
                     </div>
                     <div class="form-group">
                         <label for="surat-permohonan">Surat Permohonan PKL:</label>
-                        <input type="file" id="surat-permohonan" name="surat-permohonan">
-                        <p id="file-name-surat-permohonan">laporan.pdf</p> <!-- Display the file name here -->
+                        <input type="text" id="surat-permohonan" name="surat-permohonan" value="laporan.pdf" readonly>
                     </div>
                     <div class="form-group">
                         <label for="surat-penerimaan">Surat Penerimaan PKL:</label>
-                        <input type="file" id="surat-penerimaan" name="surat-penerimaan">
-                        <p id="file-name-surat-penerimaan">laporan.pdf</p> <!-- Display the file name here -->
+                        <input type="text" id="surat-penerimaan" name="surat-penerimaan" value="laporan.pdf" readonly>
                     </div>
                 </form>
             </div>
