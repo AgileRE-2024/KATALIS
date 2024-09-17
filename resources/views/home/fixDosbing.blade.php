@@ -52,11 +52,14 @@
         }
 
         .profile-photo img {
-            width: 100%;
-            height: auto;
-            max-width: 150px; /* Ensure image is not too large */
-            object-fit: cover;
-            border-radius: 50%;
+            width: 320px;
+            height: 340px;
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-size: cover;
+            opacity: 1;
+            border-radius: 113px;
+            overflow: hidden;
         }
 
         .profile-form {
@@ -107,7 +110,7 @@
             <div class="profile-container">
                 <!-- Foto Profil -->
                 <div class="profile-photo">
-                    <img src="path-to-your-photo.jpg" alt="Foto Profil">
+                    <img src="{{ asset('assets/images/v3_710.png') }}" alt="Foto Profil">
                 </div>
 
                 <!-- Pernyataan Profil -->

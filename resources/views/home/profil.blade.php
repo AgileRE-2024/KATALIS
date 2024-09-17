@@ -3,85 +3,52 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Profil</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <style>
         body {
-            margin: 0; /* Reset body margin */
+            background-color: #EBDFD7; /* Page background color */
+            margin: 0;
             font-family: Arial, sans-serif;
-            background-color: #EBDFD7; /* Background color for the body */
         }
 
-        /* Sidebar Styling */
-        x-sidebar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            height: 100%;
-            width: 250px; /* Sidebar width */
-            background-color: #333; /* Dark sidebar */
-            color: #fff;
-            padding-top: 20px;
-            padding-left: 10px;
-        }
-
-        /* Content Section */
         .content {
-            margin-left: 250px; /* Ensure content does not overlap the sidebar */
+            margin-left: 250px;
             padding: 20px;
-            background-color: #EBDFD7; /* Background color for content area */
+            background-color: #EBDFD7; /* Content background color */
         }
 
-        /* Header Styling */
         .header {
             display: flex;
             justify-content: space-between;
             align-items: center;
             padding: 10px 20px;
             color: black;
-            border-bottom: 1px solid #D9CEC6;
-            margin-bottom: 20px; 
+            border-bottom: 1px solid #D9CEC6 !important;
+            margin-bottom: 20px; /* Add space below header */
         }
 
-        .left-header h1 {
-            margin: 0;
-        }
-
-        .right-header {
-            display: flex;
-            align-items: center;
-        }
-
-        .user-info {
-            margin-right: 20px;
-            text-align: right;
-        }
-
-        .user-info p {
-            margin: 0;
-            font-weight: bold;
-        }
-
-        /* Profile Section Styling */
         .profile-container {
             display: flex;
             align-items: center; /* Vertically center */
             justify-content: center; /* Horizontally center */
             gap: 20px;
-            border-bottom: 1px solid #D9CEC6;
-            padding-bottom: 20px;
+            border-bottom: 1px solid #D9CEC6; /* Border color for profile container */
+            padding-bottom: 20px; /* Add padding below profile container */
+            background-color: #EBDFD7; /* Light background for readability */
+            border-radius: 4px; /* Rounded corners */
+            border: 1px solid #ddd; /* Border around the profile container */
         }
 
         .profile-photo, .profile-form {
             flex: 1;
-            max-width: 500px;
+            max-width: 500px; /* Ensure content doesn't exceed a certain width */
         }
 
         .profile-photo {
             display: flex;
-            justify-content: center;
-            align-items: center;
+            justify-content: center; /* Center the photo within its container */
+            align-items: center; /* Center the photo vertically */
         }
 
         .profile-photo img {
@@ -101,28 +68,24 @@
             gap: 15px;
         }
 
-        .profile-form p {
-            padding: 8px;
-            border: 1px solid #D9CEC6;
-            border-radius: 4px;
-            background-color: #ffffff; /* White background for profile info */
-        }
-
-        .form-group {
+        .profile-form .form-group {
             display: flex;
             flex-direction: column;
         }
 
-        .form-group label {
+        .profile-form label {
             margin-bottom: 5px;
             font-weight: bold;
         }
 
-        .form-group p {
+        .profile-form p {
             margin: 0;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            background-color: #f9f9f9; /* Light background for readability */
         }
 
-        /* Button Styling */
         button {
             padding: 10px 15px;
             background-color: #2980b9;
@@ -138,15 +101,10 @@
     </style>
 </head>
 <body>
-    <!-- Sidebar -->
-    <x-sidebar>
-        <!-- Add your sidebar content here -->
-        <p>Sidebar content</p>
-    </x-sidebar>
+    <x-sidebar></x-sidebar>
     
-    <!-- Main Content -->
     <div class="content">
-        <x-header>Profil</x-header>
+        <x-header>Dosen Pembimbing</x-header>
 
         <div class="main-content">
             <div class="profile-container">
@@ -159,27 +117,23 @@
                 <div class="profile-form">
                     <div class="form-group">
                         <label for="full-name">Nama Lengkap:</label>
-                        <p id="full-name">Eunike Alfrita MW</p>
+                        <p id="full-name">Pak Bu AUSHUAW</p>
                     </div>
                     <div class="form-group">
-                        <label for="nim">NIM:</label>
+                        <label for="nim">NIP:</label>
                         <p id="nim">187221053</p>
                     </div>
                     <div class="form-group">
-                        <label for="program-study">Program Studi:</label>
-                        <p id="program-study">Sistem Informasi</p>
+                        <label for="program-study">Email:</label>
+                        <p id="program-study">dosen@gmail.com</p>
                     </div>
                     <div class="form-group">
-                        <label for="email">Email:</label>
-                        <p id="email">winwinhara@gmail.com</p>
+                        <label for="email">Nomor HP:</label>
+                        <p id="email">11236386428723</p>
                     </div>
                     <div class="form-group">
-                        <label for="phone">Nomor HP:</label>
-                        <p id="phone">123456789</p>
-                    </div>
-                    <div class="form-group">
-                        <label for="dosen-wali">Dosen Wali:</label>
-                        <p id="dosen-wali">Pak xys</p>
+                        <label for="phone">Alamat:</label>
+                        <p id="phone">Jalan xygsduybsd</p>
                     </div>
                 </div>
             </div>
