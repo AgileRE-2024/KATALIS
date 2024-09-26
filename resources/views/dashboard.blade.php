@@ -278,8 +278,8 @@
           <!-- chat tab ends -->
         </div>
       </div>
-      <!-- partial -->
-      <!-- partial:partials/_sidebar.html -->
+      <!-- partial
+      partial:partials/_sidebar.html -->
       <nav class="sidebar sidebar-offcanvas" id="sidebar">
         <ul class="nav">
           <li class="nav-item">
