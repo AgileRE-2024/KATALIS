@@ -180,11 +180,6 @@
           <!-- chat tab ends -->
         </div>
       </div>
-<<<<<<< HEAD
-      <!-- partial -->
-      <!-- partial:partials/_sidebar.html -->
-      <x-sidebarfix></x-sidebarfix>
-=======
       <!-- partial
       partial:partials/_sidebar.html -->
       <nav class="sidebar sidebar-offcanvas" id="sidebar">
@@ -291,7 +286,6 @@
           </li>
         </ul>
       </nav>
->>>>>>> e4c50a919059d65522098229fdf587845c02e160
       <!-- partial -->
       <div class="main-panel">
         <div class="content-wrapper">
