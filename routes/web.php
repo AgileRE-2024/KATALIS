@@ -136,6 +136,14 @@ Route::get('/form', function () {
     return view('form');
 });
 
+Route::get('/dashboardMahasiswa', function () {
+    return view('dashboardMahasiswa');
+});
+
+Route::get('/formPengajuanDosbing', function () {
+    return view('formPengajuanDosbing');
+});
+
 /*
 
 | Jangan lupa php artisan route:clear

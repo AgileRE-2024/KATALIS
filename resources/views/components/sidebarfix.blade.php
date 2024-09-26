@@ -8,6 +8,21 @@
               <span class="menu-title">Dashboard</span>
             </a>
           </li>
+
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#dosbing" aria-expanded="false" aria-controls="dosbing">
+              <i class="icon-head menu-icon"></i>
+              <span class="menu-title">Dosbing</span>
+              <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="dosbing">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item"> <a class="nav-link" href="#"> Informasi Dosen </a></li>
+                <li class="nav-item"> <a class="nav-link" href="formPengajuanDosbing"> Pengajuan Dosen </a></li>
+              </ul>
+            </div>
+          </li>
+          
           <li class="nav-item">
             <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
               <i class="icon-layout menu-icon"></i>
@@ -104,3 +119,8 @@
           </li>
         </ul>
       </nav>
+
+<!-- Required JavaScript -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
