@@ -132,6 +132,13 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 });
 
+Route::get('/charts', function () {
+    return view('charts');
+});
+
+
+
+
 /*
 
 | Jangan lupa php artisan route:clear
