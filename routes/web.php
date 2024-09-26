@@ -132,12 +132,9 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 });
 
-Route::get('/charts', function () {
-    return view('charts');
+Route::get('/form', function () {
+    return view('form');
 });
-
-
-
 
 /*
 
