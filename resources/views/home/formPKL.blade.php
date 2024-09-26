@@ -107,6 +107,7 @@
             cursor: pointer;
             position: relative;
             transition: background-color 0.3s ease;
+            border : none
         }
 
         .button-link::before {

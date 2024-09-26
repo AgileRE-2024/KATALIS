@@ -124,6 +124,14 @@ Route::get('/tambahdatamahasiswa', function () {
     return view('tambahdatamahasiswa');
 });
 
+Route::get('/contoh', function () {
+    return view('contoh');
+});
+
+Route::get('/dashboard', function () {
+    return view('dashboard');
+});
+
 /*
 
 | Jangan lupa php artisan route:clear
