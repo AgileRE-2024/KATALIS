@@ -164,6 +164,10 @@ Route::get('/formInformasiPKL', function () {
     return view('formInformasiPKL');
 });
 
+Route::get('/profilds', function () {
+    return view('profilds');
+});
+
 /*
 
 | Jangan lupa php artisan route:clear

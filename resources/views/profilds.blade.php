@@ -28,22 +28,22 @@
 
         /* Foto Profil */
         .profile-photo {
-            position: absolute;
-            top: -50px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 100px;
-            height: 100px;
+            width: 150px;
+            height: 150px;
             border-radius: 50%;
             object-fit: cover;
+            position: absolute;
+            top: -75px;
+            left: 50%;
+            transform: translateX(-50%);
             border: 5px solid white;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
         }
 
-        /* Nama Siswa dan Jurusan/NIM */
+        /* Nama Siswa dan NIM */
         .profile-info {
             margin-top: 30px;
-            text-align: center; /* Agar teks ini berada di tengah */
+            text-align: center;
         }
 
         .profile-info h2 {
@@ -53,7 +53,7 @@
 
         .profile-info h4 {
             font-size: 18px;
-            color: #555;
+            color: #666;
             margin-bottom: 20px;
         }
 
@@ -134,11 +134,10 @@
                         <!-- Foto Profil -->
                         <img src="https://via.placeholder.com/150" alt="Foto Profil" class="profile-photo">
 
-                        <!-- Informasi Siswa (Nama, NIM, Jurusan) di tengah -->
+                        <!-- Informasi Siswa (Nama, NIM) di tengah -->
                         <div class="profile-info">
-                            <h2>Aamir Khan</h2>
-                            <h4>Teknik Informatika</h4>
-                            <h4>NIM: 123456789</h4>
+                            <h2>Nabila S.Si, M.Si</h2>
+                            <h4>NIP: 19820101827291</h4>
                         </div>
 
                         <!-- Garis Pembatas -->
@@ -146,20 +145,17 @@
 
                         <!-- Detail Informasi Siswa -->
                         <div class="student-details">
-                            <!-- Kolom Pertama -->
+                            <!-- Kolom Pertama (3 Informasi) -->
                             <div class="column">
-                                <p><strong>Nama:</strong> Aamir Khan</p>
-                                <p><strong>Jurusan:</strong> Teknik Informatika</p>
-                                <p><strong>NIM:</strong> 123456789</p>
-                                <p><strong>Tanggal Lahir:</strong> 01 Januari 2000</p>
+                                <p><strong>Nama:</strong> Nabila S.Si, M.Si</p>
+                                <p><strong>NIP:</strong> 19820101827291</p>
+                                <p><strong>Email:</strong> nabila@example.com</p>
                             </div>
 
-                            <!-- Kolom Kedua -->
+                            <!-- Kolom Kedua (2 Informasi) -->
                             <div class="column">
-                                <p><strong>Alamat:</strong> Jl. Mawar No. 123</p>
-                                <p><strong>Alamat Asal:</strong> Jl. Melati No. 456</p>
-                                <p><strong>Email:</strong> aamir.khan@example.com</p>
                                 <p><strong>Nomor HP:</strong> 08123456789</p>
+                                <p><strong>Alamat:</strong> Jl. Bunga No. 123</p>
                             </div>
                         </div>
                     </div>

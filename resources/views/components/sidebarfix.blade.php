@@ -25,7 +25,7 @@
             </a>
             <div class="collapse" id="dosbing">
                 <ul class="nav flex-column sub-menu">
-                    <li class="nav-item"> <a class="nav-link" href="#">Informasi Dosbing</a></li>
+                    <li class="nav-item"> <a class="nav-link" href="profilds">Informasi Dosbing</a></li>
                     <li class="nav-item"> <a class="nav-link" href="formPengajuanDosbing">Pengajuan Dosbing</a></li>
                 </ul>
             </div>
@@ -40,7 +40,7 @@
             </a>
             <div class="collapse" id="pkl">
                 <ul class="nav flex-column sub-menu">
-                    <li class="nav-item"> <a class="nav-link" href="#">Informasi PKL</a></li>
+                    <li class="nav-item"> <a class="nav-link" href="profilds">Informasi PKL</a></li>
                     <li class="nav-item"> <a class="nav-link" href="formInformasiPKL">Form PKL</a></li>
                     <li class="nav-item"> <a class="nav-link" href="#">Pengajuan Surat</a></li>
                 </ul>
