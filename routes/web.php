@@ -152,6 +152,18 @@ Route::get('/jadwalBimbingan', function () {
     return view('jadwalBimbingan');
 });
 
+Route::get('/kartuKendaliBimbingan', function () {
+    return view('kartuKendaliBimbingan');
+});
+
+Route::get('/formPengajuanSeminar', function () {
+    return view('formPengajuanSeminar');
+});
+
+Route::get('/logbook', function () {
+    return view('logbook');
+});
+
 /*
 
 | Jangan lupa php artisan route:clear

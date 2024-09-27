@@ -5,7 +5,14 @@
         <li class="nav-item">
             <a class="nav-link" href="dashboard">
                 <i class="icon-grid menu-icon"></i>
-                <span class="menu-title">Dashboard</span>
+                <span class="menu-title">Home</span>
+            </a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link" href="#">
+                <i class="icon-head menu-icon"></i>
+                <span class="menu-title">Profil</span>
             </a>
         </li>
 
@@ -50,14 +57,14 @@
             <div class="collapse" id="bimbingan">
                 <ul class="nav flex-column sub-menu">
                     <li class="nav-item"> <a class="nav-link" href="jadwalBimbingan">Jadwal Bimbingan</a></li>
-                    <li class="nav-item"> <a class="nav-link" href="#">Kartu Kendali</a></li>
+                    <li class="nav-item"> <a class="nav-link" href="kartuKendaliBimbingan">Kartu Kendali</a></li>
                 </ul>
             </div>
         </li>
 
         <!-- Logbook -->
         <li class="nav-item">
-            <a class="nav-link" href="dashboard">
+            <a class="nav-link" href="logbook">
                 <i class="icon-grid menu-icon"></i>
                 <span class="menu-title">Logbook</span>
             </a>
@@ -81,7 +88,7 @@
             <div class="collapse" id="seminar">
                 <ul class="nav flex-column sub-menu">
                     <li class="nav-item"> <a class="nav-link" href="#">Jadwal Seminar</a></li>
-                    <li class="nav-item"> <a class="nav-link" href="#">Pengajuan Seminar</a></li>
+                    <li class="nav-item"> <a class="nav-link" href="formPengajuanSeminar">Pengajuan Seminar</a></li>
                 </ul>
             </div>
         </li>
