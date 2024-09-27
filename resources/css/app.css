@@ -8777,7 +8777,7 @@ body {
     line-height: 1.5;
     color: #1f1f1f;
     text-align: left;
-    background-color: #fff;
+    background-color: #f5f7ff;
 }
 
 [tabindex="-1"]:focus:not(:focus-visible) {

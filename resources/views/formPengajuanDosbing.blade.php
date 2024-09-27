@@ -18,7 +18,7 @@
         /* Make sure the content area stretches to fill the remaining space */
         .main-panel {
             flex-grow: 1; /* Allow main panel to grow */
-            background-color: #f8f9fa; /* Set background color matching content */
+            background-color: #f5f7ff; /* Set background color matching content */
             padding: 20px; /* Optional padding */
             margin-left: 10px; /* Prevent content from touching sidebar */
         }
