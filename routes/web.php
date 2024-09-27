@@ -144,8 +144,24 @@ Route::get('/formPengajuanDosbing', function () {
     return view('formPengajuanDosbing');
 });
 
+Route::get('/formPengajuanSeminar', function () {
+    return view('formPengajuanSeminar');
+});
+
 Route::get('/profilmh', function () {
     return view('profilmh');
+});
+
+Route::get('/logbook', function () {
+    return view('logbook');
+});
+
+Route::get('/jadwalSeminar', function () {
+    return view('jadwalSeminar');
+});
+
+Route::get('/formInformasiPKL', function () {
+    return view('formInformasiPKL');
 });
 
 /*

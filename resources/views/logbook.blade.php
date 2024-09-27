@@ -112,14 +112,14 @@
                                     </form>
 
                                     <!-- Tabel berdasarkan input dari form -->
-                                    <h4 class="card-title mt-4">Histori Bimbingan</h4>
+                                    <h4 class="card-title mt-4">Histori Logbook</h4>
                                     <div class="table-responsive">
                                         <table>
                                             <thead>
                                                 <tr>
                                                     <th>No</th>
-                                                    <th>Tanggal Bimbingan</th>
-                                                    <th>Hasil Bimbingan</th>
+                                                    <th>Tanggal</th>
+                                                    <th>Kegiatan</th>
                                                     <th>Dokumentasi</th>
                                                 </tr>
                                             </thead>

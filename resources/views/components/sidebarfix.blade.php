@@ -87,7 +87,7 @@
             </a>
             <div class="collapse" id="seminar">
                 <ul class="nav flex-column sub-menu">
-                    <li class="nav-item"> <a class="nav-link" href="#">Jadwal Seminar</a></li>
+                    <li class="nav-item"> <a class="nav-link" href="jadwalSeminar">Jadwal Seminar</a></li>
                     <li class="nav-item"> <a class="nav-link" href="formPengajuanSeminar">Pengajuan Seminar</a></li>
                 </ul>
             </div>
