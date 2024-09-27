@@ -18,8 +18,70 @@
             </a>
             <div class="collapse" id="dosbing">
                 <ul class="nav flex-column sub-menu">
-                    <li class="nav-item"> <a class="nav-link" href="#">Informasi Dosen</a></li>
-                    <li class="nav-item"> <a class="nav-link" href="formPengajuanDosbing">Pengajuan Dosen</a></li>
+                    <li class="nav-item"> <a class="nav-link" href="#">Informasi Dosbing</a></li>
+                    <li class="nav-item"> <a class="nav-link" href="formPengajuanDosbing">Pengajuan Dosbing</a></li>
+                </ul>
+            </div>
+        </li>
+
+        <!-- PKL -->
+        <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#pkl" aria-expanded="false" aria-controls="pkl">
+                <i class="icon-head menu-icon"></i>
+                <span class="menu-title">PKL</span>
+                <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="pkl">
+                <ul class="nav flex-column sub-menu">
+                    <li class="nav-item"> <a class="nav-link" href="#">Informasi PKL</a></li>
+                    <li class="nav-item"> <a class="nav-link" href="formInformasiPKL">Form PKL</a></li>
+                    <li class="nav-item"> <a class="nav-link" href="#">Pengajuan Surat</a></li>
+                </ul>
+            </div>
+        </li>
+
+        <!-- Konsultasi Bimbingan -->
+        <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#bimbingan" aria-expanded="false" aria-controls="bimbingan">
+                <i class="icon-head menu-icon"></i>
+                <span class="menu-title">Konsultasi Bimbingan</span>
+                <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="bimbingan">
+                <ul class="nav flex-column sub-menu">
+                    <li class="nav-item"> <a class="nav-link" href="jadwalBimbingan">Jadwal Bimbingan</a></li>
+                    <li class="nav-item"> <a class="nav-link" href="#">Kartu Kendali</a></li>
+                </ul>
+            </div>
+        </li>
+
+        <!-- Logbook -->
+        <li class="nav-item">
+            <a class="nav-link" href="dashboard">
+                <i class="icon-grid menu-icon"></i>
+                <span class="menu-title">Logbook</span>
+            </a>
+        </li>
+
+        <!-- Laporan -->
+        <li class="nav-item">
+            <a class="nav-link" href="dashboard">
+                <i class="icon-grid menu-icon"></i>
+                <span class="menu-title">Laporan</span>
+            </a>
+        </li>
+
+        <!-- Seminar -->
+        <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#seminar" aria-expanded="false" aria-controls="seminar">
+                <i class="icon-head menu-icon"></i>
+                <span class="menu-title">Seminar</span>
+                <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="seminar">
+                <ul class="nav flex-column sub-menu">
+                    <li class="nav-item"> <a class="nav-link" href="#">Jadwal Seminar</a></li>
+                    <li class="nav-item"> <a class="nav-link" href="#">Pengajuan Seminar</a></li>
                 </ul>
             </div>
         </li>

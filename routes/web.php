@@ -144,6 +144,14 @@ Route::get('/formPengajuanDosbing', function () {
     return view('formPengajuanDosbing');
 });
 
+Route::get('/formInformasiPKL', function () {
+    return view('formInformasiPKL');
+});
+
+Route::get('/jadwalBimbingan', function () {
+    return view('jadwalBimbingan');
+});
+
 /*
 
 | Jangan lupa php artisan route:clear
