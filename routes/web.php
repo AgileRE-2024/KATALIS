@@ -148,6 +148,10 @@ Route::get('/profilmh', function () {
     return view('profilmh');
 });
 
+Route::get('/profilds', function () {
+    return view('profilds');
+});
+
 /*
 
 | Jangan lupa php artisan route:clear
