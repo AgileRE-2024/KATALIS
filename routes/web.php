@@ -18,7 +18,11 @@ Route::get('/profil', function () {
 });
 
 Route::get('/', function () {
-    return view('login');
+    return view('loginfix');
+});
+
+Route::get('/register', function () {
+    return view('register');
 });
 
 Route::get('/profiledosen', function () {
@@ -152,6 +156,13 @@ Route::get('/jadwalBimbingan', function () {
     return view('jadwalBimbingan');
 });
 
+Route::get('/informasipkl', function () {
+    return view('informasipkl');
+});
+
+Route::get('/laporanfiks', function () {
+    return view('laporanfiks');
+});
 /*
 
 | Jangan lupa php artisan route:clear

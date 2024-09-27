@@ -33,7 +33,7 @@
             </a>
             <div class="collapse" id="pkl">
                 <ul class="nav flex-column sub-menu">
-                    <li class="nav-item"> <a class="nav-link" href="#">Informasi PKL</a></li>
+                    <li class="nav-item"> <a class="nav-link" href="informasipkl">Informasi PKL</a></li>
                     <li class="nav-item"> <a class="nav-link" href="formInformasiPKL">Form PKL</a></li>
                     <li class="nav-item"> <a class="nav-link" href="#">Pengajuan Surat</a></li>
                 </ul>
@@ -65,7 +65,7 @@
 
         <!-- Laporan -->
         <li class="nav-item">
-            <a class="nav-link" href="dashboard">
+            <a class="nav-link" href="laporanfiks">
                 <i class="icon-grid menu-icon"></i>
                 <span class="menu-title">Laporan</span>
             </a>

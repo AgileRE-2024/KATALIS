@@ -107,7 +107,7 @@
                                                 </span>
                                             </div>
                                         </div>
-                                        <button type="submit" class="btn btn-primary mr-2">Submit</button>
+                                        <a href="{{ url('/informasipkl') }}" class="btn btn-primary">Submit</a>
                                         <button class="btn btn-light">Cancel</button>
                                     </form>
                                 </div>
