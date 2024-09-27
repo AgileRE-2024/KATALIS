@@ -23,7 +23,7 @@
             padding: 60px 20px 20px;
             position: relative;
             text-align: center;
-            margin-top: 100px;
+            margin-top: 40px;
         }
 
         /* Foto Profil */
@@ -42,7 +42,8 @@
 
         /* Nama Siswa dan Jurusan/NIM */
         .profile-info {
-            margin-top: 80px;
+            margin-top: 30px;
+            text-align: center; /* Agar teks ini berada di tengah */
         }
 
         .profile-info h2 {
@@ -68,6 +69,8 @@
         .student-details {
             display: flex;
             justify-content: space-between;
+            text-align: left;
+            padding-left: 20px;
             flex-wrap: wrap;
         }
 
@@ -131,10 +134,11 @@
                         <!-- Foto Profil -->
                         <img src="https://via.placeholder.com/150" alt="Foto Profil" class="profile-photo">
 
-                        <!-- Informasi Siswa -->
+                        <!-- Informasi Siswa (Nama, NIM, Jurusan) di tengah -->
                         <div class="profile-info">
                             <h2>Aamir Khan</h2>
-                            <h4>Teknik Informatika / 123456789</h4>
+                            <h4>Teknik Informatika</h4>
+                            <h4>NIM: 123456789</h4>
                         </div>
 
                         <!-- Garis Pembatas -->
@@ -142,11 +146,18 @@
 
                         <!-- Detail Informasi Siswa -->
                         <div class="student-details">
+                            <!-- Kolom Pertama -->
                             <div class="column">
-                                <p><strong>Alamat:</strong> Jl. Mawar No. 123</p>
+                                <p><strong>Nama:</strong> Aamir Khan</p>
+                                <p><strong>Jurusan:</strong> Teknik Informatika</p>
+                                <p><strong>NIM:</strong> 123456789</p>
                                 <p><strong>Tanggal Lahir:</strong> 01 Januari 2000</p>
                             </div>
+
+                            <!-- Kolom Kedua -->
                             <div class="column">
+                                <p><strong>Alamat:</strong> Jl. Mawar No. 123</p>
+                                <p><strong>Alamat Asal:</strong> Jl. Melati No. 456</p>
                                 <p><strong>Email:</strong> aamir.khan@example.com</p>
                                 <p><strong>Nomor HP:</strong> 08123456789</p>
                             </div>
