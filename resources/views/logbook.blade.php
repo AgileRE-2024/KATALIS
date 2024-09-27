@@ -49,6 +49,27 @@
         th {
             background-color: #f2f2f2;
         }
+
+        .badge-success {
+            background-color: #28a745;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 12px;
+        }
+
+        .badge-warning {
+            background-color: #ffc107;
+            color: black;
+            padding: 5px 10px;
+            border-radius: 12px;
+        }
+
+        .badge-danger {
+            background-color: #dc3545;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 12px;
+        }
     </style>
 </head>
 
@@ -63,61 +84,63 @@
                         <div class="col-12 grid-margin stretch-card">
                             <div class="card">
                                 <div class="card-body">
-                                    <h4 class="card-title">Jadwal Konsultasi Bimbingan</h4>
+                                    <h4 class="card-title">Logbook</h4>
                                     <p class="card-description">
                                         Form ini digunakan untuk mengatur jadwal konsultasi dengan dosen pembimbing terkait PKL
                                     </p>
                                     <form class="forms-sample">
                                         <div class="form-group">
-                                            <label for="exampleInputDate">Tanggal Konsultasi</label>
+                                            <label for="exampleInputDate">Tanggal</label>
                                             <input type="date" class="form-control" id="exampleInputDate" required>
                                         </div>
                                         <div class="form-group">
-                                            <label for="exampleInputTime">Waktu Konsultasi</label>
-                                            <input type="time" class="form-control" id="exampleInputTime" required>
+                                            <label for="exampleInputTopik">Kegiatan</label>
+                                            <textarea class="form-control" id="exampleInputTopik" rows="4" placeholder="Kegiatan" required></textarea>
                                         </div>
                                         <div class="form-group">
-                                            <label for="exampleInputTopik">Topik yang Akan Dibahas</label>
-                                            <textarea class="form-control" id="exampleInputTopik" rows="4" placeholder="Masukkan topik atau pertanyaan yang ingin dibahas" required></textarea>
+                                            <label>Dokumentasi Kegiatan</label>
+                                            <input type="file" name="img[]" class="file-upload-default" accept=".png">
+                                            <div class="input-group col-xs-12">
+                                                <input type="text" class="form-control file-upload-info" disabled placeholder="Dokumentasi Kegiatan (PNG)">
+                                                <span class="input-group-append">
+                                                    <button class="file-upload-browse btn btn-primary" type="button">Upload</button>
+                                                </span>
+                                            </div>
                                         </div>
                                         <button type="submit" class="btn btn-primary mr-2">Atur Jadwal</button>
                                         <button class="btn btn-light">Cancel</button>
                                     </form>
 
-                                    <!-- Tabel histori pengajuan jadwal bimbingan -->
-                                    <h4 class="card-title mt-4">Histori Pengajuan Jadwal Bimbingan</h4>
+                                    <!-- Tabel berdasarkan input dari form -->
+                                    <h4 class="card-title mt-4">Histori Logbook</h4>
                                     <div class="table-responsive">
                                         <table>
                                             <thead>
                                                 <tr>
                                                     <th>No</th>
-                                                    <th>Tanggal Konsultasi</th>
-                                                    <th>Waktu Konsultasi</th>
-                                                    <th>Topik</th>
-                                                    <th>Status</th>
+                                                    <th>Tanggal</th>
+                                                    <th>Kegiatan</th>
+                                                    <th>Dokumentasi</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                 <tr>
                                                     <td>1</td>
-                                                    <td>2024-10-01</td>
-                                                    <td>10:00 AM</td>
+                                                    <td>2024-09-27</td>
                                                     <td>Progress Laporan PKL</td>
-                                                    <td><span class="badge badge-success">Disetujui</span></td>
+                                                    <td><a href="#">Download PNG</a></td>
                                                 </tr>
                                                 <tr>
                                                     <td>2</td>
-                                                    <td>2024-09-25</td>
-                                                    <td>02:00 PM</td>
-                                                    <td>Proposal PKL</td>
-                                                    <td><span class="badge badge-warning">Menunggu Persetujuan</span></td>
+                                                    <td>2024-09-20</td>
+                                                    <td>Penyusunan Proposal</td>
+                                                    <td><a href="#">Download PNG</a></td>
                                                 </tr>
                                                 <tr>
                                                     <td>3</td>
-                                                    <td>2024-09-15</td>
-                                                    <td>09:00 AM</td>
-                                                    <td>Persiapan PKL</td>
-                                                    <td><span class="badge badge-danger">Ditolak</span></td>
+                                                    <td>2024-09-10</td>
+                                                    <td>Diskusi Persiapan PKL</td>
+                                                    <td><a href="#">Download PNG</a></td>
                                                 </tr>
                                             </tbody>
                                         </table>
@@ -130,7 +153,7 @@
                 <!-- content-wrapper ends -->
                 <footer class="footer">
                     <div class="d-sm-flex justify-content-center justify-content-sm-between">
-                        <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © 2021.  Premium <a href="https://www.bootstrapdash.com/" target="_blank">Bootstrap admin template</a> from BootstrapDash. All rights reserved.</span>
+                        <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © 2021. Premium <a href="https://www.bootstrapdash.com/" target="_blank">Bootstrap admin template</a> from BootstrapDash. All rights reserved.</span>
                         <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Hand-crafted & made with <i class="ti-heart text-danger ml-1"></i></span>
                     </div>
                 </footer>
