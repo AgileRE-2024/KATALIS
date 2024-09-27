@@ -10,7 +10,7 @@
         </li>
 
         <li class="nav-item">
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="profilmh">
                 <i class="icon-head menu-icon"></i>
                 <span class="menu-title">Profil</span>
             </a>
