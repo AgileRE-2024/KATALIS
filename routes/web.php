@@ -18,7 +18,11 @@ Route::get('/profil', function () {
 });
 
 Route::get('/', function () {
-    return view('login');
+    return view('loginfix');
+});
+
+Route::get('/register', function () {
+    return view('register');
 });
 
 Route::get('/profiledosen', function () {
@@ -168,18 +172,13 @@ Route::get('/profilds', function () {
     return view('profilds');
 });
 
-Route::get('/dashboardDosen', function () {
-    return view('dashboardDosen');
+Route::get('/informasipkl', function () {
+    return view('informasipkl');
 });
 
-Route::get('/jadwalBimbingan', function () {
-    return view('jadwalBimbingan');
+Route::get('/laporanfiks', function () {
+    return view('laporanfiks');
 });
-
-Route::get('/kartuKendaliBimbingan', function () {
-    return view('kartuKendaliBimbingan');
-});
-
 /*
 
 | Jangan lupa php artisan route:clear

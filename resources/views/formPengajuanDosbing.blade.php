@@ -97,7 +97,7 @@
                                             <label for="exampleTextarea1">Apabila berkelompok, tuliskan nama lengkap anggota kelompok anda</label>
                                             <textarea class="form-control" id="exampleTextarea1" rows="4"></textarea>
                                         </div>
-                                        <button type="submit" class="btn btn-primary mr-2">Submit</button>
+                                        <a href="{{ url('/alertdosbing') }}" class="btn btn-primary">Submit</a>
                                         <button class="btn btn-light">Cancel</button>
                                     </form>
                                 </div>
