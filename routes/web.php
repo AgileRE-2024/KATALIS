@@ -188,6 +188,10 @@ Route::get('/kartuKendaliBimbingan', function () {
     return view('kartuKendaliBimbingan');
 });
 
+Route::get('/dashboardDosen', function () {
+    return view('dashboardDosen');
+});
+
 /*
 
 | Jangan lupa php artisan route:clear

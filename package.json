@@ -10,5 +10,9 @@
         "lodash": "^4.17.19",
         "postcss": "^8.1.14",
         "vite": "^4.0.0"
+    },
+    "dependencies": {
+        "feather-icons": "^4.29.2",
+        "themify-icons": "^1.0.0"
     }
 }
