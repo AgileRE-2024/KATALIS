@@ -168,6 +168,18 @@ Route::get('/profilds', function () {
     return view('profilds');
 });
 
+Route::get('/dashboardDosen', function () {
+    return view('dashboardDosen');
+});
+
+Route::get('/jadwalBimbingan', function () {
+    return view('jadwalBimbingan');
+});
+
+Route::get('/kartuKendaliBimbingan', function () {
+    return view('kartuKendaliBimbingan');
+});
+
 /*
 
 | Jangan lupa php artisan route:clear
