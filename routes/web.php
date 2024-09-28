@@ -179,6 +179,15 @@ Route::get('/informasipkl', function () {
 Route::get('/laporanfiks', function () {
     return view('laporanfiks');
 });
+
+Route::get('/jadwalBimbingan', function () {
+    return view('jadwalBimbingan');
+});
+
+Route::get('/kartuKendaliBimbingan', function () {
+    return view('kartuKendaliBimbingan');
+});
+
 /*
 
 | Jangan lupa php artisan route:clear
