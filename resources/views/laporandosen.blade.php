@@ -1,106 +1,99 @@
 <!DOCTYPE html>
-<html>
-<head>
-    <link href="https://fonts.googleapis.com/css?family=Inter&display=swap" rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet" />
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-    <link href="./assets/laporandosen.css" rel="stylesheet" />
-    <title>Document</title>
-    <style>
-        .icon-right {
-            color: #ffffff;
-            font-size: 1rem;
-            margin-left: 0.8rem;
-            margin-top: 0.7rem;
-        }
-        .fa-file-alt {
-            color: rgb(0, 0, 0); /* Color for the profile icon */
-        }
+<html lang="en">
+@include('components.head')
 
-        .profile-icon2 {
-            color: rgba(234, 147, 93, 0.694);
-            margin-left: 1.5rem;
-            margin-top: 0.8rem;
-            font-size: 1.5rem;
-        }
-    </style>
-
-</head>
 <body>
-    <div class="v63_801">
-        <div class="v63_802">
-            <div class="v63_803">
-                <div class="name"></div>
-                <div class="name"></div>
-                <i class="fas fa-user icon-right profile-icon2"></i>
-                <span class="v63_806">Dosen</span>
-                <span class="v63_807">NIP</span>
-            </div>
-        </div>
-        <div class="v63_808">
-            <span class="v63_809">EduWorkTrack</span>
-            <div class="v63_810"></div>
-            <div class="v63_811">
-                <div class="v63_812">
-                    <span class="v63_813"><a href="{{ url('/profiledosen') }}">Profil</a></span>
-                    <i class="fas fa-user icon-right profile-icon"></i> 
-                </div>
-                <div class="v63_815">
-                    <span class="v63_818"><a href="{{ url('/datamahasiswa') }}">Data Mahasiswa</a></span>
-                    <i class="fas fa-user-graduate icon-right"></i>
-                </div>
-                <div class="v63_819">
-                    <span class="v63_820"><a href="{{ url('/logbookdosen') }}">Logbook</a></span>
-                    <i class="fas fa-book icon-right"></i>
-                </div>
-                <div class="v63_822">
-                    <span class="v63_823"><a href="{{ url('/bimbingandosen') }}">Bimbingan</a></span>
-                    <i class="fas fa-chalkboard-teacher icon-right"></i>
+  <div class="container-scroller">
+    @include('components.navbarDosen')
 
-                </div>
-                <div class="v63_825">
-                    <div class="name"></div>
-                    <span class="v63_827"><a href="{{ url('/penilaiandosen') }}">Penilaian PKL</a></span>
-                    <div class="name"></div>
-                    <i class="fas fa-chart-line icon-right"></i>
-                </div>
-                <div class="v63_829">
-                    <div class="name"></div>
-                    <span class="v63_831"><a href="{{ url('/laporandosen') }}">Laporan</a></span>
-                    <i class="fas fa-file-alt icon-right"></i>
-                </div>
+    <div class="container-fluid page-body-wrapper">
+      @include('components.sidebarDosen')
+
+      <div class="main-panel">
+        <div class="content-wrapper">
+          <div class="row">
+            <div class="col-md-12 grid-margin">
+              <h3 class="font-weight-bold">Laporan Mahasiswa</h3>
+              <!-- Tidak ada tombol "Tambah Jadwal Bimbingan" -->
             </div>
-        </div>
-        <span class="v63_833">Laporan</span>
-        <div class="name"></div>
-        <div class="name"></div>
-        <div class="v63_846">
-            <div class="v63_847">
-                <span class="v63_848">No</span>
-                <span class="v63_849">1</span>
-                <span class="v63_850">Grace Angel Gokmauli Tampubolon</span>
-                <span class="v63_851">Nama Mahasiswa </span>
-                <span class="v63_852">Verifikasi</span>
-                <div class="v63_853">
-                    <div class="v63_854">
-                        <div class="name"></div>
-                        <span class="v63_856">Belum</span>
-                    </div>
-                </div>
-                <span class="v63_857">2</span>
-                <span class="v63_858">Eunike Alfrita Maharani Walla</span>
-                <div class="v63_859">
-                    <div class="v63_860">
-                        <div class="name"></div>
-                        <span class="v63_862">Sudah</span>
-                    </div>
-                </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-12">
+              <table class="table table-striped table-bordered">
+                <thead>
+                  <tr>
+                    <th>Nama Mahasiswa</th>
+                    <th>NIM</th>
+                    <th>Progress</th>
+                    <th>Aksi</th>
+                  </tr>
+                </thead>
+                <tbody id="daftarMahasiswa">
+                  <!-- Daftar Mahasiswa akan dimuat di sini -->
+                </tbody>
+              </table>
             </div>
+          </div>
+
         </div>
-        <div class="box1"></div>
-        <div class="box2"></div>
-        <div class="box3"></div>
-        <div class="v63_867"></div>
+      </div>
     </div>
+  </div>
+
+  <script src="vendors/js/vendor.bundle.base.js"></script>
+  <script>
+    // Fungsi untuk memuat data mahasiswa dari localStorage
+    function muatDataMahasiswa() {
+      let daftarMahasiswa = JSON.parse(localStorage.getItem("daftarMahasiswa")) || [];
+      let daftarMahasiswaDiv = document.getElementById("daftarMahasiswa");
+
+      // Bersihkan konten sebelum mengisi ulang
+      daftarMahasiswaDiv.innerHTML = "";
+
+      daftarMahasiswa.forEach(function(mahasiswa) {
+        let row = document.createElement("tr");
+
+        row.innerHTML = `
+          <td>${mahasiswa.nama}</td>
+          <td>${mahasiswa.nim}</td>
+          <td>
+            <button class="btn btn-${mahasiswa.progress === 'Sudah' ? 'success' : mahasiswa.progress === 'Revisi' ? 'warning' : 'secondary'} btn-sm" onclick="toggleProgress(${mahasiswa.id})">
+              ${mahasiswa.progress || 'Belum'}
+            </button>
+          </td>
+          <td><a href="logbook.html?mahasiswaId=${mahasiswa.id}" class="btn btn-primary btn-sm">Lihat Logbook</a></td>
+        `;
+
+        daftarMahasiswaDiv.appendChild(row);
+      });
+    }
+
+    // Fungsi untuk toggle progress
+    function toggleProgress(id) {
+      let daftarMahasiswa = JSON.parse(localStorage.getItem("daftarMahasiswa")) || [];
+      let mahasiswa = daftarMahasiswa.find(m => m.id === id);
+      
+      if (mahasiswa) {
+        // Ubah status progress
+        if (mahasiswa.progress === 'Sudah') {
+          mahasiswa.progress = 'Revisi';
+        } else if (mahasiswa.progress === 'Revisi') {
+          mahasiswa.progress = 'Belum';
+        } else {
+          mahasiswa.progress = 'Sudah';
+        }
+        
+        localStorage.setItem("daftarMahasiswa", JSON.stringify(daftarMahasiswa));
+        muatDataMahasiswa();
+      }
+    }
+
+    // Panggil fungsi muat data saat halaman diload
+    window.onload = function() {
+      muatDataMahasiswa();
+    };
+  </script>
 </body>
+
 </html>
