@@ -6,12 +6,12 @@
     <style>
         /* Custom CSS for sidebar */
         .sidebar {
-            width: 250px; /* Set desired sidebar width */
-            transition: width 0.3s ease; /* Smooth transition for width change */
+            width: 250px;
+            transition: width 0.3s ease;
         }
 
         .sidebar.minimized {
-            width: 80px; /* Width when minimized */
+            width: 80px;
         }
 
         .main-panel {
@@ -30,7 +30,6 @@
             background-color: #f8f9fa;
         }
 
-        /* Custom styles for table */
         table {
             width: 100%;
             margin-top: 20px;
@@ -50,25 +49,14 @@
             background-color: #f2f2f2;
         }
 
-        .badge-success {
-            background-color: #28a745;
-            color: white;
+        .badge-success, .badge-warning, .badge-danger {
             padding: 5px 10px;
             border-radius: 12px;
+            color: white;
         }
 
         .badge-warning {
-            background-color: #ffc107;
             color: black;
-            padding: 5px 10px;
-            border-radius: 12px;
-        }
-
-        .badge-danger {
-            background-color: #dc3545;
-            color: white;
-            padding: 5px 10px;
-            border-radius: 12px;
         }
     </style>
 </head>
@@ -88,33 +76,34 @@
                                     <p class="card-description">
                                         Form ini digunakan untuk mengatur jadwal konsultasi dengan dosen pembimbing terkait PKL
                                     </p>
-                                    <form class="forms-sample">
+                                    <!-- Form untuk menambahkan data -->
+                                    <form class="forms-sample" id="bimbinganForm">
                                         <div class="form-group">
-                                            <label for="exampleInputDate">Tanggal Bimbingan</label>
-                                            <input type="date" class="form-control" id="exampleInputDate" required>
+                                            <label for="tanggalBimbingan">Tanggal Bimbingan</label>
+                                            <input type="date" class="form-control" id="tanggalBimbingan" required>
                                         </div>
                                         <div class="form-group">
-                                            <label for="exampleInputTopik">Hasil Bimbingan</label>
-                                            <textarea class="form-control" id="exampleInputTopik" rows="4" placeholder="Masukkan topik atau pertanyaan yang ingin dibahas" required></textarea>
+                                            <label for="hasilBimbingan">Hasil Bimbingan</label>
+                                            <textarea class="form-control" id="hasilBimbingan" rows="4" placeholder="Masukkan topik atau pertanyaan yang ingin dibahas" required></textarea>
                                         </div>
                                         <div class="form-group">
                                             <label>Dokumentasi Bimbingan (PNG)</label>
-                                            <input type="file" name="img[]" class="file-upload-default" accept=".png">
+                                            <input type="file" id="dokumentasiBimbingan" name="img[]" class="file-upload-default" accept=".png">
                                             <div class="input-group col-xs-12">
                                                 <input type="text" class="form-control file-upload-info" disabled placeholder="Dokumentasi Bimbingan (PNG)">
                                                 <span class="input-group-append">
-                                                    <button class="file-upload-browse btn btn-primary" type="button">Upload</button>
+                                                    <button class="file-upload-browse btn btn-primary" type="button" onclick="triggerFileUpload()">Upload</button>
                                                 </span>
                                             </div>
                                         </div>
-                                        <button type="submit" class="btn btn-primary mr-2">Atur Jadwal</button>
-                                        <button class="btn btn-light">Cancel</button>
+                                        <button type="submit" class="btn btn-primary mr-2">Tambah</button>
+                                        <button type="reset" class="btn btn-light">Cancel</button>
                                     </form>
 
-                                    <!-- Tabel berdasarkan input dari form -->
+                                    <!-- Tabel untuk menampilkan data -->
                                     <h4 class="card-title mt-4">Histori Bimbingan</h4>
                                     <div class="table-responsive">
-                                        <table>
+                                        <table id="tabelBimbingan">
                                             <thead>
                                                 <tr>
                                                     <th>No</th>
@@ -124,24 +113,7 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <tr>
-                                                    <td>1</td>
-                                                    <td>2024-09-27</td>
-                                                    <td>Progress Laporan PKL</td>
-                                                    <td><a href="#">Download PNG</a></td>
-                                                </tr>
-                                                <tr>
-                                                    <td>2</td>
-                                                    <td>2024-09-20</td>
-                                                    <td>Penyusunan Proposal</td>
-                                                    <td><a href="#">Download PNG</a></td>
-                                                </tr>
-                                                <tr>
-                                                    <td>3</td>
-                                                    <td>2024-09-10</td>
-                                                    <td>Diskusi Persiapan PKL</td>
-                                                    <td><a href="#">Download PNG</a></td>
-                                                </tr>
+                                                <!-- Baris baru akan ditambahkan di sini -->
                                             </tbody>
                                         </table>
                                     </div>
@@ -150,7 +122,6 @@
                         </div>
                     </div>
                 </div>
-                <!-- content-wrapper ends -->
                 <footer class="footer">
                     <div class="d-sm-flex justify-content-center justify-content-sm-between">
                         <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © 2021. Premium <a href="https://www.bootstrapdash.com/" target="_blank">Bootstrap admin template</a> from BootstrapDash. All rights reserved.</span>
@@ -172,6 +143,51 @@
     <script src="../../js/file-upload.js"></script>
     <script src="../../js/typeahead.js"></script>
     <script src="../../js/select2.js"></script>
+
+    <script>
+        let bimbinganCounter = 1;
+
+        // Menangani form submit
+        document.getElementById('bimbinganForm').addEventListener('submit', function(e) {
+            e.preventDefault(); // Mencegah form submit default
+
+            // Ambil data dari form
+            let tanggalBimbingan = document.getElementById('tanggalBimbingan').value;
+            let hasilBimbingan = document.getElementById('hasilBimbingan').value;
+            let dokumentasiBimbingan = document.getElementById('dokumentasiBimbingan').files[0];
+
+            // Cek apakah file dokumentasi ada dan apakah itu file PNG
+            let dokumentasiLink = "";
+            if (dokumentasiBimbingan && dokumentasiBimbingan.type === 'image/png') {
+                dokumentasiLink = `<a href="#">Download PNG</a>`;
+            } else {
+                alert("Hanya file PNG yang diperbolehkan.");
+                return;
+            }
+
+            // Tambahkan baris baru ke tabel
+            let tabelBimbingan = document.getElementById('tabelBimbingan').getElementsByTagName('tbody')[0];
+            let newRow = tabelBimbingan.insertRow();
+            newRow.innerHTML = `
+                <tr>
+                    <td>${bimbinganCounter}</td>
+                    <td>${tanggalBimbingan}</td>
+                    <td>${hasilBimbingan}</td>
+                    <td>${dokumentasiLink}</td>
+                </tr>
+            `;
+
+            // Update nomor
+            bimbinganCounter++;
+
+            // Reset form setelah submit
+            document.getElementById('bimbinganForm').reset();
+        });
+
+        function triggerFileUpload() {
+            document.getElementById('dokumentasiBimbingan').click();
+        }
+    </script>
 </body>
 
 </html>

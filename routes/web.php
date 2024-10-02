@@ -252,8 +252,6 @@ Route::get('/seminarDosen', function () {
     return view('seminarDosen');
 });
 
-
-
 Route::get('/download', function () {
     return view('home/download');
 });
