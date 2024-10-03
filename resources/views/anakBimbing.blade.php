@@ -23,8 +23,10 @@
                   <tr>
                     <th>Nama Mahasiswa</th>
                     <th>NIM</th>
-                    <th>Lihat Profil</th>
-                    <th>Aksi</th>
+                    <th>Topik PKL</th>
+                    <th>Tempat PKL</th>
+                    <th>Teman Sekelompok</th>
+                    <th>Proposal PKL</th>
                   </tr>
                 </thead>
                 <tbody id="mahasiswaTableBody">

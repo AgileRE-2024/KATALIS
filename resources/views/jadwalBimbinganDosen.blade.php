@@ -28,7 +28,7 @@
                     <th>Nama Mahasiswa</th>
                     <th>NIM</th>
                     <th>Tanggal Bimbingan</th>
-                    <th>Status Bimbingan</th>
+                    <th>Waktu Bimbingan</th>
                     <th>Aksi</th>
                   </tr>
                 </thead>
