@@ -256,6 +256,10 @@ Route::get('/download', function () {
     return view('home/download');
 });
 
+Route::get('/inputnilai', function () {
+    return view('inputnilai');
+});
+
 /*
 
 | Jangan lupa php artisan route:clear
