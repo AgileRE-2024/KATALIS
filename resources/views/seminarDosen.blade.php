@@ -14,33 +14,17 @@
           <div class="row">
             <div class="col-md-12 grid-margin">
               <h3 class="font-weight-bold">Laporan Seminar Mahasiswa</h3>
-              <!-- Form untuk menambahkan mahasiswa baru -->
-              <form id="formTambahMahasiswa" onsubmit="return tambahMahasiswa(event);">
-                <div class="form-row">
-                  <div class="form-group col-md-4">
-                    <label for="namaMahasiswa">Nama Mahasiswa</label>
-                    <input type="text" class="form-control" id="namaMahasiswa" required>
-                  </div>
-                  <div class="form-group col-md-4">
-                    <label for="tanggalSeminar">Tanggal Seminar</label>
-                    <input type="date" class="form-control" id="tanggalSeminar" required>
-                  </div>
-                  <div class="form-group col-md-4">
-                    <label for="statusKelulusan">Status Kelulusan</label>
-                    <select class="form-control" id="statusKelulusan" required>
-                      <option value="Lulus">Lulus</option>
-                      <option value="Tidak Lulus">Tidak Lulus</option>
-                    </select>
-                  </div>
-                </div>
-                <button type="submit" class="btn btn-primary">Tambah Mahasiswa</button>
-              </form>
               <hr>
             </div>
           </div>
 
           <div class="row">
             <div class="col-md-12">
+              <!-- Search Input -->
+              <div class="form-group" style="width: 30%;">
+                <input type="text" class="form-control" id="searchMahasiswa" onkeyup="filterMahasiswa()" placeholder="Masukkan nama mahasiswa...">
+              </div>
+
               <table class="table table-striped table-bordered">
                 <thead>
                   <tr>
@@ -48,6 +32,8 @@
                     <th>Tanggal Seminar</th>
                     <th>Status Kelulusan</th>
                     <th>Aksi</th>
+                    <th>Input Nilai</th>
+                    <th>Status Penilaian</th>
                   </tr>
                 </thead>
                 <tbody id="daftarSeminar">
@@ -62,20 +48,76 @@
     </div>
   </div>
 
+  <!-- Modal for Input Nilai -->
+  <div class="modal fade" id="inputNilaiModal" tabindex="-1" role="dialog" aria-labelledby="inputNilaiModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="inputNilaiModalLabel">Input Nilai Mahasiswa</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="penilaianForm">
+                    <div class="form-group">
+                        <label for="mahasiswaId">ID Mahasiswa</label>
+                        <input type="text" class="form-control" id="mahasiswaId" disabled>
+                    </div>
+                    <div class="form-group">
+                        <label for="mahasiswaName">Nama Mahasiswa</label>
+                        <input type="text" class="form-control" id="mahasiswaName" disabled>
+                    </div>
+                    <div class="form-group">
+                        <label for="kehadiran">Kehadiran, Disiplin, dan Etika (20%)</label>
+                        <input type="number" class="form-control" id="kehadiran" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="pemahaman">Pemahaman Masalah dan Solusi (20%)</label>
+                        <input type="number" class="form-control" id="pemahaman" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="kerjaTim">Kerja Tim (20%)</label>
+                        <input type="number" class="form-control" id="kerjaTim" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="luaran">Luaran dari Tempat PKL (20%)</label>
+                        <input type="number" class="form-control" id="luaran" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="laporan">Buku Laporan Praktik Kerja Lapangan (20%)</label>
+                        <input type="number" class="form-control" id="laporan" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="nilaiAkhir">Nilai Akhir</label>
+                        <input type="text" class="form-control" id="nilaiAkhir" disabled>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+                <button type="button" class="btn btn-primary" id="saveNilaiButton">Simpan Nilai</button>
+            </div>
+        </div>
+    </div>
+  </div>
+
   <script src="vendors/js/vendor.bundle.base.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
   <script>
     // Inisialisasi data seminar contoh
     function inisialisasiData() {
       const contohData = [
-        { id: 1, nama: "Andi Santoso", tanggal: "2024-09-15", status: "Lulus" },
-        { id: 2, nama: "Budi Setiawan", tanggal: "2024-09-16", status: "Tidak Lulus" },
-        { id: 3, nama: "Citra Dewi", tanggal: "2024-09-17", status: "Lulus" },
-        { id: 4, nama: "Dewi Anggraeni", tanggal: "2024-09-18", status: "Lulus" },
-        { id: 5, nama: "Eko Prasetyo", tanggal: "2024-09-19", status: "Tidak Lulus" },
-        { id: 6, nama: "Faisal Akbar", tanggal: "2024-09-20", status: "Lulus" }
+        { id: 1, nama: "Andi Santoso", tanggal: "2024-09-15", status: "Lulus", nilai: null },
+        { id: 2, nama: "Budi Setiawan", tanggal: "2024-09-16", status: "Tidak Lulus", nilai: null },
+        { id: 3, nama: "Citra Dewi", tanggal: "2024-09-17", status: "Lulus", nilai: null },
+        { id: 4, nama: "Dewi Anggraeni", tanggal: "2024-09-18", status: "Lulus", nilai: null },
+        { id: 5, nama: "Eko Prasetyo", tanggal: "2024-09-19", status: "Tidak Lulus", nilai: null },
+        { id: 6, nama: "Faisal Akbar", tanggal: "2024-09-20", status: "Lulus", nilai: null }
       ];
 
-      // Simpan data contoh ke localStorage
+      // Simpan data ke localStorage
       localStorage.setItem("daftarSeminar", JSON.stringify(contohData));
     }
 
@@ -91,78 +133,123 @@
         let row = document.createElement("tr");
 
         row.innerHTML = `
-          <td>${seminar.nama}</td>
-          <td>${seminar.tanggal}</td>
-          <td>
-            <button class="btn btn-${seminar.status === 'Lulus' ? 'success' : 'danger'} btn-sm" onclick="toggleStatus(${seminar.id})">
-              ${seminar.status || 'Belum Ditetapkan'}
-            </button>
-          </td>
-          <td>
-            <button class="btn btn-danger btn-sm" onclick="hapusMahasiswa(${seminar.id})">Hapus</button>
-          </td>
+            <td>${seminar.nama}</td>
+            <td>${seminar.tanggal}</td>
+            <td>
+                <button class="btn btn-${seminar.status === 'Lulus' ? 'success' : 'danger'} btn-sm" onclick="toggleStatus(${seminar.id})">
+                    ${seminar.status || 'Belum Ditetapkan'}
+                </button>
+            </td>
+            <td>
+                <button class="btn btn-custom btn-sm" onclick="lihatLaporan(${seminar.id})">Lihat Laporan</button>
+            </td>
+            <td>
+                <button class="btn btn-custom btn-sm" onclick="showInputNilaiModal(${seminar.id})">Input Nilai</button>
+            </td>
+            <td>${seminar.nilai === null ? 'Belum Dinilai' : 'Sudah Dinilai'}</td>
         `;
 
         daftarSeminarDiv.appendChild(row);
       });
     }
 
-    // Fungsi untuk toggle status kelulusan
-    function toggleStatus(id) {
-      let daftarSeminar = JSON.parse(localStorage.getItem("daftarSeminar")) || [];
-      let seminar = daftarSeminar.find(s => s.id === id);
+    // Show the modal for inputting grades
+    function showInputNilaiModal(id) {
+      const daftarSeminar = JSON.parse(localStorage.getItem("daftarSeminar")) || [];
+      const mahasiswa = daftarSeminar.find(m => m.id === id);
       
-      if (seminar) {
-        // Ubah status kelulusan
-        if (seminar.status === 'Lulus') {
-          seminar.status = 'Tidak Lulus';
-        } else {
-          seminar.status = 'Lulus';
-        }
-        
-        localStorage.setItem("daftarSeminar", JSON.stringify(daftarSeminar));
-        muatDataSeminar();
+      if (mahasiswa) {
+          document.getElementById("mahasiswaId").value = mahasiswa.id;
+          document.getElementById("mahasiswaName").value = mahasiswa.nama;
+          $('#inputNilaiModal').modal('show'); // Use jQuery to show the modal
       }
     }
 
-    // Fungsi untuk menambahkan mahasiswa baru
-    function tambahMahasiswa(event) {
-      event.preventDefault(); // Mencegah form dari submit default
+    // Save the grade and close the modal
+    document.getElementById("saveNilaiButton").addEventListener("click", function() {
+      const mahasiswaId = document.getElementById("mahasiswaId").value;
+      const kehadiran = parseFloat(document.getElementById("kehadiran").value) || 0;
+      const pemahaman = parseFloat(document.getElementById("pemahaman").value) || 0;
+      const kerjaTim = parseFloat(document.getElementById("kerjaTim").value) || 0;
+      const luaran = parseFloat(document.getElementById("luaran").value) || 0;
+      const laporan = parseFloat(document.getElementById("laporan").value) || 0;
 
-      let nama = document.getElementById("namaMahasiswa").value;
-      let tanggal = document.getElementById("tanggalSeminar").value;
-      let status = document.getElementById("statusKelulusan").value;
       let daftarSeminar = JSON.parse(localStorage.getItem("daftarSeminar")) || [];
+      const mahasiswa = daftarSeminar.find(m => m.id == mahasiswaId);
 
-      // Membuat id baru
-      let idBaru = daftarSeminar.length > 0 ? daftarSeminar[daftarSeminar.length - 1].id + 1 : 1;
+      if (mahasiswa) {
+          mahasiswa.nilai = {
+              kehadiran,
+              pemahaman,
+              kerjaTim,
+              luaran,
+              laporan
+          }; // Update nilai in the seminar object
 
-      // Menambahkan mahasiswa baru ke dalam daftar
-      daftarSeminar.push({ id: idBaru, nama: nama, tanggal: tanggal, status: status });
-      localStorage.setItem("daftarSeminar", JSON.stringify(daftarSeminar));
+          // Hitung nilai akhir
+          const totalNilai = (kehadiran * 0.2) + (pemahaman * 0.2) + (kerjaTim * 0.2) + (luaran * 0.2) + (laporan * 0.2);
+          const nilaiAkhir = totalNilai / 5;
 
-      // Muat ulang data seminar
+          // Konversi nilai akhir ke dalam huruf
+          let grade;
+          if (nilaiAkhir >= 86) {
+              grade = 'A';
+          } else if (nilaiAkhir >= 78) {
+              grade = 'AB';
+          } else if (nilaiAkhir >= 70) {
+              grade = 'B';
+          } else if (nilaiAkhir >= 62) {
+              grade = 'BC';
+          } else if (nilaiAkhir >= 54) {
+              grade = 'C';
+          } else if (nilaiAkhir >= 40) {
+              grade = 'D';
+          } else {
+              grade = 'E';
+          }
+
+          mahasiswa.status = "Lulus"; // Assume they pass if graded
+          localStorage.setItem("daftarSeminar", JSON.stringify(daftarSeminar));
+          alert("Nilai berhasil disimpan!");
+          document.getElementById("nilaiAkhir").value = grade; // Tampilkan nilai akhir di modal
+          muatDataSeminar(); // Refresh the table data
+          $('#inputNilaiModal').modal('hide'); // Close the modal
+      }
+    });
+
+    // Inisialisasi data seminar saat halaman dimuat
+    document.addEventListener("DOMContentLoaded", function() {
+      if (!localStorage.getItem("daftarSeminar")) {
+        inisialisasiData();
+      }
       muatDataSeminar();
+    });
 
-      // Reset form
-      document.getElementById("formTambahMahasiswa").reset();
+    function filterMahasiswa() {
+      const searchValue = document.getElementById('searchMahasiswa').value.toLowerCase();
+      const rows = document.querySelectorAll("#daftarSeminar tr");
+
+      rows.forEach(row => {
+          const nameCell = row.cells[0].textContent.toLowerCase();
+          row.style.display = nameCell.includes(searchValue) ? "" : "none";
+      });
     }
 
-    // Fungsi untuk menghapus mahasiswa
-    function hapusMahasiswa(id) {
+    function toggleStatus(id) {
       let daftarSeminar = JSON.parse(localStorage.getItem("daftarSeminar")) || [];
-      daftarSeminar = daftarSeminar.filter(seminar => seminar.id !== id);
-      localStorage.setItem("daftarSeminar", JSON.stringify(daftarSeminar));
-      muatDataSeminar();
+      const mahasiswa = daftarSeminar.find(m => m.id === id);
+      
+      if (mahasiswa) {
+          mahasiswa.status = mahasiswa.status === 'Lulus' ? 'Tidak Lulus' : 'Lulus';
+          localStorage.setItem("daftarSeminar", JSON.stringify(daftarSeminar));
+          muatDataSeminar();
+      }
     }
 
-    // Panggil fungsi inisialisasi data saat halaman diload
-    window.onload = function() {
-      // Uncomment the line below if you want to initialize data each time the page loads
-      // inisialisasiData();
-      muatDataSeminar();
-    };
+    function lihatLaporan(id) {
+      // Logika untuk melihat laporan
+      alert('Laporan belum tersedia.');
+    }
   </script>
 </body>
-
 </html>
