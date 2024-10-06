@@ -66,7 +66,7 @@
       localStorage.setItem("daftarMahasiswa", JSON.stringify(daftarMahasiswa));
 
       // Pindah ke halaman daftar mahasiswa
-      window.location.href = "anakBimbing";
+      window.location.href = "informasipkl";
     }
   </script>
 </body>

@@ -190,6 +190,10 @@ Route::get('/profiledosen', function () {
     return view('profiledosen');
 });
 
+Route::get('/editpkl', function () {
+    return view('editpkl');
+});
+
 // Route::get('/fixPKL', function () {
 //     return view('home/fixPKL');
 // });
@@ -255,6 +259,7 @@ Route::get('/seminarDosen', function () {
 Route::get('/download', function () {
     return view('home/download');
 });
+
 
 /*
 

@@ -1,96 +1,82 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-    @include('components.head')
-    <style>
-        /* Custom CSS for main content */
-        .main-panel {
-            flex-grow: 1;
-            background-color: #f5f7ff;
-            padding: 20px;
-            margin-left: 10px;
-        }
-
-        .content-wrapper {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .info-card {
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            padding: 20px;
-            margin-bottom: 20px;
-            background-color: #fff;
-        }
-
-        .info-card h4 {
-            margin-bottom: 10px;
-            font-size: 16px; /* Set font size for h4 to match p */
-        }
-
-        .info-card p {
-            font-size: 16px; /* You can adjust this if you want a different size */
-        }
-
-        .btn-primary {
-            background-color: #007bff;
-            border-color: #007bff;
-        }
-
-        .btn-primary:hover {
-            background-color: #0056b3;
-            border-color: #0056b3;
-        }
-
-        .btn-light {
-            background-color: #f8f9fa;
-            border-color: #f8f9fa;
-        }
-
-        .btn-light:hover {
-            background-color: #e2e6ea;
-            border-color: #dae0e5;
-        }
-
-    </style>
-</head>
+@include('components.head')
 
 <body>
-    <div class="container-scroller">
-        @include('components.navbar')
-        <div class="container-fluid page-body-wrapper">
-            @include('components.sidebarfix')
-            <div class="main-panel">
-                <div class="content-wrapper">
-                    <h2>Informasi PKL</h2>
+  <div class="container-scroller">
+    @include('components.navbar')
 
-                    <div class="info-card">
-                        <h4>Nama Perusahaan:</h4>
-                        <p>PT. Maju Sejahtera</p>
+    <div class="container-fluid page-body-wrapper">
+      @include('components.sidebarfix')
 
-                        <h4>Alamat Perusahaan:</h4>
-                        <p>Jl. Kebon Jeruk No. 5, Jakarta</p>
-
-                        <h4>Role:</h4>
-                        <p>Frontend Developer</p>
-
-                        <h4>Periode PKL:</h4>
-                        <p>01 Jan 2024 - 01 Apr 2024</p>
-
-                        <h4>Surat Permohonan:</h4>
-                        <p><a href="#">Download</a></p>
-
-                        <h4>Surat Penerimaan:</h4>
-                        <p><a href="#">Download</a></p>
-                    </div>
-
-                </div>
+      <div class="main-panel">
+        <div class="content-wrapper">
+          <div class="row">
+            <div class="col-md-12 grid-margin">
+              <h3 class="font-weight-bold">Daftar Informasi PKL</h3>
             </div>
+          </div>
+
+          <div class="row" id="pklCardContainer">
+            <!-- Kartu PKL akan dimuat di sini -->
+          </div>
+
         </div>
+      </div>
     </div>
+  </div>
+
+  <script src="vendors/js/vendor.bundle.base.js"></script>
+  <script>
+    function muatDataPkl() {
+      const daftarPkl = JSON.parse(localStorage.getItem("daftarPkl")) || [];
+      const cardContainer = document.getElementById("pklCardContainer");
+
+      // Bersihkan kartu sebelum mengisi ulang
+      cardContainer.innerHTML = "";
+
+      daftarPkl.forEach((pkl) => {
+        const card = document.createElement("div");
+        card.className = "card mb-3"; // Card bootstrap dengan margin bawah
+        card.innerHTML = `
+          <div class="card-body">
+            <h5 class="card-title">${pkl.nama_perusahaan}</h5>
+            <p class="card-text"><strong>Alamat:</strong> ${pkl.alamat_perusahaan}</p>
+            <p class="card-text"><strong>Role:</strong> ${pkl.role}</p>
+            <p class="card-text"><strong>Periode PKL:</strong> ${pkl.periode}</p>
+            <p class="card-text"><strong>Surat Permohonan:</strong> <a href="#" class="text-primary">${pkl.surat_permohonan}</a></p>
+            <p class="card-text"><strong>Surat Penerimaan:</strong> <a href="#" class="text-primary">${pkl.surat_penerimaan}</a></p>
+            <button class="btn btn-warning btn-sm" onclick="editpkl()">Edit</button>
+          </div>
+        `;
+        
+        cardContainer.appendChild(card);
+      });
+    }
+
+    function editPkl() {
+      // Redirect to editpkl.blade.php
+      window.location.href = `editpkl`; // Use this URL based on your Laravel routing
+    }
+
+    window.onload = function() {
+      muatDataPkl(); // Load data when the page is ready
+    };
+  </script>
+
+  <style>
+    /* Gaya untuk kartu PKL */
+    #pklCardContainer {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem; /* Spasi antara kartu */
+    }
+    .card {
+      flex: 1 0 21%; /* Ukuran kartu, bisa disesuaikan */
+      min-width: 200px; /* Lebar minimum */
+    }
+  </style>
 </body>
 
 </html>
-

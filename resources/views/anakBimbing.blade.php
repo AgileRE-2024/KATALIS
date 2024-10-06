@@ -76,6 +76,9 @@
     window.onload = function() {
       muatDataMahasiswa();
     };
+
+    // Pindah ke halaman daftar mahasiswa
+    window.location.href = "anakBimbing";
   </script>
 </body>
 </html>

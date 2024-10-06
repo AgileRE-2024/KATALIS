@@ -1,154 +1,165 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-    @include('components.head')
-    <style>
-        /* Custom CSS for sidebar */
-        .sidebar {
-            width: 250px; /* Set desired sidebar width */
-            transition: width 0.3s ease; /* Smooth transition for width change */
-        }
-
-        /* For minimized sidebar */
-        .sidebar.minimized {
-            width: 80px; /* Width when minimized */
-        }
-
-        /* Make sure the content area stretches to fill the remaining space */
-        .main-panel {
-            flex-grow: 1; /* Allow main panel to grow */
-            background-color: #f5f7ff; /* Set background color matching content */
-            padding: 20px; /* Optional padding */
-            margin-left: 10px; /* Prevent content from touching sidebar */
-        }
-
-        /* Center the content */
-        .content-wrapper {
-            max-width: 1200px; /* Set max-width for the content */
-            margin: 0 auto; /* Center the content */
-        }
-
-        /* Optional: Adjust background color of the right empty space */
-        .page-body-wrapper {
-            background-color: #f8f9fa; /* Set to the same color as main-panel */
-        }
-    </style>
-</head>
+@include('components.head')
 
 <body>
-    <div class="container-scroller">
-        <!-- partial:../../partials/_navbar.html -->
-        @include('components.navbar')
-        <!-- partial -->
-        <div class="container-fluid page-body-wrapper">
-            <!-- partial:../../partials/_settings-panel.html -->
-            <div id="right-sidebar" class="settings-panel">
-                <div class="tab-content" id="setting-content">
-                    <div class="tab-pane fade" id="chats-section" role="tabpanel" aria-labelledby="chats-section">
-                        <div class="d-flex align-items-center justify-content-between border-bottom">
-                            <p class="settings-heading border-top-0 mb-3 pl-3 pt-0 border-bottom-0 pb-0">Friends</p>
-                            <small class="settings-heading border-top-0 mb-3 pt-0 border-bottom-0 pb-0 pr-3 font-weight-normal">See All</small>
-                        </div>
-                    </div>
-                </div>
+  <div class="container-scroller">
+    @include('components.navbar')
+
+    <div class="container-fluid page-body-wrapper">
+      @include('components.sidebarfix')
+
+      <div class="main-panel">
+        <div class="content-wrapper">
+          <div class="row">
+            <div class="col-md-12 grid-margin">
+              <h3 class="font-weight-bold">Tambah Informasi PKL</h3>
             </div>
-            <!-- partial -->
-            <!-- partial:../../partials/_sidebar.html -->
-            @include('components.sidebarfix')
-            <!-- partial -->
-            <div class="main-panel">
-                <div class="content-wrapper">
-                    <div class="row">
-                        <div class="col-12 grid-margin stretch-card">
-                            <div class="card">
-                                <div class="card-body">
-                                    <h4 class="card-title">Form Informasi PKL</h4>
-                                    <p class="card-description">
-                                        Form ini diisi untuk menyimpan informasi terkait PKL
-                                    </p>
-                                    <form class="forms-sample">
-                                        <div class="form-group">
-                                            <label for="exampleInputName1">Nama Perusahaan</label>
-                                            <input type="text" class="form-control" id="exampleInputName1" placeholder="Nama Perusahaan">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="exampleInputName1">Alamat Perusahaan</label>
-                                            <input type="text" class="form-control" id="exampleInputName1" placeholder="Alamat Perusahaan">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="exampleInputName1">Role</label>
-                                            <input type="text" class="form-control" id="exampleInputName1" placeholder="Role">
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Periode PKL</label>
-                                            <div class="input-group">
-                                            <input type="date" name="tanggal_mulai_pkl" class="form-control" required>
-                                            <label class="ml-3 mr-3">-</label>
-                                            <input type="date" name="tanggal_akhir_pkl" class="form-control" required>
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Surat Permohonan PKL (PDF)</label>
-                                            <input type="file" name="img[]" class="file-upload-default" accept=".pdf">
-                                            <div class="input-group col-xs-12">
-                                                <input type="text" class="form-control file-upload-info" disabled placeholder="Surat Permohonan PKL (PDF)">
-                                                <span class="input-group-append">
-                                                    <button class="file-upload-browse btn btn-primary" type="button">Upload</button>
-                                                </span>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Surat Penerimaan PKL (PDF)</label>
-                                            <input type="file" name="img[]" class="file-upload-default" accept=".pdf">
-                                            <div class="input-group col-xs-12">
-                                                <input type="text" class="form-control file-upload-info" disabled placeholder="Surat Penerimaan PKL (PDF)">
-                                                <span class="input-group-append">
-                                                    <button class="file-upload-browse btn btn-primary" type="button">Upload</button>
-                                                </span>
-                                            </div>
-                                        </div>
-                                        <a href="{{ url('/informasipkl') }}" class="btn btn-primary">Submit</a>
-                                        <button class="btn btn-light">Cancel</button>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-12"> <!-- Menggunakan col-md-12 untuk memperlebar form -->
+              <div class="card">
+                <div class="card-body">
+                  <form id="formTambahPkl">
+                    <div class="form-group">
+                      <label for="nama_perusahaan">Nama Perusahaan</label>
+                      <input type="text" class="form-control" id="nama_perusahaan" placeholder="Masukkan nama perusahaan" required>
                     </div>
+                    <div class="form-group">
+                      <label for="alamat_perusahaan">Alamat Perusahaan</label>
+                      <input type="text" class="form-control" id="alamat_perusahaan" placeholder="Masukkan alamat perusahaan" required>
+                    </div>
+                    <div class="form-group">
+                      <label for="role">Role</label>
+                      <input type="text" class="form-control" id="role" placeholder="Masukkan role" required>
+                    </div>
+                    <div class="form-group">
+                      <label>Periode PKL</label>
+                      <div class="input-group">
+                        <input type="date" id="tanggal_mulai_pkl" class="form-control" required>
+                        <label class="ml-3 mr-3">-</label>
+                        <input type="date" id="tanggal_akhir_pkl" class="form-control" required>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label>Surat Permohonan PKL (PDF)</label>
+                      <div class="input-group">
+                        <input type="file" id="surat_permohonan" class="d-none" accept=".pdf" required onchange="tampilkanFile('surat_permohonan')">
+                        <button type="button" class="btn btn-secondary" onclick="document.getElementById('surat_permohonan').click();">Pilih File</button>
+                        <small id="filePermohonan" class="form-text text-muted"></small>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label>Surat Penerimaan PKL (PDF)</label>
+                      <div class="input-group">
+                        <input type="file" id="surat_penerimaan" class="d-none" accept=".pdf" required onchange="tampilkanFile('surat_penerimaan')">
+                        <button type="button" class="btn btn-secondary" onclick="document.getElementById('surat_penerimaan').click();">Pilih File</button>
+                        <small id="filePenerimaan" class="form-text text-muted"></small>
+                      </div>
+                    </div>
+                    <button type="button" class="btn btn-primary" onclick="tambahPkl()">Tambah</button>
+                    <a href="tabel_pkl.html" class="btn btn-secondary">Kembali</a> <!-- Ganti URL sesuai kebutuhan -->
+                  </form>
                 </div>
-                <!-- content-wrapper ends -->
-                <!-- partial:../../partials/_footer.html -->
-                <footer class="footer">
-                    <div class="d-sm-flex justify-content-center justify-content-sm-between">
-                        <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © 2021.  Premium <a href="https://www.bootstrapdash.com/" target="_blank">Bootstrap admin template</a> from BootstrapDash. All rights reserved.</span>
-                        <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Hand-crafted & made with <i class="ti-heart text-danger ml-1"></i></span>
-                    </div>
-                </footer>
-                <!-- partial -->
+              </div>
             </div>
-            <!-- main-panel ends -->
+          </div>
+
         </div>
-        <!-- page-body-wrapper ends -->
+      </div>
     </div>
-    <!-- container-scroller -->
-    <!-- plugins:js -->
-    <script src="../../vendors/js/vendor.bundle.base.js"></script>
-    <!-- endinject -->
-    <!-- Plugin js for this page -->
-    <script src="../../vendors/typeahead.js/typeahead.bundle.min.js"></script>
-    <script src="../../vendors/select2/select2.min.js"></script>
-    <!-- End plugin js for this page -->
-    <!-- inject:js -->
-    <script src="../../js/off-canvas.js"></script>
-    <script src="../../js/hoverable-collapse.js"></script>
-    <script src="../../js/template.js"></script>
-    <script src="../../js/settings.js"></script>
-    <script src="../../js/todolist.js"></script>
-    <!-- endinject -->
-    <!-- Custom js for this page-->
-    <script src="../../js/file-upload.js"></script>
-    <script src="../../js/typeahead.js"></script>
-    <script src="../../js/select2.js"></script>
-    <!-- End custom js for this page-->
+  </div>
+
+  <script src="vendors/js/vendor.bundle.base.js"></script>
+  <script>
+    // Memeriksa apakah data PKL sudah ada di localStorage
+    document.addEventListener("DOMContentLoaded", function() {
+      const daftarPkl = JSON.parse(localStorage.getItem("daftarPkl")) || [];
+      if (daftarPkl.length > 0) {
+        // Jika sudah ada data, disable form
+        disableForm();
+        const pkl = daftarPkl[0]; // Mengambil data PKL pertama
+        document.getElementById("nama_perusahaan").value = pkl.nama_perusahaan;
+        document.getElementById("alamat_perusahaan").value = pkl.alamat_perusahaan;
+        document.getElementById("role").value = pkl.role;
+        document.getElementById("tanggal_mulai_pkl").value = pkl.periode.split(" - ")[0];
+        document.getElementById("tanggal_akhir_pkl").value = pkl.periode.split(" - ")[1];
+        // Menampilkan nama file jika ada
+        document.getElementById("filePermohonan").textContent = `File yang diunggah: ${pkl.surat_permohonan}`;
+        document.getElementById("filePenerimaan").textContent = `File yang diunggah: ${pkl.surat_penerimaan}`;
+      }
+    });
+
+    function disableForm() {
+      const formElements = document.querySelectorAll("#formTambahPkl input");
+      formElements.forEach(element => {
+        element.disabled = true; // Disable setiap elemen input
+      });
+      document.querySelector("button.btn-primary").disabled = true; // Disable tombol tambah
+    }
+
+    function tampilkanFile(inputId) {
+      const fileInput = document.getElementById(inputId);
+      const fileName = fileInput.files[0]?.name || 'N/A';
+      const fileText = inputId === 'surat_permohonan' ? document.getElementById("filePermohonan") : document.getElementById("filePenerimaan");
+      
+      fileText.textContent = `File yang diunggah: ${fileName}`;
+    }
+
+    function tambahPkl() {
+      var nama_perusahaan = document.getElementById("nama_perusahaan").value;
+      var alamat_perusahaan = document.getElementById("alamat_perusahaan").value;
+      var role = document.getElementById("role").value;
+      var tanggal_mulai_pkl = document.getElementById("tanggal_mulai_pkl").value;
+      var tanggal_akhir_pkl = document.getElementById("tanggal_akhir_pkl").value;
+      var surat_permohonan = document.getElementById("surat_permohonan").files[0]?.name || 'N/A';
+      var surat_penerimaan = document.getElementById("surat_penerimaan").files[0]?.name || 'N/A';
+
+      if (!nama_perusahaan || !alamat_perusahaan || !role || !tanggal_mulai_pkl || !tanggal_akhir_pkl) {
+        alert("Semua field harus diisi!");
+        return;
+      }
+
+      // Simpan ke localStorage hanya jika belum ada data
+      let daftarPkl = JSON.parse(localStorage.getItem("daftarPkl")) || [];
+      if (daftarPkl.length === 0) {
+        let pklBaru = {
+          nama_perusahaan,
+          alamat_perusahaan,
+          role,
+          periode: `${tanggal_mulai_pkl} - ${tanggal_akhir_pkl}`,
+          surat_permohonan,
+          surat_penerimaan
+        };
+        
+        daftarPkl.push(pklBaru);
+        localStorage.setItem("daftarPkl", JSON.stringify(daftarPkl));
+        
+        alert('Data PKL berhasil disimpan!');
+        disableForm(); // Disable form setelah menyimpan
+      } else {
+        // Jika data sudah ada, update data yang ada
+        let pklBaru = {
+          nama_perusahaan,
+          alamat_perusahaan,
+          role,
+          periode: `${tanggal_mulai_pkl} - ${tanggal_akhir_pkl}`,
+          surat_permohonan,
+          surat_penerimaan
+        };
+        
+        localStorage.setItem("daftarPkl", JSON.stringify([pklBaru])); // Update data
+        alert('Data PKL berhasil diperbarui!');
+      }
+
+      // Kosongkan form setelah disubmit
+      document.getElementById("formTambahPkl").reset();
+      document.getElementById("filePermohonan").textContent = "";
+      document.getElementById("filePenerimaan").textContent = "";
+    }
+  </script>
 </body>
 
 </html>
