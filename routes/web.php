@@ -215,6 +215,9 @@ Route::get('/editpkl', function () {
 //     return view('home/laporan');
 // });
 
+Route::get('/editpkl', function () {
+    return view('editpkl');
+});
 //dosen
 Route::get('/dashboardDosen', function () {
     return view('dashboardDosen');

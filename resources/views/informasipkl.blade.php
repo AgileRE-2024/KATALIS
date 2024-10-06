@@ -47,7 +47,7 @@
             <p class="card-text"><strong>Periode PKL:</strong> ${pkl.periode}</p>
             <p class="card-text"><strong>Surat Permohonan:</strong> <a href="#" class="text-primary">${pkl.surat_permohonan}</a></p>
             <p class="card-text"><strong>Surat Penerimaan:</strong> <a href="#" class="text-primary">${pkl.surat_penerimaan}</a></p>
-            <button class="btn btn-warning btn-sm" onclick="editpkl()">Edit</button>
+            <button class="btn btn-warning btn-sm" onclick="editPkl()">Edit</button>
           </div>
         `;
         

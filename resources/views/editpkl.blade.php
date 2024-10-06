@@ -98,7 +98,7 @@
       localStorage.setItem("daftarPkl", JSON.stringify(daftarPkl)); // Save back to localStorage
 
       alert('Data berhasil disimpan!');
-      window.location.href = 'informasipkl'; // Redirect back to the main page or desired page
+      window.location.href = 'index.html'; // Redirect back to the main page or desired page
     }
   </script>
 
