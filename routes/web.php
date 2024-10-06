@@ -260,12 +260,6 @@ Route::get('/download', function () {
     return view('home/download');
 });
 
-<<<<<<< HEAD
-=======
-Route::get('/inputnilai', function () {
-    return view('inputnilai');
-});
->>>>>>> 5476122202ac0e581ca735e1f5cfd40dab58265c
 
 /*
 
