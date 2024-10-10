@@ -14,7 +14,6 @@
           <div class="row">
             <div class="col-md-12 grid-margin">
               <h3 class="font-weight-bold">Laporan Mahasiswa</h3>
-              <!-- Tidak ada tombol "Tambah Jadwal Bimbingan" -->
             </div>
           </div>
 
@@ -25,7 +24,7 @@
                   <tr>
                     <th>Nama Mahasiswa</th>
                     <th>NIM</th>
-                    <th>Progress</th>
+                    <th>Komentar</th>
                     <th>Aksi</th>
                   </tr>
                 </thead>
@@ -43,6 +42,22 @@
 
   <script src="vendors/js/vendor.bundle.base.js"></script>
   <script>
+    // Data dummy mahasiswa
+    const dummyData = [
+      { id: 1, nama: 'Ahmad Junaidi', nim: '2023101', komentar: '' },
+      { id: 2, nama: 'Siti Nurhaliza', nim: '2023102', komentar: '' },
+      { id: 3, nama: 'Budi Santoso', nim: '2023103', komentar: '' },
+      { id: 4, nama: 'Rina Amelia', nim: '2023104', komentar: '' },
+      { id: 5, nama: 'Dewi Sartika', nim: '2023105', komentar: '' },
+    ];
+
+    // Fungsi untuk menyimpan data dummy ke localStorage jika belum ada
+    function initData() {
+      if (!localStorage.getItem("daftarMahasiswa")) {
+        localStorage.setItem("daftarMahasiswa", JSON.stringify(dummyData));
+      }
+    }
+
     // Fungsi untuk memuat data mahasiswa dari localStorage
     function muatDataMahasiswa() {
       let daftarMahasiswa = JSON.parse(localStorage.getItem("daftarMahasiswa")) || [];
@@ -57,40 +72,36 @@
         row.innerHTML = `
           <td>${mahasiswa.nama}</td>
           <td>${mahasiswa.nim}</td>
+          <td><input type="text" class="form-control" placeholder="Komentar" value="${mahasiswa.komentar || ''}" onchange="updateKomentar(${mahasiswa.id}, this.value)"></td>
           <td>
-            <button class="btn btn-${mahasiswa.progress === 'Sudah' ? 'success' : mahasiswa.progress === 'Revisi' ? 'warning' : 'secondary'} btn-sm" onclick="toggleProgress(${mahasiswa.id})">
-              ${mahasiswa.progress || 'Belum'}
-            </button>
+            <button class="btn btn-success btn-sm" onclick="berikanNilai(${mahasiswa.id})">Berikan Nilai</button>
           </td>
-          <td><a href="logbook.html?mahasiswaId=${mahasiswa.id}" class="btn btn-primary btn-sm">Lihat Logbook</a></td>
         `;
 
         daftarMahasiswaDiv.appendChild(row);
       });
     }
 
-    // Fungsi untuk toggle progress
-    function toggleProgress(id) {
+    // Fungsi untuk memperbarui komentar mahasiswa
+    function updateKomentar(id, komentar) {
       let daftarMahasiswa = JSON.parse(localStorage.getItem("daftarMahasiswa")) || [];
       let mahasiswa = daftarMahasiswa.find(m => m.id === id);
       
       if (mahasiswa) {
-        // Ubah status progress
-        if (mahasiswa.progress === 'Sudah') {
-          mahasiswa.progress = 'Revisi';
-        } else if (mahasiswa.progress === 'Revisi') {
-          mahasiswa.progress = 'Belum';
-        } else {
-          mahasiswa.progress = 'Sudah';
-        }
-        
+        mahasiswa.komentar = komentar;
         localStorage.setItem("daftarMahasiswa", JSON.stringify(daftarMahasiswa));
-        muatDataMahasiswa();
       }
     }
 
-    // Panggil fungsi muat data saat halaman diload
+    // Fungsi untuk memberikan nilai pada mahasiswa
+    function berikanNilai(id) {
+      alert(`Nilai telah diberikan kepada mahasiswa dengan ID: ${id}`);
+      // Logika tambahan untuk memberikan nilai bisa ditambahkan di sini
+    }
+
+    // Inisialisasi data dan memuat saat halaman diload
     window.onload = function() {
+      initData();
       muatDataMahasiswa();
     };
   </script>

@@ -44,7 +44,15 @@
   <script>
     // Fungsi untuk memuat data mahasiswa dari localStorage
     function muatDataMahasiswa() {
-      let daftarMahasiswa = JSON.parse(localStorage.getItem("daftarMahasiswa")) || [];
+      // Dummy data untuk daftar mahasiswa
+      let daftarMahasiswa = JSON.parse(localStorage.getItem("daftarMahasiswa")) || [
+        { id: 1, nama: "Alice Johnson", nim: "12345678" },
+        { id: 2, nama: "David Brown", nim: "23456789" },
+        { id: 3, nama: "Emily White", nim: "34567890" },
+        { id: 4, nama: "Frank Green", nim: "45678901" },
+        { id: 5, nama: "Grace Lee", nim: "56789012" },
+      ];
+
       let daftarMahasiswaDiv = document.getElementById("daftarMahasiswa");
 
       // Bersihkan konten sebelum mengisi ulang
@@ -69,5 +77,4 @@
     };
   </script>
 </body>
-
 </html>

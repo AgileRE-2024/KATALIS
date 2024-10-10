@@ -18,8 +18,24 @@
             </div>
           </div>
 
-          <div class="row" id="kartuKendali">
-            <!-- Kartu Kendali akan dimuat di sini -->
+          <div class="row">
+            <!-- Tabel Kartu Kendali Bimbingan -->
+            <div class="col-md-12">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th>Nama Mahasiswa</th>
+                    <th>NIM</th>
+                    <th>Tanggal Bimbingan</th>
+                    <th>Hasil Bimbingan</th>
+                    <th>Aksi</th>
+                  </tr>
+                </thead>
+                <tbody id="kartuKendaliTableBody">
+                  <!-- Data kartu kendali akan dimuat di sini -->
+                </tbody>
+              </table>
+            </div>
           </div>
 
         </div>
@@ -31,45 +47,52 @@
   <script>
     // Fungsi untuk memuat data jadwal bimbingan dari localStorage
     function muatDataJadwal() {
-      let daftarJadwal = JSON.parse(localStorage.getItem("daftarJadwal")) || [];
-      let kartuKendali = document.getElementById("kartuKendali");
+      // Dummy data untuk daftar jadwal
+      let daftarJadwal = JSON.parse(localStorage.getItem("daftarJadwal")) || [
+        { nama: "Alice Johnson", nim: "12345678", tanggal: "2024-10-15", hasil: "Belum disetujui" },
+        { nama: "David Brown", nim: "23456789", tanggal: "2024-10-16", hasil: "Belum disetujui" },
+        { nama: "Emily White", nim: "34567890", tanggal: "2024-10-17", hasil: "Belum disetujui" },
+        { nama: "Frank Green", nim: "45678901", tanggal: "2024-10-18", hasil: "Belum disetujui" },
+        { nama: "Grace Lee", nim: "56789012", tanggal: "2024-10-19", hasil: "Belum disetujui" },
+      ];
+
+      let tableBody = document.getElementById("kartuKendaliTableBody");
 
       // Bersihkan konten sebelum mengisi ulang
-      kartuKendali.innerHTML = "";
+      tableBody.innerHTML = "";
 
       daftarJadwal.forEach(function(jadwal, index) {
-        let card = document.createElement("div");
-        card.className = "col-md-4"; // Set ukuran kartu 4 kolom per baris
+        let row = document.createElement("tr");
 
-        card.innerHTML = `
-          <div class="card mb-3">
-            <div class="card-body">
-              <h5 class="card-title">${jadwal.nama}</h5>
-              <p class="card-text">NIM: ${jadwal.nim}</p>
-              <p class="card-text">Tanggal Bimbingan: ${jadwal.tanggal}</p>
-              <p class="card-text">Hasil Bimbingan: ${jadwal.hasil ? jadwal.hasil : 'Belum ada hasil'}</p>
-              <p class="card-text">Dokumentasi: ${jadwal.dokumentasi ? '<a href="#" onclick="tampilkanFoto(\'' + jadwal.dokumentasi + '\')">Lihat Foto</a>' : 'Belum ada dokumentasi'}</p>
-              <button class="btn btn-danger btn-sm" onclick="hapusJadwal(${index})">Hapus</button>
-            </div>
-          </div>
+        row.innerHTML = `
+          <td>${jadwal.nama}</td>
+          <td>${jadwal.nim}</td>
+          <td>${jadwal.tanggal}</td>
+          <td>${jadwal.hasil}</td>
+          <td>
+            <button class="btn btn-success btn-sm" onclick="setujui(${index})">Disetujui</button>
+            <button class="btn btn-danger btn-sm" onclick="tidakSetujui(${index})">Tidak Disetujui</button>
+          </td>
         `;
 
-        kartuKendali.appendChild(card);
+        tableBody.appendChild(row);
       });
     }
 
-    // Fungsi untuk menghapus jadwal bimbingan
-    function hapusJadwal(index) {
+    // Fungsi untuk menandai hasil bimbingan sebagai disetujui
+    function setujui(index) {
       let daftarJadwal = JSON.parse(localStorage.getItem("daftarJadwal")) || [];
-      daftarJadwal.splice(index, 1);
+      daftarJadwal[index].hasil = "Disetujui";
       localStorage.setItem("daftarJadwal", JSON.stringify(daftarJadwal));
       muatDataJadwal();
     }
 
-    // Fungsi untuk menampilkan foto dalam modal
-    function tampilkanFoto(url) {
-      let imgWindow = window.open();
-      imgWindow.document.write('<html><body><img src="' + url + '" style="width:100%;"></body></html>');
+    // Fungsi untuk menandai hasil bimbingan sebagai tidak disetujui
+    function tidakSetujui(index) {
+      let daftarJadwal = JSON.parse(localStorage.getItem("daftarJadwal")) || [];
+      daftarJadwal[index].hasil = "Tidak Disetujui";
+      localStorage.setItem("daftarJadwal", JSON.stringify(daftarJadwal));
+      muatDataJadwal();
     }
 
     // Panggil fungsi muat data saat halaman diload
@@ -78,5 +101,4 @@
     };
   </script>
 </body>
-
 </html>
