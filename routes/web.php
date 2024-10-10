@@ -275,6 +275,8 @@ Route::get('/download', function () {
     return view('home/download');
 });
 
+Route::post('/register', [RegisterController::class, 'store'])->name('register.store');
+
 
 /*
 
