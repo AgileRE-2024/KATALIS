@@ -19,17 +19,10 @@
 
         <!-- Anak Bimbing -->
         <li class="nav-item">
-            <a class="nav-link" data-toggle="collapse" href="#anak" aria-expanded="false" aria-controls="anak">
+            <a class="nav-link" href="dosenprofil">
                 <i class="ti-id-badge menu-icon"></i>
                 <span class="menu-title">Anak Bimbing</span>
-                <i class="menu-arrow"></i>
             </a>
-            <div class="collapse" id="anak">
-                <ul class="nav flex-column sub-menu">
-                    <li class="nav-item"> <a class="nav-link" href="anakBimbing">Daftar Anak Bimbing</a></li>
-                    <li class="nav-item"> <a class="nav-link" href="tambahMahasiswa">Tambah Anak Bimbing</a></li>
-                </ul>
-            </div>
         </li>
 
         <!-- Bimbingan -->
