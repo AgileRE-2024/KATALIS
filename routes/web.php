@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\WordController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -85,6 +87,16 @@ use Illuminate\Support\Facades\Route;
 // Route::get('/form', function () {
 //     return view('form');
 // });
+
+// Billy - auto-generate
+
+Route::get('/worda', function () {
+    return view('auto_proposal/auto_proposal');
+});
+
+Route::post('worda', [WordController::class, 'index'])->name("worda.index");
+
+// Billy end -----------------------------------
 
 Route::get('/dashboardMahasiswa', function () {
     return view('dashboardMahasiswa');
