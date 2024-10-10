@@ -4,7 +4,7 @@
         <!-- Dashboard -->
         <li class="nav-item">
             <a class="nav-link" href="dashboardDosen">
-                <i class="icon-grid menu-icon"></i>
+                <i class="ti-home menu-icon"></i>
                 <span class="menu-title">Home</span>
             </a>
         </li>
@@ -12,7 +12,7 @@
         <!-- Profil -->
         <li class="nav-item">
             <a class="nav-link" href="dosenprofil">
-                <i class="icon-head menu-icon"></i>
+                <i class="ti-user menu-icon"></i>
                 <span class="menu-title">Profil</span>
             </a>
         </li>
@@ -20,7 +20,7 @@
         <!-- Anak Bimbing -->
         <li class="nav-item">
             <a class="nav-link" data-toggle="collapse" href="#anak" aria-expanded="false" aria-controls="anak">
-                <i class="icon-head menu-icon"></i>
+                <i class="ti-id-badge menu-icon"></i>
                 <span class="menu-title">Anak Bimbing</span>
                 <i class="menu-arrow"></i>
             </a>
@@ -35,7 +35,7 @@
         <!-- Bimbingan -->
         <li class="nav-item">
             <a class="nav-link" data-toggle="collapse" href="#konsuldosen" aria-expanded="false" aria-controls="konsul">
-                <i class="icon-head menu-icon"></i>
+                <i class="ti-comments menu-icon"></i>
                 <span class="menu-title">Konsultasi Bimbingan</span>
                 <i class="menu-arrow"></i>
             </a>
@@ -50,7 +50,7 @@
         <!-- Logbook -->
         <li class="nav-item">
             <a class="nav-link" href="logbookDosen">
-                <i class="icon-grid menu-icon"></i>
+                <i class="ti-file menu-icon"></i>
                 <span class="menu-title">Logbook</span>
             </a>
         </li>
@@ -58,7 +58,7 @@
         <!-- Laporan -->
         <li class="nav-item">
             <a class="nav-link" href="laporanDosen">
-                <i class="icon-grid menu-icon"></i>
+                <i class="ti-clipboard menu-icon"></i>
                 <span class="menu-title">Laporan</span>
             </a>
         </li>
@@ -66,7 +66,7 @@
         <!-- Seminar -->
         <li class="nav-item">
             <a class="nav-link" href="seminarDosen">
-                <i class="icon-grid menu-icon"></i>
+                <i class="ti-book menu-icon"></i>
                 <span class="menu-title">Seminar</span>
             </a>
         </li>

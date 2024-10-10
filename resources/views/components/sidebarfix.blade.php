@@ -4,14 +4,15 @@
         <!-- Dashboard -->
         <li class="nav-item">
             <a class="nav-link" href="dashboard">
-                <i class="icon-grid menu-icon"></i>
+                <i class="ti-home menu-icon"></i>
                 <span class="menu-title">Home</span>
             </a>
         </li>
 
+        <!-- Prrofil -->
         <li class="nav-item">
             <a class="nav-link" href="profilmh">
-                <i class="icon-head menu-icon"></i>
+                <i class="ti-user menu-icon"></i>
                 <span class="menu-title">Profil</span>
             </a>
         </li>
@@ -19,7 +20,7 @@
         <!-- Dosbing -->
         <li class="nav-item">
             <a class="nav-link" data-toggle="collapse" href="#dosbing" aria-expanded="false" aria-controls="dosbing">
-                <i class="icon-head menu-icon"></i>
+                <i class="ti-id-badge menu-icon"></i>
                 <span class="menu-title">Dosbing</span>
                 <i class="menu-arrow"></i>
             </a>
@@ -34,7 +35,7 @@
         <!-- PKL -->
         <li class="nav-item">
             <a class="nav-link" data-toggle="collapse" href="#pkl" aria-expanded="false" aria-controls="pkl">
-                <i class="icon-head menu-icon"></i>
+                <i class="ti-map-alt menu-icon"></i>
                 <span class="menu-title">PKL</span>
                 <i class="menu-arrow"></i>
             </a>
@@ -50,7 +51,7 @@
         <!-- Konsultasi Bimbingan -->
         <li class="nav-item">
             <a class="nav-link" data-toggle="collapse" href="#bimbingan" aria-expanded="false" aria-controls="bimbingan">
-                <i class="icon-head menu-icon"></i>
+                <i class="ti-comments menu-icon"></i>
                 <span class="menu-title">Konsultasi Bimbingan</span>
                 <i class="menu-arrow"></i>
             </a>
@@ -65,7 +66,7 @@
         <!-- Logbook -->
         <li class="nav-item">
             <a class="nav-link" href="logbook">
-                <i class="icon-grid menu-icon"></i>
+                <i class="ti-file menu-icon"></i>
                 <span class="menu-title">Logbook</span>
             </a>
         </li>
@@ -73,7 +74,7 @@
         <!-- Laporan -->
         <li class="nav-item">
             <a class="nav-link" href="laporanfiks">
-                <i class="icon-grid menu-icon"></i>
+                <i class="ti-clipboard menu-icon"></i>
                 <span class="menu-title">Laporan</span>
             </a>
         </li>
@@ -81,7 +82,7 @@
         <!-- Seminar -->
         <li class="nav-item">
             <a class="nav-link" data-toggle="collapse" href="#seminar" aria-expanded="false" aria-controls="seminar">
-                <i class="icon-head menu-icon"></i>
+                <i class="ti-book menu-icon"></i>
                 <span class="menu-title">Seminar</span>
                 <i class="menu-arrow"></i>
             </a>
@@ -133,6 +134,7 @@
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
 
 <script>
     $(document).ready(function() {
