@@ -132,7 +132,8 @@
                     <!-- Profile Section -->
                     <div class="profile-card">
                         <!-- Foto Profil -->
-                        <img src="https://via.placeholder.com/150" alt="Foto Profil" class="profile-photo">
+                        <img src="./assets/images/faces/face28.jpg" alt="Foto Profil" class="profile-photo">
+
 
                         <!-- Informasi Siswa (Nama, NIM, Jurusan) di tengah -->
                         <div class="profile-info">
