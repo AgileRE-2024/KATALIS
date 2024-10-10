@@ -132,8 +132,7 @@
                     <!-- Profile Section -->
                     <div class="profile-card">
                         <!-- Foto Profil -->
-                        <img src="https://via.placeholder.com/150" alt="Foto Profil" class="profile-photo">
-
+                        <img src="./assets/images/faces/face26.jpg" alt="Foto Profil" class="profile-photo">
                         <!-- Informasi Dosen (Nama, Jabatan, NIP) di tengah -->
                         <div class="profile-info">
                             <h2>Nabila S.si. M.si</h2>

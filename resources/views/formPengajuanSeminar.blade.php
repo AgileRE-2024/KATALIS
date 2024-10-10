@@ -86,21 +86,21 @@
                                         </div>
                                         <div class="form-group">
                                             <label>Laporan akhir PKL (PDF)</label>
-                                            <input type="file" name="img[]" class="file-upload-default" accept=".pdf">
+                                            <input type="file" id="laporanPKL" class="file-upload-default" accept=".pdf" style="display: none;">
                                             <div class="input-group col-xs-12">
-                                                <input type="text" class="form-control file-upload-info" disabled placeholder="Laporan akhir PKL (PDF)">
+                                                <input type="text" class="form-control file-upload-info" id="laporanPKLName" disabled placeholder="Laporan akhir PKL (PDF)">
                                                 <span class="input-group-append">
-                                                    <button class="file-upload-browse btn btn-primary" type="button">Upload</button>
+                                                    <button class="file-upload-browse btn btn-primary" type="button" onclick="document.getElementById('laporanPKL').click()">Upload</button>
                                                 </span>
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <label>Bukti Persetujuan Seminar oleh Dosen Pembimbing</label>
-                                            <input type="file" name="img[]" class="file-upload-default" accept=".pdf">
+                                            <input type="file" id="BuktiPersetujuan" class="file-upload-default" accept=".pdf" style="display: none;">
                                             <div class="input-group col-xs-12">
-                                                <input type="text" class="form-control file-upload-info" disabled placeholder="Bukti Persetujuan Seminar oleh Dosen Pembimbing (PDF)">
+                                                <input type="text" class="form-control file-upload-info" id="BuktiPersetujuanName" disabled placeholder="Bukti Persetujuan Seminar oleh Dosen Pembimbing (PDF)">
                                                 <span class="input-group-append">
-                                                    <button class="file-upload-browse btn btn-primary" type="button">Upload</button>
+                                                    <button class="file-upload-browse btn btn-primary" type="button" onclick="document.getElementById('BuktiPersetujuan').click()">Upload</button>
                                                 </span>
                                             </div>
                                         </div>
@@ -146,6 +146,23 @@
     <script src="../../js/typeahead.js"></script>
     <script src="../../js/select2.js"></script>
     <!-- End custom js for this page-->
+
+    <script>
+    document.getElementById('laporanPKL').addEventListener('change', function(){
+        var fileName = this.files[0].name;
+        document.getElementById('laporanPKLName').value = fileName;
+    });
+    </script>
+
+<script>
+    document.getElementById('BuktiPersetujuan').addEventListener('change', function(){
+        var fileName = this.files[0].name;
+        document.getElementById('BuktiPersetujuanName').value = fileName;
+    });
+</script>
+
+
+</script>
 </body>
 
 </html>
