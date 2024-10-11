@@ -35,27 +35,18 @@
             background-color: #f8f9fa; /* Set to the same color as main-panel */
         }
 
-        /* Custom styles for table */
-        table {
-            width: 100%;
-            margin-top: 20px;
-            border-collapse: collapse;
-        }
-
-        table,
-        th,
-        td {
+        /* Custom styles for the application sections */
+        .application-card {
             border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 20px;
+            margin-bottom: 20px;
+            background-color: #fff;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
         }
 
-        th,
-        td {
-            padding: 12px;
-            text-align: left;
-        }
-
-        th {
-            background-color: #4b49ac;
+        .application-card h5 {
+            margin: 0 0 10px 0;
         }
 
         /* Countdown styles */
@@ -86,34 +77,28 @@
                     <p class="card-description">
                         Berikut adalah jadwal seminar yang telah diajukan. Countdown di kolom terakhir menunjukkan waktu yang tersisa menuju seminar.
                     </p>
+
                     <div class="table-responsive">
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>No</th>
-                                    <th>Judul PKL</th>
-                                    <th>Tempat PKL</th>
-                                    <th>Dosen Pembimbing PKL</th>
-                                    <th>Tanggal Seminar</th>
-                                    <th>Laporan PKL (PDF)</th>
-                                    <th>Bukti Persetujuan (PDF)</th>
-                                    <th>Countdown</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <!-- Baris 1 -->
-                                <tr>
-                                    <td>1</td>
-                                    <td>Pengembangan Aplikasi Mobile</td>
-                                    <td>PT. Teknologi Maju</td>
-                                    <td>Dr. Budi Santoso</td>
-                                    <td>2024-12-15</td>
-                                    <td><a href="#">Download</a></td>
-                                    <td><a href="#">Download</a></td>
-                                    <td><span class="countdown" data-date="2024-12-15"></span></td>
-                                </tr>
-                            </tbody>
-                        </table>
+                        @foreach($seminarApplications as $index => $application)
+                        <div class="application-card">
+                            <h5>Judul PKL: {{ $application->judul_pkl }}</h5>
+                            <p><strong>Tempat PKL:</strong> {{ $application->tempat_pkl }}</p>
+                            <p><strong>Dosen Pembimbing:</strong> {{ $application->dosen_pembimbing }}</p>
+                            <p><strong>Tanggal Seminar:</strong> {{ $application->tanggal_seminar }}</p>
+                            <p>
+                                <strong>Laporan PKL (PDF):</strong> 
+                                <a href="{{ asset('storage/' . $application->laporan_pkl) }}">Download</a>
+                            </p>
+                            <p>
+                                <strong>Bukti Persetujuan (PDF):</strong> 
+                                <a href="{{ asset('storage/' . $application->bukti_persetujuan) }}">Download</a>
+                            </p>
+                            <p>
+                                <strong>Countdown:</strong> 
+                                <span class="countdown" data-date="{{ $application->tanggal_seminar }}"></span>
+                            </p>
+                        </div>
+                        @endforeach
                     </div>
                 </div>
                 <!-- content-wrapper ends -->

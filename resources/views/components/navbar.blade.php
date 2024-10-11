@@ -3,7 +3,7 @@
         <a href="index.html"><img src="{{ asset('assets/images/logofix.png') }}" class="mr-2 main-logo" alt="logo"></a>
     </div>
     <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
-        <!-- Tombol untuk meminimalkan sidebar -->
+        <!-- Button to minimize sidebar -->
         <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
             <span class="icon-menu"></span>
         </button>
@@ -15,7 +15,7 @@
                 </a>
                 <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" aria-labelledby="notificationDropdown">
                     <p class="mb-0 font-weight-normal float-left dropdown-header">Notifications</p>
-                    <!-- Notifikasi -->
+                    <!-- Notification Item -->
                     <a class="dropdown-item preview-item">
                         <div class="preview-thumbnail">
                             <div class="preview-icon bg-success">
@@ -27,7 +27,7 @@
                             <p class="font-weight-light small-text mb-0 text-muted">Just now</p>
                         </div>
                     </a>
-                    <!-- Tambahan item notifikasi lainnya -->
+                    <!-- Additional notification items -->
                 </div>
             </li>
             <li class="nav-item nav-profile dropdown">
@@ -36,7 +36,13 @@
                 </a>
                 <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
                     <a class="dropdown-item"><i class="ti-settings text-primary"></i> Settings</a>
-                    <a class="dropdown-item"><i class="ti-power-off text-primary"></i> Logout</a>
+                    <!-- Logout Form -->
+                    <form action="{{ route('logout') }}" method="POST" id="logout-form" style="display: none;">
+                        @csrf
+                    </form>
+                    <a class="dropdown-item" href="#" onclick="event.preventDefault(); confirmLogout();">
+                        <i class="ti-power-off text-primary"></i> Logout
+                    </a>
                 </div>
             </li>
         </ul>
@@ -45,3 +51,12 @@
         </button>
     </div>
 </nav>
+
+<!-- Confirmation Dialog Script -->
+<script>
+    function confirmLogout() {
+        if (confirm('Are you sure you want to log out?')) {
+            document.getElementById('logout-form').submit();
+        }
+    }
+</script>

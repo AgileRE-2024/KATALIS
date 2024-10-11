@@ -18,7 +18,7 @@
 
     /* Global styles */
     body {
-      font-family: 'Noto Sans', sans-serif; /* Terapkan font Noto Sans */
+      font-family: 'Noto Sans', sans-serif;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -29,7 +29,6 @@
       position: relative;
     }
 
-    /* Overlay untuk mengurangi opacity latar belakang */
     body::before {
       content: '';
       position: absolute;
@@ -37,30 +36,28 @@
       left: 0;
       right: 0;
       bottom: 0;
-      background-color: rgba(0, 0, 0, 0.5); /* Opacity 50% */
+      background-color: rgba(0, 0, 0, 0.5);
       z-index: 1;
     }
 
     .container {
       display: flex;
       flex-direction: column;
-      align-items: center; /* Untuk menempatkan logo di tengah */
+      align-items: center;
       max-width: 450px;
       background-color: #fff;
       border-radius: 15px;
       box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
       padding: 40px;
       position: relative;
-      z-index: 2; /* Agar container berada di atas overlay */
+      z-index: 2;
     }
 
-    /* Logo styling */
     .logo img {
-      max-width: 100px; /* Sesuaikan ukuran logo */
-      margin-bottom: 20px; /* Tambahkan jarak antara logo dan form */
+      max-width: 100px;
+      margin-bottom: 20px;
     }
 
-    /* Form styling */
     .login {
       width: 100%;
     }
@@ -88,7 +85,6 @@
       margin-bottom: 20px;
     }
 
-    /* Input styling */
     form label {
       display: block;
       font-size: 16px;
@@ -123,7 +119,6 @@
       background-color: #555555;
     }
 
-    /* Tautan lupa kata sandi */
     a {
       text-decoration: none;
       color: #444444;
@@ -132,6 +127,16 @@
     a:hover {
       text-decoration: underline;
     }
+
+    .actions {
+      text-align: center;
+      width: 100%;
+    }
+
+    .actions a {
+      display: block;
+      margin-top: 10px;
+    }
   </style>
 </head>
 <body>
@@ -139,21 +144,20 @@
     <div class="logo">
       <img src="{{ asset('assets/images/logofix.png') }}" alt="Login Image">
     </div>
-    <div class="login">
-      <form action="/loginproses" method="post">
-        <h1>LOGIN</h1>
-        <label for="username">Username</label>
-        <input type="text" class="form-control" name="username" placeholder="Username" id="username" required>
-        
-        <label for="password">Password</label>
-        <input type="password" class="form-control" name="password" placeholder="Password" id="password" required>
-        
-        <a href="/dashboard" class="btn-get-started scrollto">Login</a>
-        <p>
-          <a href="/register">Don't have an account?</a>
-        </p>
-      </form>
-    </div>
+    <h1>LOGIN</h1>
+    <form action="{{ route('loginfix') }}" method="POST">
+      @csrf
+      <label for="email">Email</label>
+      <input type="text" class="form-control" name="email" placeholder="Email" id="email" required>
+
+      <label for="password">Password</label>
+      <input type="password" class="form-control" name="password" placeholder="Password" id="password" required>
+
+      <button type="submit" class="btn-get-started scrollto">Login</button>
+    </form>
+    <p>
+      <a href="/register">Don't have an account?</a>
+    </p>
   </div>
 </body>
 </html>

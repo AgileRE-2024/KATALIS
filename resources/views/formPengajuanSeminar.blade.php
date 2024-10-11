@@ -38,11 +38,8 @@
 
 <body>
     <div class="container-scroller">
-        <!-- partial:../../partials/_navbar.html -->
         @include('components.navbar')
-        <!-- partial -->
         <div class="container-fluid page-body-wrapper">
-            <!-- partial:../../partials/_settings-panel.html -->
             <div id="right-sidebar" class="settings-panel">
                 <div class="tab-content" id="setting-content">
                     <div class="tab-pane fade" id="chats-section" role="tabpanel" aria-labelledby="chats-section">
@@ -53,10 +50,7 @@
                     </div>
                 </div>
             </div>
-            <!-- partial -->
-            <!-- partial:../../partials/_sidebar.html -->
             @include('components.sidebarfix')
-            <!-- partial -->
             <div class="main-panel">
                 <div class="content-wrapper">
                     <div class="row">
@@ -67,40 +61,46 @@
                                     <p class="card-description">
                                         Form ini diisi untuk melakukan pengajuan seminar dengan catatan telah melakukan fiksasi tanggal dengan dosen pembimbing
                                     </p>
-                                    <form class="forms-sample">
+                                    @if(session('error'))
+                                        <div class="alert alert-danger">
+                                            {{ session('error') }}
+                                        </div>
+                                    @endif
+                                    <form class="forms-sample" action="{{ route('seminar.application.store') }}" method="POST" enctype="multipart/form-data">
+                                        @csrf
                                         <div class="form-group">
-                                            <label for="exampleInputName1">Judul PKL</label>
-                                            <input type="text" class="form-control" id="exampleInputName1" placeholder="Judul PKL">
+                                            <label for="judulPKL">Judul PKL</label>
+                                            <input type="text" name="judul_pkl" class="form-control" id="judulPKL" placeholder="Judul PKL" required>
                                         </div>
                                         <div class="form-group">
-                                            <label for="exampleInputName1">Tempat PKL</label>
-                                            <input type="text" class="form-control" id="exampleInputName1" placeholder="Tempat PKL">
+                                            <label for="tempatPKL">Tempat PKL</label>
+                                            <input type="text" name="tempat_pkl" class="form-control" id="tempatPKL" placeholder="Tempat PKL" required>
                                         </div>
                                         <div class="form-group">
-                                            <label for="exampleInputName1">Dosen Pembimbing PKL</label>
-                                            <input type="text" class="form-control" id="exampleInputName1" placeholder="Dosen Pembimbing PKL">
+                                            <label for="dosenPembimbing">Dosen Pembimbing PKL</label>
+                                            <input type="text" name="dosen_pembimbing" class="form-control" id="dosenPembimbing" placeholder="Dosen Pembimbing PKL" required>
                                         </div>
                                         <div class="form-group">
-                                            <label for="exampleInputDate">Tanggal Seminar</label>
-                                            <input type="date" class="form-control" id="exampleInputDate" required>
+                                            <label for="tanggalSeminar">Tanggal Seminar</label>
+                                            <input type="date" name="tanggal_seminar" class="form-control" id="tanggalSeminar" required>
                                         </div>
                                         <div class="form-group">
                                             <label>Laporan akhir PKL (PDF)</label>
-                                            <input type="file" id="laporanPKL" class="file-upload-default" accept=".pdf" style="display: none;">
+                                            <input type="file" name="laporanPKL" class="file-upload-default" accept=".pdf" style="display: none;" required>
                                             <div class="input-group col-xs-12">
                                                 <input type="text" class="form-control file-upload-info" id="laporanPKLName" disabled placeholder="Laporan akhir PKL (PDF)">
                                                 <span class="input-group-append">
-                                                    <button class="file-upload-browse btn btn-primary" type="button" onclick="document.getElementById('laporanPKL').click()">Upload</button>
+                                                    <button class="file-upload-browse btn btn-primary" type="button" onclick="document.getElementsByName('laporanPKL')[0].click()">Upload</button>
                                                 </span>
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <label>Bukti Persetujuan Seminar oleh Dosen Pembimbing</label>
-                                            <input type="file" id="BuktiPersetujuan" class="file-upload-default" accept=".pdf" style="display: none;">
+                                            <input type="file" name="BuktiPersetujuan" class="file-upload-default" accept=".pdf" style="display: none;" required>
                                             <div class="input-group col-xs-12">
                                                 <input type="text" class="form-control file-upload-info" id="BuktiPersetujuanName" disabled placeholder="Bukti Persetujuan Seminar oleh Dosen Pembimbing (PDF)">
                                                 <span class="input-group-append">
-                                                    <button class="file-upload-browse btn btn-primary" type="button" onclick="document.getElementById('BuktiPersetujuan').click()">Upload</button>
+                                                    <button class="file-upload-browse btn btn-primary" type="button" onclick="document.getElementsByName('BuktiPersetujuan')[0].click()">Upload</button>
                                                 </span>
                                             </div>
                                         </div>
@@ -112,57 +112,40 @@
                         </div>
                     </div>
                 </div>
-                <!-- content-wrapper ends -->
-                <!-- partial:../../partials/_footer.html -->
                 <footer class="footer">
                     <div class="d-sm-flex justify-content-center justify-content-sm-between">
-                        <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © 2021.  Premium <a href="https://www.bootstrapdash.com/" target="_blank">Bootstrap admin template</a> from BootstrapDash. All rights reserved.</span>
+                        <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © 2021. Premium <a href="https://www.bootstrapdash.com/" target="_blank">Bootstrap admin template</a> from BootstrapDash. All rights reserved.</span>
                         <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Hand-crafted & made with <i class="ti-heart text-danger ml-1"></i></span>
                     </div>
                 </footer>
-                <!-- partial -->
             </div>
-            <!-- main-panel ends -->
         </div>
-        <!-- page-body-wrapper ends -->
     </div>
-    <!-- container-scroller -->
-    <!-- plugins:js -->
     <script src="../../vendors/js/vendor.bundle.base.js"></script>
-    <!-- endinject -->
-    <!-- Plugin js for this page -->
     <script src="../../vendors/typeahead.js/typeahead.bundle.min.js"></script>
     <script src="../../vendors/select2/select2.min.js"></script>
-    <!-- End plugin js for this page -->
-    <!-- inject:js -->
     <script src="../../js/off-canvas.js"></script>
     <script src="../../js/hoverable-collapse.js"></script>
     <script src="../../js/template.js"></script>
     <script src="../../js/settings.js"></script>
     <script src="../../js/todolist.js"></script>
-    <!-- endinject -->
-    <!-- Custom js for this page-->
     <script src="../../js/file-upload.js"></script>
     <script src="../../js/typeahead.js"></script>
     <script src="../../js/select2.js"></script>
-    <!-- End custom js for this page-->
 
     <script>
-    document.getElementById('laporanPKL').addEventListener('change', function(){
-        var fileName = this.files[0].name;
-        document.getElementById('laporanPKLName').value = fileName;
-    });
+        // Function to display the uploaded file name for Laporan PKL
+        document.getElementsByName('laporanPKL')[0].addEventListener('change', function() {
+            var fileName = this.files[0] ? this.files[0].name : '';
+            document.getElementById('laporanPKLName').value = fileName;
+        });
+
+        // Function to display the uploaded file name for Bukti Persetujuan
+        document.getElementsByName('BuktiPersetujuan')[0].addEventListener('change', function() {
+            var fileName = this.files[0] ? this.files[0].name : '';
+            document.getElementById('BuktiPersetujuanName').value = fileName;
+        });
     </script>
-
-<script>
-    document.getElementById('BuktiPersetujuan').addEventListener('change', function(){
-        var fileName = this.files[0].name;
-        document.getElementById('BuktiPersetujuanName').value = fileName;
-    });
-</script>
-
-
-</script>
 </body>
 
 </html>

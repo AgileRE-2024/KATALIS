@@ -2,6 +2,11 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\WordController;
+use App\Http\Controllers\LogbookController;
+use App\Http\Controllers\SeminarApplicationController;
+use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\DashboardMahasiswaController;
 
 
 /*
@@ -98,29 +103,40 @@ Route::post('worda', [WordController::class, 'index'])->name("worda.index");
 
 // Billy end -----------------------------------
 
-Route::get('/dashboardMahasiswa', function () {
-    return view('dashboardMahasiswa');
-});
+// Route::get('/dashboardMahasiswa', function () {
+//     return view('dashboardMahasiswa');
+// });
+
+Route::get('/dashboard', [DashboardMahasiswaController::class, 'index'])->name('dashboard');
+
 
 Route::get('/formPengajuanDosbing', function () {
     return view('formPengajuanDosbing');
 });
 
-Route::get('/formPengajuanSeminar', function () {
-    return view('formPengajuanSeminar');
-});
+Route::get('/formPengajuanSeminar', [SeminarApplicationController::class, 'create'])->name('seminar.application.create');
+Route::post('/formPengajuanSeminar/store', [SeminarApplicationController::class, 'store'])->name('seminar.application.store');
+Route::get('/jadwalSeminar', [SeminarApplicationController::class, 'index'])->name('seminar.applications.index');
+// Route::get('/jadwalSeminar', function () {
+//     return view('jadwalSeminar');
+// });
+
+// Route::get('/formPengajuanSeminar', function () {
+//     return view('formPengajuanSeminar');
+// });
 
 Route::get('/profilmh', function () {
     return view('profilmh');
 });
 
-Route::get('/logbook', function () {
-    return view('logbook');
-});
+# update database
 
-Route::get('/jadwalSeminar', function () {
-    return view('jadwalSeminar');
-});
+Route::get('/logbook', [LogbookController::class, 'index'])->name('logbook.index');
+Route::post('/logbook/store', [LogbookController::class, 'store'])->name('logbook.store');
+
+// Route::get('/logbook', function () {
+//     return view('logbook');
+// });
 
 Route::get('/formInformasiPKL', function () {
     return view('formInformasiPKL');
@@ -147,17 +163,26 @@ Route::get('/kartuKendaliBimbingan', function () {
 });
 
 //mahasiswa
-Route::get('/', function () {
-    return view('loginfix');
-});
+// Route::get('/', function () {
+//     return view('loginfix');
+// });
 
-Route::get('/register', function () {
-    return view('register');
-});
+// Route::get('/register', function () {
+//     return view('register');
+// });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-});
+Route::post('/register', [RegisterController::class, 'register']);
+Route::post('/loginfix', [LoginController::class, 'login']);
+Route::get('/loginfix', [LoginController::class, 'showLoginForm'])->name('loginfix');
+Route::get('/register', [RegisterController::class, 'showRegistrationForm'])->name('register');
+Route::post('/logout', function () {
+Auth::logout(); // Log the user out
+    return redirect('/loginfix'); // Redirect to the login page
+})->name('logout');
+
+// Route::get('/dashboard', function () {
+//     return view('dashboard');
+// });
 
 Route::get('/profil', function () {
     return view('profil');
@@ -271,11 +296,11 @@ Route::get('/seminarDosen', function () {
     return view('seminarDosen');
 });
 
-Route::get('/download', function () {
-    return view('home/download');
-});
+// Route::get('/download', function () {
+//     return view('home/download');
+// });
 
-Route::post('/register', [RegisterController::class, 'store'])->name('register.store');
+
 
 
 /*
