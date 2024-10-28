@@ -143,7 +143,7 @@ Route::get('/formInformasiPKL', function () {
 });
 
 Route::get('/profilds', function () {
-    return view('profilds');
+    return view('/mahasiswa/profilds');
 });
 
 Route::get('/informasipkl', function () {
@@ -257,11 +257,11 @@ Route::get('/editpkl', function () {
 });
 //dosen
 Route::get('/dashboardDosen', function () {
-    return view('dashboardDosen');
+    return view('/dosen/dashboardDosen');
 });
 
 Route::get('/anakBimbing', function () {
-    return view('anakBimbing');
+    return view('/dosen/anakBimbing');
 });
 
 Route::get('/tambahMahasiswa', function () {
@@ -269,11 +269,11 @@ Route::get('/tambahMahasiswa', function () {
 });
 
 Route::get('/dosenprofil', function () {
-    return view('dosenprofil');
+    return view('/dosen/dosenprofil');
 });
 
 Route::get('/jadwalBimbinganDosen', function () {
-    return view('jadwalBimbinganDosen');
+    return view('/dosen/jadwalBimbinganDosen');
 });
 
 Route::get('/tambahbimbing', function () {
@@ -281,19 +281,19 @@ Route::get('/tambahbimbing', function () {
 });
 
 Route::get('/kartuKendaliDosen', function () {
-    return view('kartuKendaliDosen');
+    return view('/dosen/kartuKendaliDosen');
 });
 
 Route::get('/logbookDosen', function () {
-    return view('logbookDosen');
+    return view('/dosen/logbookDosen');
 });
 
 Route::get('/laporanDosen', function () {
-    return view('laporanDosen');
+    return view('/dosen/laporanDosen');
 });
 
 Route::get('/seminarDosen', function () {
-    return view('seminarDosen');
+    return view('/dosen/seminarDosen');
 });
 
 // Route::get('/download', function () {
