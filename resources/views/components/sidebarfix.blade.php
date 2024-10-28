@@ -26,8 +26,8 @@
             </a>
             <div class="collapse" id="dosbing">
                 <ul class="nav flex-column sub-menu">
-                    <li class="nav-item"> <a class="nav-link" href="profilds">Informasi Dosbing</a></li>
                     <li class="nav-item"> <a class="nav-link" href="formPengajuanDosbing">Pengajuan Dosbing</a></li>
+                    <li class="nav-item"> <a class="nav-link" href="profilds">Informasi Dosbing</a></li>
                 </ul>
             </div>
         </li>
@@ -41,9 +41,9 @@
             </a>
             <div class="collapse" id="pkl">
                 <ul class="nav flex-column sub-menu">
-                    <li class="nav-item"> <a class="nav-link" href="informasipkl">Informasi PKL</a></li>
-                    <li class="nav-item"> <a class="nav-link" href="formInformasiPKL">Form PKL</a></li>
                     <li class="nav-item"> <a class="nav-link" href="worda">Pengajuan Surat</a></li>
+                    <li class="nav-item"> <a class="nav-link" href="formInformasiPKL">Form PKL</a></li>
+                    <li class="nav-item"> <a class="nav-link" href="informasipkl">Informasi PKL</a></li>
                 </ul>
             </div>
         </li>
@@ -88,8 +88,8 @@
             </a>
             <div class="collapse" id="seminar">
                 <ul class="nav flex-column sub-menu">
-                    <li class="nav-item"> <a class="nav-link" href="jadwalSeminar">Jadwal Seminar</a></li>
                     <li class="nav-item"> <a class="nav-link" href="formPengajuanSeminar">Pengajuan Seminar</a></li>
+                    <li class="nav-item"> <a class="nav-link" href="jadwalSeminar">Jadwal Seminar</a></li>
                 </ul>
             </div>
         </li>
