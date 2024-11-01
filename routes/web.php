@@ -101,6 +101,10 @@ Route::get('/worda', function () {
 
 Route::post('worda', [WordController::class, 'index'])->name("worda.index");
 
+Route::get('/dashboardKoor', function () {
+    return view('pov_koor/dashboardKoor');
+});
+
 // Billy end -----------------------------------
 
 // Route::get('/dashboardMahasiswa', function () {
