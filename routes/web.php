@@ -24,9 +24,9 @@ use App\Http\Controllers\DashboardMahasiswaController;
 //     return view('home/profil');
 // });
 
-// Route::get('/', function () {
-//     return view('login');
-// });
+Route::get('/', function () {
+    return redirect('/loginfix'); // Redirect to the login page
+});
 
 // Route::get('/profiledosen', function () {
 //     return view('profiledosen');
@@ -101,6 +101,10 @@ Route::get('/worda', function () {
 
 Route::post('worda', [WordController::class, 'index'])->name("worda.index");
 
+Route::get('/dashboardKoor', function () {
+    return view('pov_koor/dashboardKoor');
+});
+
 // Billy end -----------------------------------
 
 // Route::get('/dashboardMahasiswa', function () {
@@ -111,7 +115,7 @@ Route::get('/dashboard', [DashboardMahasiswaController::class, 'index'])->name('
 
 
 Route::get('/formPengajuanDosbing', function () {
-    return view('formPengajuanDosbing');
+    return view('/mahasiswa/formPengajuanDosbing');
 });
 
 Route::get('/formPengajuanSeminar', [SeminarApplicationController::class, 'create'])->name('seminar.application.create');
@@ -126,7 +130,7 @@ Route::get('/jadwalSeminar', [SeminarApplicationController::class, 'index'])->na
 // });
 
 Route::get('/profilmh', function () {
-    return view('profilmh');
+    return view('/mahasiswa/profilmh');
 });
 
 # update database
@@ -139,27 +143,27 @@ Route::post('/logbook/store', [LogbookController::class, 'store'])->name('logboo
 // });
 
 Route::get('/formInformasiPKL', function () {
-    return view('formInformasiPKL');
+    return view('/mahasiswa/formInformasiPKL');
 });
 
 Route::get('/profilds', function () {
-    return view('profilds');
+    return view('/mahasiswa/profilds');
 });
 
 Route::get('/informasipkl', function () {
-    return view('informasipkl');
+    return view('/mahasiswa/informasipkl');
 });
 
 Route::get('/laporanfiks', function () {
-    return view('laporanfiks');
+    return view('/mahasiswa/laporanfiks');
 });
 
 Route::get('/jadwalBimbingan', function () {
-    return view('jadwalBimbingan');
+    return view('/mahasiswa/jadwalBimbingan');
 });
 
 Route::get('/kartuKendaliBimbingan', function () {
-    return view('kartuKendaliBimbingan');
+    return view('/mahasiswa/kartuKendaliBimbingan');
 });
 
 //mahasiswa
@@ -257,11 +261,11 @@ Route::get('/editpkl', function () {
 });
 //dosen
 Route::get('/dashboardDosen', function () {
-    return view('dashboardDosen');
+    return view('/dosen/dashboardDosen');
 });
 
 Route::get('/anakBimbing', function () {
-    return view('anakBimbing');
+    return view('/dosen/anakBimbing');
 });
 
 Route::get('/tambahMahasiswa', function () {
@@ -269,11 +273,11 @@ Route::get('/tambahMahasiswa', function () {
 });
 
 Route::get('/dosenprofil', function () {
-    return view('dosenprofil');
+    return view('/dosen/dosenprofil');
 });
 
 Route::get('/jadwalBimbinganDosen', function () {
-    return view('jadwalBimbinganDosen');
+    return view('/dosen/jadwalBimbinganDosen');
 });
 
 Route::get('/tambahbimbing', function () {
@@ -281,19 +285,19 @@ Route::get('/tambahbimbing', function () {
 });
 
 Route::get('/kartuKendaliDosen', function () {
-    return view('kartuKendaliDosen');
+    return view('/dosen/kartuKendaliDosen');
 });
 
 Route::get('/logbookDosen', function () {
-    return view('logbookDosen');
+    return view('/dosen/logbookDosen');
 });
 
 Route::get('/laporanDosen', function () {
-    return view('laporanDosen');
+    return view('/dosen/laporanDosen');
 });
 
 Route::get('/seminarDosen', function () {
-    return view('seminarDosen');
+    return view('/dosen/seminarDosen');
 });
 
 // Route::get('/download', function () {

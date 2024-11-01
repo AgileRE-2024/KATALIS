@@ -12,12 +12,12 @@ class SeminarApplicationController extends Controller
     public function index()
     {
         $seminarApplications = SeminarApplication::all(); // Fetch all applications
-        return view('jadwalSeminar', compact('seminarApplications')); // Pass applications to the view
+        return view('/mahasiswa/jadwalSeminar', compact('seminarApplications')); // Pass applications to the view
     }
 
     public function create()
     {
-        return view('formPengajuanSeminar'); // Replace with the actual view path
+        return view('/mahasiswa/formPengajuanSeminar'); // Replace with the actual view path
     }
 
     public function store(Request $request)

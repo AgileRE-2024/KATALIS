@@ -11,7 +11,7 @@ class LogbookController extends Controller
     public function index()
 {
     $logbooks = Logbook::all(); // Ambil semua data logbook
-    return view('logbook', compact('logbooks')); // Kirim data ke view
+    return view('/mahasiswa/logbook', compact('logbooks')); // Kirim data ke view
 }
 
 public function store(Request $request)
