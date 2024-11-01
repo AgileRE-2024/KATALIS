@@ -224,15 +224,9 @@ Route::get('/profil', function () {
 //     return view('home/infoPKL');
 // });
 
-<<<<<<< HEAD
 Route::get('/login', function () {
     return view('loginfix');
 });
-=======
-// Route::get('', function () {
-//     return view('login');
-// });
->>>>>>> e56f8a197a6f425ae559026055e87088c9caec61
 
 Route::get('/profiledosen', function () {
     return view('profiledosen');
