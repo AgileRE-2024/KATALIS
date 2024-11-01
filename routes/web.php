@@ -223,9 +223,9 @@ Route::get('/profil', function () {
 //     return view('home/infoPKL');
 // });
 
-Route::get('', function () {
-    return view('login');
-});
+// Route::get('', function () {
+//     return view('login');
+// });
 
 Route::get('/profiledosen', function () {
     return view('profiledosen');
