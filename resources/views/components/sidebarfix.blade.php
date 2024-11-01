@@ -9,7 +9,7 @@
             </a>
         </li>
 
-        <!-- Prrofil -->
+        <!-- Profil -->
         <li class="nav-item">
             <a class="nav-link" href="profilmh">
                 <i class="ti-user menu-icon"></i>
@@ -17,35 +17,28 @@
             </a>
         </li>
 
+        <!-- Pengajuan Surat -->
+        <li class="nav-item">
+            <a class="nav-link" href="worda">
+                <i class="ti-email menu-icon"></i>
+                <span class="menu-title">Pengajuan Surat</span>
+            </a>
+        </li>
+
         <!-- Dosbing -->
         <li class="nav-item">
-            <a class="nav-link" data-toggle="collapse" href="#dosbing" aria-expanded="false" aria-controls="dosbing">
+            <a class="nav-link" href="profilds">
                 <i class="ti-id-badge menu-icon"></i>
-                <span class="menu-title">Dosbing</span>
-                <i class="menu-arrow"></i>
+                <span class="menu-title">Informasi Dosbing</span>
             </a>
-            <div class="collapse" id="dosbing">
-                <ul class="nav flex-column sub-menu">
-                    <li class="nav-item"> <a class="nav-link" href="formPengajuanDosbing">Pengajuan Dosbing</a></li>
-                    <li class="nav-item"> <a class="nav-link" href="profilds">Informasi Dosbing</a></li>
-                </ul>
-            </div>
         </li>
 
         <!-- PKL -->
         <li class="nav-item">
-            <a class="nav-link" data-toggle="collapse" href="#pkl" aria-expanded="false" aria-controls="pkl">
+            <a class="nav-link" href="informasipkl">
                 <i class="ti-map-alt menu-icon"></i>
-                <span class="menu-title">PKL</span>
-                <i class="menu-arrow"></i>
+                <span class="menu-title">Informasi PKL</span>
             </a>
-            <div class="collapse" id="pkl">
-                <ul class="nav flex-column sub-menu">
-                    <li class="nav-item"> <a class="nav-link" href="worda">Pengajuan Surat</a></li>
-                    <li class="nav-item"> <a class="nav-link" href="formInformasiPKL">Form PKL</a></li>
-                    <li class="nav-item"> <a class="nav-link" href="informasipkl">Informasi PKL</a></li>
-                </ul>
-            </div>
         </li>
 
         <!-- Konsultasi Bimbingan -->

@@ -69,20 +69,78 @@
                                     <form class ="forms-sample" action="{{route('worda.index')}}" method="POST">
                                         @csrf
 
-                                        <div class="form-group">
-                                            <label for="nama">Nama Lengkap:</label>
-                                            <input type="text" class="form-control"id="nama" name="nama" >
+                                        <div class="container">
+                                            <div class="form-group mb-3">
+                                                <label for="jumlah_mahasiswa">Jumlah Mahasiswa:</label>
+                                                <select class="form-control" id="jumlah_mahasiswa" name="jumlah_mahasiswa" onchange="showFields()">
+                                                    <option value="1">1</option>
+                                                    <option value="2">2</option>
+                                                    <option value="3">3</option>
+                                                </select>
+                                            </div>
+
+                                            <!-- Student 1 (Always visible) -->
+                                            <div class="form-group mb-3">
+                                                <label for="nama">Nama Lengkap:</label>
+                                                <input type="text" class="form-control" id="nama" name="nama">
+                                            </div>
+                                            <div class="form-group mb-3">
+                                                <label for="nim">NIM:</label>
+                                                <input type="text" class="form-control" id="nim" name="nim">
+                                            </div>
+                                            <div class="form-group mb-3">
+                                                <label for="notelp">Notelp:</label>
+                                                <input type="text" class="form-control" id="notelp" name="notelp">
+                                            </div>
+
+                                            <!-- Student 2 (Initially hidden) -->
+                                            <div id="student2" style="display: none;">
+                                                <div class="form-group mb-3">
+                                                    <label for="nama2">Nama Lengkap 2:</label>
+                                                    <input type="text" class="form-control" id="nama2" name="nama2">
+                                                </div>
+                                                <div class="form-group mb-3">
+                                                    <label for="nim2">NIM 2:</label>
+                                                    <input type="text" class="form-control" id="nim2" name="nim2">
+                                                </div>
+                                                <div class="form-group mb-3">
+                                                    <label for="notelp2">Notelp2:</label>
+                                                <input type="text" class="form-control" id="notelp2" name="notelp2">
+                                            </div>
+                                            </div>
+
+                                            <!-- Student 3 (Initially hidden) -->
+                                            <div id="student3" style="display: none;">
+                                                <div class="form-group mb-3">
+                                                    <label for="nama3">Nama Lengkap 3:</label>
+                                                    <input type="text" class="form-control" id="nama3" name="nama3">
+                                                </div>
+                                                <div class="form-group mb-3">
+                                                    <label for="nim3">NIM 3:</label>
+                                                    <input type="text" class="form-control" id="nim3" name="nim3">
+                                                </div>
+                                                <div class="form-group mb-3">
+                                                <label for="notelp3">Notelp3:</label>
+                                                <input type="text" class="form-control" id="notelp3" name="notelp3">
+                                            </div>
+                                            </div>
                                         </div>
 
-                                        <div class="form-group">
-                                            <label for="nim">NIM:</label>
-                                            <input class="form-control" type="text" id="nim" name="nim" >
-                                        </div>
+                                        <script>
+                                        function showFields() {
+                                            const count = document.getElementById('jumlah_mahasiswa').value;
+                                            
+                                            // Student 2 fields
+                                            const student2 = document.getElementById('student2');
+                                            student2.style.display = count >= 2 ? 'block' : 'none';
+                                            
+                                            // Student 3 fields
+                                            const student3 = document.getElementById('student3');
+                                            student3.style.display = count >= 3 ? 'block' : 'none';
+                                        }
+                                        </script>
 
-                                        <div class="form-group">
-                                            <label for="notelp">Nomor Telpon:</label>
-                                            <input class="form-control" type="text" id="notelp" name="notelp" >
-                                        </div>
+                                        
 
                                         <div class="form-group">
                                             <label for="nim">prodi:</label>
