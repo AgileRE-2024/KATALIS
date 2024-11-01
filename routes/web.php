@@ -174,7 +174,8 @@ Route::get('/kartuKendaliBimbingan', function () {
 Route::post('/register', [RegisterController::class, 'register']);
 Route::post('/loginfix', [LoginController::class, 'login']);
 Route::get('/loginfix', [LoginController::class, 'showLoginForm'])->name('loginfix');
-Route::get('/register', [RegisterController::class, 'showRegistrationForm'])->name('register');
+Route::get('/register', [LoginController::class, 'showRegistrationForm'])->name('register');
+Route::post('/registeruser', [LoginController::class, 'registeruser'])->name('registeruser');
 Route::post('/logout', function () {
 Auth::logout(); // Log the user out
     return redirect('/loginfix'); // Redirect to the login page
@@ -220,7 +221,7 @@ Route::get('/profil', function () {
 // });
 
 Route::get('/login', function () {
-    return view('login');
+    return view('loginfix');
 });
 
 Route::get('/profiledosen', function () {
