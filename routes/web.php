@@ -223,7 +223,7 @@ Route::get('/profil', function () {
 //     return view('home/infoPKL');
 // });
 
-Route::get('/login', function () {
+Route::get('', function () {
     return view('login');
 });
 

@@ -23,96 +23,66 @@
               </div>
             </div>
           </div>
-          
-          <div class="table-responsive">
-            <table class="table table-striped">
-                <thead>
-                    <tr>
-                        <th>No</th>
-                        <th>Nama Siswa</th>
-                        <th>DosBing</th>
-                        <th>Aksi</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>Mhs1</td>
-                        <td>
-                            <select class="form-select">
-                                <option value="">Pilih DosBing</option>
-                                <option value="active">Pak Indra</option>
-                                <option value="inactive">Pak Badrus</option>
-                                <option value="graduate">Pak Faried</option>
-                            </select>
-                        </td>
-                        <td>
-                            <div class="dropdown">
-                                <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenu1" data-bs-toggle="dropdown">
-                                    Aksi
-                                </button>
-                                <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="#">Edit</a></li>
-                                    <li><a class="dropdown-item" href="#">Hapus</a></li>
-                                    <li><a class="dropdown-item" href="#">Detail</a></li>
-                                </ul>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>Mhs2</td>
-                        <td>
-                            <select class="form-select">
-                                <option value="">Pilih DosBing</option>
-                                <option value="active">Pak Indra</option>
-                                <option value="inactive">Pak Badrus</option>
-                                <option value="graduate">Pak Faried</option>
-                            </select>
-                        </td>
-                        <td>
-                            <div class="dropdown">
-                                <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenu2" data-bs-toggle="dropdown">
-                                    Aksi
-                                </button>
-                                <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="#">Edit</a></li>
-                                    <li><a class="dropdown-item" href="#">Hapus</a></li>
-                                    <li><a class="dropdown-item" href="#">Detail</a></li>
-                                </ul>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>3</td>
-                        <td>Mhs3</td>
-                        <td>
-                            <select class="form-select">
-                                <option value="">Pilih DosBing</option>
-                                <option value="active">Pak Indra</option>
-                                <option value="inactive">Pak Badrus</option>
-                                <option value="graduate">Pak Faried</option>
-                            </select>
-                        </td>
-                        <td>
-                            <div class="dropdown">
-                                <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenu3" data-bs-toggle="dropdown">
-                                    Aksi
-                                </button>
-                                <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="#">Edit</a></li>
-                                    <li><a class="dropdown-item" href="#">Hapus</a></li>
-                                    <li><a class="dropdown-item" href="#">Detail</a></li>
-                                </ul>
-                            </div>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-          </div>
 
-
-
+          <!-- Tabel Mahasiswa -->
+          <table class="table table-striped table-bordered align-middle">
+            <thead class="table-primary">
+              <tr>
+                <th class="text-center">No</th>
+                <th class="text-center">Nama Siswa</th>
+                <th class="text-center">DosBing</th>
+                <th class="text-center">Aksi</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="text-center">1</td>
+                <td class="text-center">Mhs1</td>
+                <td class="text-center">
+                  <!-- Dropdown Dosen with scrollable menu -->
+                  <div class="dropdown">
+                    <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuDosbing1" data-bs-toggle="dropdown" aria-expanded="false">
+                      Pilih DosBing
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuDosbing1" style="max-height: 200px; overflow-y: auto;">
+                      <li><a class="dropdown-item" href="#">Pak Indra</a></li>
+                      <li><a class="dropdown-item" href="#">Pak Badrus</a></li>
+                      <li><a class="dropdown-item" href="#">Pak Faried</a></li>
+                      <li><a class="dropdown-item" href="#">Bu Siti</a></li>
+                      <li><a class="dropdown-item" href="#">Bu Rina</a></li>
+                      <li><a class="dropdown-item" href="#">Pak Agus</a></li>
+                    </ul>
+                  </div>
+                </td>
+                <td class="text-center">
+                  <button class="btn btn-primary">Aksi</button>
+                </td>
+              </tr>
+              <tr>
+                <td class="text-center">2</td>
+                <td class="text-center">Mhs2</td>
+                <td class="text-center">
+                  <!-- Dropdown Dosen with scrollable menu -->
+                  <div class="dropdown">
+                    <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuDosbing2" data-bs-toggle="dropdown" aria-expanded="false">
+                      Pilih DosBing
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuDosbing2" style="max-height: 200px; overflow-y: auto;">
+                      <li><a class="dropdown-item" href="#">Pak Indra</a></li>
+                      <li><a class="dropdown-item" href="#">Pak Badrus</a></li>
+                      <li><a class="dropdown-item" href="#">Pak Faried</a></li>
+                      <li><a class="dropdown-item" href="#">Bu Siti</a></li>
+                      <li><a class="dropdown-item" href="#">Bu Rina</a></li>
+                      <li><a class="dropdown-item" href="#">Pak Agus</a></li>
+                    </ul>
+                  </div>
+                </td>
+                <td class="text-center">
+                  <button class="btn btn-primary">Aksi</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </div>
       <!-- main-panel ends -->
@@ -121,9 +91,9 @@
   </div>
   <!-- container-scroller -->
 
-  <!-- plugins:js -->
-  <script src="vendors/js/vendor.bundle.base.js"></script>
-  <!-- endinject -->
+  <!-- Bootstrap and JavaScript -->
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>
