@@ -6,7 +6,7 @@
 <body>
     <div class="container-scroller">
         @include('components.navbarKoor')
-        
+
         <div class="container-fluid page-body-wrapper">
             @include('components.sidebarKoor')
             <div class="main-panel">
@@ -16,7 +16,7 @@
                             <div class="card">
                                 <div class="card-body">
                                     <h4 class="card-title">Penentuan Dosen Pembimbing</h4>
-                                    
+
                                     <!-- Tabel Mahasiswa -->
                                     <table class="table table-striped table-bordered align-middle">
                                         <thead class="table-primary">
@@ -25,7 +25,10 @@
                                                 <th class="text-center">Nama Mahasiswa</th>
                                                 <th class="text-center">NIM</th>
                                                 <th class="text-center">Kelompok</th>
+                                                <th class="text-center">Tempat Magang</th>
+                                                <th class="text-center" style="width: 100px;">Periode Magang</th>
                                                 <th class="text-center">Dosen Pembimbing</th>
+                                                <th class="text-center">Aksi</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -35,6 +38,8 @@
                                                 <td class="text-center">Mahasiswa 1</td>
                                                 <td class="text-center">12345678</td>
                                                 <td class="text-center">Kelompok A</td>
+                                                <td class="text-center">Tempat Magang A</td>
+                                                <td class="text-center">01 Januari 2024<br>- 31 Maret 2024</td>
                                                 <td class="text-center">
                                                     <div class="dropdown">
                                                         <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuDosbing1" data-bs-toggle="dropdown" aria-expanded="false">
@@ -48,12 +53,17 @@
                                                         </ul>
                                                     </div>
                                                 </td>
+                                                <td class="text-center">
+                                                    <button class="btn btn-success">Submit</button>
+                                                </td>
                                             </tr>
                                             <tr class="kelompok-1">
                                                 <td class="text-center">2</td>
                                                 <td class="text-center">Mahasiswa 2</td>
                                                 <td class="text-center">87654321</td>
                                                 <td class="text-center">Kelompok A</td>
+                                                <td class="text-center">Tempat Magang A</td>
+                                                <td class="text-center">01 Januari 2024<br>- 31 Maret 2024</td>
                                                 <td class="text-center">
                                                     <div class="dropdown">
                                                         <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuDosbing2" data-bs-toggle="dropdown" aria-expanded="false">
@@ -67,6 +77,9 @@
                                                         </ul>
                                                     </div>
                                                 </td>
+                                                <td class="text-center">
+                                                    <button class="btn btn-success">Submit</button>
+                                                </td>
                                             </tr>
 
                                             <!-- Data Kelompok B -->
@@ -75,6 +88,8 @@
                                                 <td class="text-center">Mahasiswa 3</td>
                                                 <td class="text-center">23456789</td>
                                                 <td class="text-center">Kelompok B</td>
+                                                <td class="text-center">Tempat Magang B</td>
+                                                <td class="text-center">01 Januari 2024<br>- 31 Maret 2024</td>
                                                 <td class="text-center">
                                                     <div class="dropdown">
                                                         <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuDosbing3" data-bs-toggle="dropdown" aria-expanded="false">
@@ -88,12 +103,17 @@
                                                         </ul>
                                                     </div>
                                                 </td>
+                                                <td class="text-center">
+                                                    <button class="btn btn-success">Submit</button>
+                                                </td>
                                             </tr>
                                             <tr class="kelompok-2">
                                                 <td class="text-center">4</td>
                                                 <td class="text-center">Mahasiswa 4</td>
                                                 <td class="text-center">34567890</td>
                                                 <td class="text-center">Kelompok B</td>
+                                                <td class="text-center">Tempat Magang B</td>
+                                                <td class="text-center">01 Januari 2024<br>- 31 Maret 2024</td>
                                                 <td class="text-center">
                                                     <div class="dropdown">
                                                         <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuDosbing4" data-bs-toggle="dropdown" aria-expanded="false">
@@ -107,6 +127,9 @@
                                                         </ul>
                                                     </div>
                                                 </td>
+                                                <td class="text-center">
+                                                    <button class="btn btn-success">Submit</button>
+                                                </td>
                                             </tr>
 
                                             <!-- Data Kelompok C -->
@@ -115,6 +138,8 @@
                                                 <td class="text-center">Mahasiswa 5</td>
                                                 <td class="text-center">45678901</td>
                                                 <td class="text-center">Kelompok C</td>
+                                                <td class="text-center">Tempat Magang C</td>
+                                                <td class="text-center">01 Januari 2024<br>- 31 Maret 2024</td>
                                                 <td class="text-center">
                                                     <div class="dropdown">
                                                         <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuDosbing5" data-bs-toggle="dropdown" aria-expanded="false">
@@ -128,12 +153,17 @@
                                                         </ul>
                                                     </div>
                                                 </td>
+                                                <td class="text-center">
+                                                    <button class="btn btn-success">Submit</button>
+                                                </td>
                                             </tr>
                                             <tr class="kelompok-3">
                                                 <td class="text-center">6</td>
                                                 <td class="text-center">Mahasiswa 6</td>
                                                 <td class="text-center">56789012</td>
                                                 <td class="text-center">Kelompok C</td>
+                                                <td class="text-center">Tempat Magang C</td>
+                                                <td class="text-center">01 Januari 2024<br>- 31 Maret 2024</td>
                                                 <td class="text-center">
                                                     <div class="dropdown">
                                                         <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuDosbing6" data-bs-toggle="dropdown" aria-expanded="false">
@@ -147,6 +177,9 @@
                                                         </ul>
                                                     </div>
                                                 </td>
+                                                <td class="text-center">
+                                                    <button class="btn btn-success">Submit</button>
+                                                </td>
                                             </tr>
                                         </tbody>
                                     </table>
@@ -158,7 +191,7 @@
             </div>
         </div>
     </div>
-    
+
     <!-- JavaScript untuk mengatur dosbing per kelompok -->
     <script>
         function selectDosbing(groupClass, dosbingName) {
