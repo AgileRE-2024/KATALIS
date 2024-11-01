@@ -98,7 +98,7 @@
 <!-- CSS -->
 <style>
     .sidebar {
-        width: 250px;
+        width: 300px; /* Memperbesar lebar sidebar */
         transition: width 0.3s;
     }
 
@@ -121,6 +121,20 @@
 
     .sidebar-minimized .collapse .sub-menu {
         display: none !important;
+    }
+
+    /* Menambahkan jarak antar elemen di sidebar */
+    .nav-item {
+        margin-bottom: 25px; /* Jarak antara item nav, diperbesar */
+    }
+
+    .nav-link {
+        padding: 15px 20px; /* Jarak dalam item nav, diperbesar */
+        font-size: 18px; /* Memperbesar ukuran font */
+    }
+
+    .sub-menu .nav-link {
+        padding-left: 40px; /* Jarak untuk item submenu, diperbesar */
     }
 </style>
 <!-- JavaScript -->

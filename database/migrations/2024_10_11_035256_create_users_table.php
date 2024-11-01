@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('alamat');
             $table->string('no_hp');
             $table->date('tanggal_lahir');
+            $table->rememberToken();
             $table->timestamps();
         });
     }
