@@ -7,6 +7,8 @@ use App\Http\Controllers\SeminarApplicationController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\DashboardMahasiswaController;
+use App\Http\Controllers\JadwalKonsultasiController;
+use App\Http\Controllers\BimbinganController;
 
 
 /*
@@ -158,13 +160,20 @@ Route::get('/laporanfiks', function () {
     return view('/mahasiswa/laporanfiks');
 });
 
-Route::get('/jadwalBimbingan', function () {
-    return view('/mahasiswa/jadwalBimbingan');
-});
+// Route::get('/jadwalBimbingan', function () {
+//     return view('/mahasiswa/jadwalBimbingan');
+// });
 
-Route::get('/kartuKendaliBimbingan', function () {
-    return view('/mahasiswa/kartuKendaliBimbingan');
-});
+Route::get('/jadwalBimbingan', [JadwalKonsultasiController::class, 'index']);
+Route::post('/jadwalBimbingan', [JadwalKonsultasiController::class, 'store']);
+
+// Route::get('/kartuKendaliBimbingan', function () {
+//     return view('/mahasiswa/kartuKendaliBimbingan');
+// });
+
+Route::get('/kartuKendaliBimbingan', [BimbinganController::class, 'index']);
+Route::post('/kartuKendaliBimbingan', [BimbinganController::class, 'store']);
+
 
 //mahasiswa
 // Route::get('/', function () {
@@ -312,3 +321,6 @@ Route::get('/seminarDosen', function () {
 | Jangan lupa php artisan route:clear
 
 */
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

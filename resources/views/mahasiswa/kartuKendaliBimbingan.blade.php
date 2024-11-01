@@ -77,18 +77,19 @@
                                         Form ini digunakan untuk mengatur jadwal konsultasi dengan dosen pembimbing terkait PKL
                                     </p>
                                     <!-- Form untuk menambahkan data -->
-                                    <form class="forms-sample" id="bimbinganForm">
+                                    <form class="forms-sample" method="POST" action="{{ url('/kartuKendaliBimbingan') }}" enctype="multipart/form-data">
+                                        @csrf
                                         <div class="form-group">
                                             <label for="tanggalBimbingan">Tanggal Bimbingan</label>
-                                            <input type="date" class="form-control" id="tanggalBimbingan" required>
+                                            <input type="date" class="form-control" id="tanggalBimbingan" name="tanggal_bimbingan" required>
                                         </div>
                                         <div class="form-group">
                                             <label for="hasilBimbingan">Hasil Bimbingan</label>
-                                            <textarea class="form-control" id="hasilBimbingan" rows="4" placeholder="Masukkan topik atau pertanyaan yang ingin dibahas" required></textarea>
+                                            <textarea class="form-control" id="hasilBimbingan" name="hasil_bimbingan" rows="4" placeholder="Masukkan hasil bimbingan" required></textarea>
                                         </div>
                                         <div class="form-group">
                                             <label>Dokumentasi Bimbingan (PNG)</label>
-                                            <input type="file" id="dokumentasiBimbingan" name="img[]" class="file-upload-default" accept=".png">
+                                            <input type="file" id="dokumentasiBimbingan" name="dokumentasi_bimbingan" class="file-upload-default" accept=".png">
                                             <div class="input-group col-xs-12">
                                                 <input type="text" class="form-control file-upload-info" disabled placeholder="Dokumentasi Bimbingan (PNG)">
                                                 <span class="input-group-append">
@@ -113,7 +114,20 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <!-- Baris baru akan ditambahkan di sini -->
+                                                @foreach ($bimbingans as $index => $bimbingan)
+                                                    <tr>
+                                                        <td>{{ $index + 1 }}</td>
+                                                        <td>{{ $bimbingan->tanggal_bimbingan }}</td>
+                                                        <td>{{ $bimbingan->hasil_bimbingan }}</td>
+                                                        <td>
+                                                            @if($bimbingan->dokumentasi_bimbingan)
+                                                                <a href="{{ asset('storage/' . $bimbingan->dokumentasi_bimbingan) }}" target="_blank">Download PNG</a>
+                                                            @else
+                                                                No Document
+                                                            @endif
+                                                        </td>
+                                                    </tr>
+                                                @endforeach
                                             </tbody>
                                         </table>
                                     </div>
@@ -145,45 +159,6 @@
     <script src="../../js/select2.js"></script>
 
     <script>
-        let bimbinganCounter = 1;
-
-        // Menangani form submit
-        document.getElementById('bimbinganForm').addEventListener('submit', function(e) {
-            e.preventDefault(); // Mencegah form submit default
-
-            // Ambil data dari form
-            let tanggalBimbingan = document.getElementById('tanggalBimbingan').value;
-            let hasilBimbingan = document.getElementById('hasilBimbingan').value;
-            let dokumentasiBimbingan = document.getElementById('dokumentasiBimbingan').files[0];
-
-            // Cek apakah file dokumentasi ada dan apakah itu file PNG
-            let dokumentasiLink = "";
-            if (dokumentasiBimbingan && dokumentasiBimbingan.type === 'image/png') {
-                dokumentasiLink = `<a href="#">Download PNG</a>`;
-            } else {
-                alert("Hanya file PNG yang diperbolehkan.");
-                return;
-            }
-
-            // Tambahkan baris baru ke tabel
-            let tabelBimbingan = document.getElementById('tabelBimbingan').getElementsByTagName('tbody')[0];
-            let newRow = tabelBimbingan.insertRow();
-            newRow.innerHTML = `
-                <tr>
-                    <td>${bimbinganCounter}</td>
-                    <td>${tanggalBimbingan}</td>
-                    <td>${hasilBimbingan}</td>
-                    <td>${dokumentasiLink}</td>
-                </tr>
-            `;
-
-            // Update nomor
-            bimbinganCounter++;
-
-            // Reset form setelah submit
-            document.getElementById('bimbinganForm').reset();
-        });
-
         function triggerFileUpload() {
             document.getElementById('dokumentasiBimbingan').click();
         }
