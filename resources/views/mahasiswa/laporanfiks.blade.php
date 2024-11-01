@@ -118,7 +118,7 @@
                                         <th>Grading Status</th>
                                         <th>Time Remaining</th>
                                         <th>Last Modified</th>
-                                        <th>Submission Comments</th>
+                                        <th>File Laporan</th>
                                     </tr>
                                 </thead>
                                 <tbody>

@@ -81,11 +81,11 @@
 
                                             <!-- Student 1 (Always visible) -->
                                             <div class="form-group mb-3">
-                                                <label for="nama">Nama Lengkap:</label>
+                                                <label for="nama">Nama Lengkap Ketua:</label>
                                                 <input type="text" class="form-control" id="nama" name="nama">
                                             </div>
                                             <div class="form-group mb-3">
-                                                <label for="nim">NIM:</label>
+                                                <label for="nim">NIM Ketua:</label>
                                                 <input type="text" class="form-control" id="nim" name="nim">
                                             </div>
                                             <div class="form-group mb-3">

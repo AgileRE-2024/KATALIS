@@ -4,7 +4,6 @@
 <head>
     @include('components.head')
     <style>
-        /* Custom CSS for main content */
         .main-panel {
             flex-grow: 1;
             background-color: #f5f7ff;
@@ -27,11 +26,11 @@
 
         .info-card h4 {
             margin-bottom: 10px;
-            font-size: 16px; /* Set font size for h4 to match p */
+            font-size: 16px;
         }
 
-        .info-card p {
-            font-size: 16px; /* You can adjust this if you want a different size */
+        .info-card p, .info-card .form-control {
+            font-size: 16px;
         }
 
         .btn-primary {
@@ -53,7 +52,6 @@
             background-color: #e2e6ea;
             border-color: #dae0e5;
         }
-
     </style>
 </head>
 
@@ -67,23 +65,45 @@
                     <h2>Informasi PKL</h2>
 
                     <div class="info-card">
+                        <!-- Nama Perusahaan (Static) -->
                         <h4>Nama Perusahaan:</h4>
                         <p>PT. Maju Sejahtera</p>
 
+                        <!-- Alamat Perusahaan (Static) -->
                         <h4>Alamat Perusahaan:</h4>
                         <p>Jl. Kebon Jeruk No. 5, Jakarta</p>
 
-                        <h4>Role:</h4>
-                        <p>Frontend Developer</p>
+                        <!-- Form Input for Editable Fields -->
+                        <form method="POST" action="{{ url('/submit-informasi-pkl') }}" enctype="multipart/form-data">
+                            @csrf
 
-                        <h4>Periode PKL:</h4>
-                        <p>01 Jan 2024 - 01 Apr 2024</p>
+                            <!-- Role (Input) -->
+                            <h4>Role:</h4>
+                            <input type="text" class="form-control mb-3" name="role" placeholder="Masukkan Role Anda" required>
 
-                        <h4>Surat Permohonan:</h4>
-                        <p><a href="#">Download</a></p>
+                            <!-- Periode PKL (Date Input) -->
+                            <h4>Periode PKL:</h4>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <input type="date" class="form-control mb-3" name="periode_start" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <input type="date" class="form-control mb-3" name="periode_end" required>
+                                </div>
+                            </div>
 
-                        <h4>Surat Penerimaan:</h4>
-                        <p><a href="#">Download</a></p>
+                            <!-- Surat Permohonan (File Upload) -->
+                            <h4>Surat Permohonan:</h4>
+                            <input type="file" class="form-control mb-3" name="surat_permohonan" accept=".pdf" required>
+
+                            <!-- Surat Penerimaan (File Upload) -->
+                            <h4>Surat Penerimaan:</h4>
+                            <input type="file" class="form-control mb-3" name="surat_penerimaan" accept=".pdf" required>
+
+                            <!-- Submit and Cancel Buttons -->
+                            <button type="submit" class="btn btn-primary">Simpan Informasi PKL</button>
+                            <a href="{{ url('/') }}" class="btn btn-light">Batal</a>
+                        </form>
                     </div>
 
                 </div>
@@ -93,4 +113,3 @@
 </body>
 
 </html>
-
