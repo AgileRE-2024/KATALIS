@@ -235,26 +235,49 @@
         </div>
         <!-- page-body-wrapper ends -->
     </div>
-    <!-- container-scroller -->
-    <!-- plugins:js -->
-    <script src="../../vendors/js/vendor.bundle.base.js"></script>
-    <!-- endinject -->
-    <!-- Plugin js for this page -->
-    <script src="../../vendors/typeahead.js/typeahead.bundle.min.js"></script>
-    <script src="../../vendors/select2/select2.min.js"></script>
-    <!-- End plugin js for this page -->
-    <!-- inject:js -->
-    <script src="../../js/off-canvas.js"></script>
-    <script src="../../js/hoverable-collapse.js"></script>
-    <script src="../../js/template.js"></script>
-    <script src="../../js/settings.js"></script>
-    <script src="../../js/todolist.js"></script>
-    <!-- endinject -->
-    <!-- Custom js for this page-->
-    <script src="../../js/file-upload.js"></script>
-    <script src="../../js/typeahead.js"></script>
-    <script src="../../js/select2.js"></script>
-    <!-- End custom js for this page-->
+
 </body>
 
 </html>
+
+<script>
+    // Sample data for form fields
+const sampleData = {
+    prodi: "Teknik Informatika",
+    doswal: "Dr. Ahmad Suherman, S.Kom., M.Kom.",
+    surat_ditujukan_kepada: "Kepala Departemen Teknik Informatika",
+    nama_lembaga: "Universitas Teknologi Digital",
+    alamat: "Jl. Pendidikan No. 123, Jakarta Pusat",
+    keperluan: "Pengajuan Proposal Tugas Akhir",
+    waktu_pelaksanaan: "1 Januari 2025 - 30 Juni 2025",
+    tembusan: "1. Wakil Dekan\n2. Kepala Program Studi",
+    date: "2024-11-05", // Current date in YYYY-MM-DD format
+    ko_prodi: "Dr. Sarah Wijaya, M.T.",
+    dosbing: "Prof. Dr. Budi Santoso, M.Sc.",
+    nip_koprodi: "198505152010121002",
+    nip_dosbing: "197603242005011004"
+};
+
+// Function to fill all form fields
+function autofillForm() {
+    // Loop through all properties in sampleData
+    Object.keys(sampleData).forEach(fieldId => {
+        const inputElement = document.getElementById(fieldId);
+        if (inputElement) {
+            inputElement.value = sampleData[fieldId];
+        }
+    });
+}
+
+// Add autofill button to the form
+const formGroup = document.querySelector('.form-group:last-child');
+const autofillButton = document.createElement('button');
+autofillButton.type = 'button';
+autofillButton.className = 'btn btn-secondary ml-2';
+autofillButton.textContent = 'Autofill';
+autofillButton.onclick = autofillForm;
+formGroup.appendChild(autofillButton);
+
+// Automatically fill the form when the page loads
+document.addEventListener('DOMContentLoaded', autofillForm);
+</script>
