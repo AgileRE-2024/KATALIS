@@ -134,47 +134,44 @@
                                     <h4 class="card-title">Pengajuan Surat (dobel klik to change) </h4>
 
                                     <form class ="forms-sample" action="{{route('worda.index')}}" method="POST">
+                                        @csrf
 
                                         <div class="student-details">
 
                                             <!-- Kolom Pertama -->
                                             <div class="column">
 
+                                            
+
                                                 <div class="form-group">
                                                     <label for="prodi" class="form-label">Prodi:</label>
-                                                    <input id="prodi" class="form-field" contenteditable="false"></input>
+                                                    <input type="text" id="prodi" class="form-field" name="prodi" contenteditable="false"></input>
                                                 </div>
 
                                                 <div class="form-group">
                                                     <label for="doswal" class="form-label">doswal:</label>
-                                                    <div id="doswal" class="form-field" contenteditable="false">Nania nuzulita</div>
+                                                    <input id="doswal" class="form-field" name="doswal" contenteditable="false"></input>
                                                 </div>
 
                                                 <div class="form-group">
                                                     <label for="wkt_pelaksanaan" class="form-label">wkt_pelaksanaan:</label>
-                                                    <div id="wkt_pelaksanaan" class="form-field" contenteditable="false">Nania nuzulita</div>
+                                                    <input id="wkt_pelaksanaan" name="wkt_pelaksanaan" class="form-field" contenteditable="false"></input>
                                                 </div>
 
                                                 <div class="form-group">
                                                     <label for="koprodi" class="form-label">koprodi:</label>
-                                                    <div id="koprodi" class="form-field" contenteditable="false">Nania nuzulita</div>
+                                                    <input id="koprodi" name="koprodi" class="form-field" contenteditable="false"></input>
                                                 </div>
 
                                                 <div class="form-group">
                                                     <label for="nip_koprodi" class="form-label">nip_koprodi:</label>
-                                                    <div id="nip_koprodi" class="form-field" contenteditable="false">Nania nuzulita</div>
+                                                    <input id="nip_koprodi" name="nip_koprodi" class="form-field" contenteditable="false"></input>
                                                 </div>
 
                                                 <div class="form-group">
-                                                    <label for="dosbeng" class="form-label">dosbeng:</label>
-                                                    <div id="dosbeng" class="form-field" contenteditable="false">Nania nuzulita</div>
+                                                    <label for="dosbing" class="form-label">dosbing:</label>
+                                                    <input id="dosbing" name="dosbing" class="form-field" contenteditable="false"></input>
                                                 </div>
-
-                                                <div class="form-group">
-                                                    <label for="wkt_pelaksanaan" class="form-label">wkt_pelaksanaan:</label>
-                                                    <div id="wkt_pelaksanaan" class="form-field" contenteditable="false">Nania nuzulita</div>
-                                                </div>
-
                                                 
                                             
 
@@ -186,37 +183,37 @@
                                                 <div class="form-group">
 
                                                     <label for="surat_ditujukan_kepada" class="form-label">surat_ditujukan_kepada:</label>
-                                                    <div id="surat_ditujukan_kepada" class="form-field" contenteditable="false">Sistem Informasi</div>
+                                                    <input id="surat_ditujukan_kepada" class="form-field" contenteditable="false"></input>
 
                                                 </div>
 
                                                 <div class="form-group">
                                                     <label for="nama_lembaga" class="form-label">nama_lembaga:</label>
-                                                    <div id="nama_lembaga" class="form-field" contenteditable="false">Sistem Informasi</div>
+                                                    <input id="nama_lembaga" class="form-field" contenteditable="false"></input>
                                                 </div>
 
                                                 <div class="form-group">
                                                     <label for="alamat" class="form-label">alamat:</label>
-                                                    <div id="alamat" class="form-field" contenteditable="false">Sistem Informasi</div>
+                                                    <input id="alamat" class="form-field" contenteditable="false"></input>
                                                 </div>
 
                                                 <div class="form-group">
                                                     <label for="keperluan" class="form-label">keperluan:</label>
-                                                    <div id="keperluan" class="form-field" contenteditable="false">Sistem Informasi</div>
+                                                    <input id="keperluan" class="form-field" contenteditable="false"></input>
                                                 </div>
 
                                                 <script>
-                                                document.querySelectorAll('.form-field').forEach(field => {
-                                                field.addEventListener('dblclick', () => {
-                                                    field.classList.add('editable');
-                                                    field.setAttribute('contenteditable', 'true');
-                                                });
+                                                    document.querySelectorAll('.form-field').forEach(field => {
+                                                    field.addEventListener('dblclick', () => {
+                                                        field.classList.add('editable');
+                                                        field.setAttribute('contenteditable', 'true');
+                                                    });
 
-                                                field.addEventListener('blur', () => {
-                                                    field.classList.remove('editable');
-                                                    field.setAttribute('contenteditable', 'false');
-                                                });
-                                                });
+                                                    field.addEventListener('blur', () => {
+                                                        field.classList.remove('editable');
+                                                        field.setAttribute('contenteditable', 'false');
+                                                    });
+                                                    });
                                                 </script>
 
 
@@ -235,162 +232,78 @@
 
                                         </div>
 
-
-                                    </form>
-
-                                    <!-- Garis Pembatas -->
-                                    <div class="divider"></div>
-                                
-                                    <form class ="forms-sample" action="{{route('worda.index')}}" method="POST">
-                                        @csrf
-
-                                        <div class="container">
-                                            <div class="form-group mb-3">
-                                                <label for="jumlah_mahasiswa">Jumlah Mahasiswa:</label>
-                                                <select class="form-control" id="jumlah_mahasiswa" name="jumlah_mahasiswa" onchange="showFields()">
-                                                    <option value="1">1</option>
-                                                    <option value="2">2</option>
-                                                    <option value="3">3</option>
-                                                </select>
-                                            </div>
-
-                                            <!-- Student 1 (Always visible) -->
-                                            <div class="form-group mb-3">
-                                                <label for="nama">Nama Lengkap Ketua:</label>
-                                                <input type="text" class="form-control" id="nama" name="nama">
-                                            </div>
-                                            <div class="form-group mb-3">
-                                                <label for="nim">NIM Ketua:</label>
-                                                <input type="text" class="form-control" id="nim" name="nim">
-                                            </div>
-                                            <div class="form-group mb-3">
-                                                <label for="notelp">Notelp:</label>
-                                                <input type="text" class="form-control" id="notelp" name="notelp">
-                                            </div>
-
-                                            <!-- Student 2 (Initially hidden) -->
-                                            <div id="student2" style="display: none;">
-                                                <div class="form-group mb-3">
-                                                    <label for="nama2">Nama Lengkap 2:</label>
-                                                    <input type="text" class="form-control" id="nama2" name="nama2">
-                                                </div>
-                                                <div class="form-group mb-3">
-                                                    <label for="nim2">NIM 2:</label>
-                                                    <input type="text" class="form-control" id="nim2" name="nim2">
-                                                </div>
-                                                <div class="form-group mb-3">
-                                                    <label for="notelp2">Notelp2:</label>
-                                                <input type="text" class="form-control" id="notelp2" name="notelp2">
-                                            </div>
-                                            </div>
-
-                                            <!-- Student 3 (Initially hidden) -->
-                                            <div id="student3" style="display: none;">
-                                                <div class="form-group mb-3">
-                                                    <label for="nama3">Nama Lengkap 3:</label>
-                                                    <input type="text" class="form-control" id="nama3" name="nama3">
-                                                </div>
-                                                <div class="form-group mb-3">
-                                                    <label for="nim3">NIM 3:</label>
-                                                    <input type="text" class="form-control" id="nim3" name="nim3">
-                                                </div>
-                                                <div class="form-group mb-3">
-                                                <label for="notelp3">Notelp3:</label>
-                                                <input type="text" class="form-control" id="notelp3" name="notelp3">
-                                            </div>
-                                            </div>
-                                        </div>
-
-                                        <script>
-                                        function showFields() {
-                                            const count = document.getElementById('jumlah_mahasiswa').value;
-                                            
-                                            // Student 2 fields
-                                            const student2 = document.getElementById('student2');
-                                            student2.style.display = count >= 2 ? 'block' : 'none';
-                                            
-                                            // Student 3 fields
-                                            const student3 = document.getElementById('student3');
-                                            student3.style.display = count >= 3 ? 'block' : 'none';
-                                        }
-                                        </script>
-
-                                        
-
-                                        <div class="form-group">
-                                            <label for="nim">prodi:</label>
-                                            <input type="text" id="prodi" name="prodi" class="form-control" >
-                                        </div>
-
-                                        <div class="form-group">
-                                            <label for="doswal">doswal:</label>
-                                            <input type="text" id="doswal" name="doswal" class="form-control">
-                                        </div>
-
-                                        <div class="form-group">
-                                            <label for="surat_ditujukan_kepada">surat_ditujukan_kepada:</label>
-                                            <input type="text" class="form-control" >
-                                        </div>
-
-                                        <div class="form-group">
-                                            <label for="nama_lembaga">nama_lembaga:</label>
-                                            <input type="text" id="nama_lembaga" name="nama_lembaga" class="form-control">
-                                        </div>
-
-                                        <div class="form-group">
-                                            <label for="alamat">alamat:</label>
-                                            <input type="text" id="alamat" name="alamat" class="form-control">
-                                        </div>
-
-                                        <div class="form-group">
-                                            <label for="keperluan">keperluan:</label>
-                                            <input type="text" id="keperluan" name="keperluan" class="form-control">
-                                        </div>
-
-                                        <div class="form-group">
-                                            <label for="waktu_pelaksanaan">waktu_pelaksanaan:</label>
-                                            <input type="text" id="waktu_pelaksanaan" name="waktu_pelaksanaan" class="form-control">
-                                        </div>
-
-                                        <div class="form-group">
-                                            <label for="tembusan">tembusan:</label>
-                                            <input type="text" id="tembusan" name="tembusan" class="form-control">
-                                        </div>
-
-                                        <div class="form-group">
-                                            <label for="date">date:</label>
-                                            <input type="date" id="date" name="date" class="form-control">
-                                        </div>
-
-                                        <div class="form-group">
-                                            <label for="ko_prodi">ko_prodi:</label>
-                                            <input type="text" id="ko_prodi" name="ko_prodi" class="form-control">
-                                        </div>
-
-                                        <div class="form-group">
-                                            <label for="dosbing">dosbing:</label>
-                                            <input type="text" id="dosbing" name="dosbing" class="form-control">
-                                        </div>
-
-                                        <div class="form-group">
-                                            <label for="nip_koprodi">nip_koprodi:</label>
-                                            <input type="text" id="nip_koprodi" name="nip_koprodi" class="form-control">
-                                        </div>
-
-                                        <div class="form-group">
-                                            <label for="nip_dosbing">nip_dosbing:</label>
-                                            <input type="text" id="nip_dosbing" name="nip_dosbing" class="form-control">
-                                        </div>
-
                                         <div class="form-group">
                                             <button type="submit" class="btn btn-primary mr-2">Kirim</button>
                                             <button type="reset" class="btn btn-light">Reset</button>
                                         </div>
 
-                                        
+                                        <!-- Garis Pembatas -->
+                                    <div class="divider"></div>
+                                
+                                <div class="form-group mb-3">
+                                            <label for="jumlah_mahasiswa">Jumlah Mahasiswa:</label>
+                                            <select class="form-control" id="jumlah_mahasiswa" name="jumlah_mahasiswa" onchange="showFields()">
+                                                <option value="1">1</option>
+                                                <option value="2">2</option>
+                                                <option value="3">3</option>
+                                            </select>
+                                </div>
 
-                                        
+                                <!-- Student 1 (Always visible) -->
+                                <div class="form-group mb-3">
+                                            <label for="nama">Nama Lengkap Ketua:</label>
+                                            <input type="text" class="form-control" id="nama" name="nama">
+                                        </div>
+                                        <div class="form-group mb-3">
+                                            <label for="nim">NIM Ketua:</label>
+                                            <input type="text" class="form-control" id="nim" name="nim">
+                                        </div>
+                                        <div class="form-group mb-3">
+                                            <label for="notelp">Notelp:</label>
+                                            <input type="text" class="form-control" id="notelp" name="notelp">
+                                        </div>
+
+                                        <!-- Student 2 (Initially hidden) -->
+                                        <div id="student2" style="display: none;">
+                                            <div class="form-group mb-3">
+                                                <label for="nama2">Nama Lengkap 2:</label>
+                                                <input type="text" class="form-control" id="nama2" name="nama2">
+                                            </div>
+                                            <div class="form-group mb-3">
+                                                <label for="nim2">NIM 2:</label>
+                                                <input type="text" class="form-control" id="nim2" name="nim2">
+                                            </div>
+                                            <div class="form-group mb-3">
+                                                <label for="notelp2">Notelp2:</label>
+                                            <input type="text" class="form-control" id="notelp2" name="notelp2">
+                                        </div>
+                                        </div>
+
+                                        <!-- Student 3 (Initially hidden) -->
+                                        <div id="student3" style="display: none;">
+                                            <div class="form-group mb-3">
+                                                <label for="nama3">Nama Lengkap 3:</label>
+                                                <input type="text" class="form-control" id="nama3" name="nama3">
+                                            </div>
+                                            <div class="form-group mb-3">
+                                                <label for="nim3">NIM 3:</label>
+                                                <input type="text" class="form-control" id="nim3" name="nim3">
+                                            </div>
+                                            <div class="form-group mb-3">
+                                            <label for="notelp3">Notelp3:</label>
+                                            <input type="text" class="form-control" id="notelp3" name="notelp3">
+                                        </div>
+                                    </div>
+
+
+
                                     </form>
+
+                                    
+
+
+
+
                                 </div>
                             </div>
                         </div>
