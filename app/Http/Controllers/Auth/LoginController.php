@@ -2,36 +2,27 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Models\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Str;
 
 class LoginController extends Controller
 {
-    public function showLoginForm(){
-        return view('loginfix');
+    public function showLoginForm()
+    {
+        return view('loginfix'); // Ganti dengan nama view login Anda
     }
 
-    public function showRegistrationForm(){
-        return view('register');
-    }
+    public function login(Request $request)
+    {
+        $credentials = $request->only('email', 'password');
 
-    public function registeruser(Request $request){
-        User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => bcrypt($request->password),
-            'nim' => $request->nim,
-            'program_studi' => $request->program_studi,
-            'alamat' => $request->alamat,
-            'no_hp' => $request->no_hp,
-            'tanggal_lahir' => $request->tanggal_lahir,
-            'remember_token' => Str::random(60),
+        if (Auth::attempt($credentials)) {
+            // Authentication passed, redirect to dashboard
+            return redirect()->route('dashboard')->with('message', 'Login successful!');
+        }
 
-        ]);
-
-        return \redirect('/loginfix');
+        // Authentication failed, redirect back with error message
+        return redirect()->back()->with('error', 'Invalid credentials.')->withInput();
     }
 }

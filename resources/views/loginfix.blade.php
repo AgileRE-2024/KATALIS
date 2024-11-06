@@ -153,7 +153,7 @@
       <label for="password">Password</label>
       <input type="password" class="form-control" name="password" placeholder="Password" id="password" required>
 
-      <a href="/dashboard" class="btn-get-started scrollto">Login</a>
+      <button type="submit" class="btn-get-started scrollto">Login</button>
     </form>
     <p>
       <a href="/register">Don't have an account?</a>
