@@ -33,38 +33,213 @@
         .page-body-wrapper {
             background-color: #f8f9fa; /* Set to the same color as main-panel */
         }
+
+        /* Garis Pembatas */
+        .divider {
+            width: 100%;
+            height: 2px;
+            background-color: #ddd;
+            margin: 20px 0;
+        }
+
+        /* Detail Informasi Siswa */
+        .student-details {
+            margin-top: 100px;
+            display: flex;
+            justify-content: space-between;
+            text-align: left;
+            padding-left: 20px;
+            flex-wrap: wrap;
+        }
+
+        .student-details .column {
+            width: 48%;
+            margin-bottom: 15px;
+        }
+
+        .student-details p {
+            font-size: 16px;
+            margin-bottom: 50px;
+        }
+
+        .student-details p strong {
+            font-weight: bold;
+        }
+
+        /* Media Query untuk Responsivitas */
+        @media (max-width: 768px) {
+            .student-details .column {
+                width: 100%;
+            }
+        }
+
+        .form-group {
+      display: flex;
+      align-items: center;
+      margin-bottom: 16px;
+      font-size: 16px
+    }
+
+    .form-label {
+    font-family: 'Arial', sans-serif;
+    font-size: 16px;
+      width: 100px;
+      font-weight: bold;
+      
+    }
+
+    .form-field {
+      flex: 1;
+      padding: 8px 8px;
+      border: none;
+      border-bottom: 1px solid transparent;
+      font-size: 14px;
+      background-color: transparent;
+      cursor: default;
+    }
+
+    .form-field.editable {
+      border-color: #0077b6;
+      cursor: text;
+    }
+
+
     </style>
 
 </head>
 
 <body>
+    
     <div class="container-scroller">
-        <!-- partial:../../partials/_navbar.html -->
+       
+        
         @include('components.navbar')
-        <!-- partial -->
+
         <div class="container-fluid page-body-wrapper">
-            <!-- partial:../../partials/_settings-panel.html -->
-            <div id="right-sidebar" class="settings-panel">
-                <div class="tab-content" id="setting-content">
-                    <div class="tab-pane fade" id="chats-section" role="tabpanel" aria-labelledby="chats-section">
-                        <div class="d-flex align-items-center justify-content-between border-bottom">
-                            <p class="settings-heading border-top-0 mb-3 pl-3 pt-0 border-bottom-0 pb-0">Friends</p>
-                            <small class="settings-heading border-top-0 mb-3 pt-0 border-bottom-0 pb-0 pr-3 font-weight-normal">See All</small>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- partial -->
-            <!-- partial:../../partials/_sidebar.html -->
+            
             @include('components.sidebarfix')
-            <!-- partial -->
+
             <div class="main-panel">
+                
                 <div class="content-wrapper">
+                    
                     <div class="row">
+                        
                         <div class="col-12 grid-margin stretch-card">
+                            
                             <div class="card">
+                                
                                 <div class="card-body">
-                                    <h4 class="card-title">Form Biodata</h4>
+                                    
+                                    <h4 class="card-title">Pengajuan Surat (dobel klik to change) </h4>
+
+                                    <form class ="forms-sample" action="{{route('worda.index')}}" method="POST">
+
+                                        <div class="student-details">
+
+                                            <!-- Kolom Pertama -->
+                                            <div class="column">
+
+                                                <div class="form-group">
+                                                    <label for="prodi" class="form-label">Prodi:</label>
+                                                    <input id="prodi" class="form-field" contenteditable="false"></input>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label for="doswal" class="form-label">doswal:</label>
+                                                    <div id="doswal" class="form-field" contenteditable="false">Nania nuzulita</div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label for="wkt_pelaksanaan" class="form-label">wkt_pelaksanaan:</label>
+                                                    <div id="wkt_pelaksanaan" class="form-field" contenteditable="false">Nania nuzulita</div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label for="koprodi" class="form-label">koprodi:</label>
+                                                    <div id="koprodi" class="form-field" contenteditable="false">Nania nuzulita</div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label for="nip_koprodi" class="form-label">nip_koprodi:</label>
+                                                    <div id="nip_koprodi" class="form-field" contenteditable="false">Nania nuzulita</div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label for="dosbeng" class="form-label">dosbeng:</label>
+                                                    <div id="dosbeng" class="form-field" contenteditable="false">Nania nuzulita</div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label for="wkt_pelaksanaan" class="form-label">wkt_pelaksanaan:</label>
+                                                    <div id="wkt_pelaksanaan" class="form-field" contenteditable="false">Nania nuzulita</div>
+                                                </div>
+
+                                                
+                                            
+
+                                            </div>
+
+                                            <!-- Kolom Kedua -->
+                                            <div class="column">
+
+                                                <div class="form-group">
+
+                                                    <label for="surat_ditujukan_kepada" class="form-label">surat_ditujukan_kepada:</label>
+                                                    <div id="surat_ditujukan_kepada" class="form-field" contenteditable="false">Sistem Informasi</div>
+
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label for="nama_lembaga" class="form-label">nama_lembaga:</label>
+                                                    <div id="nama_lembaga" class="form-field" contenteditable="false">Sistem Informasi</div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label for="alamat" class="form-label">alamat:</label>
+                                                    <div id="alamat" class="form-field" contenteditable="false">Sistem Informasi</div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label for="keperluan" class="form-label">keperluan:</label>
+                                                    <div id="keperluan" class="form-field" contenteditable="false">Sistem Informasi</div>
+                                                </div>
+
+                                                <script>
+                                                document.querySelectorAll('.form-field').forEach(field => {
+                                                field.addEventListener('dblclick', () => {
+                                                    field.classList.add('editable');
+                                                    field.setAttribute('contenteditable', 'true');
+                                                });
+
+                                                field.addEventListener('blur', () => {
+                                                    field.classList.remove('editable');
+                                                    field.setAttribute('contenteditable', 'false');
+                                                });
+                                                });
+                                                </script>
+
+
+
+
+
+
+
+
+
+                                            </div>
+
+
+
+
+
+                                        </div>
+
+
+                                    </form>
+
+                                    <!-- Garis Pembatas -->
+                                    <div class="divider"></div>
                                 
                                     <form class ="forms-sample" action="{{route('worda.index')}}" method="POST">
                                         @csrf
@@ -221,15 +396,9 @@
                         </div>
                     </div>
                 </div>
-                <!-- content-wrapper ends -->
-                <!-- partial:../../partials/_footer.html -->
-                <footer class="footer">
-                    <div class="d-sm-flex justify-content-center justify-content-sm-between">
-                        <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © 2021.  Premium <a href="https://www.bootstrapdash.com/" target="_blank">Bootstrap admin template</a> from BootstrapDash. All rights reserved.</span>
-                        <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Hand-crafted & made with <i class="ti-heart text-danger ml-1"></i></span>
-                    </div>
-                </footer>
-                <!-- partial -->
+                <div>
+                            
+                        
             </div>
             <!-- main-panel ends -->
         </div>
