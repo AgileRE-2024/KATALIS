@@ -1,210 +1,266 @@
 <!DOCTYPE html>
 <html lang="en">
+<head>
+    @include('components.head')
+    <style>
+        .container-scroller {
+            display: flex;
+            flex-direction: column;
+        }
 
-@include('components.head')
+        .main-panel {
+            display: flex;
+            flex-direction: column;
+            background-color: #f5f7ff;
+            padding: 20px;
+            margin-left: 10px;
+        }
 
+        .welcome-message {
+            text-align: left;
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 30px;
+        }
+
+        /* Card Container */
+        .card-container {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .left-column, .right-column {
+            width: 50%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .main-card {
+            width: 450px;
+            height: 403px;
+            margin-bottom: 20px;
+            border-radius: 20px;
+            background: url('./assets/images/dashboard/people.svg') no-repeat center center/cover;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            position: relative;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .main-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.4);
+            border-radius: 20px;
+            z-index: 1;
+        }
+
+        .main-card .card-body {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+        }
+
+        .small-card {
+            width: 200px;
+            flex-grow: 1;
+            background-color: white;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            border-radius: 20px;
+            margin-bottom: 20px;
+            padding: 20px;
+            height: 180px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card-light-green {
+            background-color: #81c784;
+            color: black;
+        }
+
+        .card-light-danger {
+            background-color: #e57373;
+            color: white;
+        }
+
+        .card-light-warning {
+            background-color: #ffb74d;
+            color: black;
+        }
+
+        .card-light-primary {
+            background-color: #64b5f6;
+            color: black;
+        }
+
+        .small-card .card-body .card-title {
+            font-size: 16px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            text-align: left;
+        }
+
+        .small-card .card-body .card-content {
+            font-size: 16px;
+            color: #0e0e0e;
+        }
+
+        .row-2x2 {
+            display: flex;
+            justify-content: space-between;
+            flex-grow: 1;
+        }
+
+        .row-2x2 > .col-md-6 {
+            display: flex;
+            flex-grow: 1;
+        }
+
+        .right-column .small-card {
+            margin-left: 10px;
+            margin-right: 10px;
+        }
+
+        /* Student Info Section */
+        .student-info {
+            display: flex;
+            margin-top: 40px;
+            align-items: flex-start;
+        }
+
+        .student-photo {
+            text-align: center;
+            margin-right: 20px;
+        }
+
+        .student-photo img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .student-details {
+            flex: 2;
+        }
+
+        .student-details h4 {
+            margin-bottom: 15px;
+            font-size: 18px;
+        }
+
+        .student-details p {
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+
+    </style>
+</head>
 <body>
     <div class="container-scroller">
         @include('components.navbarKoor')
 
         <div class="container-fluid page-body-wrapper">
             @include('components.sidebarKoor')
+
             <div class="main-panel">
-                <div class="content-wrapper">
-                    <div class="row">
-                        <div class="col-12 grid-margin stretch-card">
-                            <div class="card">
-                                <div class="card-body">
-                                    <h4 class="card-title">Penentuan Dosen Pembimbing</h4>
+                <div class="welcome-message">
+                    Welcome, Aamir!
+                </div>
 
-                                    <!-- Tabel Mahasiswa -->
-                                    <table class="table table-striped table-bordered align-middle">
-                                        <thead class="table-primary">
-                                            <tr>
-                                                <th class="text-center">No</th>
-                                                <th class="text-center">Nama Mahasiswa</th>
-                                                <th class="text-center">NIM</th>
-                                                <th class="text-center">Kelompok</th>
-                                                <th class="text-center">Tempat Magang</th>
-                                                <th class="text-center" style="width: 100px;">Periode Magang</th>
-                                                <th class="text-center">Dosen Pembimbing</th>
-                                                <th class="text-center">Aksi</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <!-- Data Kelompok A -->
-                                            <tr class="kelompok-1">
-                                                <td class="text-center">1</td>
-                                                <td class="text-center">Mahasiswa 1</td>
-                                                <td class="text-center">12345678</td>
-                                                <td class="text-center">Kelompok A</td>
-                                                <td class="text-center">Tempat Magang A</td>
-                                                <td class="text-center">01 Januari 2024<br>- 31 Maret 2024</td>
-                                                <td class="text-center">
-                                                    <div class="dropdown">
-                                                        <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuDosbing1" data-bs-toggle="dropdown" aria-expanded="false">
-                                                            Pilih Dosbing
-                                                        </button>
-                                                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuDosbing1" style="max-height: 200px; overflow-y: auto;">
-                                                            <li><a class="dropdown-item" href="#" onclick="selectDosbing('kelompok-1', 'Pak Indra')">Pak Indra</a></li>
-                                                            <li><a class="dropdown-item" href="#" onclick="selectDosbing('kelompok-1', 'Pak Badrus')">Pak Badrus</a></li>
-                                                            <li><a class="dropdown-item" href="#" onclick="selectDosbing('kelompok-1', 'Pak Faried')">Pak Faried</a></li>
-                                                            <li><a class="dropdown-item" href="#" onclick="selectDosbing('kelompok-1', 'Bu Siti')">Bu Siti</a></li>
-                                                        </ul>
-                                                    </div>
-                                                </td>
-                                                <td class="text-center">
-                                                    <button class="btn btn-success">Submit</button>
-                                                </td>
-                                            </tr>
-                                            <tr class="kelompok-1">
-                                                <td class="text-center">2</td>
-                                                <td class="text-center">Mahasiswa 2</td>
-                                                <td class="text-center">87654321</td>
-                                                <td class="text-center">Kelompok A</td>
-                                                <td class="text-center">Tempat Magang A</td>
-                                                <td class="text-center">01 Januari 2024<br>- 31 Maret 2024</td>
-                                                <td class="text-center">
-                                                    <div class="dropdown">
-                                                        <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuDosbing2" data-bs-toggle="dropdown" aria-expanded="false">
-                                                            Pilih Dosbing
-                                                        </button>
-                                                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuDosbing2" style="max-height: 200px; overflow-y: auto;">
-                                                            <li><a class="dropdown-item" href="#" onclick="selectDosbing('kelompok-1', 'Pak Indra')">Pak Indra</a></li>
-                                                            <li><a class="dropdown-item" href="#" onclick="selectDosbing('kelompok-1', 'Pak Badrus')">Pak Badrus</a></li>
-                                                            <li><a class="dropdown-item" href="#" onclick="selectDosbing('kelompok-1', 'Pak Faried')">Pak Faried</a></li>
-                                                            <li><a class="dropdown-item" href="#" onclick="selectDosbing('kelompok-1', 'Bu Siti')">Bu Siti</a></li>
-                                                        </ul>
-                                                    </div>
-                                                </td>
-                                                <td class="text-center">
-                                                    <button class="btn btn-success">Submit</button>
-                                                </td>
-                                            </tr>
+                <!-- Card Container -->
+                <div class="card-container">
+                    <!-- Left Column (Main Card) -->
+                    <div class="left-column col-md-6">
+                        <div class="card main-card">
+                            <div class="card-body">
+                                <p class="mb-4"> </p>
+                                <p class="fs-30 mb-2">"Success is not the key to happiness. Happiness is the key to success."</p>
+                            </div>
+                        </div>
+                    </div>
 
-                                            <!-- Data Kelompok B -->
-                                            <tr class="kelompok-2">
-                                                <td class="text-center">3</td>
-                                                <td class="text-center">Mahasiswa 3</td>
-                                                <td class="text-center">23456789</td>
-                                                <td class="text-center">Kelompok B</td>
-                                                <td class="text-center">Tempat Magang B</td>
-                                                <td class="text-center">01 Januari 2024<br>- 31 Maret 2024</td>
-                                                <td class="text-center">
-                                                    <div class="dropdown">
-                                                        <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuDosbing3" data-bs-toggle="dropdown" aria-expanded="false">
-                                                            Pilih Dosbing
-                                                        </button>
-                                                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuDosbing3" style="max-height: 200px; overflow-y: auto;">
-                                                            <li><a class="dropdown-item" href="#" onclick="selectDosbing('kelompok-2', 'Pak Indra')">Pak Indra</a></li>
-                                                            <li><a class="dropdown-item" href="#" onclick="selectDosbing('kelompok-2', 'Pak Badrus')">Pak Badrus</a></li>
-                                                            <li><a class="dropdown-item" href="#" onclick="selectDosbing('kelompok-2', 'Pak Faried')">Pak Faried</a></li>
-                                                            <li><a class="dropdown-item" href="#" onclick="selectDosbing('kelompok-2', 'Bu Siti')">Bu Siti</a></li>
-                                                        </ul>
-                                                    </div>
-                                                </td>
-                                                <td class="text-center">
-                                                    <button class="btn btn-success">Submit</button>
-                                                </td>
-                                            </tr>
-                                            <tr class="kelompok-2">
-                                                <td class="text-center">4</td>
-                                                <td class="text-center">Mahasiswa 4</td>
-                                                <td class="text-center">34567890</td>
-                                                <td class="text-center">Kelompok B</td>
-                                                <td class="text-center">Tempat Magang B</td>
-                                                <td class="text-center">01 Januari 2024<br>- 31 Maret 2024</td>
-                                                <td class="text-center">
-                                                    <div class="dropdown">
-                                                        <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuDosbing4" data-bs-toggle="dropdown" aria-expanded="false">
-                                                            Pilih Dosbing
-                                                        </button>
-                                                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuDosbing4" style="max-height: 200px; overflow-y: auto;">
-                                                            <li><a class="dropdown-item" href="#" onclick="selectDosbing('kelompok-2', 'Pak Indra')">Pak Indra</a></li>
-                                                            <li><a class="dropdown-item" href="#" onclick="selectDosbing('kelompok-2', 'Pak Badrus')">Pak Badrus</a></li>
-                                                            <li><a class="dropdown-item" href="#" onclick="selectDosbing('kelompok-2', 'Pak Faried')">Pak Faried</a></li>
-                                                            <li><a class="dropdown-item" href="#" onclick="selectDosbing('kelompok-2', 'Bu Siti')">Bu Siti</a></li>
-                                                        </ul>
-                                                    </div>
-                                                </td>
-                                                <td class="text-center">
-                                                    <button class="btn btn-success">Submit</button>
-                                                </td>
-                                            </tr>
+                    <!-- Right Column (2x2 grid of cards) -->
+                    <div class="right-column col-md-6">
+                        <div class="row-2x2">
+                            <div class="col-md-6 mb-4">
+                                <div class="card small-card card-light-green">
+                                    <div class="card-body">
+                                        <p class="card-title">Deadline Laporan</p>
+                                        <p class="card-content">30 September 2024</p>
+                                    </div>
+                                </div>
+                            </div>
 
-                                            <!-- Data Kelompok C -->
-                                            <tr class="kelompok-3">
-                                                <td class="text-center">5</td>
-                                                <td class="text-center">Mahasiswa 5</td>
-                                                <td class="text-center">45678901</td>
-                                                <td class="text-center">Kelompok C</td>
-                                                <td class="text-center">Tempat Magang C</td>
-                                                <td class="text-center">01 Januari 2024<br>- 31 Maret 2024</td>
-                                                <td class="text-center">
-                                                    <div class="dropdown">
-                                                        <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuDosbing5" data-bs-toggle="dropdown" aria-expanded="false">
-                                                            Pilih Dosbing
-                                                        </button>
-                                                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuDosbing5" style="max-height: 200px; overflow-y: auto;">
-                                                            <li><a class="dropdown-item" href="#" onclick="selectDosbing('kelompok-3', 'Pak Indra')">Pak Indra</a></li>
-                                                            <li><a class="dropdown-item" href="#" onclick="selectDosbing('kelompok-3', 'Pak Badrus')">Pak Badrus</a></li>
-                                                            <li><a class="dropdown-item" href="#" onclick="selectDosbing('kelompok-3', 'Pak Faried')">Pak Faried</a></li>
-                                                            <li><a class="dropdown-item" href="#" onclick="selectDosbing('kelompok-3', 'Bu Siti')">Bu Siti</a></li>
-                                                        </ul>
-                                                    </div>
-                                                </td>
-                                                <td class="text-center">
-                                                    <button class="btn btn-success">Submit</button>
-                                                </td>
-                                            </tr>
-                                            <tr class="kelompok-3">
-                                                <td class="text-center">6</td>
-                                                <td class="text-center">Mahasiswa 6</td>
-                                                <td class="text-center">56789012</td>
-                                                <td class="text-center">Kelompok C</td>
-                                                <td class="text-center">Tempat Magang C</td>
-                                                <td class="text-center">01 Januari 2024<br>- 31 Maret 2024</td>
-                                                <td class="text-center">
-                                                    <div class="dropdown">
-                                                        <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuDosbing6" data-bs-toggle="dropdown" aria-expanded="false">
-                                                            Pilih Dosbing
-                                                        </button>
-                                                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuDosbing6" style="max-height: 200px; overflow-y: auto;">
-                                                            <li><a class="dropdown-item" href="#" onclick="selectDosbing('kelompok-3', 'Pak Indra')">Pak Indra</a></li>
-                                                            <li><a class="dropdown-item" href="#" onclick="selectDosbing('kelompok-3', 'Pak Badrus')">Pak Badrus</a></li>
-                                                            <li><a class="dropdown-item" href="#" onclick="selectDosbing('kelompok-3', 'Pak Faried')">Pak Faried</a></li>
-                                                            <li><a class="dropdown-item" href="#" onclick="selectDosbing('kelompok-3', 'Bu Siti')">Bu Siti</a></li>
-                                                        </ul>
-                                                    </div>
-                                                </td>
-                                                <td class="text-center">
-                                                    <button class="btn btn-success">Submit</button>
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
+                            <div class="col-md-6 mb-4">
+                                <div class="card small-card card-light-danger">
+                                    <div class="card-body">
+                                        <p class="card-title">Hari Tersisa PKL</p>
+                                        <p class="card-content">45 Hari</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row-2x2">
+                            <div class="col-md-6 mb-4">
+                                <div class="card small-card card-light-warning">
+                                    <div class="card-body">
+                                        <p class="card-title">Jumlah Logbook</p>
+                                        <p class="card-content">15</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6 mb-4">
+                                <div class="card small-card card-light-primary">
+                                    <div class="card-body">
+                                        <p class="card-title">Konsultasi Dilakukan</p>
+                                        <p class="card-content">5</p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
+
+
+                <!-- Footer -->
+                
             </div>
+            <!-- main-panel ends -->
         </div>
+        <!-- page-body-wrapper ends -->
     </div>
+    <!-- container-scroller -->
 
-    <!-- JavaScript untuk mengatur dosbing per kelompok -->
-    <script>
-        function selectDosbing(groupClass, dosbingName) {
-            // Perbarui dropdown untuk semua anggota dalam kelompok yang sama
-            document.querySelectorAll(`.${groupClass} .dropdown-toggle`).forEach(button => {
-                button.textContent = dosbingName;
-            });
-        }
-    </script>
+    <!-- plugins:js -->
+    <script src="vendors/js/vendor.bundle.base.js"></script>
+    <!-- endinject -->
+    <!-- Plugin js for this page -->
+    <script src="vendors/chart.js/Chart.min.js"></script>
+    <script src="vendors/datatables.net/jquery.dataTables.js"></script>
+    <script src="vendors/datatables.net-bs4/dataTables.bootstrap4.js"></script>
+    <script src="js/dataTables.select.min.js"></script>
 
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- End plugin js for this page -->
+    <!-- inject:js -->
+    <script src="js/off-canvas.js"></script>
+    <script src="js/hoverable-collapse.js"></script>
+    <script src="js/template.js"></script>
+    <script src="js/settings.js"></script>
+    <script src="js/todolist.js"></script>
+    <!-- endinject -->
+    <!-- Custom js for this page-->
+    <script src="js/dashboard.js"></script>
+    <script src="js/Chart.roundedBarCharts.js"></script>
+    <!-- End custom js for this page-->
 </body>
-
 </html>

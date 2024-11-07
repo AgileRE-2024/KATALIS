@@ -46,6 +46,9 @@ Route::get('/dashboardKoor', function () {
     return view('pov_koor/dashboardKoor');
 });
 
+Route::get('/assignPembimbing', function () {
+    return view('pov_koor/assignPembimbing');
+});
 // Billy end -----------------------------------
 
 
