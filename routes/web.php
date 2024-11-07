@@ -179,6 +179,10 @@ Route::get('/seminarDosen', function () {
     return view('/dosen/seminarDosen');
 });
 
+Route::get('/formAssign', function () {
+    return view('/pov_koor/formAssign');
+});
+
 
 /*
 
