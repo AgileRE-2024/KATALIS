@@ -28,49 +28,101 @@ Route::get('/', function () {
     return redirect('/loginfix'); // Redirect to the login page
 });
 
+Route::group(['middleware' => ['auth', 'hakakses:mahasiswa']], function(){
+    Route::get('/dashboard', [DashboardMahasiswaController::class, 'index'])->name('dashboard');
+    Route::get('/worda', function () {
+        return view('auto_proposal/auto_proposal');
+    });
+    Route::post('worda', [WordController::class, 'index'])->name("worda.index");
+    Route::get('/formPengajuanDosbing', function () {
+        return view('/mahasiswa/formPengajuanDosbing');
+    });
+    
+    Route::get('/formPengajuanSeminar', [SeminarApplicationController::class, 'create'])->name('seminar.application.create');
+    Route::post('/formPengajuanSeminar/store', [SeminarApplicationController::class, 'store'])->name('seminar.application.store');
+    Route::get('/jadwalSeminar', [SeminarApplicationController::class, 'index'])->name('seminar.applications.index');
+    
+    Route::get('/profilmh', [ProfileController::class, 'show'])->middleware('auth');
+    Route::get('/logbook', [LogbookController::class, 'index'])->name('logbook.index');
+    Route::post('/logbook/store', [LogbookController::class, 'store'])->name('logbook.store');
+    Route::get('/formInformasiPKL', function () {
+        return view('/mahasiswa/formInformasiPKL');
+    });
+    Route::get('/informasipkl', function () {
+        return view('/mahasiswa/informasipkl');
+    });
+    
+    Route::get('/laporanfiks', function () {
+        return view('/mahasiswa/laporanfiks');
+    });
+    
+    
+    Route::get('/jadwalBimbingan', [JadwalKonsultasiController::class, 'index']);
+    Route::post('/jadwalBimbingan', [JadwalKonsultasiController::class, 'store']);
+    
+    
+    Route::get('/kartuKendaliBimbingan', [BimbinganController::class, 'index']);
+    Route::post('/kartuKendaliBimbingan', [BimbinganController::class, 'store']);
+    
+});
+
+Route::group(['middleware' => ['auth', 'hakakses:dosen']], function(){
+    Route::get('/dashboardDosen', function () {
+        return view('/dosen/dashboardDosen');
+    });
+    
+    Route::get('/anakBimbing', function () {
+        return view('/dosen/anakBimbing');
+    });
+    
+    Route::get('/tambahMahasiswa', function () {
+        return view('tambahMahasiswa');
+    });
+    
+    Route::get('/dosenprofil', function () {
+        return view('/dosen/dosenprofil');
+    });
+    
+    Route::get('/jadwalBimbinganDosen', function () {
+        return view('/dosen/jadwalBimbinganDosen');
+    });
+    
+    Route::get('/tambahbimbing', function () {
+        return view('tambahbimbing');
+    });
+    
+    Route::get('/kartuKendaliDosen', function () {
+        return view('/dosen/kartuKendaliDosen');
+    });
+    
+    Route::get('/logbookDosen', function () {
+        return view('/dosen/logbookDosen');
+    });
+    
+    Route::get('/laporanDosen', function () {
+        return view('/dosen/laporanDosen');
+    });
+    
+    Route::get('/seminarDosen', function () {
+        return view('/dosen/seminarDosen');
+    });
+});
 
 
+Route::group(['middleware' => ['auth', 'hakakses:koor']], function(){
+    Route::get('/dashboardKoor', function () {
+        return view('pov_koor/dashboardKoor');
+    });
+});
 // Route::get('/form', function () {
 //     return view('form');
 // });
 
 // Billy - auto-generate
 
-Route::get('/worda', function () {
-    return view('auto_proposal/auto_proposal');
-});
-
-Route::post('worda', [WordController::class, 'index'])->name("worda.index");
-
-Route::get('/dashboardKoor', function () {
-    return view('pov_koor/dashboardKoor');
-});
-
 // Billy end -----------------------------------
 
-
-Route::get('/dashboard', [DashboardMahasiswaController::class, 'index'])->name('dashboard');
-
-
-Route::get('/formPengajuanDosbing', function () {
-    return view('/mahasiswa/formPengajuanDosbing');
-});
-
-Route::get('/formPengajuanSeminar', [SeminarApplicationController::class, 'create'])->name('seminar.application.create');
-Route::post('/formPengajuanSeminar/store', [SeminarApplicationController::class, 'store'])->name('seminar.application.store');
-Route::get('/jadwalSeminar', [SeminarApplicationController::class, 'index'])->name('seminar.applications.index');
-
-Route::get('/profilmh', [ProfileController::class, 'show'])->middleware('auth');
-
 # update database
-
-Route::get('/logbook', [LogbookController::class, 'index'])->name('logbook.index');
-Route::post('/logbook/store', [LogbookController::class, 'store'])->name('logbook.store');
-
-
-Route::get('/formInformasiPKL', function () {
-    return view('/mahasiswa/formInformasiPKL');
-});
 
 Route::get('/profilds', function () {
     return view('/mahasiswa/profilds');
@@ -126,46 +178,6 @@ Route::get('/editpkl', function () {
 
 Route::get('/editpkl', function () {
     return view('editpkl');
-});
-//dosen
-Route::get('/dashboardDosen', function () {
-    return view('/dosen/dashboardDosen');
-});
-
-Route::get('/anakBimbing', function () {
-    return view('/dosen/anakBimbing');
-});
-
-Route::get('/tambahMahasiswa', function () {
-    return view('tambahMahasiswa');
-});
-
-Route::get('/dosenprofil', function () {
-    return view('/dosen/dosenprofil');
-});
-
-Route::get('/jadwalBimbinganDosen', function () {
-    return view('/dosen/jadwalBimbinganDosen');
-});
-
-Route::get('/tambahbimbing', function () {
-    return view('tambahbimbing');
-});
-
-Route::get('/kartuKendaliDosen', function () {
-    return view('/dosen/kartuKendaliDosen');
-});
-
-Route::get('/logbookDosen', function () {
-    return view('/dosen/logbookDosen');
-});
-
-Route::get('/laporanDosen', function () {
-    return view('/dosen/laporanDosen');
-});
-
-Route::get('/seminarDosen', function () {
-    return view('/dosen/seminarDosen');
 });
 
 
