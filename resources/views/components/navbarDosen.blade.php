@@ -36,7 +36,12 @@
                 </a>
                 <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
                     <a class="dropdown-item"><i class="ti-settings text-primary"></i> Settings</a>
-                    <a class="dropdown-item"><i class="ti-power-off text-primary"></i> Logout</a>
+                    <form action="{{ route('logout') }}" method="POST" id="logout-form" style="display: none;">
+                        @csrf
+                    </form>
+                    <a class="dropdown-item" href="#" onclick="event.preventDefault(); confirmLogout();">
+                        <i class="ti-power-off text-primary"></i> Logout
+                    </a>
                 </div>
             </li>
         </ul>
@@ -45,3 +50,12 @@
         </button>
     </div>
 </nav>
+
+<!-- Confirmation Dialog Script -->
+<script>
+    function confirmLogout() {
+        if (confirm('Are you sure you want to log out?')) {
+            document.getElementById('logout-form').submit();
+        }
+    }
+</script>

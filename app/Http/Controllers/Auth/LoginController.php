@@ -37,7 +37,7 @@ class LoginController extends Controller
 
         // Coba login menggunakan tabel koordinator
         $koordinator = Koordinator::where('email', $request->email)->first();
-        if ($koordinator && Hash::check($request->password, $koor->password)) {
+        if ($koordinator && Hash::check($request->password, $koordinator->password)) {
             Auth::login($koordinator); // Ganti dengan metode login sesuai koordinator
             return $this->redirectUser($koordinator);
         }

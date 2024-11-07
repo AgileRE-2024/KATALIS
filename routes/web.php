@@ -110,7 +110,8 @@ Route::get('/seminarDosen', function () {
 
 Route::get('/dashboardKoor', function () {
     return view('pov_koor/dashboardKoor');
-});
+})->name('dashboardKoor');
+
 // Route::get('/form', function () {
 //     return view('form');
 // });
