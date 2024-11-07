@@ -24,7 +24,7 @@
         </li>
         <!-- Dashboard -->
         <li class="nav-item">
-            <a class="nav-link" href="daftarDosen">
+            <a class="nav-link" href="pklAktif">
                 <i class="ti-home menu-icon"></i>
                 <span class="menu-title">PKL Aktif</span>
             </a>
