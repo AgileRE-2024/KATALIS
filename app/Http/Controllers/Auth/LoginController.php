@@ -18,11 +18,23 @@ class LoginController extends Controller
         $credentials = $request->only('email', 'password');
 
         if (Auth::attempt($credentials)) {
-            // Authentication passed, redirect to dashboard
-            return redirect()->route('dashboard')->with('message', 'Login successful!');
+            // Autentikasi berhasil, dapatkan user yang sedang login
+            $user = Auth::user();
+
+            // Redirect berdasarkan role pengguna
+            if ($user->role === 'mahasiswa') {
+                return redirect()->route('dashboard')->with('message', 'Login successful!');
+            } elseif ($user->role === 'dosen') {
+                return redirect()->route('dashboardDosen')->with('message', 'Login successful!');
+            } elseif ($user->role === 'koor') {
+                return redirect()->route('dashboardKoor')->with('message', 'Login successful!');
+            } else {
+                // Jika role tidak sesuai atau tidak dikenal, arahkan ke halaman default
+                return redirect()->route('defaultRoute')->with('message', 'Login successful!');
+            }
         }
 
-        // Authentication failed, redirect back with error message
+        // Autentikasi gagal, kembali ke halaman login dengan pesan error
         return redirect()->back()->with('error', 'Invalid credentials.')->withInput();
     }
 }

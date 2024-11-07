@@ -68,8 +68,8 @@ Route::group(['middleware' => ['auth', 'hakakses:mahasiswa']], function(){
 
 Route::group(['middleware' => ['auth', 'hakakses:dosen']], function(){
     Route::get('/dashboardDosen', function () {
-        return view('/dosen/dashboardDosen');
-    });
+        return view('dosen/dashboardDosen');
+    })->name('dashboardDosen');
     
     Route::get('/anakBimbing', function () {
         return view('/dosen/anakBimbing');
@@ -110,7 +110,7 @@ Route::group(['middleware' => ['auth', 'hakakses:dosen']], function(){
 
 
 Route::group(['middleware' => ['auth', 'hakakses:koor']], function(){
-    Route::get('/dashboardKoor', function () {
+    Route::get('/dashboard', function () {
         return view('pov_koor/dashboardKoor');
     });
 });
@@ -150,8 +150,8 @@ Route::post('/kartuKendaliBimbingan', [BimbinganController::class, 'store']);
 Route::post('/register', [RegisterController::class, 'register']);
 Route::post('/loginfix', [LoginController::class, 'login']);
 Route::get('/loginfix', [LoginController::class, 'showLoginForm'])->name('loginfix');
-Route::get('/register', [LoginController::class, 'showRegistrationForm'])->name('register');
-Route::post('/registeruser', [LoginController::class, 'registeruser'])->name('registeruser');
+Route::get('/register', [RegisterController::class, 'showRegistrationForm'])->name('register');
+Route::post('/registeruser', [RegisterController::class, 'registeruser'])->name('registeruser');
 Route::post('/logout', function () {
 Auth::logout(); // Log the user out
     return redirect('/loginfix'); // Redirect to the login page
