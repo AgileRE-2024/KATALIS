@@ -17,14 +17,14 @@
         </li>
         <!-- Dashboard -->
         <li class="nav-item">
-            <a class="nav-link" href="dashboardKoor">
+            <a class="nav-link" href="daftarDosen">
                 <i class="ti-home menu-icon"></i>
                 <span class="menu-title">Daftar Dosen</span>
             </a>
         </li>
         <!-- Dashboard -->
         <li class="nav-item">
-            <a class="nav-link" href="dashboardKoor">
+            <a class="nav-link" href="daftarDosen">
                 <i class="ti-home menu-icon"></i>
                 <span class="menu-title">PKL Aktif</span>
             </a>
