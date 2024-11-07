@@ -183,23 +183,23 @@
                                                 <div class="form-group">
 
                                                     <label for="surat_ditujukan_kepada" class="form-label">surat_ditujukan_kepada:</label>
-                                                    <input id="surat_ditujukan_kepada" class="form-field" contenteditable="false"></input>
+                                                    <input id="surat_ditujukan_kepada" name="surat_ditujukan_kepada" class="form-field" contenteditable="false"></input>
 
                                                 </div>
 
                                                 <div class="form-group">
                                                     <label for="nama_lembaga" class="form-label">nama_lembaga:</label>
-                                                    <input id="nama_lembaga" class="form-field" contenteditable="false"></input>
+                                                    <input id="nama_lembaga" name="nama_lembaga" class="form-field" contenteditable="false"></input>
                                                 </div>
 
                                                 <div class="form-group">
                                                     <label for="alamat" class="form-label">alamat:</label>
-                                                    <input id="alamat" class="form-field" contenteditable="false"></input>
+                                                    <input id="alamat" name="alamat" class="form-field" contenteditable="false"></input>
                                                 </div>
 
                                                 <div class="form-group">
                                                     <label for="keperluan" class="form-label">keperluan:</label>
-                                                    <input id="keperluan" class="form-field" contenteditable="false"></input>
+                                                    <input id="keperluan" name="keperluan" class="form-field" contenteditable="false"></input>
                                                 </div>
 
                                                 <script>
