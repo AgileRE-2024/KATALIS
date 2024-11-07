@@ -69,14 +69,13 @@
         }
 
         .small-card {
-            width: 200px;
-            flex-grow: 1;
+            width: 100%;
             background-color: white;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
             border-radius: 20px;
             margin-bottom: 20px;
             padding: 20px;
-            height: 180px;
+            height: 190px;
             display: flex;
             flex-direction: column;
         }
@@ -91,18 +90,8 @@
             color: white;
         }
 
-        .card-light-warning {
-            background-color: #ffb74d;
-            color: black;
-        }
-
-        .card-light-primary {
-            background-color: #64b5f6;
-            color: black;
-        }
-
         .small-card .card-body .card-title {
-            font-size: 16px;
+            font-size: 18px;
             font-weight: bold;
             margin-bottom: 10px;
             text-align: left;
@@ -113,20 +102,9 @@
             color: #0e0e0e;
         }
 
-        .row-2x2 {
+        .right-column {
             display: flex;
-            justify-content: space-between;
-            flex-grow: 1;
-        }
-
-        .row-2x2 > .col-md-6 {
-            display: flex;
-            flex-grow: 1;
-        }
-
-        .right-column .small-card {
-            margin-left: 10px;
-            margin-right: 10px;
+            flex-direction: column;
         }
 
         /* Student Info Section */
@@ -161,7 +139,6 @@
             margin-bottom: 10px;
             font-size: 16px;
         }
-
     </style>
 </head>
 <body>
@@ -188,49 +165,23 @@
                         </div>
                     </div>
 
-                    <!-- Right Column (2x2 grid of cards) -->
+                    <!-- Right Column (2x1 layout of cards) -->
                     <div class="right-column col-md-6">
-                        <div class="row-2x2">
-                            <div class="col-md-6 mb-4">
-                                <div class="card small-card card-light-green">
-                                    <div class="card-body">
-                                        <p class="card-title">Deadline Laporan</p>
-                                        <p class="card-content">30 September 2024</p>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-md-6 mb-4">
-                                <div class="card small-card card-light-danger">
-                                    <div class="card-body">
-                                        <p class="card-title">Hari Tersisa PKL</p>
-                                        <p class="card-content">45 Hari</p>
-                                    </div>
-                                </div>
+                        <div class="small-card card-light-green">
+                            <div class="card-body">
+                                <p class="card-title">Jumlah PKL Aktif</p>
+                                <p class="card-content">30</p>
                             </div>
                         </div>
-                        <div class="row-2x2">
-                            <div class="col-md-6 mb-4">
-                                <div class="card small-card card-light-warning">
-                                    <div class="card-body">
-                                        <p class="card-title">Jumlah Logbook</p>
-                                        <p class="card-content">15</p>
-                                    </div>
-                                </div>
-                            </div>
 
-                            <div class="col-md-6 mb-4">
-                                <div class="card small-card card-light-primary">
-                                    <div class="card-body">
-                                        <p class="card-title">Konsultasi Dilakukan</p>
-                                        <p class="card-content">5</p>
-                                    </div>
-                                </div>
+                        <div class="small-card card-light-danger">
+                            <div class="card-body">
+                                <p class="card-title">Jumlah Pembimbing Harus Ditentukan</p>
+                                <p class="card-content">5</p>
                             </div>
                         </div>
                     </div>
                 </div>
-
 
                 <!-- Footer -->
                 
