@@ -53,6 +53,10 @@ Route::get('/assignPembimbing', function () {
 Route::get('/daftarDosen', function () {
     return view('pov_koor/daftarDosen');
 });
+
+Route::get('/pklAktif', function () {
+    return view('pov_koor/pklAktif');
+});
 // Billy end -----------------------------------
 
 
