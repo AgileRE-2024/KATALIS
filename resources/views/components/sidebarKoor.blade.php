@@ -8,6 +8,28 @@
                 <span class="menu-title">Home</span>
             </a>
         </li>
+        <!-- Dashboard -->
+        <li class="nav-item">
+            <a class="nav-link" href="assignPembimbing">
+                <i class="ti-home menu-icon"></i>
+                <span class="menu-title">Penentuan Pembimbing</span>
+            </a>
+        </li>
+        <!-- Dashboard -->
+        <li class="nav-item">
+            <a class="nav-link" href="daftarDosen">
+                <i class="ti-home menu-icon"></i>
+                <span class="menu-title">Daftar Dosen</span>
+            </a>
+        </li>
+        <!-- Dashboard -->
+        <li class="nav-item">
+            <a class="nav-link" href="pklAktif">
+                <i class="ti-home menu-icon"></i>
+                <span class="menu-title">PKL Aktif</span>
+            </a>
+        </li>
+        
 
         
     </ul>
