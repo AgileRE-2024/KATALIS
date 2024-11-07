@@ -33,178 +33,203 @@
         .page-body-wrapper {
             background-color: #f8f9fa; /* Set to the same color as main-panel */
         }
+
+        /* Garis Pembatas */
+        .divider {
+            width: 100%;
+            height: 2px;
+            background-color: #ddd;
+            margin: 20px 0;
+        }
+
+        /* Detail Informasi Siswa */
+        .student-details {
+            margin-top: 100px;
+            display: flex;
+            justify-content: space-between;
+            text-align: left;
+            padding-left: 20px;
+            flex-wrap: wrap;
+        }
+
+        .student-details .column {
+            width: 48%;
+            margin-bottom: 15px;
+        }
+
+        .student-details p {
+            font-size: 16px;
+            margin-bottom: 50px;
+        }
+
+        .student-details p strong {
+            font-weight: bold;
+        }
+
+        /* Media Query untuk Responsivitas */
+        @media (max-width: 768px) {
+            .student-details .column {
+                width: 100%;
+            }
+        }
+
+        .form-group {
+      display: flex;
+      align-items: center;
+      margin-bottom: 16px;
+      font-size: 16px
+    }
+
+    .form-label {
+    font-family: 'Arial', sans-serif;
+    font-size: 16px;
+      width: 100px;
+      font-weight: bold;
+      
+    }
+
+    .form-field {
+      flex: 1;
+      padding: 8px 8px;
+      border: none;
+      border-bottom: 1px solid transparent;
+      font-size: 14px;
+      background-color: transparent;
+      cursor: default;
+    }
+
+    .form-field.editable {
+      border-color: #0077b6;
+      cursor: text;
+    }
+
+
     </style>
 
 </head>
 
 <body>
+    
     <div class="container-scroller">
-        <!-- partial:../../partials/_navbar.html -->
+       
+        
         @include('components.navbar')
-        <!-- partial -->
+
         <div class="container-fluid page-body-wrapper">
-            <!-- partial:../../partials/_settings-panel.html -->
-            <div id="right-sidebar" class="settings-panel">
-                <div class="tab-content" id="setting-content">
-                    <div class="tab-pane fade" id="chats-section" role="tabpanel" aria-labelledby="chats-section">
-                        <div class="d-flex align-items-center justify-content-between border-bottom">
-                            <p class="settings-heading border-top-0 mb-3 pl-3 pt-0 border-bottom-0 pb-0">Friends</p>
-                            <small class="settings-heading border-top-0 mb-3 pt-0 border-bottom-0 pb-0 pr-3 font-weight-normal">See All</small>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- partial -->
-            <!-- partial:../../partials/_sidebar.html -->
+            
             @include('components.sidebarfix')
-            <!-- partial -->
+
             <div class="main-panel">
+                
                 <div class="content-wrapper">
+                    
                     <div class="row">
+                        
                         <div class="col-12 grid-margin stretch-card">
+                            
                             <div class="card">
-                                <div class="card-body">
-                                    <h4 class="card-title">Form Biodata</h4>
                                 
+                                <div class="card-body">
+                                    
+                                    <h4 class="card-title">Pengajuan Surat (dobel klik to change) </h4>
+
                                     <form class ="forms-sample" action="{{route('worda.index')}}" method="POST">
                                         @csrf
 
-                                        <div class="container">
-                                            <div class="form-group mb-3">
-                                                <label for="jumlah_mahasiswa">Jumlah Mahasiswa:</label>
-                                                <select class="form-control" id="jumlah_mahasiswa" name="jumlah_mahasiswa" onchange="showFields()">
-                                                    <option value="1">1</option>
-                                                    <option value="2">2</option>
-                                                    <option value="3">3</option>
-                                                </select>
-                                            </div>
+                                        <div class="student-details">
 
-                                            <!-- Student 1 (Always visible) -->
-                                            <div class="form-group mb-3">
-                                                <label for="nama">Nama Lengkap Ketua:</label>
-                                                <input type="text" class="form-control" id="nama" name="nama">
-                                            </div>
-                                            <div class="form-group mb-3">
-                                                <label for="nim">NIM Ketua:</label>
-                                                <input type="text" class="form-control" id="nim" name="nim">
-                                            </div>
-                                            <div class="form-group mb-3">
-                                                <label for="notelp">Notelp:</label>
-                                                <input type="text" class="form-control" id="notelp" name="notelp">
-                                            </div>
+                                            <!-- Kolom Pertama -->
+                                            <div class="column">
 
-                                            <!-- Student 2 (Initially hidden) -->
-                                            <div id="student2" style="display: none;">
-                                                <div class="form-group mb-3">
-                                                    <label for="nama2">Nama Lengkap 2:</label>
-                                                    <input type="text" class="form-control" id="nama2" name="nama2">
-                                                </div>
-                                                <div class="form-group mb-3">
-                                                    <label for="nim2">NIM 2:</label>
-                                                    <input type="text" class="form-control" id="nim2" name="nim2">
-                                                </div>
-                                                <div class="form-group mb-3">
-                                                    <label for="notelp2">Notelp2:</label>
-                                                <input type="text" class="form-control" id="notelp2" name="notelp2">
-                                            </div>
-                                            </div>
-
-                                            <!-- Student 3 (Initially hidden) -->
-                                            <div id="student3" style="display: none;">
-                                                <div class="form-group mb-3">
-                                                    <label for="nama3">Nama Lengkap 3:</label>
-                                                    <input type="text" class="form-control" id="nama3" name="nama3">
-                                                </div>
-                                                <div class="form-group mb-3">
-                                                    <label for="nim3">NIM 3:</label>
-                                                    <input type="text" class="form-control" id="nim3" name="nim3">
-                                                </div>
-                                                <div class="form-group mb-3">
-                                                <label for="notelp3">Notelp3:</label>
-                                                <input type="text" class="form-control" id="notelp3" name="notelp3">
-                                            </div>
-                                            </div>
-                                        </div>
-
-                                        <script>
-                                        function showFields() {
-                                            const count = document.getElementById('jumlah_mahasiswa').value;
                                             
-                                            // Student 2 fields
-                                            const student2 = document.getElementById('student2');
-                                            student2.style.display = count >= 2 ? 'block' : 'none';
+
+                                                <div class="form-group">
+                                                    <label for="prodi" class="form-label">Prodi:</label>
+                                                    <input type="text" id="prodi" class="form-field" name="prodi" contenteditable="false"></input>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label for="doswal" class="form-label">doswal:</label>
+                                                    <input id="doswal" class="form-field" name="doswal" contenteditable="false"></input>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label for="wkt_pelaksanaan" class="form-label">wkt_pelaksanaan:</label>
+                                                    <input id="wkt_pelaksanaan" name="wkt_pelaksanaan" class="form-field" contenteditable="false"></input>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label for="koprodi" class="form-label">koprodi:</label>
+                                                    <input id="koprodi" name="koprodi" class="form-field" contenteditable="false"></input>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label for="nip_koprodi" class="form-label">nip_koprodi:</label>
+                                                    <input id="nip_koprodi" name="nip_koprodi" class="form-field" contenteditable="false"></input>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label for="dosbing" class="form-label">dosbing:</label>
+                                                    <input id="dosbing" name="dosbing" class="form-field" contenteditable="false"></input>
+                                                </div>
+                                                
                                             
-                                            // Student 3 fields
-                                            const student3 = document.getElementById('student3');
-                                            student3.style.display = count >= 3 ? 'block' : 'none';
-                                        }
-                                        </script>
 
-                                        
+                                            </div>
 
-                                        <div class="form-group">
-                                            <label for="nim">prodi:</label>
-                                            <input type="text" id="prodi" name="prodi" class="form-control" >
-                                        </div>
+                                            <!-- Kolom Kedua -->
+                                            <div class="column">
 
-                                        <div class="form-group">
-                                            <label for="doswal">doswal:</label>
-                                            <input type="text" id="doswal" name="doswal" class="form-control">
-                                        </div>
+                                                <div class="form-group">
 
-                                        <div class="form-group">
-                                            <label for="surat_ditujukan_kepada">surat_ditujukan_kepada:</label>
-                                            <input type="text" class="form-control" >
-                                        </div>
+                                                    <label for="surat_ditujukan_kepada" class="form-label">surat_ditujukan_kepada:</label>
+                                                    <input id="surat_ditujukan_kepada" name="surat_ditujukan_kepada" class="form-field" contenteditable="false"></input>
 
-                                        <div class="form-group">
-                                            <label for="nama_lembaga">nama_lembaga:</label>
-                                            <input type="text" id="nama_lembaga" name="nama_lembaga" class="form-control">
-                                        </div>
+                                                </div>
 
-                                        <div class="form-group">
-                                            <label for="alamat">alamat:</label>
-                                            <input type="text" id="alamat" name="alamat" class="form-control">
-                                        </div>
+                                                <div class="form-group">
+                                                    <label for="nama_lembaga" class="form-label">nama_lembaga:</label>
+                                                    <input id="nama_lembaga" name="nama_lembaga" class="form-field" contenteditable="false"></input>
+                                                </div>
 
-                                        <div class="form-group">
-                                            <label for="keperluan">keperluan:</label>
-                                            <input type="text" id="keperluan" name="keperluan" class="form-control">
-                                        </div>
+                                                <div class="form-group">
+                                                    <label for="alamat" class="form-label">alamat:</label>
+                                                    <input id="alamat" name="alamat" class="form-field" contenteditable="false"></input>
+                                                </div>
 
-                                        <div class="form-group">
-                                            <label for="waktu_pelaksanaan">waktu_pelaksanaan:</label>
-                                            <input type="text" id="waktu_pelaksanaan" name="waktu_pelaksanaan" class="form-control">
-                                        </div>
+                                                <div class="form-group">
+                                                    <label for="keperluan" class="form-label">keperluan:</label>
+                                                    <input id="keperluan" name="keperluan" class="form-field" contenteditable="false"></input>
+                                                </div>
 
-                                        <div class="form-group">
-                                            <label for="tembusan">tembusan:</label>
-                                            <input type="text" id="tembusan" name="tembusan" class="form-control">
-                                        </div>
+                                                <script>
+                                                    document.querySelectorAll('.form-field').forEach(field => {
+                                                    field.addEventListener('dblclick', () => {
+                                                        field.classList.add('editable');
+                                                        field.setAttribute('contenteditable', 'true');
+                                                    });
 
-                                        <div class="form-group">
-                                            <label for="date">date:</label>
-                                            <input type="date" id="date" name="date" class="form-control">
-                                        </div>
+                                                    field.addEventListener('blur', () => {
+                                                        field.classList.remove('editable');
+                                                        field.setAttribute('contenteditable', 'false');
+                                                    });
+                                                    });
+                                                </script>
 
-                                        <div class="form-group">
-                                            <label for="ko_prodi">ko_prodi:</label>
-                                            <input type="text" id="ko_prodi" name="ko_prodi" class="form-control">
-                                        </div>
 
-                                        <div class="form-group">
-                                            <label for="dosbing">dosbing:</label>
-                                            <input type="text" id="dosbing" name="dosbing" class="form-control">
-                                        </div>
 
-                                        <div class="form-group">
-                                            <label for="nip_koprodi">nip_koprodi:</label>
-                                            <input type="text" id="nip_koprodi" name="nip_koprodi" class="form-control">
-                                        </div>
 
-                                        <div class="form-group">
-                                            <label for="nip_dosbing">nip_dosbing:</label>
-                                            <input type="text" id="nip_dosbing" name="nip_dosbing" class="form-control">
+
+
+
+
+
+                                            </div>
+
+
+
+
+
                                         </div>
 
                                         <div class="form-group">
@@ -212,49 +237,129 @@
                                             <button type="reset" class="btn btn-light">Reset</button>
                                         </div>
 
-                                        
+                                        <!-- Garis Pembatas -->
+                                    <div class="divider"></div>
+                                
+                                <div class="form-group mb-3">
+                                            <label for="jumlah_mahasiswa">Jumlah Mahasiswa:</label>
+                                            <select class="form-control" id="jumlah_mahasiswa" name="jumlah_mahasiswa" onchange="showFields()">
+                                                <option value="1">1</option>
+                                                <option value="2">2</option>
+                                                <option value="3">3</option>
+                                            </select>
+                                </div>
 
-                                        
+                                <!-- Student 1 (Always visible) -->
+                                <div class="form-group mb-3">
+                                            <label for="nama">Nama Lengkap Ketua:</label>
+                                            <input type="text" class="form-control" id="nama" name="nama">
+                                        </div>
+                                        <div class="form-group mb-3">
+                                            <label for="nim">NIM Ketua:</label>
+                                            <input type="text" class="form-control" id="nim" name="nim">
+                                        </div>
+                                        <div class="form-group mb-3">
+                                            <label for="notelp">Notelp:</label>
+                                            <input type="text" class="form-control" id="notelp" name="notelp">
+                                        </div>
+
+                                        <!-- Student 2 (Initially hidden) -->
+                                        <div id="student2" style="display: none;">
+                                            <div class="form-group mb-3">
+                                                <label for="nama2">Nama Lengkap 2:</label>
+                                                <input type="text" class="form-control" id="nama2" name="nama2">
+                                            </div>
+                                            <div class="form-group mb-3">
+                                                <label for="nim2">NIM 2:</label>
+                                                <input type="text" class="form-control" id="nim2" name="nim2">
+                                            </div>
+                                            <div class="form-group mb-3">
+                                                <label for="notelp2">Notelp2:</label>
+                                            <input type="text" class="form-control" id="notelp2" name="notelp2">
+                                        </div>
+                                        </div>
+
+                                        <!-- Student 3 (Initially hidden) -->
+                                        <div id="student3" style="display: none;">
+                                            <div class="form-group mb-3">
+                                                <label for="nama3">Nama Lengkap 3:</label>
+                                                <input type="text" class="form-control" id="nama3" name="nama3">
+                                            </div>
+                                            <div class="form-group mb-3">
+                                                <label for="nim3">NIM 3:</label>
+                                                <input type="text" class="form-control" id="nim3" name="nim3">
+                                            </div>
+                                            <div class="form-group mb-3">
+                                            <label for="notelp3">Notelp3:</label>
+                                            <input type="text" class="form-control" id="notelp3" name="notelp3">
+                                        </div>
+                                    </div>
+
+
+
                                     </form>
+
+                                    
+
+
+
+
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <!-- content-wrapper ends -->
-                <!-- partial:../../partials/_footer.html -->
-                <footer class="footer">
-                    <div class="d-sm-flex justify-content-center justify-content-sm-between">
-                        <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © 2021.  Premium <a href="https://www.bootstrapdash.com/" target="_blank">Bootstrap admin template</a> from BootstrapDash. All rights reserved.</span>
-                        <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Hand-crafted & made with <i class="ti-heart text-danger ml-1"></i></span>
-                    </div>
-                </footer>
-                <!-- partial -->
+                <div>
+                            
+                        
             </div>
             <!-- main-panel ends -->
         </div>
         <!-- page-body-wrapper ends -->
     </div>
-    <!-- container-scroller -->
-    <!-- plugins:js -->
-    <script src="../../vendors/js/vendor.bundle.base.js"></script>
-    <!-- endinject -->
-    <!-- Plugin js for this page -->
-    <script src="../../vendors/typeahead.js/typeahead.bundle.min.js"></script>
-    <script src="../../vendors/select2/select2.min.js"></script>
-    <!-- End plugin js for this page -->
-    <!-- inject:js -->
-    <script src="../../js/off-canvas.js"></script>
-    <script src="../../js/hoverable-collapse.js"></script>
-    <script src="../../js/template.js"></script>
-    <script src="../../js/settings.js"></script>
-    <script src="../../js/todolist.js"></script>
-    <!-- endinject -->
-    <!-- Custom js for this page-->
-    <script src="../../js/file-upload.js"></script>
-    <script src="../../js/typeahead.js"></script>
-    <script src="../../js/select2.js"></script>
-    <!-- End custom js for this page-->
+
 </body>
 
 </html>
+
+<script>
+    // Sample data for form fields
+const sampleData = {
+    prodi: "Teknik Informatika",
+    doswal: "Dr. Ahmad Suherman, S.Kom., M.Kom.",
+    surat_ditujukan_kepada: "Kepala Departemen Teknik Informatika",
+    nama_lembaga: "Universitas Teknologi Digital",
+    alamat: "Jl. Pendidikan No. 123, Jakarta Pusat",
+    keperluan: "Pengajuan Proposal Tugas Akhir",
+    waktu_pelaksanaan: "1 Januari 2025 - 30 Juni 2025",
+    tembusan: "1. Wakil Dekan\n2. Kepala Program Studi",
+    date: "2024-11-05", // Current date in YYYY-MM-DD format
+    ko_prodi: "Dr. Sarah Wijaya, M.T.",
+    dosbing: "Prof. Dr. Budi Santoso, M.Sc.",
+    nip_koprodi: "198505152010121002",
+    nip_dosbing: "197603242005011004"
+};
+
+// Function to fill all form fields
+function autofillForm() {
+    // Loop through all properties in sampleData
+    Object.keys(sampleData).forEach(fieldId => {
+        const inputElement = document.getElementById(fieldId);
+        if (inputElement) {
+            inputElement.value = sampleData[fieldId];
+        }
+    });
+}
+
+// Add autofill button to the form
+const formGroup = document.querySelector('.form-group:last-child');
+const autofillButton = document.createElement('button');
+autofillButton.type = 'button';
+autofillButton.className = 'btn btn-secondary ml-2';
+autofillButton.textContent = 'Autofill';
+autofillButton.onclick = autofillForm;
+formGroup.appendChild(autofillButton);
+
+// Automatically fill the form when the page loads
+document.addEventListener('DOMContentLoaded', autofillForm);
+</script>

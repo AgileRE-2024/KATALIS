@@ -117,6 +117,8 @@
             max-width: 1200px;
             margin: 0 auto;
         }
+
+        
     </style>
 </head>
 
@@ -137,9 +139,9 @@
 
                         <!-- Informasi Siswa (Nama, NIM, Jurusan) di tengah -->
                         <div class="profile-info">
-                            <h2>Aamir Khan</h2>
-                            <h4>Teknik Informatika</h4>
-                            <h4>NIM: 123456789</h4>
+                            <h2>{{Auth::user()->name}}</h2>
+                            <h4>{{Auth::user()->program_studi}}</h4>
+                            <h4>{{Auth::user()->nim}}</h4>
                         </div>
 
                         <!-- Garis Pembatas -->
@@ -149,18 +151,18 @@
                         <div class="student-details">
                             <!-- Kolom Pertama -->
                             <div class="column">
-                                <p><strong>Nama:</strong> Aamir Khan</p>
-                                <p><strong>Jurusan:</strong> Teknik Informatika</p>
-                                <p><strong>NIM:</strong> 123456789</p>
-                                <p><strong>Tanggal Lahir:</strong> 01 Januari 2000</p>
+                                <p><strong>Nama:</strong> {{Auth::user()->name}}</p>
+                                <p><strong>Jurusan:</strong> {{Auth::user()->program_studi}}</p>
+                                <p><strong>NIM:</strong> {{Auth::user()->nim}}</p>
+                                <p><strong>Tanggal Lahir:</strong> {{Auth::user()->tanggal_lahir}}</p>
                             </div>
 
                             <!-- Kolom Kedua -->
                             <div class="column">
-                                <p><strong>Alamat:</strong> Jl. Mawar No. 123</p>
-                                <p><strong>Alamat Asal:</strong> Jl. Melati No. 456</p>
-                                <p><strong>Email:</strong> aamir.khan@example.com</p>
-                                <p><strong>Nomor HP:</strong> 08123456789</p>
+                                <p><strong>Alamat:</strong> {{Auth::user()->alamat}}</p>
+                                <p><strong>Alamat Asal:</strong> EMANG ADA DI DATABASE????</p>
+                                <p><strong>Email:</strong> {{Auth::user()->email}}</p>
+                                <p><strong>Nomor HP:</strong> {{Auth::user()->no_hp}}</p>
                             </div>
                         </div>
                     </div>
