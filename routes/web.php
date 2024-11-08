@@ -28,9 +28,12 @@ Route::get('/', function () {
     return redirect('/loginfix'); // Redirect to the login page
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->name('dashboard');
+// Route::get('/dashboard', function () {
+//     return view('/mahasiswa/dashboard');
+// })->name('dashboard');
+
+Route::get('/dashboard', [DashboardMahasiswaController::class, 'index'])->name('dashboard')->middleware('auth');
+
 
 Route::get('/worda', function () {
     return view('auto_proposal/auto_proposal');

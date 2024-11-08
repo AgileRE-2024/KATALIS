@@ -160,7 +160,6 @@
                             <!-- Kolom Kedua -->
                             <div class="column">
                                 <p><strong>Alamat:</strong> {{Auth::user()->alamat}}</p>
-                                <p><strong>Alamat Asal:</strong> EMANG ADA DI DATABASE????</p>
                                 <p><strong>Email:</strong> {{Auth::user()->email}}</p>
                                 <p><strong>Nomor HP:</strong> {{Auth::user()->no_hp}}</p>
                             </div>

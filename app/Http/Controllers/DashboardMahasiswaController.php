@@ -9,6 +9,7 @@ class DashboardMahasiswaController extends Controller
 {
     public function index()
     {
-        return view('dashboard'); // Ganti dengan nama view dashboard Anda
+        $user = auth()->user();
+        return view('mahasiswa.dashboard', ['user' => $user]); // Ganti dengan nama view dashboard Anda
     }
 }

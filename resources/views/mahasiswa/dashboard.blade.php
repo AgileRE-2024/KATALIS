@@ -173,7 +173,7 @@
 
             <div class="main-panel">
                 <div class="welcome-message">
-                    Welcome, Aamir!
+                    Welcome, {{ $user->name }}
                 </div>
 
                 <!-- Card Container -->
