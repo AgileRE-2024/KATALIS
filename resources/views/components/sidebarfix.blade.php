@@ -43,17 +43,10 @@
 
         <!-- Konsultasi Bimbingan -->
         <li class="nav-item">
-            <a class="nav-link" data-toggle="collapse" href="#bimbingan" aria-expanded="false" aria-controls="bimbingan">
+            <a class="nav-link" href="jadwalBimbingan">
                 <i class="ti-comments menu-icon"></i>
                 <span class="menu-title">Konsultasi Bimbingan</span>
-                <i class="menu-arrow"></i>
             </a>
-            <div class="collapse" id="bimbingan">
-                <ul class="nav flex-column sub-menu">
-                    <li class="nav-item"> <a class="nav-link" href="jadwalBimbingan">Jadwal Bimbingan</a></li>
-                    <li class="nav-item"> <a class="nav-link" href="kartuKendaliBimbingan">Kartu Kendali</a></li>
-                </ul>
-            </div>
         </li>
 
         <!-- Logbook -->

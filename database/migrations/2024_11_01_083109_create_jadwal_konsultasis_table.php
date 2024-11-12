@@ -20,6 +20,8 @@ return new class extends Migration
             $table->string('topik');
             $table->string('status')->default('Menunggu Persetujuan'); // status default
             $table->timestamps();
+            $table->string('hasil_bimbingan')->nullable();
+            $table->string('dokumentasi_bimbingan')->nullable();
         });
     }
 

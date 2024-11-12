@@ -5,16 +5,24 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Logbook;
+use Illuminate\Support\Facades\Auth;
+
 
 class LogbookController extends Controller
 {
-    public function index()
-{
-    $logbooks = Logbook::all(); // Ambil semua data logbook
-    return view('/mahasiswa/logbook', compact('logbooks')); // Kirim data ke view
-}
+    public function __construct()
+    {
+        $this->middleware('auth'); 
+    }
 
-public function store(Request $request)
+    public function index()
+    {
+        $user = Auth::user();
+        $logbooks = $user->logbooks; 
+        return view('/mahasiswa/logbook', compact('logbooks')); // Kirim data ke view
+    }
+
+    public function store(Request $request)
     {
         $request->validate([
             'tanggal' => 'required|date',
@@ -28,6 +36,7 @@ public function store(Request $request)
 
         // Menyimpan data ke database
         Logbook::create([
+            'user_id' => Auth::id(),
             'tanggal' => $request->tanggal,
             'kegiatan' => $request->kegiatan,
             'dokumentasi' => $fileName,

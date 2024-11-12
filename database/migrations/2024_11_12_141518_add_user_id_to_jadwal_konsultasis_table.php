@@ -13,9 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('bimbingans', function (Blueprint $table) {
-            $table->unsignedBigInteger('user_id')->after('id');
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+        Schema::table('jadwal_konsultasis', function (Blueprint $table) {
+            // Menambahkan kolom user_id
+            $table->foreignId('user_id')->after('id')->constrained('users')->onDelete('cascade');
         });
     }
 
@@ -26,7 +26,8 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('bimbingans', function (Blueprint $table) {
+        Schema::table('jadwal_konsultasis', function (Blueprint $table) {
+            // Menghapus kolom user_id jika migrasi dibatalkan
             $table->dropForeign(['user_id']);
             $table->dropColumn('user_id');
         });

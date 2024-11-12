@@ -14,8 +14,8 @@ return new class extends Migration
             $table->string('tempat_pkl');
             $table->string('dosen_pembimbing');
             $table->date('tanggal_seminar');
-            $table->string('laporan_pkl'); // File path for laporan akhir PKL
-            $table->string('bukti_persetujuan'); // File path for bukti persetujuan
+            $table->string('laporan_pkl'); 
+            $table->string('bukti_persetujuan'); 
             $table->timestamps();
         });
     }

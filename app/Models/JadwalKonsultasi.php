@@ -9,8 +9,16 @@ class JadwalKonsultasi extends Model
 {
     use HasFactory;
     protected $fillable = [
+        'user_id',
         'tanggal_konsultasi',
         'waktu_konsultasi',
-        'topik', // Jika Anda ingin status juga bisa diisi secara massal
+        'topik', 
+        'hasil_bimbingan',
+        'dokumentasi_bimbingan',
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

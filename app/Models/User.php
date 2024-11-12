@@ -26,5 +26,15 @@ class User extends Authenticatable
     protected $hidden = [
         'password',
     ];
+
+    public function jadwalKonsultasi()
+    {
+        return $this->hasMany(JadwalKonsultasi::class);
+    }
+
+    public function logbooks()
+    {
+        return $this->hasMany(Logbook::class);
+    }
 }
 

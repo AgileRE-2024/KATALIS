@@ -183,6 +183,25 @@ Route::get('/editpkl', function () {
     return view('editpkl');
 });
 
+Route::get('/assignPembimbing', function () {
+    return view('pov_koor/assignPembimbing');
+});
+
+Route::get('/daftarDosen', function () {
+    return view('pov_koor/daftarDosen');
+});
+
+Route::get('/pklAktif', function () {
+    return view('pov_koor/pklAktif');
+});
+
+Route::get('/formAssign', function () {
+    return view('pov_koor/formAssign');
+});
+
+Route::post('/uploadHasil/{id}', [JadwalKonsultasiController::class, 'uploadHasil'])->name('uploadHasil');
+Route::post('/uploadDokumentasi/{id}', [JadwalKonsultasiController::class, 'uploadDokumentasi'])->name('uploadDokumentasi');
+
 
 /*
 

@@ -113,11 +113,11 @@
     <div class="container-scroller">
        
         
-        @include('components.navbar')
+        @include('components.navbarKoor')
 
         <div class="container-fluid page-body-wrapper">
             
-            @include('components.sidebarfix')
+            @include('components.sidebarKoor')
 
             <div class="main-panel">
                 

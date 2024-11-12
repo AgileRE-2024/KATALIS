@@ -32,7 +32,7 @@
                                         Form ini digunakan untuk mengatur jadwal konsultasi dengan dosen pembimbing terkait PKL
                                     </p>
                                     
-                                    <!-- Tampilkan pesan sukses jika ada -->
+                                    <!-- Success message display -->
                                     @if(session('success'))
                                         <div class="alert alert-success">{{ session('success') }}</div>
                                     @endif
@@ -55,8 +55,8 @@
                                         <button type="reset" class="btn btn-light">Cancel</button>
                                     </form>
 
-                                    <!-- Tabel histori pengajuan jadwal bimbingan -->
-                                    <h4 class="card-title mt-4">Histori Pengajuan Jadwal Bimbingan</h4>
+                                    <!-- Consultation History Table -->
+                                    <h4 class="card-title mt-4">Histori Bimbingan</h4>
                                     <div class="table-responsive">
                                         <table>
                                             <thead>
@@ -66,6 +66,8 @@
                                                     <th>Waktu Konsultasi</th>
                                                     <th>Topik</th>
                                                     <th>Status</th>
+                                                    <th>Hasil Bimbingan</th>
+                                                    <th>Dokumentasi Bimbingan</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -76,7 +78,65 @@
                                                         <td>{{ $jadwal->waktu_konsultasi }}</td>
                                                         <td>{{ $jadwal->topik }}</td>
                                                         <td><span class="badge badge-{{ $jadwal->status == 'Disetujui' ? 'success' : ($jadwal->status == 'Menunggu Persetujuan' ? 'warning' : 'danger') }}">{{ $jadwal->status }}</span></td>
+                                                        <td>
+                                                            @if($jadwal->hasil_bimbingan)
+                                                                <img src="{{ asset('storage/' . $jadwal->hasil_bimbingan) }}" alt="Hasil Bimbingan" width="50">
+                                                            @endif
+                                                            <button type="button" class="btn btn-link" data-toggle="modal" data-target="#hasilModal{{ $index }}">Input Hasil</button>
+                                                        </td>
+                                                        <td>
+                                                            @if($jadwal->dokumentasi_bimbingan)
+                                                                <img src="{{ asset('storage/' . $jadwal->dokumentasi_bimbingan) }}" alt="Dokumentasi Bimbingan" width="50">
+                                                            @endif
+                                                            <button type="button" class="btn btn-link" data-toggle="modal" data-target="#dokumentasiModal{{ $index }}">Input Dokumentasi</button>
+                                                        </td>
                                                     </tr>
+
+                                                    <!-- Hasil Bimbingan Modal -->
+                                                    <div class="modal fade" id="hasilModal{{ $index }}" tabindex="-1" aria-labelledby="hasilModalLabel" aria-hidden="true">
+                                                        <div class="modal-dialog">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <h5 class="modal-title" id="hasilModalLabel">Upload Hasil Bimbingan</h5>
+                                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                        <span aria-hidden="true">&times;</span>
+                                                                    </button>
+                                                                </div>
+                                                                <form action="{{ url('/uploadHasil', $jadwal->id) }}" method="POST" enctype="multipart/form-data">
+                                                                    @csrf
+                                                                    <div class="modal-body">
+                                                                        <input type="file" name="hasil_bimbingan" accept="image/*" required>
+                                                                    </div>
+                                                                    <div class="modal-footer">
+                                                                        <button type="submit" class="btn btn-primary">Upload</button>
+                                                                    </div>
+                                                                </form>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <!-- Dokumentasi Bimbingan Modal -->
+                                                    <div class="modal fade" id="dokumentasiModal{{ $index }}" tabindex="-1" aria-labelledby="dokumentasiModalLabel" aria-hidden="true">
+                                                        <div class="modal-dialog">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <h5 class="modal-title" id="dokumentasiModalLabel">Upload Dokumentasi Bimbingan</h5>
+                                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                        <span aria-hidden="true">&times;</span>
+                                                                    </button>
+                                                                </div>
+                                                                <form action="{{ url('/uploadDokumentasi', $jadwal->id) }}" method="POST" enctype="multipart/form-data">
+                                                                    @csrf
+                                                                    <div class="modal-body">
+                                                                        <input type="file" name="dokumentasi_bimbingan" accept="image/*" required>
+                                                                    </div>
+                                                                    <div class="modal-footer">
+                                                                        <button type="submit" class="btn btn-primary">Upload</button>
+                                                                    </div>
+                                                                </form>
+                                                            </div>
+                                                        </div>
+                                                    </div>
                                                 @endforeach
                                             </tbody>
                                         </table>
