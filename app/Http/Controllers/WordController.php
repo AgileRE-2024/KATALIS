@@ -3,9 +3,18 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Mhs;
+
 
 class WordController extends Controller
 {
+    public function display(){
+        $data = Mhs::all();
+        return view('auto_proposal/auto_proposal', ['dete' => $data]);
+
+
+    }
+
     public function index(Request $request){
         $nama = $request->nama;
         $nim = $request->nim;

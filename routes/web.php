@@ -35,10 +35,12 @@ Route::get('/', function () {
 Route::get('/dashboard', [DashboardMahasiswaController::class, 'index'])->name('dashboard')->middleware('auth');
 
 
-Route::get('/worda', function () {
-    return view('auto_proposal/auto_proposal');
-});
+// Route::get('/worda', function () {
+//     return view('auto_proposal/auto_proposal');
+// });
+Route::get('worda', [WordController::class, 'display']);
 Route::post('worda', [WordController::class, 'index'])->name("worda.index");
+
 Route::get('/formPengajuanDosbing', function () {
     return view('/mahasiswa/formPengajuanDosbing');
 });

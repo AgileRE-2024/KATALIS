@@ -103,6 +103,34 @@
       cursor: text;
     }
 
+    table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-family: Arial, sans-serif;
+        }
+        
+    th, td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: left;
+    }
+    
+    th {
+        background-color: #f2f2f2;
+    }
+    
+    input {
+        width: 90%;
+        padding: 5px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+    }
+    
+    .readonly {
+        background-color: #f5f5f5;
+    }
+
 
     </style>
 
@@ -294,6 +322,39 @@
                                             <input type="text" class="form-control" id="notelp3" name="notelp3">
                                         </div>
                                     </div>
+
+                                    <div class="divider"></div>
+
+                                    <table>
+                                        <thead>
+                                            <tr>
+                                                <th>No</th>
+                                                <th>NIM</th>
+                                                <th>Nama</th>
+                                                <th>No. Telp</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>1</td>
+                                                <td><input type="text" placeholder="Enter NIM"></td>
+                                                <td class="readonly">John Doe</td>
+                                                <td class="readonly">081234567890</td>
+                                            </tr>
+                                            <tr>
+                                                <td>2</td>
+                                                <td><input type="text" placeholder="Enter NIM"></td>
+                                                <td class="readonly">Jane Smith</td>
+                                                <td class="readonly">081234567891</td>
+                                            </tr>
+                                            <tr>
+                                                <td>3</td>
+                                                <td><input type="text" placeholder="Enter NIM"></td>
+                                                <td class="readonly">Bob Johnson</td>
+                                                <td class="readonly">081234567892</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
 
 
 
