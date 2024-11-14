@@ -27,17 +27,10 @@
 
         <!-- Bimbingan -->
         <li class="nav-item">
-            <a class="nav-link" data-toggle="collapse" href="#konsuldosen" aria-expanded="false" aria-controls="konsul">
+            <a class="nav-link" data-toggle="collapse" href="#jadwalBimbinganDosen" >
                 <i class="ti-comments menu-icon"></i>
                 <span class="menu-title">Konsultasi Bimbingan</span>
-                <i class="menu-arrow"></i>
             </a>
-            <div class="collapse" id="konsuldosen">
-                <ul class="nav flex-column sub-menu">
-                    <li class="nav-item"> <a class="nav-link" href="jadwalBimbinganDosen">Jadwal Bimbingan</a></li>
-                    <li class="nav-item"> <a class="nav-link" href="kartuKendaliDosen">Kartu Kendali</a></li>
-                </ul>
-            </div>
         </li>
 
         <!-- Logbook -->

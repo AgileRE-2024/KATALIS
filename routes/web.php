@@ -10,6 +10,7 @@ use App\Http\Controllers\DashboardMahasiswaController;
 use App\Http\Controllers\JadwalKonsultasiController;
 use App\Http\Controllers\BimbinganController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\DosenController;
 
 
 
@@ -76,9 +77,10 @@ Route::get('/dashboardDosen', function () {
     return view('dosen/dashboardDosen');
 })->name('dashboardDosen');
 
-Route::get('/anakBimbing', function () {
-    return view('/dosen/anakBimbing');
-});
+
+Route::get('/anakBimbing', [DosenController::class, 'index']);
+
+
 
 Route::get('/tambahMahasiswa', function () {
     return view('tambahMahasiswa');

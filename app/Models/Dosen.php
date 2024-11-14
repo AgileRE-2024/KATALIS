@@ -26,4 +26,9 @@ class Dosen extends Authenticatable
     protected $hidden = [
         'password',
     ];
+
+    public function mahasiswaBimbingan()
+    {
+        return $this->hasMany(User::class);
+    }
 }

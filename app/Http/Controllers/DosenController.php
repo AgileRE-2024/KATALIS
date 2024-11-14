@@ -2,12 +2,33 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\Controller;
+
 use App\Models\Dosen;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
+use App\Models\User;
+
 
 class DosenController extends Controller
 {
+public function index()
+{
+    $dosen = auth()->user();
+    if(!$dosen){
+        return redirect()->route('loginfix');
+    }
+
+    $mahasiswaBimbingan = User::where('dosen_id', $dosen->id)
+        ->with(['logbooks',  'seminar'])->get();
+
+    \Log::info($mahasiswaBimbingan);
+
+    return view('dosen.anakBimbing', compact('mahasiswaBimbingan'));
+}
+
+
     // Menyimpan data dosen baru
     public function store(Request $request)
     {
@@ -37,5 +58,12 @@ class DosenController extends Controller
         return response()->json(['message' => 'Data dosen berhasil ditambahkan!'], 201);
     }
 
-    // Metode lain (misalnya, untuk mengambil data dosen) dapat ditambahkan di sini
+    public function show($id)
+    {
+        // Ambil data dosen beserta relasi users
+        $dosen = Dosen::with('users')->findOrFail($id);
+
+        // Kirim data ke view
+        return view('dosen.profile', compact('dosen'));
+    }
 }

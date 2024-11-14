@@ -25,58 +25,13 @@
                   <tr>
                     <th>Nama Mahasiswa</th>
                     <th>NIM</th>
-                    <th>Tanggal Bimbingan</th>
-                    <th>Waktu Bimbingan</th>
-                    <th>Aksi</th>
+                    <th>Tanggal Konsultasi</th>
+                    <th>Waktu Konsultasi</th>
+                    <th>Topik</th>
+                    <th>Hasil Bimbingan</th>
+                    <th>Dokumentasi Bimbingan</th>
                   </tr>
                 </thead>
-                <tbody id="jadwalTableBody">
-                  <tr>
-                    <td>Alice Johnson</td>
-                    <td>12345678</td>
-                    <td>2024-10-15</td>
-                    <td>10:00 - 11:00</td>
-                    <td>
-                      <button class="btn btn-success btn-sm" onclick="toggleStatus(0)">Sudah</button>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>David Brown</td>
-                    <td>23456789</td>
-                    <td>2024-10-16</td>
-                    <td>11:00 - 12:00</td>
-                    <td>
-                      <button class="btn btn-warning btn-sm" onclick="toggleStatus(1)">Belum</button>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>Emily White</td>
-                    <td>34567890</td>
-                    <td>2024-10-17</td>
-                    <td>09:00 - 10:00</td>
-                    <td>
-                      <button class="btn btn-success btn-sm" onclick="toggleStatus(2)">Sudah</button>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>Frank Green</td>
-                    <td>45678901</td>
-                    <td>2024-10-18</td>
-                    <td>13:00 - 14:00</td>
-                    <td>
-                      <button class="btn btn-warning btn-sm" onclick="toggleStatus(3)">Belum</button>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>Grace Lee</td>
-                    <td>56789012</td>
-                    <td>2024-10-19</td>
-                    <td>14:00 - 15:00</td>
-                    <td>
-                      <button class="btn btn-success btn-sm" onclick="toggleStatus(4)">Sudah</button>
-                    </td>
-                  </tr>
-                </tbody>
               </table>
             </div>
           </div>

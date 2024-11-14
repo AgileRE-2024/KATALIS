@@ -36,5 +36,17 @@ class User extends Authenticatable
     {
         return $this->hasMany(Logbook::class);
     }
+
+
+    // Relasi dengan Seminar
+    public function seminar()
+    {
+        return $this->hasMany(SeminarApplication::class);
+    }
+
+    public function dosen()
+    {
+        return $this->belongsTo(Dosen::class);
+    }
 }
 
