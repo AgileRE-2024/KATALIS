@@ -35,7 +35,6 @@ Route::get('/', function () {
 
 Route::get('/dashboard', [DashboardMahasiswaController::class, 'index'])->name('dashboard')->middleware('auth');
 
-
 // Route::get('/worda', function () {
 //     return view('auto_proposal/auto_proposal');
 // });
@@ -78,8 +77,9 @@ Route::get('/dashboardDosen', function () {
 })->name('dashboardDosen');
 
 
-Route::get('/anakBimbing', [DosenController::class, 'index']);
-
+Route::get('/anakBimbing', [DosenController::class, 'index'])->name("anakBimbing");
+Route::get('/detilLogbook/{user_id}', [LogbookController::class, 'dosen'])->name('detilLogbook');
+Route::get('/detilBimbingan/{user_id}', [JadwalKonsultasiController::class, 'dosen'])->name('detilBimbingan');
 
 
 Route::get('/tambahMahasiswa', function () {

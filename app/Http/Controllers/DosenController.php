@@ -21,7 +21,7 @@ public function index()
     }
 
     $mahasiswaBimbingan = User::where('dosen_id', $dosen->id)
-        ->with(['logbooks',  'seminar'])->get();
+        ->with(['logbooks', 'jadwalKonsultasi' ,'seminar'])->get();
 
     \Log::info($mahasiswaBimbingan);
 

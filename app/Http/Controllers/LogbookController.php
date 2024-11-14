@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Logbook;
+use App\Models\User;
+
 use Illuminate\Support\Facades\Auth;
 
 
@@ -21,6 +23,30 @@ class LogbookController extends Controller
         $logbooks = $user->logbooks; 
         return view('/mahasiswa/logbook', compact('logbooks')); // Kirim data ke view
     }
+    
+    public function dosen($user_id)
+    {
+        // Ambil dosen yang sedang login
+        $dosen_id = Auth::user()->id;
+
+        // Periksa apakah dosen yang sedang login membimbing mahasiswa dengan user_id tersebut
+        $mahasiswa = User::findOrFail($user_id);
+
+        // Validasi: jika dosen yang login bukan pembimbing mahasiswa ini, arahkan kembali
+        if ($mahasiswa->dosen_id != $dosen_id) {
+            // Mengarahkan dosen ke halaman lain jika tidak sesuai
+            return redirect()->route('anakBimbing')->with('error', 'Anda tidak berhak mengakses logbook mahasiswa ini.');
+        }
+
+        // Ambil data logbook berdasarkan user_id yang diteruskan dalam URL
+        $logbooks = Logbook::where('user_id', $user_id)->get();
+
+        // Kirim data logbooks ke tampilan
+        return view('dosen.detilLogbook', compact('logbooks'));
+    }
+
+
+
 
     public function store(Request $request)
     {

@@ -25,6 +25,7 @@
                                         <th>NIM</th>
                                         <th>Detail PKL</th>
                                         <th>Histori Logbook</th>
+                                        <th>Histori Bimbingan</th>
                                         <th>Laporan</th>
                                         <th>Informasi Seminar</th>
                                     </tr>
@@ -35,8 +36,25 @@
                                             <td>{{ $mahasiswa->name }}</td>
                                             <td>{{ $mahasiswa->nim }}</td>
                                             <td>Detail PKL</td>
-                                            <td>{{ $mahasiswa->logbooks->first()->judul_logbook ?? 'Belum ada logbook' }}</td>
-                                            <td>{{ $mahasiswa->logbooks->first()->judul_logbook ?? 'Belum ada logbook' }}</td>
+                                            <td>
+                                                @if($mahasiswa->logbooks->isNotEmpty())
+                                                    <a href="{{ route('detilLogbook', $mahasiswa->logbooks->first()->user_id) }}">
+                                                        click here
+                                                    </a>
+                                                @else
+                                                    Belum ada logbook
+                                                @endif
+                                            </td>
+                                            <td>
+                                                @if($mahasiswa->jadwalKonsultasi->isNotEmpty())
+                                                    <a href="{{ route('detilBimbingan', $mahasiswa->jadwalKonsultasi->first()->user_id) }}">
+                                                        click here
+                                                    </a>
+                                                @else
+                                                    Belum ada Kartu Kendali
+                                                @endif
+                                            </td>
+                                            <td>{{ $mahasiswa->logbooks->first()->judul_logbook ?? 'Belum ada Laporan' }}</td>
                                             <td>{{ $mahasiswa->seminar->first()->tanggal_seminar ?? 'Belum ada informasi seminar' }}</td>
                                         </tr>
                                     @endforeach

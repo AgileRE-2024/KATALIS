@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\JadwalKonsultasi;
 use Illuminate\Support\Facades\Auth;
+use App\Models\User;
 
 class JadwalKonsultasiController extends Controller
 {
@@ -19,6 +20,27 @@ class JadwalKonsultasiController extends Controller
         $user = Auth::user();
         $jadwal_konsultasis = $user->jadwalKonsultasi;
         return view('mahasiswa/jadwalBimbingan', compact('jadwal_konsultasis'));
+    }
+
+    public function dosen($user_id)
+    {
+        // Ambil dosen yang sedang login
+        $dosen_id = Auth::user()->id;
+
+        // Periksa apakah dosen yang sedang login membimbing mahasiswa dengan user_id tersebut
+        $mahasiswa = User::findOrFail($user_id);
+
+        // Validasi: jika dosen yang login bukan pembimbing mahasiswa ini, arahkan kembali
+        if ($mahasiswa->dosen_id != $dosen_id) {
+            // Mengarahkan dosen ke halaman lain jika tidak sesuai
+            return redirect()->route('anakBimbing')->with('error', 'Anda tidak berhak mengakses logbook mahasiswa ini.');
+        }
+
+        // Ambil data logbook berdasarkan user_id yang diteruskan dalam URL
+        $jadwal_konsultasis = JadwalKonsultasi::where('user_id', $user_id)->get();
+
+        // Kirim data logbooks ke tampilan
+        return view('dosen.detilBimbingan', compact('jadwal_konsultasis'));
     }
 
     public function store(Request $request)
