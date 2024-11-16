@@ -11,6 +11,7 @@ use App\Http\Controllers\JadwalKonsultasiController;
 use App\Http\Controllers\BimbinganController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\DosenController;
+use App\Http\Controllers\UserController;
 
 
 
@@ -97,6 +98,8 @@ Route::get('/jadwalBimbinganDosen', [JadwalKonsultasiController::class, 'index1'
 
 Route::post('/jadwalBimbinganDosen/{id}/update-status', [JadwalKonsultasiController::class, 'updateStatus'])->name('jadwal.updateStatus');
 
+Route::get('/get-user', [UserController::class, 'getUser'])->name('getUser');
+
 
 Route::get('/tambahbimbing', function () {
     return view('tambahbimbing');
@@ -162,8 +165,8 @@ Route::get('/loginfix', [LoginController::class, 'showLoginForm'])->name('loginf
 Route::get('/register', [RegisterController::class, 'showRegistrationForm'])->name('register');
 Route::post('/registeruser', [RegisterController::class, 'registeruser'])->name('registeruser');
 Route::post('/logout', function () {
-Auth::logout(); // Log the user out
-    return redirect('/loginfix'); // Redirect to the login page
+Auth::logout(); 
+    return redirect('/loginfix');
 })->name('logout');
 
 

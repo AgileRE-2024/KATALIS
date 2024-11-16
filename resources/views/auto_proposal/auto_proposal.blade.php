@@ -165,12 +165,8 @@
                                         @csrf
 
                                         <div class="student-details">
-
                                             <!-- Kolom Pertama -->
                                             <div class="column">
-
-                                            
-
                                                 <div class="form-group">
                                                     <label for="prodi" class="form-label">Prodi:</label>
                                                     <input type="text" id="prodi" class="form-field" name="prodi" contenteditable="false"></input>
@@ -200,9 +196,6 @@
                                                     <label for="dosbing" class="form-label">dosbing:</label>
                                                     <input id="dosbing" name="dosbing" class="form-field" contenteditable="false"></input>
                                                 </div>
-                                                
-                                            
-
                                             </div>
 
                                             <!-- Kolom Kedua -->
@@ -243,21 +236,7 @@
                                                     });
                                                     });
                                                 </script>
-
-
-
-
-
-
-
-
-
                                             </div>
-
-
-
-
-
                                         </div>
 
                                         <div class="form-group">
@@ -337,47 +316,86 @@
                                         <tbody>
                                             <tr>
                                                 <td>1</td>
-                                                <td><input type="text" placeholder="Enter NIM"></td>
-                                                <td class="readonly">John Doe</td>
-                                                <td class="readonly">081234567890</td>
+                                                <td>
+                                                    <input type="text" id="nim" name="nim" placeholder="Masukkan NIM">
+                                                </td>
+                                                <td>
+                                                    <input type="text" id="name" name="name" placeholder="Nama" readonly>
+                                                </td>
+                                                <td>
+                                                    <input type="text" id="no_hp" name="no_hp" placeholder="Nomor HP" readonly>
+                                                </td>
                                             </tr>
                                             <tr>
                                                 <td>2</td>
-                                                <td><input type="text" placeholder="Enter NIM"></td>
-                                                <td class="readonly">Jane Smith</td>
-                                                <td class="readonly">081234567891</td>
+                                                <td>
+                                                    <input type="text" id="nim" name="nim" placeholder="Masukkan NIM">
+                                                </td>
+                                                <td>
+                                                    <input type="text" id="name" name="name" placeholder="Nama" readonly>
+                                                </td>
+                                                <td>
+                                                    <input type="text" id="no_hp" name="no_hp" placeholder="Nomor HP" readonly>
+                                                </td>
                                             </tr>
                                             <tr>
                                                 <td>3</td>
-                                                <td><input type="text" placeholder="Enter NIM"></td>
-                                                <td class="readonly">Bob Johnson</td>
-                                                <td class="readonly">081234567892</td>
+                                                <td>
+                                                    <input type="text" id="nim" name="nim" placeholder="Masukkan NIM">
+                                                </td>
+                                                <td>
+                                                    <input type="text" id="name" name="name" placeholder="Nama" readonly>
+                                                </td>
+                                                <td>
+                                                    <input type="text" id="no_hp" name="no_hp" placeholder="Nomor HP" readonly>
+                                                </td>
                                             </tr>
                                         </tbody>
                                     </table>
-
-
-
                                     </form>
-
-                                    
-
-
-
-
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div>
-                            
-                        
+                <div>           
             </div>
             <!-- main-panel ends -->
         </div>
         <!-- page-body-wrapper ends -->
     </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <script>
+        document.querySelector('table tbody').addEventListener('keydown', function(event) {
+            if (event.target.matches('[name="nim"]') && event.key === 'Enter') {
+                const row = event.target.closest('tr');
+                const nim = event.target.value;
+
+                // Menonaktifkan event default untuk Enter (misalnya menghindari form submit)
+                event.preventDefault();
+
+                fetch(`/get-user?nim=${nim}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            row.querySelector('[name="name"]').value = data.data.name || '';
+                            row.querySelector('[name="no_hp"]').value = data.data.no_hp || '';
+                        } else {
+                            alert('Data tidak ditemukan');
+                            row.querySelector('[name="name"]').value = '';
+                            row.querySelector('[name="no_hp"]').value = '';
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                        alert('Terjadi kesalahan saat mengambil data.');
+                    });
+            }
+        });
+    </script>
+
 
 </body>
 
@@ -424,3 +442,4 @@ formGroup.appendChild(autofillButton);
 // Automatically fill the form when the page loads
 document.addEventListener('DOMContentLoaded', autofillForm);
 </script>
+
