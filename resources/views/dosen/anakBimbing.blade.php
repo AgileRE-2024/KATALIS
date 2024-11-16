@@ -27,7 +27,8 @@
                                         <th>Histori Logbook</th>
                                         <th>Histori Bimbingan</th>
                                         <th>Laporan</th>
-                                        <th>Informasi Seminar</th>
+                                        <th>Jadwal Seminar</th>
+                                        <th>Nilai</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -42,7 +43,7 @@
                                                         click here
                                                     </a>
                                                 @else
-                                                    Belum ada logbook
+                                                    -
                                                 @endif
                                             </td>
                                             <td>
@@ -51,11 +52,20 @@
                                                         click here
                                                     </a>
                                                 @else
-                                                    Belum ada Kartu Kendali
+                                                    -
                                                 @endif
                                             </td>
-                                            <td>{{ $mahasiswa->logbooks->first()->judul_logbook ?? 'Belum ada Laporan' }}</td>
-                                            <td>{{ $mahasiswa->seminar->first()->tanggal_seminar ?? 'Belum ada informasi seminar' }}</td>
+                                            <td>
+                                                @if ($mahasiswa->seminar->first()?->laporan_pkl)
+                                                    <a href="{{ asset('storage/' . $mahasiswa->seminar->first()->laporan_pkl) }}" target="_blank">
+                                                        Lihat Laporan
+                                                    </a>
+                                                @else
+                                                    -
+                                                @endif
+                                            </td>
+                                            <td>{{ $mahasiswa->seminar->first()->tanggal_seminar ?? '-' }}</td>
+                                            <td>Input Nilai</td>
                                         </tr>
                                     @endforeach
 

@@ -90,9 +90,13 @@ Route::get('/dosenprofil', function () {
     return view('/dosen/dosenprofil');
 });
 
-Route::get('/jadwalBimbinganDosen', function () {
-    return view('/dosen/jadwalBimbinganDosen');
-});
+// Route::get('/jadwalBimbinganDosen', function () {
+//     return view('/dosen/jadwalBimbinganDosen');
+// });
+Route::get('/jadwalBimbinganDosen', [JadwalKonsultasiController::class, 'index1'])->name('jadwal.bimbingan');
+
+Route::post('/jadwalBimbinganDosen/{id}/update-status', [JadwalKonsultasiController::class, 'updateStatus'])->name('jadwal.updateStatus');
+
 
 Route::get('/tambahbimbing', function () {
     return view('tambahbimbing');

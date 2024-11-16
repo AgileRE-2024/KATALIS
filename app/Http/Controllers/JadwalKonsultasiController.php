@@ -22,6 +22,15 @@ class JadwalKonsultasiController extends Controller
         return view('mahasiswa/jadwalBimbingan', compact('jadwal_konsultasis'));
     }
 
+    public function index1()
+    {
+        // Ambil data jadwal bimbingan dengan nama mahasiswa
+        $jadwals = JadwalKonsultasi::with('user')->get();
+
+        // Kirim ke view
+        return view('dosen.jadwalBimbinganDosen', compact('jadwals'));
+    }
+
     public function dosen($user_id)
     {
         // Ambil dosen yang sedang login
@@ -61,6 +70,7 @@ class JadwalKonsultasiController extends Controller
             'tanggal_konsultasi' => $request->tanggal_konsultasi,
             'waktu_konsultasi' => $request->waktu_konsultasi,
             'topik' => $request->topik,
+            'status' => JadwalKonsultasi::STATUS_MENUNGGU,
         ]);
 
         return redirect()->back()->with('success', 'Jadwal konsultasi berhasil ditambahkan.');
@@ -97,4 +107,24 @@ class JadwalKonsultasiController extends Controller
 
         return redirect()->back()->with('success', 'Dokumentasi Bimbingan berhasil diunggah');
     }
+
+    public function updateStatus(Request $request, $id)
+    {
+        $request->validate([
+            'status' => 'required|string|in:Disetujui,Menunggu Persetujuan,Ditolak',
+        ]);
+
+        $jadwal = JadwalKonsultasi::findOrFail($id);
+
+        // Validasi apakah dosen yang login adalah pembimbing mahasiswa ini
+        if ($jadwal->user->dosen_id != Auth::id()) {
+            return redirect()->back()->with('error', 'Anda tidak memiliki akses untuk mengubah status jadwal ini.');
+        }
+
+        $jadwal->status = $request->status;
+        $jadwal->save();
+
+        return redirect()->back()->with('success', 'Status jadwal berhasil diperbarui.');
+    }
+
 }

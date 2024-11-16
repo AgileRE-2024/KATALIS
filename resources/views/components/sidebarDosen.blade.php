@@ -27,25 +27,9 @@
 
         <!-- Bimbingan -->
         <li class="nav-item">
-            <a class="nav-link" data-toggle="collapse" href="#jadwalBimbinganDosen" >
+            <a class="nav-link" href="/jadwalBimbinganDosen" >
                 <i class="ti-comments menu-icon"></i>
                 <span class="menu-title">Konsultasi Bimbingan</span>
-            </a>
-        </li>
-
-        <!-- Logbook -->
-        <li class="nav-item">
-            <a class="nav-link" href="/logbookDosen">
-                <i class="ti-file menu-icon"></i>
-                <span class="menu-title">Logbook</span>
-            </a>
-        </li>
-
-        <!-- Laporan -->
-        <li class="nav-item">
-            <a class="nav-link" href="/laporanDosen">
-                <i class="ti-clipboard menu-icon"></i>
-                <span class="menu-title">Laporan</span>
             </a>
         </li>
 

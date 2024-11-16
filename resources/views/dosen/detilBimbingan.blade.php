@@ -26,7 +26,6 @@
                                         <th>Tanggal Konsultasi</th>
                                         <th>Waktu Konsultasi</th>
                                         <th>Topik</th>
-                                        <th>Status</th>
                                         <th>Hasil Bimbingan</th>
                                         <th>Dokumentasi Bimbingan</th>
                                     </tr>
@@ -38,9 +37,6 @@
                                             <td>{{ $jadwal->tanggal_konsultasi }}</td>
                                             <td>{{ $jadwal->waktu_konsultasi }}</td>
                                             <td>{{ $jadwal->topik }}</td>
-                                            <td><span
-                                                    class="badge badge-{{ $jadwal->status == 'Disetujui' ? 'success' : ($jadwal->status == 'Menunggu Persetujuan' ? 'warning' : 'danger') }}">{{ $jadwal->status }}</span>
-                                            </td>
                                             <td>
                                                 @if ($jadwal->hasil_bimbingan)
                                                     <img src="{{ asset('storage/' . $jadwal->hasil_bimbingan) }}"
