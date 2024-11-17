@@ -31,13 +31,27 @@
                 <p style="margin-top:0pt; margin-bottom:0pt; text-align:center; font-size:12pt;"><span style="font-family:'Times New Roman';">1.</span></p>
             </td>
             <td style="width:101.7pt; border-top-style:solid; border-top-width:0.75pt; border-right-style:solid; border-right-width:0.75pt; border-left-style:solid; border-left-width:0.75pt; padding-right:5.03pt; padding-left:5.03pt; vertical-align:middle;">
-                <p style="margin-top:0pt; margin-bottom:0pt; text-align:center; font-size:12pt;"><span style="font-family:'Times New Roman';">${nim}</span></p>
+                <p style="margin-top:0pt; margin-bottom:0pt; text-align:center; font-size:12pt;"><span style="font-family:'Times New Roman';">{{ $formData['nim']}}</span></p>
             </td>
             <td style="width:245.7pt; border-top-style:solid; border-top-width:0.75pt; border-right-style:solid; border-right-width:0.75pt; border-left-style:solid; border-left-width:0.75pt; padding-right:5.03pt; padding-left:5.03pt; vertical-align:middle;">
-                <p style="margin-top:0pt; margin-bottom:0pt; text-align:justify; font-size:12pt;"><span style="font-family:'Times New Roman';">${nama}</span></p>
+                <p style="margin-top:0pt; margin-bottom:0pt; text-align:justify; font-size:12pt;"><span style="font-family:'Times New Roman';">{{ $formData['name']}}</span></p>
             </td>
             <td style="width:92.7pt; border-top-style:solid; border-top-width:0.75pt; border-left-style:solid; border-left-width:0.75pt; padding-right:5.03pt; padding-left:5.03pt; vertical-align:middle;">
-                <p style="margin-top:0pt; margin-bottom:0pt; text-align:center; font-size:12pt;"><span style="font-family:'Times New Roman';">${notelp}</span></p>
+                <p style="margin-top:0pt; margin-bottom:0pt; text-align:center; font-size:12pt;"><span style="font-family:'Times New Roman';">{{ $formData['no_hp']}}</span></p>
+            </td>
+        </tr>
+        <tr style="height:20.4pt;">
+            <td style="width:20.7pt; border-top-style:solid; border-top-width:0.75pt; border-right-style:solid; border-right-width:0.75pt; padding-right:5.03pt; padding-left:5.03pt; vertical-align:middle;">
+                <p style="margin-top:0pt; margin-bottom:0pt; text-align:center; font-size:12pt;"><span style="font-family:'Times New Roman';">2.</span></p>
+            </td>
+            <td style="width:101.7pt; border-top-style:solid; border-top-width:0.75pt; border-right-style:solid; border-right-width:0.75pt; border-left-style:solid; border-left-width:0.75pt; padding-right:5.03pt; padding-left:5.03pt; vertical-align:middle;">
+                <p style="margin-top:0pt; margin-bottom:0pt; text-align:center; font-size:12pt;"><span style="font-family:'Times New Roman';">{{ $formData['nim2']}}</span></p>
+            </td>
+            <td style="width:245.7pt; border-top-style:solid; border-top-width:0.75pt; border-right-style:solid; border-right-width:0.75pt; border-left-style:solid; border-left-width:0.75pt; padding-right:5.03pt; padding-left:5.03pt; vertical-align:middle;">
+                <p style="margin-top:0pt; margin-bottom:0pt; text-align:justify; font-size:12pt;"><span style="font-family:'Times New Roman';">{{ $formData['name2']}}</span></p>
+            </td>
+            <td style="width:92.7pt; border-top-style:solid; border-top-width:0.75pt; border-left-style:solid; border-left-width:0.75pt; padding-right:5.03pt; padding-left:5.03pt; vertical-align:middle;">
+                <p style="margin-top:0pt; margin-bottom:0pt; text-align:center; font-size:12pt;"><span style="font-family:'Times New Roman';">{{ $formData['no_hp2']}}</span></p>
             </td>
         </tr>
     </tbody>
@@ -76,7 +90,7 @@
                 <p style="margin-top:0pt; margin-bottom:0pt; font-size:12pt;"><span style="font-family:'Times New Roman';">Surat ditujukan kepada</span></p>
             </td>
             <td style="width:317.7pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top;">
-                <p style="margin-top:0pt; margin-bottom:0pt; font-size:12pt;"><span style="font-family:'Times New Roman';">: ${surat_ditujukan_kepada}</span></p>
+                <p style="margin-top:0pt; margin-bottom:0pt; font-size:12pt;"><span style="font-family:'Times New Roman';">: {{ $formData['surat_ditujukan_kepada']}}</span></p>
             </td>
         </tr>
         <tr>
@@ -84,7 +98,7 @@
                 <p style="margin-top:0pt; margin-bottom:0pt; font-size:12pt;"><span style="font-family:'Times New Roman';">Nama Lembaga</span></p>
             </td>
             <td style="width:317.7pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top;">
-                <p style="margin-top:0pt; margin-bottom:0pt; font-size:12pt;"><span style="font-family:'Times New Roman';">: ${nama_lembaga}</span></p>
+                <p style="margin-top:0pt; margin-bottom:0pt; font-size:12pt;"><span style="font-family:'Times New Roman';">: {{ $formData['nama_lembaga']}}</span></p>
             </td>
         </tr>
         <tr>
@@ -92,7 +106,7 @@
                 <p style="margin-top:0pt; margin-bottom:0pt; font-size:12pt;"><span style="font-family:'Times New Roman';">Alamat</span></p>
             </td>
             <td style="width:317.7pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top;">
-                <p style="margin-top:0pt; margin-bottom:0pt; font-size:12pt;"><span style="font-family:'Times New Roman';">: ${alamat}</span></p>
+                <p style="margin-top:0pt; margin-bottom:0pt; font-size:12pt;"><span style="font-family:'Times New Roman';">: {{ $formData['alamat']}}</span></p>
             </td>
         </tr>
         <tr>
@@ -108,7 +122,7 @@
                 <p style="margin-top:0pt; margin-bottom:0pt; font-size:12pt;"><span style="font-family:'Times New Roman';">Keperluan/bantuan fasilitas</span></p>
             </td>
             <td style="width:317.7pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top;">
-                <p style="margin-top:0pt; margin-bottom:0pt; font-size:12pt;"><span style="font-family:'Times New Roman';">: ${keperluan}</span></p>
+                <p style="margin-top:0pt; margin-bottom:0pt; font-size:12pt;"><span style="font-family:'Times New Roman';">: {{ $formData['keperluan']}}</span></p>
             </td>
         </tr>
         <tr>
@@ -124,7 +138,7 @@
                 <p style="margin-top:0pt; margin-bottom:0pt; font-size:12pt;"><span style="font-family:'Times New Roman';">Tembusan (bila perlu)</span></p>
             </td>
             <td style="width:317.7pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top;">
-                <p style="margin-top:0pt; margin-bottom:0pt; font-size:12pt;"><span style="font-family:'Times New Roman';">: ${tembusan}</span></p>
+                <p style="margin-top:0pt; margin-bottom:0pt; font-size:12pt;"><span style="font-family:'Times New Roman';">: {{ $formData['tembusan']}}</span></p>
             </td>
         </tr>
     </tbody>
@@ -143,15 +157,15 @@
     <tbody>
         <tr>
             <td style="width:173.45pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top;">
-                <p style="margin-top:0pt; margin-bottom:0pt; font-size:12pt;"><span style="font-family:'Times New Roman';">Ko. Prodi, ${ko_prodi}</span></p>
+                <p style="margin-top:0pt; margin-bottom:0pt; font-size:12pt;"><span style="font-family:'Times New Roman';">Ko. Prodi, {{ $formData['ko_prodi']}}</span></p>
             </td>
             <td style="width:164.7pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top;">
                 <p style="margin-top:0pt; margin-bottom:0pt; font-size:12pt;"><span style="font-family:'Times New Roman';">Dosen Pembimbing,</span></p>
-                <p style="margin-top:0pt; margin-bottom:0pt; font-size:12pt;"><span style="font-family:'Times New Roman';">${dosbing}</span></p>
+                <p style="margin-top:0pt; margin-bottom:0pt; font-size:12pt;"><span style="font-family:'Times New Roman';">{{ $formData['dosbing']}}</span></p>
             </td>
             <td style="width:151.2pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top;">
                 <p style="margin-top:0pt; margin-bottom:0pt; font-size:12pt;"><span style="font-family:'Times New Roman';">Mahasiswa Yg Bersangkutan,</span></p>
-                <p style="margin-top:0pt; margin-bottom:0pt; font-size:12pt;"><span style="font-family:'Times New Roman';">${nama}</span></p>
+                <p style="margin-top:0pt; margin-bottom:0pt; font-size:12pt;"><span style="font-family:'Times New Roman';">{{ $formData['name']}}</span></p>
             </td>
         </tr>
         <tr>
@@ -176,13 +190,13 @@
         </tr>
         <tr>
             <td style="width:173.45pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top;">
-                <p style="margin-top:0pt; margin-bottom:0pt; text-align:justify; font-size:12pt;"><span style="font-family:'Times New Roman';">NIP: ${nip_koprodi}</span></p>
+                <p style="margin-top:0pt; margin-bottom:0pt; text-align:justify; font-size:12pt;"><span style="font-family:'Times New Roman';">NIP: {{ $formData['nip_koprodi']}}</span></p>
             </td>
             <td style="width:164.7pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top;">
-                <p style="margin-top:0pt; margin-bottom:0pt; text-align:justify; font-size:12pt;"><span style="font-family:'Times New Roman';">NIP: ${nip_dosbing}</span></p>
+                <p style="margin-top:0pt; margin-bottom:0pt; text-align:justify; font-size:12pt;"><span style="font-family:'Times New Roman';">NIP: {{ $formData['nip_dosbing']}}</span></p>
             </td>
             <td style="width:151.2pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top;">
-                <p style="margin-top:0pt; margin-bottom:0pt; text-align:justify; font-size:12pt;"><span style="font-family:'Times New Roman';">NIM: ${nim}</span></p>
+                <p style="margin-top:0pt; margin-bottom:0pt; text-align:justify; font-size:12pt;"><span style="font-family:'Times New Roman';">NIM: {{ $formData['nim']}}</span></p>
             </td>
         </tr>
     </tbody>

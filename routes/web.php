@@ -42,6 +42,9 @@ Route::get('/dashboard', [DashboardMahasiswaController::class, 'index'])->name('
 Route::post('/store-form', [WordController::class, 'store'])->name("store.form");
 Route::get('/wordb', [WordController::class, 'index'])->name('wordb');
 Route::get('/worda', [WordController::class, 'display']);
+Route::get('/wordb/view/pdf', [WordController::class, 'view_pdf'])->name("wordb/view/pdf");
+Route::get('/wordb/download/pdf', [WordController::class, 'download_pdf'])->name("wordb/download/pdf");
+
 
 
 
