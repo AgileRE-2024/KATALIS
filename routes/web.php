@@ -39,8 +39,11 @@ Route::get('/dashboard', [DashboardMahasiswaController::class, 'index'])->name('
 // Route::get('/worda', function () {
 //     return view('auto_proposal/auto_proposal');
 // });
-Route::get('worda', [WordController::class, 'display']);
-Route::post('worda', [WordController::class, 'index'])->name("worda.index");
+Route::post('/store-form', [WordController::class, 'store'])->name("store.form");
+Route::get('/wordb', [WordController::class, 'index'])->name('wordb');
+Route::get('/worda', [WordController::class, 'display']);
+
+
 
 Route::get('/formPengajuanDosbing', function () {
     return view('/mahasiswa/formPengajuanDosbing');

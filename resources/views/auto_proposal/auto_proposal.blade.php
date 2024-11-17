@@ -161,7 +161,7 @@
                                     
                                     <h4 class="card-title">Pengajuan Surat (dobel klik to change) </h4>
 
-                                    <form class ="forms-sample" action="{{route('worda.index')}}" method="POST">
+                                    <form class ="forms-sample" action="{{route('store.form')}}" method="POST">
                                         @csrf
 
                                         <div class="student-details">
