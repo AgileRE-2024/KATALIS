@@ -26,34 +26,32 @@
                 <p style="margin-top:0pt; margin-bottom:0pt; text-align:center; font-size:12pt;"><strong><span style="font-family:'Times New Roman';">Nomor Telpon</strong></p>
             </td>
         </tr>
-        <tr style="height:20.4pt;">
-            <td style="width:20.7pt; border-top-style:solid; border-top-width:0.75pt; border-right-style:solid; border-right-width:0.75pt; padding-right:5.03pt; padding-left:5.03pt; vertical-align:middle;">
-                <p style="margin-top:0pt; margin-bottom:0pt; text-align:center; font-size:12pt;"><span style="font-family:'Times New Roman';">1.</span></p>
-            </td>
-            <td style="width:101.7pt; border-top-style:solid; border-top-width:0.75pt; border-right-style:solid; border-right-width:0.75pt; border-left-style:solid; border-left-width:0.75pt; padding-right:5.03pt; padding-left:5.03pt; vertical-align:middle;">
-                <p style="margin-top:0pt; margin-bottom:0pt; text-align:center; font-size:12pt;"><span style="font-family:'Times New Roman';">{{ $formData['nim']}}</span></p>
-            </td>
-            <td style="width:245.7pt; border-top-style:solid; border-top-width:0.75pt; border-right-style:solid; border-right-width:0.75pt; border-left-style:solid; border-left-width:0.75pt; padding-right:5.03pt; padding-left:5.03pt; vertical-align:middle;">
-                <p style="margin-top:0pt; margin-bottom:0pt; text-align:justify; font-size:12pt;"><span style="font-family:'Times New Roman';">{{ $formData['name']}}</span></p>
-            </td>
-            <td style="width:92.7pt; border-top-style:solid; border-top-width:0.75pt; border-left-style:solid; border-left-width:0.75pt; padding-right:5.03pt; padding-left:5.03pt; vertical-align:middle;">
-                <p style="margin-top:0pt; margin-bottom:0pt; text-align:center; font-size:12pt;"><span style="font-family:'Times New Roman';">{{ $formData['no_hp']}}</span></p>
-            </td>
-        </tr>
-        <tr style="height:20.4pt;">
-            <td style="width:20.7pt; border-top-style:solid; border-top-width:0.75pt; border-right-style:solid; border-right-width:0.75pt; padding-right:5.03pt; padding-left:5.03pt; vertical-align:middle;">
-                <p style="margin-top:0pt; margin-bottom:0pt; text-align:center; font-size:12pt;"><span style="font-family:'Times New Roman';">2.</span></p>
-            </td>
-            <td style="width:101.7pt; border-top-style:solid; border-top-width:0.75pt; border-right-style:solid; border-right-width:0.75pt; border-left-style:solid; border-left-width:0.75pt; padding-right:5.03pt; padding-left:5.03pt; vertical-align:middle;">
-                <p style="margin-top:0pt; margin-bottom:0pt; text-align:center; font-size:12pt;"><span style="font-family:'Times New Roman';">{{ $formData['nim2']}}</span></p>
-            </td>
-            <td style="width:245.7pt; border-top-style:solid; border-top-width:0.75pt; border-right-style:solid; border-right-width:0.75pt; border-left-style:solid; border-left-width:0.75pt; padding-right:5.03pt; padding-left:5.03pt; vertical-align:middle;">
-                <p style="margin-top:0pt; margin-bottom:0pt; text-align:justify; font-size:12pt;"><span style="font-family:'Times New Roman';">{{ $formData['name2']}}</span></p>
-            </td>
-            <td style="width:92.7pt; border-top-style:solid; border-top-width:0.75pt; border-left-style:solid; border-left-width:0.75pt; padding-right:5.03pt; padding-left:5.03pt; vertical-align:middle;">
-                <p style="margin-top:0pt; margin-bottom:0pt; text-align:center; font-size:12pt;"><span style="font-family:'Times New Roman';">{{ $formData['no_hp2']}}</span></p>
-            </td>
-        </tr>
+
+        @for ($i = 0; $i < $formData['rowCount']; $i++)
+            <tr style="height:20.4pt;">
+                <td style="width:20.7pt; border-top-style:solid; border-top-width:0.75pt; border-right-style:solid; border-right-width:0.75pt; padding-right:5.03pt; padding-left:5.03pt; vertical-align:middle;">
+                    <p style="margin-top:0pt; margin-bottom:0pt; text-align:center; font-size:12pt;">
+                        <span style="font-family:'Times New Roman';">{{ $i + 1 }}.</span>
+                    </p>
+                </td>
+                <td style="width:101.7pt; border-top-style:solid; border-top-width:0.75pt; border-right-style:solid; border-right-width:0.75pt; border-left-style:solid; border-left-width:0.75pt; padding-right:5.03pt; padding-left:5.03pt; vertical-align:middle;">
+                    <p style="margin-top:0pt; margin-bottom:0pt; text-align:center; font-size:12pt;">
+                        <span style="font-family:'Times New Roman';">{{ $formData['nim'.($i > 0 ? ($i+1) : '')] }}</span>
+                    </p>
+                </td>
+                <td style="width:245.7pt; border-top-style:solid; border-top-width:0.75pt; border-right-style:solid; border-right-width:0.75pt; border-left-style:solid; border-left-width:0.75pt; padding-right:5.03pt; padding-left:5.03pt; vertical-align:middle;">
+                    <p style="margin-top:0pt; margin-bottom:0pt; text-align:justify; font-size:12pt;">
+                        <span style="font-family:'Times New Roman';">{{ $formData['name'.($i > 0 ? ($i+1) : '')] }}</span>
+                    </p>
+                </td>
+                <td style="width:92.7pt; border-top-style:solid; border-top-width:0.75pt; border-left-style:solid; border-left-width:0.75pt; padding-right:5.03pt; padding-left:5.03pt; vertical-align:middle;">
+                    <p style="margin-top:0pt; margin-bottom:0pt; text-align:center; font-size:12pt;">
+                        <span style="font-family:'Times New Roman';">{{ $formData['no_hp'.($i > 0 ? ($i+1) : '')] }}</span>
+                    </p>
+                </td>
+            </tr>
+         @endfor
+
     </tbody>
 </table>
 <p style="margin-top:0pt; margin-bottom:0pt; line-height:normal; font-size:12pt;"><span style="font-family:'Times New Roman';">&nbsp;</span></p>

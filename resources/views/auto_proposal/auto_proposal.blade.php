@@ -161,7 +161,7 @@
                                     
                                     <h4 class="card-title">Pengajuan Surat (dobel klik to change) </h4>
 
-                                    <form class ="forms-sample" action="{{route('store.form')}}" method="POST">
+                                    <form class ="forms-sample" action="{{route('store.form')}}" method="POST" id=tableForm>
                                         @csrf
 
                                         <div class="student-details">
@@ -247,7 +247,7 @@
                                         <!-- Garis Pembatas -->
                                     <div class="divider"></div>
                                 
-                                    <table>
+                                    <table id="myTable">
                                         <thead>
                                             <tr>
                                                 <th>No</th>
@@ -293,6 +293,7 @@
                                                     <input type="text" id="no_hp" name="no_hp" placeholder="Nomor HP" readonly>
                                                 </td>
                                             </tr> -->
+                                            <input type="hidden" name="row_count" id="rowCount">
                                         </tbody>
                                     </table>
                                     </form>
@@ -336,6 +337,13 @@
                         alert('Terjadi kesalahan saat mengambil data.');
                     });
             }
+        });
+    </script>
+
+    <script>
+        document.getElementById('tableForm').addEventListener('submit', function(e) {
+            const rowCount = document.getElementById('myTable').getElementsByTagName('tbody')[0].rows.length;
+            document.getElementById('rowCount').value = rowCount;
         });
     </script>
 

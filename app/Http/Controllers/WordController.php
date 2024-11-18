@@ -41,6 +41,8 @@ class WordController extends Controller
             'nip_koprodi' => $request->nip_koprodi,
             'dosbing' => $request->dosbing,
             'nip_dosbing' => $request->nip_dosbing,
+
+            'rowCount' => $request->row_count,
         ]);
         
         return redirect()->route('wordb/view/pdf');
