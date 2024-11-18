@@ -161,7 +161,7 @@
                                     
                                     <h4 class="card-title">Pengajuan Surat (dobel klik to change) </h4>
 
-                                    <form class ="forms-sample" action="{{route('worda.index')}}" method="POST">
+                                    <form class ="forms-sample" action="{{route('store.form')}}" method="POST">
                                         @csrf
 
                                         <div class="student-details">
@@ -247,63 +247,6 @@
                                         <!-- Garis Pembatas -->
                                     <div class="divider"></div>
                                 
-                                <div class="form-group mb-3">
-                                            <label for="jumlah_mahasiswa">Jumlah Mahasiswa:</label>
-                                            <select class="form-control" id="jumlah_mahasiswa" name="jumlah_mahasiswa" onchange="showFields()">
-                                                <option value="1">1</option>
-                                                <option value="2">2</option>
-                                                <option value="3">3</option>
-                                            </select>
-                                </div>
-
-                                <!-- Student 1 (Always visible) -->
-                                <div class="form-group mb-3">
-                                            <label for="nama">Nama Lengkap Ketua:</label>
-                                            <input type="text" class="form-control" id="nama" name="nama">
-                                        </div>
-                                        <div class="form-group mb-3">
-                                            <label for="nim">NIM Ketua:</label>
-                                            <input type="text" class="form-control" id="nim" name="nim">
-                                        </div>
-                                        <div class="form-group mb-3">
-                                            <label for="notelp">Notelp:</label>
-                                            <input type="text" class="form-control" id="notelp" name="notelp">
-                                        </div>
-
-                                        <!-- Student 2 (Initially hidden) -->
-                                        <div id="student2" style="display: none;">
-                                            <div class="form-group mb-3">
-                                                <label for="nama2">Nama Lengkap 2:</label>
-                                                <input type="text" class="form-control" id="nama2" name="nama2">
-                                            </div>
-                                            <div class="form-group mb-3">
-                                                <label for="nim2">NIM 2:</label>
-                                                <input type="text" class="form-control" id="nim2" name="nim2">
-                                            </div>
-                                            <div class="form-group mb-3">
-                                                <label for="notelp2">Notelp2:</label>
-                                            <input type="text" class="form-control" id="notelp2" name="notelp2">
-                                        </div>
-                                        </div>
-
-                                        <!-- Student 3 (Initially hidden) -->
-                                        <div id="student3" style="display: none;">
-                                            <div class="form-group mb-3">
-                                                <label for="nama3">Nama Lengkap 3:</label>
-                                                <input type="text" class="form-control" id="nama3" name="nama3">
-                                            </div>
-                                            <div class="form-group mb-3">
-                                                <label for="nim3">NIM 3:</label>
-                                                <input type="text" class="form-control" id="nim3" name="nim3">
-                                            </div>
-                                            <div class="form-group mb-3">
-                                            <label for="notelp3">Notelp3:</label>
-                                            <input type="text" class="form-control" id="notelp3" name="notelp3">
-                                        </div>
-                                    </div>
-
-                                    <div class="divider"></div>
-
                                     <table>
                                         <thead>
                                             <tr>
@@ -338,7 +281,7 @@
                                                     <input type="text" id="no_hp" name="no_hp" placeholder="Nomor HP" readonly>
                                                 </td>
                                             </tr>
-                                            <tr>
+                                            <!-- <tr>
                                                 <td>3</td>
                                                 <td>
                                                     <input type="text" id="nim" name="nim" placeholder="Masukkan NIM">
@@ -349,7 +292,7 @@
                                                 <td>
                                                     <input type="text" id="no_hp" name="no_hp" placeholder="Nomor HP" readonly>
                                                 </td>
-                                            </tr>
+                                            </tr> -->
                                         </tbody>
                                     </table>
                                     </form>
@@ -413,7 +356,7 @@ const sampleData = {
     waktu_pelaksanaan: "1 Januari 2025 - 30 Juni 2025",
     tembusan: "1. Wakil Dekan\n2. Kepala Program Studi",
     date: "2024-11-05", // Current date in YYYY-MM-DD format
-    ko_prodi: "Dr. Sarah Wijaya, M.T.",
+    koprodi: "Dr. Sarah Wijaya, M.T.",
     dosbing: "Prof. Dr. Budi Santoso, M.Sc.",
     nip_koprodi: "198505152010121002",
     nip_dosbing: "197603242005011004"
@@ -430,14 +373,6 @@ function autofillForm() {
     });
 }
 
-// Add autofill button to the form
-const formGroup = document.querySelector('.form-group:last-child');
-const autofillButton = document.createElement('button');
-autofillButton.type = 'button';
-autofillButton.className = 'btn btn-secondary ml-2';
-autofillButton.textContent = 'Autofill';
-autofillButton.onclick = autofillForm;
-formGroup.appendChild(autofillButton);
 
 // Automatically fill the form when the page loads
 document.addEventListener('DOMContentLoaded', autofillForm);
