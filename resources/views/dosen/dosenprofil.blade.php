@@ -133,11 +133,12 @@
                     <div class="profile-card">
                         <!-- Foto Profil -->
                         <img src="./assets/images/faces/face26.jpg" alt="Foto Profil" class="profile-photo">
+                        
                         <!-- Informasi Dosen (Nama, Jabatan, NIP) di tengah -->
                         <div class="profile-info">
-                            <h2>Nabila S.si. M.si</h2>
-                            <h4>Departemen Matematika</h4>
-                            <h4>NIP: 197001011990021001</h4>
+                            <h2>{{ $dosen->name }}</h2>
+                            <h4>{{ $dosen->department }}</h4>
+                            <h4>NIP: {{ $dosen->nip }}</h4>
                         </div>
 
                         <!-- Garis Pembatas -->
@@ -147,18 +148,16 @@
                         <div class="profile-details">
                             <!-- Kolom Pertama -->
                             <div class="column">
-                                <p><strong>Nama:</strong> Nabila S.si. M.si</p>
-                                <p><strong>Departemen:</strong> Matematika</p>
-                                <p><strong>NIP:</strong> 197001011990021001</p>
-                                <p><strong>Tanggal Lahir:</strong> 01 Januari 2004</p>
+                                <p><strong>Nama:</strong> {{ $dosen->name }}</p>
+                                <p><strong>NIP:</strong> {{ $dosen->nip }}</p>
+                                <p><strong>Tanggal Lahir:</strong> {{ $dosen->tanggal_lahir }}</p>
                             </div>
 
                             <!-- Kolom Kedua -->
                             <div class="column">
-                                <p><strong>Alamat Kantor:</strong> Gedung B, Lantai 2, Universitas Airlangga</p>
-                                <p><strong>Email:</strong> nabila@gmail.ac.id</p>
-                                <p><strong>Nomor HP:</strong> 08123456789</p>
-                                <p><strong>Bidang Keahlian:</strong> Sistem Informasi, Data Science</p>
+                                <p><strong>Email:</strong> {{ $dosen->email }}</p>
+                                <p><strong>Nomor HP:</strong> {{ $dosen->no_hp }}</p>
+                                <p><strong>Bidang Keahlian:</strong> {{ $dosen->bidang_keahlian }}</p>
                             </div>
                         </div>
                     </div>

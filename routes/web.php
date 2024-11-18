@@ -12,6 +12,7 @@ use App\Http\Controllers\BimbinganController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\DosenController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\DashboardDosenController;
 
 
 
@@ -72,10 +73,7 @@ Route::post('/jadwalBimbingan', [JadwalKonsultasiController::class, 'store']);
 Route::get('/kartuKendaliBimbingan', [BimbinganController::class, 'index']);
 Route::post('/kartuKendaliBimbingan', [BimbinganController::class, 'store']);
 
-
-Route::get('/dashboardDosen', function () {
-    return view('dosen/dashboardDosen');
-})->name('dashboardDosen');
+Route::get('/dashboardDosen', [DashboardDosenController::class, 'index'])->name('dashboardDosen')->middleware('auth');
 
 
 Route::get('/anakBimbing', [DosenController::class, 'index'])->name("anakBimbing");
@@ -87,9 +85,7 @@ Route::get('/tambahMahasiswa', function () {
     return view('tambahMahasiswa');
 });
 
-Route::get('/dosenprofil', function () {
-    return view('/dosen/dosenprofil');
-});
+Route::get('/dosenprofil', [DashboardDosenController::class, 'index1'])->name('profildosen')->middleware('auth');
 
 // Route::get('/jadwalBimbinganDosen', function () {
 //     return view('/dosen/jadwalBimbinganDosen');
@@ -99,7 +95,6 @@ Route::get('/jadwalBimbinganDosen', [JadwalKonsultasiController::class, 'index1'
 Route::post('/jadwalBimbinganDosen/{id}/update-status', [JadwalKonsultasiController::class, 'updateStatus'])->name('jadwal.updateStatus');
 
 Route::get('/get-user', [UserController::class, 'getUser'])->name('getUser');
-
 
 Route::get('/tambahbimbing', function () {
     return view('tambahbimbing');
