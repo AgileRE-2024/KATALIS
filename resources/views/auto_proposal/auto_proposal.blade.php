@@ -83,7 +83,7 @@
     .form-label {
     font-family: 'Arial', sans-serif;
     font-size: 16px;
-      width: 100px;
+      width: 200px;
       font-weight: bold;
       
     }
@@ -348,18 +348,18 @@
     // Sample data for form fields
 const sampleData = {
     prodi: "Teknik Informatika",
-    doswal: "Dr. Ahmad Suherman, S.Kom., M.Kom.",
-    surat_ditujukan_kepada: "Kepala Departemen Teknik Informatika",
-    nama_lembaga: "Universitas Teknologi Digital",
-    alamat: "Jl. Pendidikan No. 123, Jakarta Pusat",
-    keperluan: "Pengajuan Proposal Tugas Akhir",
+    doswal: "Pak Eto",
+    surat_ditujukan_kepada: "HRD BCA",
+    nama_lembaga: "BCA",
+    alamat: "Alamatnya BCA",
+    keperluan: "PKL Magang",
     waktu_pelaksanaan: "1 Januari 2025 - 30 Juni 2025",
-    tembusan: "1. Wakil Dekan\n2. Kepala Program Studi",
+    tembusan: "",
     date: "2024-11-05", // Current date in YYYY-MM-DD format
-    koprodi: "Dr. Sarah Wijaya, M.T.",
-    dosbing: "Prof. Dr. Budi Santoso, M.Sc.",
+    koprodi: "Pak Hendra",
+    dosbing: "",
     nip_koprodi: "198505152010121002",
-    nip_dosbing: "197603242005011004"
+    nip_dosbing: ""
 };
 
 // Function to fill all form fields
