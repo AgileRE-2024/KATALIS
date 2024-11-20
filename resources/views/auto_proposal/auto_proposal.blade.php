@@ -34,6 +34,14 @@
         background-color: #f8f9fa; /* Set to the same color as main-panel */
     }
 
+    .card-title {
+    margin-bottom: 10px; /* Kurangi jarak bawah judul */
+}
+
+.forms-sample {
+    margin-top: 100; /* Kurangi jarak atas form */
+}
+
     /* Garis Pembatas */
     .divider {
         width: 100%;
@@ -68,35 +76,42 @@
 
     /* Media Query untuk Responsivitas */
     @media (max-width: 768px) {
-        .student-details .column {
-            width: 100%;
-        }
+    .student-details {
+        flex-direction: column;
     }
+
+    .student-details .column {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+}
 
     /* Form Group Styling */
     .form-group {
-        display: flex;
-        align-items: center;
-        margin-bottom: 16px;
-        font-size: 16px;
-    }
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 16px;
+    font-size: 16px;
+}
 
-    .form-label {
-        font-family: 'Arial', sans-serif;
-        font-size: 16px;
-        width: 200px;
-        font-weight: bold;
-    }
+.form-label {
+    margin-bottom: 8px;
+    font-family: 'Arial', sans-serif;
+    font-size: 16px;
+    font-weight: bold;
+}
 
-    .form-field {
-        flex: 1;
-        padding: 8px 8px;
-        border: 1px solid #ccc;
-        border-radius: 4px;
-        font-size: 14px;
-        background-color: transparent;
-        cursor: text;
-    }
+.form-field {
+    flex: 1;
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+    background-color: #fff;
+    box-sizing: border-box; /* Pastikan padding tidak menambah ukuran */
+}
+
 
     /* Menambahkan border dan background untuk input yang harus diisi */
     .form-field.required {
@@ -105,9 +120,14 @@
     }
 
     .form-field:focus {
-        border-color: #0077b6; /* Menambahkan border biru saat fokus */
-        outline: none; /* Menghilangkan outline default */
-    }
+    border-color: #0077b6;
+    outline: none;
+
+    .hidden {
+    display: none;
+}
+
+}
 
     /* Table Styling */
     table {
@@ -170,10 +190,10 @@
                                         <div class="student-details">
                                             <!-- Kolom Pertama -->
                                             <div class="column">
-                                                <div class="form-group">
-                                                    <label for="prodi" class="form-label">Prodi:</label>
-                                                    <input type="text" id="prodi" class="form-field" name="prodi" contenteditable="false"></input>
-                                                </div>
+                                            <div class="form-group">
+    <label for="prodi" class="form-label">Prodi:</label>
+    <input type="text" id="prodi" class="form-field" name="prodi" readonly>
+</div>
 
                                                 <div class="form-group">
                                                     <label for="doswal" class="form-label">doswal:</label>
@@ -182,14 +202,11 @@
 
                                                 <div class="form-group">
     <label for="wkt_pelaksanaan" class="form-label">Waktu Pelaksanaan:</label>
-    <div style="display: flex; justify-content: space-between;">
-        <input type="date" id="tanggal_mulai" name="tanggal_mulai" class="form-field" placeholder="Tanggal Mulai">
-        <span style="padding: 0 10px;">-</span>
-        <input type="date" id="tanggal_selesai" name="tanggal_selesai" class="form-field" placeholder="Tanggal Selesai">
+    <div style="display: flex; gap: 10px;">
+        <input type="date" id="tanggal_mulai" name="tanggal_mulai" class="form-field">
+        <input type="date" id="tanggal_selesai" name="tanggal_selesai" class="form-field">
     </div>
 </div>
-
-
                                                 <div class="form-group">
                                                     <label for="koprodi" class="form-label">koprodi:</label>
                                                     <input id="koprodi" name="koprodi" class="form-field" contenteditable="false"></input>
