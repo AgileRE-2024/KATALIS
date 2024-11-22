@@ -4,145 +4,174 @@
 <head>
     @include('components.head')
     <style>
-        /* Custom CSS for sidebar */
-        .sidebar {
-            width: 250px; /* Set desired sidebar width */
-            transition: width 0.3s ease; /* Smooth transition for width change */
-        }
-
-        /* For minimized sidebar */
-        .sidebar.minimized {
-            width: 80px; /* Width when minimized */
-        }
-
-        /* Make sure the content area stretches to fill the remaining space */
-        .main-panel {
-            flex-grow: 1; /* Allow main panel to grow */
-            background-color: #f5f7ff; /* Set background color matching content */
-            padding: 20px; /* Optional padding */
-            margin-left: 10px; /* Prevent content from touching sidebar */
-        }
-
-        /* Center the content */
-        .content-wrapper {
-            max-width: 1200px; /* Set max-width for the content */
-            margin: 0 auto; /* Center the content */
-        }
-
-        /* Optional: Adjust background color of the right empty space */
-        .page-body-wrapper {
-            background-color: #f8f9fa; /* Set to the same color as main-panel */
-        }
-
-        /* Garis Pembatas */
-        .divider {
-            width: 100%;
-            height: 2px;
-            background-color: #ddd;
-            margin: 20px 0;
-        }
-
-        /* Detail Informasi Siswa */
-        .student-details {
-            margin-top: 100px;
-            display: flex;
-            justify-content: space-between;
-            text-align: left;
-            padding-left: 20px;
-            flex-wrap: wrap;
-        }
-
-        .student-details .column {
-            width: 48%;
-            margin-bottom: 15px;
-        }
-
-        .student-details p {
-            font-size: 16px;
-            margin-bottom: 50px;
-        }
-
-        .student-details p strong {
-            font-weight: bold;
-        }
-
-        /* Media Query untuk Responsivitas */
-        @media (max-width: 768px) {
-            .student-details .column {
-                width: 100%;
-            }
-        }
-
-        .form-group {
-      display: flex;
-      align-items: center;
-      margin-bottom: 16px;
-      font-size: 16px
+    /* Custom CSS for sidebar */
+    .sidebar {
+        width: 250px; /* Set desired sidebar width */
+        transition: width 0.3s ease; /* Smooth transition for width change */
     }
 
-    .form-label {
+    /* For minimized sidebar */
+    .sidebar.minimized {
+        width: 80px; /* Width when minimized */
+    }
+
+    /* Make sure the content area stretches to fill the remaining space */
+    .main-panel {
+        flex-grow: 1; /* Allow main panel to grow */
+        background-color: #f5f7ff; /* Set background color matching content */
+        padding: 20px; /* Optional padding */
+        margin-left: 10px; /* Prevent content from touching sidebar */
+    }
+
+    /* Center the content */
+    .content-wrapper {
+        max-width: 1200px; /* Set max-width for the content */
+        margin: 0 auto; /* Center the content */
+    }
+
+    /* Optional: Adjust background color of the right empty space */
+    .page-body-wrapper {
+        background-color: #f8f9fa; /* Set to the same color as main-panel */
+    }
+
+    .card-title {
+    margin-bottom: 10px; /* Kurangi jarak bawah judul */
+}
+
+.forms-sample {
+    margin-top: 100; /* Kurangi jarak atas form */
+}
+
+    /* Garis Pembatas */
+    .divider {
+        width: 100%;
+        height: 2px;
+        background-color: #ddd;
+        margin: 20px 0;
+    }
+
+    /* Detail Informasi Siswa */
+    .student-details {
+        margin-top: 100px;
+        display: flex;
+        justify-content: space-between;
+        text-align: left;
+        padding-left: 20px;
+        flex-wrap: wrap;
+    }
+
+    .student-details .column {
+        width: 48%;
+        margin-bottom: 15px;
+    }
+
+    .student-details p {
+        font-size: 16px;
+        margin-bottom: 50px;
+    }
+
+    .student-details p strong {
+        font-weight: bold;
+    }
+
+    /* Media Query untuk Responsivitas */
+    @media (max-width: 768px) {
+    .student-details {
+        flex-direction: column;
+    }
+
+    .student-details .column {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+}
+
+    /* Form Group Styling */
+    .form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 16px;
+    font-size: 16px;
+}
+
+.form-label {
+    margin-bottom: 8px;
     font-family: 'Arial', sans-serif;
     font-size: 16px;
-      width: 200px;
-      font-weight: bold;
-      
+    font-weight: bold;
+}
+
+.form-field {
+    flex: 1;
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+    background-color: #fff;
+    box-sizing: border-box; /* Pastikan padding tidak menambah ukuran */
+}
+
+
+    /* Menambahkan border dan background untuk input yang harus diisi */
+    .form-field.required {
+        background-color: #e9f7fc; /* Warna latar belakang lebih cerah untuk input wajib */
+        border-color: #0077b6;
     }
 
-    .form-field {
-      flex: 1;
-      padding: 8px 8px;
-      border: none;
-      border-bottom: 1px solid transparent;
-      font-size: 14px;
-      background-color: transparent;
-      cursor: default;
-    }
+    .form-field:focus {
+    border-color: #0077b6;
+    outline: none;
 
-    .form-field.editable {
-      border-color: #0077b6;
-      cursor: text;
-    }
+    .hidden {
+    display: none;
+}
 
+}
+
+    /* Table Styling */
     table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 20px 0;
-            font-family: Arial, sans-serif;
-        }
-        
+        width: 100%;
+        border-collapse: collapse;
+        margin: 20px 0;
+        font-family: Arial, sans-serif;
+    }
+
     th, td {
         border: 1px solid #ddd;
         padding: 8px;
         text-align: left;
     }
-    
+
     th {
         background-color: #f2f2f2;
     }
-    
+
     input {
         width: 90%;
         padding: 5px;
         border: 1px solid #ddd;
         border-radius: 4px;
     }
-    
+
     .readonly {
         border: none;
         outline: none;
     }
+<<<<<<< HEAD
 
 
 
     </style>
+=======
+</style>
+>>>>>>> 97dbc790d603c74246d50a5938434c9236f0411f
 
 </head>
 
 <body>
     
     <div class="container-scroller">
-       
-        
         @include('components.navbar')
 
         <div class="container-fluid page-body-wrapper">
@@ -169,10 +198,10 @@
                                         <div class="student-details">
                                             <!-- Kolom Pertama -->
                                             <div class="column">
-                                                <div class="form-group">
-                                                    <label for="prodi" class="form-label">Prodi:</label>
-                                                    <input type="text" id="prodi" class="form-field" name="prodi" contenteditable="false"></input>
-                                                </div>
+                                            <div class="form-group">
+    <label for="prodi" class="form-label">Prodi:</label>
+    <input type="text" id="prodi" class="form-field" name="prodi" readonly>
+</div>
 
                                                 <div class="form-group">
                                                     <label for="doswal" class="form-label">doswal:</label>
@@ -180,10 +209,12 @@
                                                 </div>
 
                                                 <div class="form-group">
-                                                    <label for="wkt_pelaksanaan" class="form-label">wkt_pelaksanaan:</label>
-                                                    <input id="wkt_pelaksanaan" name="wkt_pelaksanaan" class="form-field" contenteditable="false"></input>
-                                                </div>
-
+    <label for="wkt_pelaksanaan" class="form-label">Waktu Pelaksanaan:</label>
+    <div style="display: flex; gap: 10px;">
+        <input type="date" id="tanggal_mulai" name="tanggal_mulai" class="form-field">
+        <input type="date" id="tanggal_selesai" name="tanggal_selesai" class="form-field">
+    </div>
+</div>
                                                 <div class="form-group">
                                                     <label for="koprodi" class="form-label">koprodi:</label>
                                                     <input id="koprodi" name="koprodi" class="form-field" contenteditable="false"></input>
@@ -240,16 +271,7 @@
                                                 </script>
                                             </div>
                                         </div>
-
-                                        <div class="form-group">
-                                            <button type="submit" class="btn btn-primary mr-2">Kirim</button>
-                                            <button type="reset" class="btn btn-light">Reset</button>
-                                        </div>
-
-                                        <!-- Garis Pembatas -->
-                                    <div class="divider"></div>
-                                
-                                    <table id="myTable">
+                                        <table id="myTable">
                                         <thead>
                                             <tr>
                                                 <th>No</th>
@@ -298,13 +320,71 @@
                                             <input type="hidden" name="row_count" id="rowCount">
                                         </tbody>
                                     </table>
+                                        <div class="form-group">
+                                            <button type="submit" class="btn btn-primary mr-2">Kirim</button>
+                                            <button type="reset" class="btn btn-light">Reset</button>
+                                        </div>
+
+                                        <!-- Garis Pembatas -->
+                                    <div class="divider"></div>
+                                    <table id="statusPengajuanTable" class="table table-bordered">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Tanggal Pengajuan</th>
+            <th>Status Pengajuan</th>
+            <th>Lihat Pengajuan</th>
+            <th>Download</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>1</td>
+            <td id="tanggalPengajuan1">2024-11-20</td>
+            <td id="statusPengajuan1">Pending</td>
+            <td>
+                <a href="#" id="lihatPengajuan1">Lihat Pengajuan</a>
+            </td>
+            <td>
+                <button type="button" id="downloadBtn1" class="btn btn-primary mr-2" disabled onclick="downloadFile(1)">
+                    Download
+                </button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<script>
+    // Fungsi untuk mengatur tombol download berdasarkan status
+    function updateDownloadButton(rowNumber) {
+        const status = document.getElementById(`statusPengajuan${rowNumber}`).innerText;
+        const downloadBtn = document.getElementById(`downloadBtn${rowNumber}`);
+        downloadBtn.disabled = status !== "Disetujui";
+    }
+
+    // Fungsi untuk mengunduh file (placeholder)
+    function downloadFile(rowNumber) {
+        alert(`Mengunduh file untuk pengajuan #${rowNumber}`);
+    }
+
+    // Fungsi untuk mengatur tautan "Lihat Pengajuan"
+    function setLihatPengajuanLink(rowNumber, link) {
+        const lihatPengajuan = document.getElementById(`lihatPengajuan${rowNumber}`);
+        lihatPengajuan.href = link || "#";
+        lihatPengajuan.target = "_blank"; // Membuka di tab baru
+    }
+
+    // Contoh: Mengatur tautan untuk pengajuan pertama
+    setLihatPengajuanLink(1, "https://example.com/histori-pengajuan");
+</script>
                                     </form>
                                 </div>
+                                
                             </div>
                         </div>
                     </div>
                 </div>
-                <div>           
+                <div>
             </div>
             <!-- main-panel ends -->
         </div>
