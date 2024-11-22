@@ -40,9 +40,9 @@ class User extends Authenticatable
 
     // Relasi dengan Seminar
     public function seminar()
-    {
-        return $this->hasMany(SeminarApplication::class);
-    }
+{
+    return $this->hasMany(SeminarApplication::class);
+}
 
     public function dosen()
     {
