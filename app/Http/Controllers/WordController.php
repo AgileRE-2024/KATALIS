@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Mpdf\Mpdf;
 use Illuminate\Http\Request;
 use App\Models\Mhs;
 
