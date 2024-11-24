@@ -30,6 +30,11 @@ class WordController extends Controller
             'name2' => $request->name2,
             'no_hp2' => $request->no_hp2,
 
+            // TEMPORARY DOANG! HARUS GANTI
+            'nim3' => $request->nim3,
+            'name3' => $request->name3,
+            'no_hp3' => $request->no_hp3,
+
             'surat_ditujukan_kepada' => $request->surat_ditujukan_kepada,
             'nama_lembaga' => $request->nama_lembaga,
             'alamat' => $request->alamat,
@@ -42,6 +47,8 @@ class WordController extends Controller
             'nip_koprodi' => $request->nip_koprodi,
             'dosbing' => $request->dosbing,
             'nip_dosbing' => $request->nip_dosbing,
+
+            'rowCount' => $request->row_count-1,
         ]);
         
         return redirect()->route('wordb/view/pdf');
