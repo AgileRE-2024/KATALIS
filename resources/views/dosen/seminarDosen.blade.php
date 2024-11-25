@@ -112,50 +112,6 @@
     const mahasiswaPerPage = 5; // Number of students per page
     let currentPage = 1;
 
-    // Inisialisasi data seminar contoh
-    function inisialisasiData() {
-      const contohData = [
-        { id: 1, nama: "Andi Santoso", tanggal: "2024-09-15", status: "Lulus", grade: null },
-        { id: 2, nama: "Budi Setiawan", tanggal: "2024-09-16", status: "Tidak Lulus", grade: null },
-        { id: 3, nama: "Citra Dewi", tanggal: "2024-09-17", status: "Lulus", grade: null },
-        { id: 4, nama: "Dewi Anggraeni", tanggal: "2024-09-18", status: "Lulus", grade: null },
-        { id: 5, nama: "Eko Prasetyo", tanggal: "2024-09-19", status: "Tidak Lulus", grade: null },
-        { id: 6, nama: "Faisal Akbar", tanggal: "2024-09-20", status: "Lulus", grade: null },
-        { id: 7, nama: "Gina Nurhaliza", tanggal: "2024-09-21", status: "Lulus", grade: null },
-        { id: 8, nama: "Hadi Susanto", tanggal: "2024-09-22", status: "Lulus", grade: null },
-        { id: 9, nama: "Indah Permatasari", tanggal: "2024-09-23", status: "Tidak Lulus", grade: null },
-        { id: 10, nama: "Joko Widodo", tanggal: "2024-09-24", status: "Lulus", grade: null },
-        { id: 11, nama: "Karin Melati", tanggal: "2024-09-25", status: "Lulus", grade: null },
-        { id: 12, nama: "Lina Maulani", tanggal: "2024-09-26", status: "Lulus", grade: null },
-        { id: 13, nama: "Mira Ciptaning", tanggal: "2024-09-27", status: "Tidak Lulus", grade: null },
-        { id: 14, nama: "Nina Rahmawati", tanggal: "2024-09-28", status: "Lulus", grade: null },
-        { id: 15, nama: "Oki Setiawan", tanggal: "2024-09-29", status: "Lulus", grade: null },
-        { id: 16, nama: "Putri Citra", tanggal: "2024-09-30", status: "Tidak Lulus", grade: null },
-        { id: 17, nama: "Qori Aulia", tanggal: "2024-10-01", status: "Lulus", grade: null },
-        { id: 18, nama: "Rina Sari", tanggal: "2024-10-02", status: "Lulus", grade: null },
-        { id: 19, nama: "Sari Indah", tanggal: "2024-10-03", status: "Tidak Lulus", grade: null },
-        { id: 20, nama: "Tina Novita", tanggal: "2024-10-04", status: "Lulus", grade: null },
-        { id: 21, nama: "Umar Faruk", tanggal: "2024-10-05", status: "Lulus", grade: null },
-        { id: 22, nama: "Vina Melati", tanggal: "2024-10-06", status: "Tidak Lulus", grade: null },
-        { id: 23, nama: "Wina Kharisma", tanggal: "2024-10-07", status: "Lulus", grade: null },
-        { id: 24, nama: "Xena Pramudita", tanggal: "2024-10-08", status: "Tidak Lulus", grade: null },
-        { id: 25, nama: "Yuda Prasetya", tanggal: "2024-10-09", status: "Lulus", grade: null },
-        { id: 26, nama: "Zahra Fitriani", tanggal: "2024-10-10", status: "Lulus", grade: null },
-        { id: 27, nama: "Alya Rahma", tanggal: "2024-10-11", status: "Tidak Lulus", grade: null },
-        { id: 28, nama: "Bima Aditya", tanggal: "2024-10-12", status: "Lulus", grade: null },
-        { id: 29, nama: "Cindy Arista", tanggal: "2024-10-13", status: "Lulus", grade: null },
-        { id: 30, nama: "Danu Prabowo", tanggal: "2024-10-14", status: "Tidak Lulus", grade: null },
-        { id: 31, nama: "Eka Saputra", tanggal: "2024-10-15", status: "Lulus", grade: null },
-        { id: 32, nama: "Fina Mardiana", tanggal: "2024-10-16", status: "Lulus", grade: null },
-        { id: 33, nama: "Gerry Basuki", tanggal: "2024-10-17", status: "Tidak Lulus", grade: null },
-        { id: 34, nama: "Hana Siti", tanggal: "2024-10-18", status: "Lulus", grade: null },
-        { id: 35, nama: "Iwan Setiawan", tanggal: "2024-10-19", status: "Lulus", grade: null },
-      ];
-
-      // Simpan data ke localStorage
-      localStorage.setItem("daftarSeminar", JSON.stringify(contohData));
-    }
-
     // Fungsi untuk memuat data seminar dari localStorage dan menampilkan halaman yang sesuai
     function muatDataSeminar() {
       let daftarSeminar = JSON.parse(localStorage.getItem("daftarSeminar")) || [];
