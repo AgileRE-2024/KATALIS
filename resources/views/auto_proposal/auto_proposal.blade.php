@@ -146,9 +146,17 @@
     }
 
     .readonly {
-        background-color: #f5f5f5;
+        border: none;
+        outline: none;
     }
+<<<<<<< HEAD
+
+
+
+    </style>
+=======
 </style>
+>>>>>>> 97dbc790d603c74246d50a5938434c9236f0411f
 
 </head>
 
@@ -270,34 +278,34 @@
                                                     <input type="text" id="nim" name="nim" placeholder="Masukkan NIM">
                                                 </td>
                                                 <td>
-                                                    <input type="text" id="name" name="name" placeholder="Nama" readonly>
+                                                    <input type="text" class="readonly" id="name" name="name" readonly>
                                                 </td>
                                                 <td>
-                                                    <input type="text" id="no_hp" name="no_hp" placeholder="Nomor HP" readonly>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>2</td>
-                                                <td>
-                                                    <input type="text" id="nim" name="nim" placeholder="Masukkan NIM">
-                                                </td>
-                                                <td>
-                                                    <input type="text" id="name" name="name" placeholder="Nama" readonly>
-                                                </td>
-                                                <td>
-                                                    <input type="text" id="no_hp" name="no_hp" placeholder="Nomor HP" readonly>
+                                                    <input type="text" class="readonly" id="no_hp" name="no_hp" readonly>
                                                 </td>
                                             </tr>
                                             <!-- <tr>
+                                                <td>2</td>
+                                                <td>
+                                                    <input type="text" id="nim2" name="nim2" placeholder="Masukkan NIM">
+                                                </td>
+                                                <td>
+                                                    <input type="text" id="name2" name="name2" placeholder="Nama" readonly>
+                                                </td>
+                                                <td>
+                                                    <input type="text" id="no_hp2" name="no_hp2" placeholder="Nomor HP" readonly>
+                                                </td>
+                                            </tr>
+                                            <tr>
                                                 <td>3</td>
                                                 <td>
-                                                    <input type="text" id="nim" name="nim" placeholder="Masukkan NIM">
+                                                    <input type="text" id="nim3" name="nim3" placeholder="Masukkan NIM">
                                                 </td>
                                                 <td>
-                                                    <input type="text" id="name" name="name" placeholder="Nama" readonly>
+                                                    <input type="text" id="name3" name="name3" placeholder="Nama" readonly>
                                                 </td>
                                                 <td>
-                                                    <input type="text" id="no_hp" name="no_hp" placeholder="Nomor HP" readonly>
+                                                    <input type="text" id="no_hp3" name="no_hp3" placeholder="Nomor HP" readonly>
                                                 </td>
                                             </tr> -->
                                             <input type="hidden" name="row_count" id="rowCount">
@@ -377,24 +385,64 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
     <script>
-        document.querySelector('table tbody').addEventListener('keydown', function(event) {
-            if (event.target.matches('[name="nim"]') && event.key === 'Enter') {
-                const row = event.target.closest('tr');
-                const nim = event.target.value;
+        document.addEventListener('DOMContentLoaded', function() {
+        const table = document.getElementById('myTable');
+        let rowCounter = 1; // Starting with 3 since we already have 3 rows
 
-                // Menonaktifkan event default untuk Enter (misalnya menghindari form submit)
+        function createNewRow(rowNum) {
+            const newRow = document.createElement('tr');
+            newRow.innerHTML = `
+                <td>${rowNum}</td>
+                <td>
+                    <input type="text" id="nim${rowNum}" name="nim${rowNum}" placeholder="Masukkan NIM">
+                </td>
+                <td>
+                    <input type="text" class="readonly" id="name${rowNum}" name="name${rowNum}" readonly>
+                </td>
+                <td>
+                    <input type="text" class="readonly" id="no_hp${rowNum}" name="no_hp${rowNum}" readonly>
+                </td>
+            `;
+            return newRow;
+        }
+
+        function handleNimInput(event) {
+            if (event.key === 'Enter') {
                 event.preventDefault();
+                const currentRow = event.target.closest('tr');
+                const nim = event.target.value;
+                const suffix = event.target.name.replace('nim', '');
+                
+                // Get the corresponding name and phone inputs
+                const nameInput = currentRow.querySelector(`[name="name${suffix}"]`);
+                const phoneInput = currentRow.querySelector(`[name="no_hp${suffix}"]`);
 
                 fetch(`/get-user?nim=${nim}`)
                     .then(response => response.json())
                     .then(data => {
                         if (data.success) {
-                            row.querySelector('[name="name"]').value = data.data.name || '';
-                            row.querySelector('[name="no_hp"]').value = data.data.no_hp || '';
+                            nameInput.value = data.data.name || '';
+                            phoneInput.value = data.data.no_hp || '';
+                            
+                            // Check if this is the last row
+                            const allRows = table.querySelectorAll('tbody tr');
+                            if (currentRow === allRows[allRows.length - 1]) {
+                                // Add new row
+                                rowCounter++;
+                                const newRow = createNewRow(rowCounter);
+                                table.querySelector('tbody').appendChild(newRow);
+                                
+                                // Add event listener to new NIM input
+                                const newNimInput = newRow.querySelector(`[name="nim${rowCounter}"]`);
+                                newNimInput.addEventListener('keydown', handleNimInput);
+                                
+                                // Update hidden row count
+                                document.getElementById('rowCount').value = rowCounter;
+                            }
                         } else {
                             alert('Data tidak ditemukan');
-                            row.querySelector('[name="name"]').value = '';
-                            row.querySelector('[name="no_hp"]').value = '';
+                            nameInput.value = '';
+                            phoneInput.value = '';
                         }
                     })
                     .catch(error => {
@@ -402,15 +450,21 @@
                         alert('Terjadi kesalahan saat mengambil data.');
                     });
             }
+        }
+
+        // Add event listeners to existing NIM inputs
+        const tableRows = table.querySelectorAll('tbody tr');
+        tableRows.forEach((row) => {
+            const nimInput = row.querySelector('input[name^="nim"]');
+            nimInput.addEventListener('keydown', handleNimInput);
+        });
+
+        // Set initial row count
+        document.getElementById('rowCount').value = rowCounter;
         });
     </script>
 
-    <script>
-        document.getElementById('tableForm').addEventListener('submit', function(e) {
-            const rowCount = document.getElementById('myTable').getElementsByTagName('tbody')[0].rows.length;
-            document.getElementById('rowCount').value = rowCount;
-        });
-    </script>
+    
 
 
 </body>
