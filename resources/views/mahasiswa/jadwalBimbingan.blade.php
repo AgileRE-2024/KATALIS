@@ -78,7 +78,12 @@
                                                         <td>{{ $jadwal->waktu_konsultasi }}</td>
                                                         <td>{{ $jadwal->topik }}</td>
                                                         <td>
-                                                            <span class="badge badge-{{ $jadwal->status == 'Disetujui' ? 'success' : ($jadwal->status == 'Menunggu Persetujuan' ? 'warning' : 'danger') }}">
+                                                            <span class="badge 
+                                                                @if ($jadwal->status == 'Approved') badge-success
+                                                                @elseif ($jadwal->status == 'Waiting Approval') badge-warning
+                                                                @elseif ($jadwal->status == 'Revised') badge-danger
+                                                                @else badge-secondary
+                                                                @endif">
                                                                 {{ $jadwal->status }}
                                                             </span>
                                                         </td>

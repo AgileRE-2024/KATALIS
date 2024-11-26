@@ -111,7 +111,7 @@ class JadwalKonsultasiController extends Controller
     public function updateStatus(Request $request, $id)
     {
         $request->validate([
-            'status' => 'required|string|in:Disetujui,Menunggu Persetujuan,Ditolak',
+            'status' => 'required|string|in:Approved,Waiting Approval,Revised',
         ]);
 
         $jadwal = JadwalKonsultasi::findOrFail($id);

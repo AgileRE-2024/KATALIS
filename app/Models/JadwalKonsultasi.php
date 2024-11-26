@@ -18,9 +18,9 @@ class JadwalKonsultasi extends Model
         'dokumentasi_bimbingan',
     ];
 
-    const STATUS_MENUNGGU = 'Menunggu Persetujuan';
-    const STATUS_DISETUJUI = 'Disetujui';
-    const STATUS_DITOLAK = 'Ditolak';
+    const STATUS_MENUNGGU = 'Waiting Approval';
+    const STATUS_DISETUJUI = 'Approved';
+    const STATUS_DITOLAK = 'Revised';
 
     public function user()
     {

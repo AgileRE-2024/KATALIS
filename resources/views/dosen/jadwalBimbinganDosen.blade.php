@@ -43,9 +43,9 @@
                           <form action="{{ route('jadwal.updateStatus', $jadwal->id) }}" method="POST">
                               @csrf
                               <select name="status" onchange="this.form.submit()">
-                                  <option value="Menunggu Persetujuan" {{ $jadwal->status == 'Menunggu Persetujuan' ? 'selected' : '' }}>Menunggu Persetujuan</option>
-                                  <option value="Disetujui" {{ $jadwal->status == 'Disetujui' ? 'selected' : '' }}>Disetujui</option>
-                                  <option value="Ditolak" {{ $jadwal->status == 'Ditolak' ? 'selected' : '' }}>Ditolak</option>
+                                  <option value="Waiting Approval" {{ $jadwal->status == 'Waiting Approval' ? 'selected' : '' }}>Waiting Approval</option>
+                                  <option value="Approved" {{ $jadwal->status == 'Approved' ? 'selected' : '' }}>Approved</option>
+                                  <option value="Revised" {{ $jadwal->status == 'Revised' ? 'selected' : '' }}>Revised</option>
                               </select>
                           </form>
                       </td>
