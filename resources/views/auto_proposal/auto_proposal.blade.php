@@ -33,15 +33,6 @@
     .page-body-wrapper {
         background-color: #f8f9fa; /* Set to the same color as main-panel */
     }
-
-    .card-title {
-    margin-bottom: 10px; /* Kurangi jarak bawah judul */
-}
-
-.forms-sample {
-    margin-top: 100; /* Kurangi jarak atas form */
-}
-
     /* Garis Pembatas */
     .divider {
         width: 100%;
