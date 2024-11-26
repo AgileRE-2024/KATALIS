@@ -217,6 +217,7 @@ Route::group(['middleware' => ['auth', 'hakakses:koordinator']], function() {
     Route::post('/uploadDokumentasi/{id}', [JadwalKonsultasiController::class, 'uploadDokumentasi'])->name('uploadDokumentasi');
     
 });
+
 /*
 
 | Jangan lupa php artisan route:clear
