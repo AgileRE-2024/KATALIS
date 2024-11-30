@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Mpdf\Mpdf;
 use Illuminate\Http\Request;
-use App\Models\Mhs;
+use App\Models\Surat;
 
 
 class WordController extends Controller
@@ -50,6 +50,8 @@ class WordController extends Controller
 
             'rowCount' => $request->row_count-1,
         ]);
+
+        
         
         return redirect()->route('wordb/view/pdf');
     }
@@ -73,6 +75,42 @@ class WordController extends Controller
     }
 
     public function view_pdf(Request $request)
+    {
+        $formData = $request->session()->get('form_data');
+        
+        $mpdf = new \Mpdf\Mpdf();
+        $mpdf->WriteHTML(view('auto_proposal/hasil', compact('formData')));
+        $mpdf->Output();
+
+        
+        // Generate a unique filename
+        $uniq = uniqid();
+        $filename = 'proposal_' . $uniq . '.pdf';
+        
+        // Full path where the file will be saved
+        $filepath = storage_path('app/' . $filename);
+        
+        // Save the PDF to the storage/app/ directory
+        $mpdf->Output($filepath, 'F');
+
+        // Insert filename into database
+        $pdfRecord = new Surat();
+        $pdfRecord->id_surat = $uniq;
+        $pdfRecord->filename = $filename;
+        $pdfRecord->filepath = $filepath;
+        $pdfRecord->creator = $request->user()->nim;
+        $pdfRecord->save();
+
+        $detil = new SuratUser();
+        $detil->id_surat = $uniq;
+        $detil->save();
+
+        // Optional: Return a response or redirect with the filename
+        return response()->download($filepath, $filename);
+ 
+    }
+
+    public function masukdb(Request $request)
     {
         $formData = $request->session()->get('form_data');
         

@@ -31,21 +31,6 @@ Route::get('/', function () {
     return redirect('/loginfix'); // Redirect to the login page
 });
 
-// Route::get('/dashboard', function () {
-//     return view('/mahasiswa/dashboard');
-// })->name('dashboard');
-
-// Route::get('/worda', function () {
-//     return view('auto_proposal/auto_proposal');
-// });
-
-// Route::get('/form', function () {
-//     return view('form');
-// });
-
-// Billy - auto-generate
-
-// Billy end -----------------------------------
 
 # update database
 
@@ -95,6 +80,7 @@ Route::group(['middleware' => ['auth', 'hakakses:users']], function() {
     Route::get('/kartuKendaliBimbingan', [BimbinganController::class, 'index']);
     Route::post('/kartuKendaliBimbingan', [BimbinganController::class, 'store']);
 
+    Route::get('/wordc', [WordController::class, 'view_pdf'])->name('wordc');
     Route::post('/store-form', [WordController::class, 'store'])->name("store.form");
     Route::get('/wordb', [WordController::class, 'index'])->name('wordb');
     Route::get('/worda', [WordController::class, 'display']);

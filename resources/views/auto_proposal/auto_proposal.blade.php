@@ -158,14 +158,7 @@
         border: none;
         outline: none;
     }
-<<<<<<< HEAD
-
-
-
-    </style>
-=======
 </style>
->>>>>>> 97dbc790d603c74246d50a5938434c9236f0411f
 
 </head>
 
@@ -199,9 +192,9 @@
                                             <!-- Kolom Pertama -->
                                             <div class="column">
                                             <div class="form-group">
-    <label for="prodi" class="form-label">Prodi:</label>
-    <input type="text" id="prodi" class="form-field" name="prodi" readonly>
-</div>
+                                                <label for="prodi" class="form-label">Prodi:</label>
+                                                <input type="text" id="prodi" class="form-field" name="prodi" readonly>
+                                            </div>
 
                                                 <div class="form-group">
                                                     <label for="doswal" class="form-label">doswal:</label>
@@ -209,12 +202,12 @@
                                                 </div>
 
                                                 <div class="form-group">
-    <label for="wkt_pelaksanaan" class="form-label">Waktu Pelaksanaan:</label>
-    <div style="display: flex; gap: 10px;">
-        <input type="date" id="tanggal_mulai" name="tanggal_mulai" class="form-field">
-        <input type="date" id="tanggal_selesai" name="tanggal_selesai" class="form-field">
-    </div>
-</div>
+                                                    <label for="wkt_pelaksanaan" class="form-label">Waktu Pelaksanaan:</label>
+                                                    <div style="display: flex; gap: 10px;">
+                                                        <input type="date" id="tanggal_mulai" name="tanggal_mulai" class="form-field">
+                                                        <input type="date" id="tanggal_selesai" name="tanggal_selesai" class="form-field">
+                                                    </div>
+                                                </div>
                                                 <div class="form-group">
                                                     <label for="koprodi" class="form-label">koprodi:</label>
                                                     <input id="koprodi" name="koprodi" class="form-field" contenteditable="false"></input>
@@ -293,34 +286,15 @@
                                                     <input type="text" class="readonly" id="no_hp" name="no_hp" readonly>
                                                 </td>
                                             </tr>
-                                            <!-- <tr>
-                                                <td>2</td>
-                                                <td>
-                                                    <input type="text" id="nim2" name="nim2" placeholder="Masukkan NIM">
-                                                </td>
-                                                <td>
-                                                    <input type="text" id="name2" name="name2" placeholder="Nama" readonly>
-                                                </td>
-                                                <td>
-                                                    <input type="text" id="no_hp2" name="no_hp2" placeholder="Nomor HP" readonly>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>3</td>
-                                                <td>
-                                                    <input type="text" id="nim3" name="nim3" placeholder="Masukkan NIM">
-                                                </td>
-                                                <td>
-                                                    <input type="text" id="name3" name="name3" placeholder="Nama" readonly>
-                                                </td>
-                                                <td>
-                                                    <input type="text" id="no_hp3" name="no_hp3" placeholder="Nomor HP" readonly>
-                                                </td>
-                                            </tr> -->
+
+                                            /* belum jadi */
+                                            <a href="{{route('wordc')}}"><button type="button">View</button></a>
+                                            
                                             <input type="hidden" name="row_count" id="rowCount">
                                         </tbody>
                                     </table>
                                         <div class="form-group">
+                                            
                                             <button type="submit" class="btn btn-primary mr-2">Kirim</button>
                                             <button type="reset" class="btn btn-light">Reset</button>
                                         </div>
