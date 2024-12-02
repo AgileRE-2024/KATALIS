@@ -88,7 +88,7 @@ class WordController extends Controller
         $filename = 'proposal_' . $uniq . '.pdf';
         
         // Full path where the file will be saved
-        $filepath = storage_path('app/' . $filename);
+        $filepath = ('../storage/app/public/' . $filename);
         
         // Save the PDF to the storage/app/ directory
         $mpdf->Output($filepath, 'F');

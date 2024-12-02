@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\WordController;
+use App\Http\Controllers\KoordinatorController;
 use App\Http\Controllers\LogbookController;
 use App\Http\Controllers\SeminarApplicationController;
 use App\Http\Controllers\Auth\RegisterController;
