@@ -183,7 +183,7 @@
                                 
                                 <div class="card-body">
                                     
-                                    <h4 class="card-title">Pengajuan Surat (dobel klik to change) </h4>
+                                    <h4 class="card-title">Pengajuan Surat</h4>
 
                                     <form class ="forms-sample" action="{{route('store.form')}}" method="POST" id=tableForm>
                                         @csrf
@@ -287,8 +287,7 @@
                                                 </td>
                                             </tr>
 
-                                            /* belum jadi */
-                                            <a href="{{route('wordc')}}"><button type="button">View</button></a>
+
                                             
                                             <input type="hidden" name="row_count" id="rowCount">
                                         </tbody>
@@ -302,55 +301,55 @@
                                         <!-- Garis Pembatas -->
                                     <div class="divider"></div>
                                     <table id="statusPengajuanTable" class="table table-bordered">
-    <thead>
-        <tr>
-            <th>#</th>
-            <th>Tanggal Pengajuan</th>
-            <th>Status Pengajuan</th>
-            <th>Lihat Pengajuan</th>
-            <th>Download</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>1</td>
-            <td id="tanggalPengajuan1">2024-11-20</td>
-            <td id="statusPengajuan1">Pending</td>
-            <td>
-                <a href="#" id="lihatPengajuan1">Lihat Pengajuan</a>
-            </td>
-            <td>
-                <button type="button" id="downloadBtn1" class="btn btn-primary mr-2" disabled onclick="downloadFile(1)">
-                    Download
-                </button>
-            </td>
-        </tr>
-    </tbody>
-</table>
+                                        <thead>
+                                            <tr>
+                                                <th>#</th>
+                                                <th>Tanggal Pengajuan</th>
+                                                <th>Status Pengajuan</th>
+                                                <th>Lihat Pengajuan</th>
+                                                <th>Download</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>1</td>
+                                                <td id="tanggalPengajuan1">2024-11-20</td>
+                                                <td id="statusPengajuan1">Pending</td>
+                                                <td>
+                                                    <a href="#" id="lihatPengajuan1">Lihat Pengajuan</a>
+                                                </td>
+                                                <td>
+                                                    <button type="button" id="downloadBtn1" class="btn btn-primary mr-2" disabled onclick="downloadFile(1)">
+                                                        Download
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
 
-<script>
-    // Fungsi untuk mengatur tombol download berdasarkan status
-    function updateDownloadButton(rowNumber) {
-        const status = document.getElementById(`statusPengajuan${rowNumber}`).innerText;
-        const downloadBtn = document.getElementById(`downloadBtn${rowNumber}`);
-        downloadBtn.disabled = status !== "Disetujui";
-    }
+                                    <script>
+                                        // Fungsi untuk mengatur tombol download berdasarkan status
+                                        function updateDownloadButton(rowNumber) {
+                                            const status = document.getElementById(`statusPengajuan${rowNumber}`).innerText;
+                                            const downloadBtn = document.getElementById(`downloadBtn${rowNumber}`);
+                                            downloadBtn.disabled = status !== "Disetujui";
+                                        }
 
-    // Fungsi untuk mengunduh file (placeholder)
-    function downloadFile(rowNumber) {
-        alert(`Mengunduh file untuk pengajuan #${rowNumber}`);
-    }
+                                        // Fungsi untuk mengunduh file (placeholder)
+                                        function downloadFile(rowNumber) {
+                                            alert(`Mengunduh file untuk pengajuan #${rowNumber}`);
+                                        }
 
-    // Fungsi untuk mengatur tautan "Lihat Pengajuan"
-    function setLihatPengajuanLink(rowNumber, link) {
-        const lihatPengajuan = document.getElementById(`lihatPengajuan${rowNumber}`);
-        lihatPengajuan.href = link || "#";
-        lihatPengajuan.target = "_blank"; // Membuka di tab baru
-    }
+                                        // Fungsi untuk mengatur tautan "Lihat Pengajuan"
+                                        function setLihatPengajuanLink(rowNumber, link) {
+                                            const lihatPengajuan = document.getElementById(`lihatPengajuan${rowNumber}`);
+                                            lihatPengajuan.href = link || "#";
+                                            lihatPengajuan.target = "_blank"; // Membuka di tab baru
+                                        }
 
-    // Contoh: Mengatur tautan untuk pengajuan pertama
-    setLihatPengajuanLink(1, "https://example.com/histori-pengajuan");
-</script>
+                                        // Contoh: Mengatur tautan untuk pengajuan pertama
+                                        setLihatPengajuanLink(1, "https://example.com/histori-pengajuan");
+                                    </script>
                                     </form>
                                 </div>
                                 

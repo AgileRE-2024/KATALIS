@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Mpdf\Mpdf;
 use Illuminate\Http\Request;
 use App\Models\Surat;
+use App\Models\SuratUser;
+
 
 
 class WordController extends Controller
@@ -51,8 +53,6 @@ class WordController extends Controller
             'rowCount' => $request->row_count-1,
         ]);
 
-        
-        
         return redirect()->route('wordb/view/pdf');
     }
 
@@ -84,7 +84,7 @@ class WordController extends Controller
 
         
         // Generate a unique filename
-        $uniq = uniqid();
+        $uniq = hexdec(uniqid());
         $filename = 'proposal_' . $uniq . '.pdf';
         
         // Full path where the file will be saved
@@ -101,22 +101,38 @@ class WordController extends Controller
         $pdfRecord->creator = $request->user()->nim;
         $pdfRecord->save();
 
-        $detil = new SuratUser();
-        $detil->id_surat = $uniq;
-        $detil->save();
+        // Retrieve form data
+        $formData = $request->session()->get('form_data', []);
+
+        // Collect NIMs
+        $nims = array_filter([
+            $formData['nim'] ?? null,
+            $formData['nim2'] ?? null,
+            $formData['nim3'] ?? null
+        ]);
+
+        // Save NIMs to database
+        foreach ($nims as $nim) {
+            SuratUser::create([
+                'nim' => $nim,
+                'id_surat' => $uniq,
+                'is_active' => 1,
+            ]);
+        }
+        
+
+
+        // Optional: Clear the session data after processing
+        $request->session()->forget('form_data');
 
         // Optional: Return a response or redirect with the filename
         return response()->download($filepath, $filename);
- 
+                
+    
     }
 
     public function masukdb(Request $request)
-    {
-        $formData = $request->session()->get('form_data');
+    {}
         
-        $mpdf = new \Mpdf\Mpdf();
-        $mpdf->WriteHTML(view('auto_proposal/hasil', compact('formData')));
-        $mpdf->Output();
-    }
 }
 

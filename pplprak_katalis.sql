@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 16, 2024 at 04:39 PM
+-- Generation Time: Nov 26, 2024 at 03:30 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -86,7 +86,7 @@ CREATE TABLE `jadwal_konsultasis` (
   `tanggal_konsultasi` date NOT NULL,
   `waktu_konsultasi` time NOT NULL,
   `topik` varchar(255) NOT NULL,
-  `status` enum('Disetujui','Menunggu Persetujuan','Ditolak','') NOT NULL DEFAULT 'Menunggu Persetujuan',
+  `status` enum('Approved','Revised','Waiting Approval','') NOT NULL DEFAULT 'Waiting Approval',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   `hasil_bimbingan` varchar(255) DEFAULT NULL,
@@ -98,7 +98,7 @@ CREATE TABLE `jadwal_konsultasis` (
 --
 
 INSERT INTO `jadwal_konsultasis` (`id`, `user_id`, `tanggal_konsultasi`, `waktu_konsultasi`, `topik`, `status`, `created_at`, `updated_at`, `hasil_bimbingan`, `dokumentasi_bimbingan`) VALUES
-(1, 1, '2024-11-12', '00:00:00', 'dddd', 'Ditolak', '2024-11-12 07:43:05', '2024-11-15 20:46:05', 'hasil_bimbingan/KqsjpJNmJ73Z4XNtgAbp6h1PSJ2V4Wx7hUkpdKej.png', NULL);
+(1, 1, '2024-11-12', '00:00:00', 'dddd', 'Revised', '2024-11-12 07:43:05', '2024-11-25 18:13:57', 'hasil_bimbingan/KqsjpJNmJ73Z4XNtgAbp6h1PSJ2V4Wx7hUkpdKej.png', NULL);
 
 -- --------------------------------------------------------
 
@@ -120,6 +120,13 @@ CREATE TABLE `koordinators` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `koordinators`
+--
+
+INSERT INTO `koordinators` (`id`, `name`, `nip`, `email`, `password`, `tanggal_lahir`, `alamat_kantor`, `no_hp`, `bidang_keahlian`, `remember_token`, `created_at`, `updated_at`) VALUES
+(1, 'nania', '187221051', 'nania@gmail.com', '$2y$10$arUzE.x0Y9KkkwG/KwCWgeHZO6zUefnoYdDVlTluApcm0.ty9d6fi', '2024-11-16', 'UNAIR', '082141788027', 'science', NULL, NULL, '2024-11-16 09:38:24');
 
 -- --------------------------------------------------------
 
@@ -145,19 +152,6 @@ INSERT INTO `logbooks` (`id`, `tanggal`, `kegiatan`, `dokumentasi`, `created_at`
 (1, '2024-11-12', 'sssssss', '1731424222.png', '2024-11-12 08:10:22', '2024-11-12 08:10:22', 1),
 (2, '2024-11-12', 'punya alis', '1731424222.png', '2024-11-12 08:10:22', '2024-11-12 08:10:22', 3),
 (3, '2024-11-12', 'punya user id 2', '1731424222.png', '2024-11-12 08:10:22', '2024-11-12 08:10:22', 2);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `mhs`
---
-
-CREATE TABLE `mhs` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `nim` varchar(255) NOT NULL,
-  `nama` varchar(255) NOT NULL,
-  `notelp` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -275,7 +269,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `dosen_id`, `name`, `email`, `password`, `nim`, `program_studi`, `alamat`, `no_hp`, `tanggal_lahir`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 1, 'John Doe', 'user1@example.com', '$2y$10$VQ8k9o2M/Uv/g2XFrnbVGOIibZQet0.T1GDY4/Dkk3mvyfmmexU7K', '187221053', 'Informatika', 'Jalan A No. 1, Kota XYZ', '081234567800', '1990-01-15', 'gcHuw8sEw0rWYUQFtP0t2OUfMRJQ1UI0flsx0cf8V1GO3bm9w9Vv5Iv2MrjY', '2024-01-01 03:00:00', '2024-01-01 03:00:00'),
+(1, 1, 'John Doe', 'user1@example.com', '$2y$10$VQ8k9o2M/Uv/g2XFrnbVGOIibZQet0.T1GDY4/Dkk3mvyfmmexU7K', '187221053', 'Informatika', 'Jalan A No. 1, Kota XYZ', '081234567800', '1990-01-15', 'yCEqN0j9IRVusqfQpnvpjbqte8Ud4WTvW46gnJZoFG9DsGdS352FZvz4MbzE', '2024-01-01 03:00:00', '2024-01-01 03:00:00'),
 (2, 2, 'Jane Smith', 'user2@example.com', '$2y$10$VQ8k9o2M/Uv/g2XFrnbVGOIibZQet0.T1GDY4/Dkk3mvyfmmexU7K', '1234567801', 'Sistem Informasi', 'Jalan B No. 2, Kota XYZ', '081234567801', '1991-02-15', 's5fvu74UxbEj4ifYsFbUrYLVtLJX71Zf0P6Pi9K5oChCKO2cINcEyZPb1wmA', '2024-01-01 03:00:00', '2024-01-01 03:00:00'),
 (3, 1, 'Alice Brown', 'user3@example.com', '$2y$10$VQ8k9o2M/Uv/g2XFrnbVGOIibZQet0.T1GDY4/Dkk3mvyfmmexU7K', '1234567802', 'Teknik Komputer', 'Jalan C No. 3, Kota XYZ', '081234567802', '1992-03-15', 'ghi34567', '2024-01-01 03:00:00', '2024-01-01 03:00:00'),
 (4, 3, 'Bob White', 'user4@example.com', '$2y$10$VQ8k9o2M/Uv/g2XFrnbVGOIibZQet0.T1GDY4/Dkk3mvyfmmexU7K', '1234567803', 'Teknik Elektro', 'Jalan D No. 4, Kota XYZ', '081234567803', '1993-04-15', 'jkl45678', '2024-01-01 03:00:00', '2024-01-01 03:00:00'),
@@ -326,12 +320,6 @@ ALTER TABLE `koordinators`
 ALTER TABLE `logbooks`
   ADD PRIMARY KEY (`id`),
   ADD KEY `logbooks_user_id_foreign` (`user_id`);
-
---
--- Indexes for table `mhs`
---
-ALTER TABLE `mhs`
-  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `migrations`
@@ -395,19 +383,13 @@ ALTER TABLE `jadwal_konsultasis`
 -- AUTO_INCREMENT for table `koordinators`
 --
 ALTER TABLE `koordinators`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `logbooks`
 --
 ALTER TABLE `logbooks`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
---
--- AUTO_INCREMENT for table `mhs`
---
-ALTER TABLE `mhs`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `migrations`

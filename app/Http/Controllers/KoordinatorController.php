@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Koordinator;
+use App\Models\SuratUser;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
@@ -38,5 +40,13 @@ class KoordinatorController extends Controller
         return response()->json(['message' => 'Data koordinator berhasil ditambahkan!'], 201);
     }
 
-    // Metode lain (misalnya, untuk mengambil data koordinator) dapat ditambahkan di sini
+    public function index()
+    {
+        // Fetch all pengajuan (application) data with related information
+
+        $pengajuans = SuratUser::all();
+        return view('pov_koor/assignPembimbing', compact('pengajuans'));
+    }
+
+   
 }

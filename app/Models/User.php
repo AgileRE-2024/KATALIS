@@ -27,6 +27,11 @@ class User extends Authenticatable
         'password',
     ];
 
+    public function nim()
+    {
+        return $this->hasMany(SuratUser::class, 'nim', 'nim');
+    }
+
     public function jadwalKonsultasi()
     {
         return $this->hasMany(JadwalKonsultasi::class);

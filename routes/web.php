@@ -80,7 +80,7 @@ Route::group(['middleware' => ['auth', 'hakakses:users']], function() {
     Route::get('/kartuKendaliBimbingan', [BimbinganController::class, 'index']);
     Route::post('/kartuKendaliBimbingan', [BimbinganController::class, 'store']);
 
-    Route::get('/wordc', [WordController::class, 'view_pdf'])->name('wordc');
+    Route::get('/wordc', [WordController::class, 'masukdb'])->name('wordc');
     Route::post('/store-form', [WordController::class, 'store'])->name("store.form");
     Route::get('/wordb', [WordController::class, 'index'])->name('wordb');
     Route::get('/worda', [WordController::class, 'display']);
@@ -183,9 +183,7 @@ Route::group(['middleware' => ['auth', 'hakakses:koordinator']], function() {
         return view('editpkl');
     });
     
-    Route::get('/assignPembimbing', function () {
-        return view('pov_koor/assignPembimbing');
-    });
+    Route::get('/assignPembimbing', [KoordinatorController::class, 'index'])->name('assignPembimbing.index');
     
     Route::get('/daftarDosen', function () {
         return view('pov_koor/daftarDosen');

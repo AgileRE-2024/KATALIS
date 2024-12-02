@@ -31,6 +31,21 @@
                                             </tr>
                                         </thead>
                                         <tbody>
+                                            @foreach ($pengajuans as $pengajuans)
+                                            <tr class="kelompok-1">
+                                                <td class="text-center">1</td>
+                                                <td class="text-center">{{ $pengajuans->id_surat }}</td>
+                                                <td class="text-center">Mahasiswa 1</td>
+                                                <td class="text-center">12345678</td>
+                                                <td class="text-center">Tempat Magang A</td>
+                                                <td class="text-center">01 Januari 2024<br>- 31 Maret 2024</td>
+                                                <td class="text-center">
+                                                    <a href="formAssign">Assign Dosbing</a>
+                                                </td>
+                                            </tr>
+                                            @endforeach
+
+                                            
                                             <!-- Data Kelompok A -->
                                             <tr class="kelompok-1">
                                                 <td class="text-center">1</td>
