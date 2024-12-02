@@ -15,7 +15,8 @@ class Surat extends Model
         'id_surat',
         'filename',
         'filepath',
-        'creator'
+        'creator',
+        'prodi',
     ];
 
     public function id_surat()

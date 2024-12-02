@@ -189,10 +189,15 @@ Route::group(['middleware' => ['auth', 'hakakses:koordinator']], function() {
     Route::get('/daftarDosen', function () {
         return view('pov_koor/daftarDosen');
     });
+
+    Route::get('/daftarDosen', [DosenController::class, 'isi'])->name('daftarDosen.isi');
+
     
     Route::get('/pklAktif', function () {
         return view('pov_koor/pklAktif');
     });
+    Route::get('/pklAktif', [KoordinatorController::class, 'index2'])->name('pklAktif.index2');
+
     
     Route::get('/formAssign', function () {
         return view('pov_koor/formAssign');

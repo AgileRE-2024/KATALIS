@@ -42,10 +42,14 @@ class KoordinatorController extends Controller
 
     public function index()
     {
-        // Fetch all pengajuan (application) data with related information
-
         $pengajuans = SuratUser::all();
         return view('pov_koor/assignPembimbing', compact('pengajuans'));
+    }
+
+    public function index2()
+    {
+        $pengajuans = SuratUser::all();
+        return view('pov_koor/pklAktif', compact('pengajuans'));
     }
 
    
