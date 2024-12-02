@@ -18,7 +18,6 @@ return new class extends Migration
             $table->string('filename')->nullable();
             $table->string('filepath')->nullable();
             $table->string('creator')->nullable();
-            $table->string('prodi')->nullable();
             $table->timestamps();
         });
     }
