@@ -18,6 +18,21 @@ return new class extends Migration
             $table->string('filename')->nullable();
             $table->string('filepath')->nullable();
             $table->string('creator')->nullable();
+
+            $table->string('prodi')->nullable();
+            $table->string('doswal_name')->nullable();
+            $table->date('wkt_start')->nullable();
+            $table->date('wkt_end')->nullable();
+            $table->string('koprodi_name')->nullable();
+            $table->string('koprodi_nip')->nullable();
+            $table->string('dosbing_name')->nullable();
+
+            $table->string('surat_ditujukan_kepada')->nullable();
+            $table->string('nama_lembaga')->nullable();
+            $table->string('alamat')->nullable();
+            $table->string('keperluan')->nullable();
+
+
             $table->timestamps();
         });
     }

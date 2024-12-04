@@ -4,8 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Models\Koordinator;
 use App\Models\SuratUser;
+use App\Models\Surat;
 
+use Mpdf\Mpdf;
 use Illuminate\Http\Request;
+
 use Illuminate\Support\Facades\Hash;
 
 class KoordinatorController extends Controller
@@ -52,5 +55,76 @@ class KoordinatorController extends Controller
         return view('pov_koor/pklAktif', compact('pengajuans'));
     }
 
-   
+    public function getSurat($id_surat){
+        $data = Surat::where('id_surat', $id_surat)->first();
+        $dete = SuratUser::where('id_surat', $id_surat)->get();
+        return view('pov_koor/koor_auto', compact (['data', 'id_surat', 'dete']));
+    }
+
+    public function store2form(Request $request)
+    {
+        // Store form data in session
+        $request->session()->put('form_data', [
+            'prodi' => $request->prodi,
+            'doswal' => $request->doswal,
+
+            'nim' => $request->nim,
+            'name' => $request->name,
+            'no_hp' => $request->no_hp,
+
+            'nim2' => $request->nim2,
+            'name2' => $request->name2,
+            'no_hp2' => $request->no_hp2,
+
+            // TEMPORARY DOANG! HARUS GANTI
+            'nim3' => $request->nim3,
+            'name3' => $request->name3,
+            'no_hp3' => $request->no_hp3,
+
+            'surat_ditujukan_kepada' => $request->surat_ditujukan_kepada,
+            'nama_lembaga' => $request->nama_lembaga,
+            'alamat' => $request->alamat,
+
+            'keperluan' => $request->keperluan,
+            'tanggal_mulai' => $request->tanggal_mulai,
+            'tanggal_selesai' => $request->tanggal_selesai,
+            'tembusan' => $request->tembusan,
+
+            'koprodi' => $request->koprodi,
+            'nip_koprodi' => $request->nip_koprodi,
+            'dosbing' => $request->dosbing,
+            'nip_dosbing' => $request->nip_dosbing,
+
+            'rowCount' => $request->row_count-1,
+            'id_surat' => $request->id_surat,
+            
+        ]);
+
+        return redirect()->route('wordc/view/pdf');
+    }
+
+    public function up_pdf(Request $request)
+    {
+        $formData = $request->session()->get('form_data', []);
+        $uniq = $formData['id_surat'];
+        
+        $mpdf = new \Mpdf\Mpdf();
+        $mpdf->WriteHTML(view('auto_proposal/hasil', compact('formData')));
+        $mpdf->Output();
+
+        $filename = 'proposal_' . $uniq . '.pdf';
+        $filepath = ('../storage/app/public/' . $filename);
+        $mpdf->Output($filepath, 'F');
+
+        // Insert dosbing to database
+        Surat::where('id_surat', $uniq)->update(['dosbing_name' => $formData['dosbing']]);
+
+        // Optional: Clear the session data after processing
+        $request->session()->forget('form_data');
+
+        // Optional: Return a response or redirect with the filename
+        return response()->download($filepath, $filename);
+                
+    
+    }
 }

@@ -81,7 +81,6 @@ Route::group(['middleware' => ['auth', 'hakakses:users']], function() {
     Route::get('/kartuKendaliBimbingan', [BimbinganController::class, 'index']);
     Route::post('/kartuKendaliBimbingan', [BimbinganController::class, 'store']);
 
-    Route::get('/wordc', [WordController::class, 'masukdb'])->name('wordc');
     Route::post('/store-form', [WordController::class, 'store'])->name("store.form");
     Route::get('/wordb', [WordController::class, 'index'])->name('wordb');
     Route::get('/worda', [WordController::class, 'display']);
@@ -205,6 +204,13 @@ Route::group(['middleware' => ['auth', 'hakakses:koordinator']], function() {
     
     Route::post('/uploadHasil/{id}', [JadwalKonsultasiController::class, 'uploadHasil'])->name('uploadHasil');
     Route::post('/uploadDokumentasi/{id}', [JadwalKonsultasiController::class, 'uploadDokumentasi'])->name('uploadDokumentasi');
+
+    Route::get('getSurat/{id}', [KoordinatorController::class, 'getSurat'])->name('getSurat');
+
+    Route::post('/store-2form', [KoordinatorController::class, 'store2form'])->name("store.2form");
+
+    Route::get('/wordc/view/pdf', [KoordinatorController::class, 'up_pdf'])->name("wordc/view/pdf");
+
     
 });
 

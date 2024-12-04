@@ -40,15 +40,18 @@ class WordController extends Controller
             'surat_ditujukan_kepada' => $request->surat_ditujukan_kepada,
             'nama_lembaga' => $request->nama_lembaga,
             'alamat' => $request->alamat,
+            
 
             'keperluan' => $request->keperluan,
-            'wkt_pelaksanaan' => $request->wkt_pelaksanaan,
+            'tanggal_mulai' => $request->tanggal_mulai,
+            'tanggal_selesai' => $request->tanggal_selesai,
             'tembusan' => $request->tembusan,
 
-            'ko_prodi' => $request->ko_prodi,
+            'koprodi' => $request->koprodi,
             'nip_koprodi' => $request->nip_koprodi,
             'dosbing' => $request->dosbing,
             'nip_dosbing' => $request->nip_dosbing,
+
 
             'rowCount' => $request->row_count-1,
         ]);
@@ -76,7 +79,7 @@ class WordController extends Controller
 
     public function view_pdf(Request $request)
     {
-        $formData = $request->session()->get('form_data');
+        $formData = $request->session()->get('form_data', []);
         
         $mpdf = new \Mpdf\Mpdf();
         $mpdf->WriteHTML(view('auto_proposal/hasil', compact('formData')));
@@ -99,10 +102,19 @@ class WordController extends Controller
         $pdfRecord->filename = $filename;
         $pdfRecord->filepath = $filepath;
         $pdfRecord->creator = $request->user()->nim;
-        $pdfRecord->save();
+        $pdfRecord->prodi = $formData['prodi'];
+        $pdfRecord->doswal_name = $formData['doswal'];
+        $pdfRecord->wkt_start = $formData['tanggal_mulai'];
+        $pdfRecord->wkt_end = $formData['tanggal_selesai'];
+        $pdfRecord->koprodi_name = $formData['koprodi'];
+        $pdfRecord->koprodi_nip = $formData['nip_koprodi'];
 
-        // Retrieve form data
-        $formData = $request->session()->get('form_data', []);
+        $pdfRecord->surat_ditujukan_kepada = $formData['surat_ditujukan_kepada'];
+        $pdfRecord->nama_lembaga = $formData['nama_lembaga'];
+        $pdfRecord->alamat = $formData['alamat'];
+        $pdfRecord->keperluan = $formData['keperluan'];
+
+        $pdfRecord->save();
 
         // Collect NIMs
         $nims = array_filter([

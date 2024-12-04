@@ -128,7 +128,7 @@
                 <p style="margin-top:0pt; margin-bottom:0pt; font-size:12pt;"><span style="font-family:'Times New Roman';">Waktu pelaksanaan</span></p>
             </td>
             <td style="width:317.7pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top;">
-                <p style="margin-top:0pt; margin-bottom:0pt; font-size:12pt;"><span style="font-family:'Times New Roman';">: ${waktu_pelaksanaan}</span></p>
+                <p style="margin-top:0pt; margin-bottom:0pt; font-size:12pt;"><span style="font-family:'Times New Roman';">: {{ $formData['tanggal_mulai'] }}</span></p>
             </td>
         </tr>
         <tr>
@@ -155,7 +155,7 @@
     <tbody>
         <tr>
             <td style="width:173.45pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top;">
-                <p style="margin-top:0pt; margin-bottom:0pt; font-size:12pt;"><span style="font-family:'Times New Roman';">Ko. Prodi, {{ $formData['ko_prodi']}}</span></p>
+                <p style="margin-top:0pt; margin-bottom:0pt; font-size:12pt;"><span style="font-family:'Times New Roman';">Ko. Prodi, {{ $formData['koprodi']}}</span></p>
             </td>
             <td style="width:164.7pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top;">
                 <p style="margin-top:0pt; margin-bottom:0pt; font-size:12pt;"><span style="font-family:'Times New Roman';">Dosen Pembimbing,</span></p>

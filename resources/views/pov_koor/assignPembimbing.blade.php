@@ -43,7 +43,7 @@
                                                 - {{ \Carbon\Carbon::parse($pengajuan->tanggal_selesai)->format('d F Y') }} -->
                                             </td>
                                             <td class="text-center">
-                                                <a href="formAssign">Assign Dosbing</a>
+                                                <a href="{{route ('getSurat', [$pengajuan->id_surat])}}">Assign Dosbing</a>
                                             </td>
                                         </tr>
                                         @endforeach
