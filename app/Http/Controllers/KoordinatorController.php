@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Koordinator;
 use App\Models\SuratUser;
 use App\Models\Surat;
+use App\Models\Dosen;
 
 use Mpdf\Mpdf;
 use Illuminate\Http\Request;
@@ -58,7 +59,8 @@ class KoordinatorController extends Controller
     public function getSurat($id_surat){
         $data = Surat::where('id_surat', $id_surat)->first();
         $dete = SuratUser::where('id_surat', $id_surat)->get();
-        return view('pov_koor/koor_auto', compact (['data', 'id_surat', 'dete']));
+        $dosens = Dosen::all();
+        return view('pov_koor/koor_auto', compact (['data', 'id_surat', 'dete', 'dosens']));
     }
 
     public function store2form(Request $request)

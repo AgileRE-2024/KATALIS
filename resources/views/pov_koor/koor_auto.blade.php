@@ -232,8 +232,18 @@
                                                 </div>
 
                                                 <div class="form-group">
-                                                    <label for="dosbing" class="form-label">dosbing:</label>
-                                                    <input id="dosbing" name="dosbing" class="form-field" value="{{ $data->dosbing_name }}"></input>
+                                                    <label for="dosbing" class="form-label">Dosbing:</label>
+                                                    <select id="dosbing" name="dosbing" class="form-field">
+                                                        <option value="">-- Pilih Dosen --</option>
+                                                        @foreach($dosens as $dosen)
+                                                            <option value="{{ $dosen->name }}"
+                                                                @if($dosen->id == $data->dosbing_name) selected @endif>
+                                                                {{ $dosen->name }}
+                                                            </option>
+                                                        @endforeach
+                                                    </select>
+                                                    <!-- Hidden input to hold the selected dosbing name -->
+                                                    <input id="dosbing_name" name="dosbing_name" class="form-field" value="{{ $data->dosbing_name }}" readonly>
                                                 </div>
                                             </div>
 
