@@ -70,9 +70,9 @@ class KoordinatorController extends Controller
             'prodi' => $request->prodi,
             'doswal' => $request->doswal,
 
-            'nim' => $request->nim,
-            'name' => $request->name,
-            'no_hp' => $request->no_hp,
+            'nim' => $request->nim1,
+            'name' => $request->name1,
+            'no_hp' => $request->no_hp1,
 
             'nim2' => $request->nim2,
             'name2' => $request->name2,
@@ -97,7 +97,7 @@ class KoordinatorController extends Controller
             'dosbing' => $request->dosbing,
             'nip_dosbing' => $request->nip_dosbing,
 
-            'rowCount' => $request->row_count-1,
+            'rowCount' => $request->row_count+1,
             'id_surat' => $request->id_surat,
             
         ]);

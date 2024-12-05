@@ -298,12 +298,12 @@
                                         </thead>
                                         <tbody>
                                         @if($dete->count() > 0)
-                                                @foreach($dete as $index => $dete)
+                                                @foreach($dete as $rowCount => $dete)
                                                     <tr>
-                                                        <td>{{ $index+1 }}</td>
-                                                        <td><input type="text" id="nim" name="nim" value="{{ $dete->nim }}"></td>
-                                                        <td><input type="text" class="readonly" id="name" name="name" value="{{ $dete->user->name }}" readonly></td>
-                                                        <td><input type="text" class="readonly" id="no_hp" name="no_hp" value="{{ $dete->user->no_hp }}"readonly></td>
+                                                        <td>{{ $rowCount+1 }}</td>
+                                                        <td><input type="text" id="nim{{ $rowCount+1 }}" name="nim{{ $rowCount+1 }}" value="{{ $dete->nim }}"></td>
+                                                        <td><input type="text" class="readonly" id="name{{ $rowCount+1 }}" name="name{{ $rowCount+1 }}" value="{{ $dete->user->name }}" readonly></td>
+                                                        <td><input type="text" class="readonly" id="no_hp{{ $rowCount+1 }}" name="no_hp{{ $rowCount+1 }}" value="{{ $dete->user->no_hp }}"readonly></td>
                                                     </tr>
                                                 @endforeach
                                         @else
