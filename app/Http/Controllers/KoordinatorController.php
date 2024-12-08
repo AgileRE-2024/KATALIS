@@ -6,6 +6,8 @@ use App\Models\Koordinator;
 use App\Models\SuratUser;
 use App\Models\Surat;
 use App\Models\Dosen;
+use App\Models\User;
+
 
 use Mpdf\Mpdf;
 use Illuminate\Http\Request;
@@ -95,7 +97,7 @@ class KoordinatorController extends Controller
             'koprodi' => $request->koprodi,
             'nip_koprodi' => $request->nip_koprodi,
             'dosbing' => $request->dosbing,
-            'nip_dosbing' => $request->nip_dosbing,
+            'nip_dosbing' => $request->dosbing_nip,
 
             'rowCount' => $request->row_count+1,
             'id_surat' => $request->id_surat,
@@ -118,8 +120,21 @@ class KoordinatorController extends Controller
         $filepath = ('../storage/app/public/' . $filename);
         $mpdf->Output($filepath, 'F');
 
-        // Insert dosbing to database
+        // Insert dosbing to database surat
         Surat::where('id_surat', $uniq)->update(['dosbing_name' => $formData['dosbing']]);
+
+        // Insert dosbing to database user (Request Winwin)
+        $nims = array_filter([
+            $formData['nim'] ?? null,
+            $formData['nim2'] ?? null,
+            $formData['nim3'] ?? null
+        ]);
+
+        // Cari id dosen dengan nip sekian
+        $id = Dosen::where('nip', $formData['nip_dosbing'])->first()->id;
+        foreach ($nims as $nim) {
+            User::where('nim', $nim)->update(['dosen_id' => $id]);
+        }
 
         // Optional: Clear the session data after processing
         $request->session()->forget('form_data');
