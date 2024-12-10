@@ -237,13 +237,40 @@
                                                         <option value="">-- Pilih Dosen --</option>
                                                         @foreach($dosens as $dosen)
                                                             <option value="{{ $dosen->name }}"
-                                                                @if($dosen->id == $data->dosbing_name) selected @endif>
+                                                                @if($dosen->name == $data->dosbing_name) selected @endif>
+
                                                                 {{ $dosen->name }}
                                                             </option>
                                                         @endforeach
                                                     </select>
                                                     <!-- Hidden input to hold the selected dosbing name -->
-                                                    <input id="dosbing_name" name="dosbing_name" class="form-field" value="{{ $data->dosbing_name }}" readonly>
+                                                    <input id="dosbing_name" name="dosbing_name" type="hidden" class="form-field" value="{{ $data->dosbing_name }}">
+                                                    <input id="dosbing_nip" type="hidden" name="dosbing_nip" class="form-field" value="{{ $dosen->nip }}">
+                                                    
+                                                    <script>
+                                                    document.addEventListener('DOMContentLoaded', function() {
+                                                        const dosbing = document.getElementById('dosbing');
+                                                        const dosbing_nip = document.getElementById('dosbing_nip');
+                                                        
+                                                        // Parse the dosen data from the server
+                                                        const dosens = @json($dosens);
+
+                                                        dosbing.addEventListener('change', function() {
+                                                            const selectedDosenName = this.value;
+                                                            
+                                                            // Find the dosen with matching name
+                                                            const selectedDosen = dosens.find(dosen => dosen.name === selectedDosenName);
+                                                            
+                                                            // Update the NIP field
+                                                            if (selectedDosen) {
+                                                                dosbing_nip.value = selectedDosen.nip || '';
+                                                            } else {
+                                                                dosbing_nip.value = '';
+                                                            }
+                                                        });
+                                                    });
+                                                    </script>
+                                                    
                                                 </div>
                                             </div>
 

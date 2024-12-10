@@ -32,20 +32,22 @@
                                         </thead>
                                         <tbody>
                                         @foreach($pengajuans as $index => $pengajuan)
-                                        <tr class="kelompok-{{ ceil(($index + 1) / 2) }}">
-                                            <td class="text-center">{{ $index + 1 }}</td>
-                                            <td class="text-center">{{ $pengajuan->id_surat }}</td>
-                                            <td class="text-center">{{ $pengajuan->user->name }}</td>
-                                            <td class="text-center">{{ $pengajuan->nim }}</td>
-                                            <td class="text-center"></td>
-                                            <td class="text-center">
-                                                <!-- {{ \Carbon\Carbon::parse($pengajuan->tanggal_mulai)->format('d F Y') }}<br>
-                                                - {{ \Carbon\Carbon::parse($pengajuan->tanggal_selesai)->format('d F Y') }} -->
-                                            </td>
-                                            <td class="text-center">
-                                                <a href="{{route ('getSurat', [$pengajuan->id_surat])}}">Assign Dosbing</a>
-                                            </td>
-                                        </tr>
+                                            @if(empty($pengajuan->surat->dosbing_name))
+                                                <tr class="kelompok-{{ ceil(($index + 1) / 2) }}">
+                                                    <td class="text-center">{{ $index + 1 }}</td>
+                                                    <td class="text-center">{{ $pengajuan->id_surat }}</td>
+                                                    <td class="text-center">{{ $pengajuan->user->name }}</td>
+                                                    <td class="text-center">{{ $pengajuan->nim }}</td>
+                                                    <td class="text-center"></td>
+                                                    <td class="text-center">
+                                                        {{ \Carbon\Carbon::parse($pengajuan->surat->wkt_start)->format('d F Y') }}<br>
+                                                        - {{ \Carbon\Carbon::parse($pengajuan->surat->wkt_end)->format('d F Y') }}
+                                                    </td>
+                                                    <td class="text-center">
+                                                        <a href="{{route ('getSurat', [$pengajuan->id_surat])}}">Assign Dosbing</a>
+                                                    </td>
+                                                </tr>
+                                            @endif
                                         @endforeach
 
                                         </tbody>
