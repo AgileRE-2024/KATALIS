@@ -94,13 +94,16 @@
 
                             <!-- Surat Permohonan (File Upload) -->
                             <h4>Surat Permohonan:</h4>
-                            <p>
-                                @if($suratTerbaru->filepath)
-                                    <a href="{{ asset('storage/' . $suratTerbaru->filepath) }}" target="_blank">Surat Permohonan</a>
-                                @else
-                                    Tidak ada informasi
-                                @endif
-                            </p>
+                            @if ($suratTerbaru)
+                                <p>Nama Surat: {{ $suratTerbaru->filename ?? 'Tidak ada informasi' }}</p>
+                                <p>Path: 
+                                    <a href="{{ asset('storage/' . $suratTerbaru->filepath) }}" target="_blank">
+                                        Buka Surat
+                                    </a>
+                                </p>
+                            @else
+                                <p>Surat tidak ditemukan.</p>
+                            @endif
 
                             <!-- Surat Penerimaan (File Upload) -->
                             <h4>Surat Penerimaan:</h4>
