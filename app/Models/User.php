@@ -45,13 +45,21 @@ class User extends Authenticatable
 
     // Relasi dengan Seminar
     public function seminar()
-{
-    return $this->hasMany(SeminarApplication::class);
-}
+    {
+        return $this->hasMany(SeminarApplication::class);
+    }
 
     public function dosen()
     {
-        return $this->belongsTo(Dosen::class);
+        return $this->belongsTo(Dosen::class, 'dosen_id', 'id');
     }
+
+    public function surats()
+    {
+        return $this->belongsToMany(Surat::class, 'surat_users', 'nim', 'id_surat')
+                    ->using(SuratUser::class); 
+    }
+
+
 }
 

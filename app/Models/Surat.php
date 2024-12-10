@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class Surat extends Model
 {
     use HasFactory;
+    protected $primaryKey = 'id_surat';
 
     protected $fillable = [
         'id_surat',
@@ -35,6 +36,14 @@ class Surat extends Model
     {
         return $this->hasMany(SuratUser::class, 'id_surat', 'id_surat');
     }
+
+    public function users()
+    {
+        return $this->belongsToMany(User::class, 'surat_users', 'id_surat', 'nim')
+                    ->using(SuratUser::class); 
+    }
+
+
 
 
 }

@@ -65,13 +65,11 @@
                     <h2>Informasi PKL</h2>
 
                     <div class="info-card">
-                        <!-- Nama Perusahaan (Static) -->
                         <h4>Nama Perusahaan:</h4>
-                        <p>PT. Maju Sejahtera</p>
+                        <p>{{ $suratTerbaru->nama_lembaga ?? 'Tidak ada informasi' }}</p>
 
-                        <!-- Alamat Perusahaan (Static) -->
                         <h4>Alamat Perusahaan:</h4>
-                        <p>Jl. Kebon Jeruk No. 5, Jakarta</p>
+                        <p>{{ $suratTerbaru->alamat ?? 'Tidak ada informasi' }}</p>
 
                         <!-- Form Input for Editable Fields -->
                         <form method="POST" action="{{ url('/submit-informasi-pkl') }}" enctype="multipart/form-data">
@@ -82,19 +80,27 @@
                             <input type="text" class="form-control mb-3" name="role" placeholder="Masukkan Role Anda" required>
 
                             <!-- Periode PKL (Date Input) -->
-                            <h4>Periode PKL:</h4>
+                            {{-- <h4>Periode PKL:</h4> --}}
                             <div class="row">
                                 <div class="col-md-6">
-                                    <input type="date" class="form-control mb-3" name="periode_start" required>
+                                    <h4>Periode Start:</h4>
+                                    <p>{{ $suratTerbaru->wkt_start ?? 'Tidak ada informasi' }}</p>
                                 </div>
                                 <div class="col-md-6">
-                                    <input type="date" class="form-control mb-3" name="periode_end" required>
+                                    <h4>Periode Berakhir:</h4>
+                                    <p>{{ $suratTerbaru->wkt_end ?? 'Tidak ada informasi' }}</p>
                                 </div>
                             </div>
 
                             <!-- Surat Permohonan (File Upload) -->
                             <h4>Surat Permohonan:</h4>
-                            <input type="file" class="form-control mb-3" name="surat_permohonan" accept=".pdf" required>
+                            <p>
+                                @if($suratTerbaru->filepath)
+                                    <a href="{{ asset('storage/' . $suratTerbaru->filepath) }}" target="_blank">Surat Permohonan</a>
+                                @else
+                                    Tidak ada informasi
+                                @endif
+                            </p>
 
                             <!-- Surat Penerimaan (File Upload) -->
                             <h4>Surat Penerimaan:</h4>

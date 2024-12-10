@@ -87,13 +87,10 @@ Route::group(['middleware' => ['auth', 'hakakses:users']], function() {
     Route::get('/wordb/view/pdf', [WordController::class, 'view_pdf'])->name("wordb/view/pdf");
     Route::get('/wordb/download/pdf', [WordController::class, 'download_pdf'])->name("wordb/download/pdf");
 
-    Route::get('/profilds', function () {
-        return view('/mahasiswa/profilds');
-    });
+    Route::get('/profilds', [UserController::class, 'show'])->name('profilds');
+    
 
-    Route::get('/informasipkl', function () {
-        return view('/mahasiswa/informasipkl');
-    });
+    Route::get('/informasipkl', [UserController::class, 'showInfoPKL'])->name('informasipkl');
 
     Route::get('/laporanfiks', function () {
         return view('/mahasiswa/laporanfiks');
