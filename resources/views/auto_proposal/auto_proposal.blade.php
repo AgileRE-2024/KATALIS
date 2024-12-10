@@ -183,7 +183,57 @@
                                 
                                 <div class="card-body">
                                     
-                                    <h4 class="card-title">Pengajuan Surat</h4>
+                                    <h4 class="card-title">Histori Pengajuan Surat</h4>
+
+                                    <table id="statusPengajuanTable" class="table table-bordered">
+                                        <thead>
+                                            <tr>
+                                                <th>Tujuan Pengajuan</th>
+                                                <th>Status Pengajuan</th>
+                                                <th>Download Pengajuan</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                        @foreach ($surats as $surat)
+                                            <tr>
+                                                <td id="tanggalPengajuan">{{ $surat->nama_lembaga ?? 'Tidak ada informasi' }}</td>
+                                                
+                                                <td id="statusPengajuan1">
+                                                    @if ($surat->is_active == 1 && !$surat->dosen_id)
+                                                        <!-- Status Pending -->
+                                                        <p>Status: Pending</p>
+                                                    @elseif ($surat->is_active == 1 && $surat->dosen_id)
+                                                        <!-- Status Pengajuan Selesai -->
+                                                        <p>Status: Pengajuan Selesai</p>
+                                                    @elseif ($surat->is_active == 2)
+                                                        <!-- Status PKL Ditolak -->
+                                                        <p>Status: PKL Ditolak</p>
+                                                    @else
+                                                        <p>Status: Tidak Dikenal</p>
+                                                    @endif
+                                                </td>
+                                                
+                                                <td>
+                                                    <a href="#" id="lihatPengajuan1">
+                                                        @if ($surat)
+                                                            <p>
+                                                                <a href="{{ asset('storage/' . str_replace('../storage/app/public/', '', $surat->filepath)) }}" target="_blank">
+                                                                    Download Surat
+                                                                </a>
+                                                            </p>
+                                                        @else
+                                                            <p>Surat tidak ditemukan.</p>
+                                                        @endif
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                        @endforeach
+
+                                    </tbody>
+
+                                    </table>
+
+                                    <h4 class="card-title">Pengajuan Surat Baru</h4>
 
                                     <form class ="forms-sample" action="{{route('store.form')}}" method="POST" id=tableForm>
                                         @csrf
@@ -311,34 +361,9 @@
                                             <button type="reset" class="btn btn-light">Reset</button>
                                         </div>
 
-                                        <!-- Garis Pembatas -->
+                                        
                                     <div class="divider"></div>
-                                    <table id="statusPengajuanTable" class="table table-bordered">
-                                        <thead>
-                                            <tr>
-                                                <th>#</th>
-                                                <th>Tanggal Pengajuan</th>
-                                                <th>Status Pengajuan</th>
-                                                <th>Lihat Pengajuan</th>
-                                                <th>Download</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td>1</td>
-                                                <td id="tanggalPengajuan1">2024-11-20</td>
-                                                <td id="statusPengajuan1">Pending</td>
-                                                <td>
-                                                    <a href="#" id="lihatPengajuan1">Lihat Pengajuan</a>
-                                                </td>
-                                                <td>
-                                                    <button type="button" id="downloadBtn1" class="btn btn-primary mr-2" disabled onclick="downloadFile(1)">
-                                                        Download
-                                                    </button>
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
+                                    
 
                                     <script>
                                         // Fungsi untuk mengatur tombol download berdasarkan status
@@ -469,13 +494,12 @@
 <script>
     // Sample data for form fields
 const sampleData = {
-    prodi: "Teknik Informatika",
-    doswal: "Pak Eto",
-    surat_ditujukan_kepada: "HRD BCA",
-    nama_lembaga: "BCA",
-    alamat: "Alamatnya BCA",
+    prodi: "Sistem Informasi",
+    doswal: "",
+    surat_ditujukan_kepada: "",
+    nama_lembaga: "",
+    alamat: "",
     keperluan: "PKL Magang",
-    waktu_pelaksanaan: "1 Januari 2025 - 30 Juni 2025",
     tembusan: "",
     date: "2024-11-05", // Current date in YYYY-MM-DD format
     koprodi: "Pak Hendra",

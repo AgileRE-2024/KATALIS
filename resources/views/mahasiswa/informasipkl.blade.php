@@ -72,12 +72,8 @@
                         <p>{{ $suratTerbaru->alamat ?? 'Tidak ada informasi' }}</p>
 
                         <!-- Form Input for Editable Fields -->
-                        <form method="POST" action="{{ url('/submit-informasi-pkl') }}" enctype="multipart/form-data">
+                        <form method="POST" action="{{ route('updateData') }}" enctype="multipart/form-data">
                             @csrf
-
-                            <!-- Role (Input) -->
-                            <h4>Role:</h4>
-                            <input type="text" class="form-control mb-3" name="role" placeholder="Masukkan Role Anda" required>
 
                             <!-- Periode PKL (Date Input) -->
                             {{-- <h4>Periode PKL:</h4> --}}
@@ -95,23 +91,28 @@
                             <!-- Surat Permohonan (File Upload) -->
                             <h4>Surat Permohonan:</h4>
                             @if ($suratTerbaru)
-                                <p>Nama Surat: {{ $suratTerbaru->filename ?? 'Tidak ada informasi' }}</p>
-                                <p>Path: 
-                                    <a href="{{ asset('storage/' . $suratTerbaru->filepath) }}" target="_blank">
-                                        Buka Surat
+                                <p>
+                                    <a href="{{ asset('storage/' . str_replace('../storage/app/public/', '', $suratTerbaru->filepath)) }}">{{ $suratTerbaru->filename ?? 'Tidak ada Surat' }}</a>
                                     </a>
                                 </p>
                             @else
                                 <p>Surat tidak ditemukan.</p>
                             @endif
 
+                            <!-- Proposal (File Upload) -->
+                            <h4>Proposal:</h4>
+                            <input type="file" class="form-control mb-3" name="proposal" accept=".pdf" required>
+
                             <!-- Surat Penerimaan (File Upload) -->
                             <h4>Surat Penerimaan:</h4>
                             <input type="file" class="form-control mb-3" name="surat_penerimaan" accept=".pdf" required>
 
-                            <!-- Submit and Cancel Buttons -->
-                            <button type="submit" class="btn btn-primary">Simpan Informasi PKL</button>
-                            <a href="{{ url('/') }}" class="btn btn-light">Batal</a>
+                            <button type="submit" class="btn btn-primary">Diterima dan Update Data</button>
+
+                            <!-- Tombol Ditolak -->
+                            <a href="{{ route('reject', ['suratId' => $suratTerbaru->id_surat]) }}" class="btn btn-light">Ditolak</a>
+
+                            
                         </form>
                     </div>
 

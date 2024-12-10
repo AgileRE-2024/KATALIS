@@ -83,7 +83,7 @@ Route::group(['middleware' => ['auth', 'hakakses:users']], function() {
 
     Route::post('/store-form', [WordController::class, 'store'])->name("store.form");
     Route::get('/wordb', [WordController::class, 'index'])->name('wordb');
-    Route::get('/worda', [WordController::class, 'display']);
+    Route::get('/worda', [WordController::class, 'display'])->name('worda');
     Route::get('/wordb/view/pdf', [WordController::class, 'view_pdf'])->name("wordb/view/pdf");
     Route::get('/wordb/download/pdf', [WordController::class, 'download_pdf'])->name("wordb/download/pdf");
 
@@ -91,6 +91,10 @@ Route::group(['middleware' => ['auth', 'hakakses:users']], function() {
     
 
     Route::get('/informasipkl', [UserController::class, 'showInfoPKL'])->name('informasipkl');
+
+    Route::post('/update-data', [UserController::class, 'updateData'])->name('updateData');
+
+    Route::get('/reject/{suratId}', [UserController::class, 'reject'])->name('reject');
 
     Route::get('/laporanfiks', function () {
         return view('/mahasiswa/laporanfiks');

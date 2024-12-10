@@ -12,6 +12,7 @@ class User extends Authenticatable
     use HasFactory, Notifiable, HasApiTokens;
 
     protected $fillable = [
+        'dosen_id',
         'name',
         'username',
         'email',
@@ -21,6 +22,8 @@ class User extends Authenticatable
         'alamat',
         'no_hp',
         'tanggal_lahir',
+        'proposal_pkl',
+        'surat_penerimaan'
     ];
 
     protected $hidden = [

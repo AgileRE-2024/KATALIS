@@ -6,7 +6,7 @@ use Mpdf\Mpdf;
 use Illuminate\Http\Request;
 use App\Models\Surat;
 use App\Models\SuratUser;
-
+use Illuminate\Support\Facades\Auth;
 
 
 class WordController extends Controller
@@ -14,7 +14,20 @@ class WordController extends Controller
 
     public function display(Request $request)
     {
-       return view('auto_proposal/auto_proposal');
+        $user = Auth::user();
+
+        if (!$user) {
+            abort(404, 'User tidak ditemukan');
+        }
+
+        $surats = \DB::table('surat_users')
+            ->join('surats', 'surat_users.id_surat', '=', 'surats.id_surat')
+            ->join('users', 'surat_users.nim', '=', 'users.nim') // Join dengan tabel users untuk mendapatkan dosen_id
+            ->where('surat_users.nim', $user->nim)
+            ->orderBy('surats.created_at', 'desc')
+            ->get();
+
+        return view('auto_proposal/auto_proposal', compact('user', 'surats'));
     }
 
     public function store(Request $request)
