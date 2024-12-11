@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\WordController;
+use App\Http\Controllers\KoordinatorController;
 use App\Http\Controllers\LogbookController;
 use App\Http\Controllers\SeminarApplicationController;
 use App\Http\Controllers\Auth\RegisterController;
@@ -31,21 +32,6 @@ Route::get('/', function () {
     return redirect('/loginfix'); // Redirect to the login page
 });
 
-// Route::get('/dashboard', function () {
-//     return view('/mahasiswa/dashboard');
-// })->name('dashboard');
-
-// Route::get('/worda', function () {
-//     return view('auto_proposal/auto_proposal');
-// });
-
-// Route::get('/form', function () {
-//     return view('form');
-// });
-
-// Billy - auto-generate
-
-// Billy end -----------------------------------
 
 # update database
 
@@ -97,17 +83,18 @@ Route::group(['middleware' => ['auth', 'hakakses:users']], function() {
 
     Route::post('/store-form', [WordController::class, 'store'])->name("store.form");
     Route::get('/wordb', [WordController::class, 'index'])->name('wordb');
-    Route::get('/worda', [WordController::class, 'display']);
+    Route::get('/worda', [WordController::class, 'display'])->name('worda');
     Route::get('/wordb/view/pdf', [WordController::class, 'view_pdf'])->name("wordb/view/pdf");
     Route::get('/wordb/download/pdf', [WordController::class, 'download_pdf'])->name("wordb/download/pdf");
 
-    Route::get('/profilds', function () {
-        return view('/mahasiswa/profilds');
-    });
+    Route::get('/profilds', [UserController::class, 'show'])->name('profilds');
+    
 
-    Route::get('/informasipkl', function () {
-        return view('/mahasiswa/informasipkl');
-    });
+    Route::get('/informasipkl', [UserController::class, 'showInfoPKL'])->name('informasipkl');
+
+    Route::post('/update-data', [UserController::class, 'updateData'])->name('updateData');
+
+    Route::get('/reject/{suratId}', [UserController::class, 'reject'])->name('reject');
 
     Route::get('/laporanfiks', function () {
         return view('/mahasiswa/laporanfiks');
@@ -197,17 +184,20 @@ Route::group(['middleware' => ['auth', 'hakakses:koordinator']], function() {
         return view('editpkl');
     });
     
-    Route::get('/assignPembimbing', function () {
-        return view('pov_koor/assignPembimbing');
-    });
+    Route::get('/assignPembimbing', [KoordinatorController::class, 'index'])->name('assignPembimbing.index');
     
     Route::get('/daftarDosen', function () {
         return view('pov_koor/daftarDosen');
     });
+
+    Route::get('/daftarDosen', [DosenController::class, 'isi'])->name('daftarDosen.isi');
+
     
     Route::get('/pklAktif', function () {
         return view('pov_koor/pklAktif');
     });
+    Route::get('/pklAktif', [KoordinatorController::class, 'index2'])->name('pklAktif.index2');
+
     
     Route::get('/formAssign', function () {
         return view('pov_koor/formAssign');
@@ -215,6 +205,13 @@ Route::group(['middleware' => ['auth', 'hakakses:koordinator']], function() {
     
     Route::post('/uploadHasil/{id}', [JadwalKonsultasiController::class, 'uploadHasil'])->name('uploadHasil');
     Route::post('/uploadDokumentasi/{id}', [JadwalKonsultasiController::class, 'uploadDokumentasi'])->name('uploadDokumentasi');
+
+    Route::get('getSurat/{id}', [KoordinatorController::class, 'getSurat'])->name('getSurat');
+
+    Route::post('/store-2form', [KoordinatorController::class, 'store2form'])->name("store.2form");
+
+    Route::get('/wordc/view/pdf', [KoordinatorController::class, 'up_pdf'])->name("wordc/view/pdf");
+
     
 });
 

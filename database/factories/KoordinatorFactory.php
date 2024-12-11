@@ -8,7 +8,7 @@ use Illuminate\Support\Str;
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\User>
  */
-class UserFactory extends Factory
+class KoordinatorFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -19,12 +19,12 @@ class UserFactory extends Factory
     {
         return [
             'name' => $this->faker->name(),
-            'email' => $this->faker->unique(),
+            'email' => $this->faker->unique()->safeEmail(),
             'password' => bcrypt('password'), // bisa sesuaikan dengan password default
             'remember_token' => Str::random(10),
-            'nim' => $this->faker->numerify('##########'), // Sesuaikan dengan format NIM yang valid
-            'program_studi' => $this->faker->word(), // Bisa sesuaikan dengan program studi yang ada
-            'alamat' => $this->faker->address(),
+            'nip' => $this->faker->numerify('##########'), // Sesuaikan dengan format NIM yang valid
+            'bidang_keahlian' => $this->faker->word(), // Bisa sesuaikan dengan program studi yang ada
+            'alamat_kantor' => $this->faker->address(),
             'no_hp' => $this->faker->phoneNumber(),
             'tanggal_lahir' => $this->faker->date(),
             'created_at' => now(),

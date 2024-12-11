@@ -3,7 +3,7 @@
 
 <head>
     @include('components.head')
-    <style>
+<style>
     /* Custom CSS for sidebar */
     .sidebar {
         width: 250px; /* Set desired sidebar width */
@@ -33,6 +33,15 @@
     .page-body-wrapper {
         background-color: #f8f9fa; /* Set to the same color as main-panel */
     }
+
+    .card-title {
+    margin-bottom: 10px; /* Kurangi jarak bawah judul */
+    }
+
+    .forms-sample {
+        margin-top: 100; /* Kurangi jarak atas form */
+    }
+
     /* Garis Pembatas */
     .divider {
         width: 100%;
@@ -67,15 +76,15 @@
 
     /* Media Query untuk Responsivitas */
     @media (max-width: 768px) {
-    .student-details {
-        flex-direction: column;
-    }
+        .student-details {
+            flex-direction: column;
+        }
 
-    .student-details .column {
-        width: 100%;
-        margin-bottom: 20px;
+        .student-details .column {
+            width: 100%;
+            margin-bottom: 20px;
+        }
     }
-}
 
     /* Form Group Styling */
     .form-group {
@@ -83,25 +92,25 @@
     flex-direction: column;
     margin-bottom: 16px;
     font-size: 16px;
-}
+    }
 
-.form-label {
-    margin-bottom: 8px;
-    font-family: 'Arial', sans-serif;
-    font-size: 16px;
-    font-weight: bold;
-}
+    .form-label {
+        margin-bottom: 8px;
+        font-family: 'Arial', sans-serif;
+        font-size: 16px;
+        font-weight: bold;
+    }
 
-.form-field {
-    flex: 1;
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    font-size: 14px;
-    background-color: #fff;
-    box-sizing: border-box; /* Pastikan padding tidak menambah ukuran */
-}
+    .form-field {
+        flex: 1;
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        font-size: 14px;
+        background-color: #fff;
+        box-sizing: border-box; /* Pastikan padding tidak menambah ukuran */
+    }
 
 
     /* Menambahkan border dan background untuk input yang harus diisi */
@@ -111,14 +120,14 @@
     }
 
     .form-field:focus {
-    border-color: #0077b6;
-    outline: none;
+        border-color: #0077b6;
+        outline: none;
 
-    .hidden {
-    display: none;
-}
+        .hidden {
+        display: none;
+        }
 
-}
+    }
 
     /* Table Styling */
     table {
@@ -174,59 +183,9 @@
                                 
                                 <div class="card-body">
                                     
-                                    <h4 class="card-title">Histori Pengajuan Surat</h4>
+                                    <h4 class="card-title">Pengajuan Surat</h4>
 
-                                    <table id="statusPengajuanTable" class="table table-bordered">
-                                        <thead>
-                                            <tr>
-                                                <th>Tujuan Pengajuan</th>
-                                                <th>Status Pengajuan</th>
-                                                <th>Download Pengajuan</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                        @foreach ($surats as $surat)
-                                            <tr>
-                                                <td id="tanggalPengajuan">{{ $surat->nama_lembaga ?? 'Tidak ada informasi' }}</td>
-                                                
-                                                <td id="statusPengajuan1">
-                                                    @if ($surat->is_active == 1 && !$surat->dosen_id)
-                                                        <!-- Status Pending -->
-                                                        <p>Status: Pending</p>
-                                                    @elseif ($surat->is_active == 1 && $surat->dosen_id)
-                                                        <!-- Status Pengajuan Selesai -->
-                                                        <p>Status: Pengajuan Selesai</p>
-                                                    @elseif ($surat->is_active == 2)
-                                                        <!-- Status PKL Ditolak -->
-                                                        <p>Status: PKL Ditolak</p>
-                                                    @else
-                                                        <p>Status: Tidak Dikenal</p>
-                                                    @endif
-                                                </td>
-                                                
-                                                <td>
-                                                    <a href="#" id="lihatPengajuan1">
-                                                        @if ($surat)
-                                                            <p>
-                                                                <a href="{{ asset('storage/' . str_replace('../storage/app/public/', '', $surat->filepath)) }}" target="_blank">
-                                                                    Download Surat
-                                                                </a>
-                                                            </p>
-                                                        @else
-                                                            <p>Surat tidak ditemukan.</p>
-                                                        @endif
-                                                    </a>
-                                                </td>
-                                            </tr>
-                                        @endforeach
-
-                                    </tbody>
-
-                                    </table>
-
-                                    <h4 class="card-title">Pengajuan Surat Baru</h4>
-
-                                    <form class ="forms-sample" action="{{route('store.form')}}" method="POST" id=tableForm>
+                                    <form class ="forms-sample" action="{{route('store.2form')}}" method="POST" id=tableForm>
                                         @csrf
 
                                         <div class="student-details">
@@ -234,12 +193,12 @@
                                             <div class="column">
                                             <div class="form-group">
                                                 <label for="prodi" class="form-label">Prodi:</label>
-                                                <input type="text" id="prodi" class="form-field" name="prodi" readonly>
+                                                <input type="text" id="prodi" class="form-field" name="prodi" value="{{ $data->prodi }}" readonly>
                                             </div>
 
                                                 <div class="form-group">
                                                     <label for="doswal" class="form-label">doswal:</label>
-                                                    <input id="doswal" class="form-field" name="doswal" contenteditable="false"></input>
+                                                    <input id="doswal" class="form-field" name="doswal" value="{{ $data->doswal_name }}" contenteditable="false"></input>
                                                 </div>
 
                                                 <div class="form-group">
@@ -264,17 +223,54 @@
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="koprodi" class="form-label">koprodi:</label>
-                                                    <input id="koprodi" name="koprodi" class="form-field" contenteditable="false"></input>
+                                                    <input id="koprodi" name="koprodi" class="form-field" value="{{ $data->koprodi_name }}" contenteditable="false"></input>
                                                 </div>
 
                                                 <div class="form-group">
                                                     <label for="nip_koprodi" class="form-label">nip_koprodi:</label>
-                                                    <input id="nip_koprodi" name="nip_koprodi" class="form-field" contenteditable="false"></input>
+                                                    <input id="nip_koprodi" name="nip_koprodi" class="form-field" value="{{ $data->koprodi_nip }}" contenteditable="false"></input>
                                                 </div>
 
                                                 <div class="form-group">
-                                                    <label for="dosbing" class="form-label">dosbing:</label>
-                                                    <input id="dosbing" name="dosbing" class="form-field" contenteditable="false" disabled></input>
+                                                    <label for="dosbing" class="form-label">Dosbing:</label>
+                                                    <select id="dosbing" name="dosbing" class="form-field">
+                                                        <option value="">-- Pilih Dosen --</option>
+                                                        @foreach($dosens as $dosen)
+                                                            <option value="{{ $dosen->name }}"
+                                                                @if($dosen->name == $data->dosbing_name) selected @endif>
+
+                                                                {{ $dosen->name }}
+                                                            </option>
+                                                        @endforeach
+                                                    </select>
+                                                    <!-- Hidden input to hold the selected dosbing name -->
+                                                    <input id="dosbing_name" name="dosbing_name" type="hidden" class="form-field" value="{{ $data->dosbing_name }}">
+                                                    <input id="dosbing_nip" type="hidden" name="dosbing_nip" class="form-field" value="{{ $dosen->nip }}">
+                                                    
+                                                    <script>
+                                                    document.addEventListener('DOMContentLoaded', function() {
+                                                        const dosbing = document.getElementById('dosbing');
+                                                        const dosbing_nip = document.getElementById('dosbing_nip');
+                                                        
+                                                        // Parse the dosen data from the server
+                                                        const dosens = @json($dosens);
+
+                                                        dosbing.addEventListener('change', function() {
+                                                            const selectedDosenName = this.value;
+                                                            
+                                                            // Find the dosen with matching name
+                                                            const selectedDosen = dosens.find(dosen => dosen.name === selectedDosenName);
+                                                            
+                                                            // Update the NIP field
+                                                            if (selectedDosen) {
+                                                                dosbing_nip.value = selectedDosen.nip || '';
+                                                            } else {
+                                                                dosbing_nip.value = '';
+                                                            }
+                                                        });
+                                                    });
+                                                    </script>
+                                                    
                                                 </div>
                                             </div>
 
@@ -284,23 +280,23 @@
                                                 <div class="form-group">
 
                                                     <label for="surat_ditujukan_kepada" class="form-label">surat_ditujukan_kepada:</label>
-                                                    <input id="surat_ditujukan_kepada" name="surat_ditujukan_kepada" class="form-field" contenteditable="false"></input>
+                                                    <input id="surat_ditujukan_kepada" name="surat_ditujukan_kepada" value="{{ $data->surat_ditujukan_kepada }}" class="form-field" contenteditable="false"></input>
 
                                                 </div>
 
                                                 <div class="form-group">
                                                     <label for="nama_lembaga" class="form-label">nama_lembaga:</label>
-                                                    <input id="nama_lembaga" name="nama_lembaga" class="form-field" contenteditable="false"></input>
+                                                    <input id="nama_lembaga" name="nama_lembaga" class="form-field" value="{{ $data->nama_lembaga }}" contenteditable="false"></input>
                                                 </div>
 
                                                 <div class="form-group">
                                                     <label for="alamat" class="form-label">alamat:</label>
-                                                    <input id="alamat" name="alamat" class="form-field" contenteditable="false"></input>
+                                                    <input id="alamat" name="alamat" class="form-field" value="{{ $data->alamat }}" contenteditable="false"></input>
                                                 </div>
 
                                                 <div class="form-group">
                                                     <label for="keperluan" class="form-label">keperluan:</label>
-                                                    <input id="keperluan" name="keperluan" class="form-field" contenteditable="false"></input>
+                                                    <input id="keperluan" name="keperluan" class="form-field" value="{{ $data->keperluan }}" contenteditable="false"></input>
                                                 </div>
 
                                                 <script>
@@ -328,33 +324,61 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
-                                                <td>1</td>
-                                                <td>
-                                                    <input type="text" id="nim" name="nim" placeholder="Masukkan NIM">
-                                                </td>
-                                                <td>
-                                                    <input type="text" class="readonly" id="name" name="name" readonly>
-                                                </td>
-                                                <td>
-                                                    <input type="text" class="readonly" id="no_hp" name="no_hp" readonly>
-                                                </td>
-                                            </tr>
+                                        @if($dete->count() > 0)
+                                                @foreach($dete as $rowCount => $dete)
+                                                    <tr>
+                                                        <td>{{ $rowCount+1 }}</td>
+                                                        <td><input type="text" id="nim{{ $rowCount+1 }}" name="nim{{ $rowCount+1 }}" value="{{ $dete->nim }}"></td>
+                                                        <td><input type="text" class="readonly" id="name{{ $rowCount+1 }}" name="name{{ $rowCount+1 }}" value="{{ $dete->user->name }}" readonly></td>
+                                                        <td><input type="text" class="readonly" id="no_hp{{ $rowCount+1 }}" name="no_hp{{ $rowCount+1 }}" value="{{ $dete->user->no_hp }}"readonly></td>
+                                                    </tr>
+                                                @endforeach
+                                        @else
+                                            <p>No related records found.</p>
+                                        @endif
+                                        
 
-
-                                            
                                             <input type="hidden" name="row_count" id="rowCount">
+                                            <input type="hidden" name="id_surat" id="id_surat" value="{{ $data->id_surat }}">
                                         </tbody>
                                     </table>
+
+
+
                                         <div class="form-group">
                                             
                                             <button type="submit" class="btn btn-primary mr-2">Kirim</button>
                                             <button type="reset" class="btn btn-light">Reset</button>
                                         </div>
 
-                                        
+                                        <!-- Garis Pembatas -->
                                     <div class="divider"></div>
-                                    
+                                    <table id="statusPengajuanTable" class="table table-bordered">
+                                        <thead>
+                                            <tr>
+                                                <th>#</th>
+                                                <th>Tanggal Pengajuan</th>
+                                                <th>Status Pengajuan</th>
+                                                <th>Lihat Pengajuan</th>
+                                                <th>Download</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>1</td>
+                                                <td id="tanggalPengajuan1">2024-11-20</td>
+                                                <td id="statusPengajuan1">Pending</td>
+                                                <td>
+                                                    <a href="#" id="lihatPengajuan1">Lihat Pengajuan</a>
+                                                </td>
+                                                <td>
+                                                    <button type="button" id="downloadBtn1" class="btn btn-primary mr-2" disabled onclick="downloadFile(1)">
+                                                        Download
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
 
                                     <script>
                                         // Fungsi untuk mengatur tombol download berdasarkan status
@@ -482,36 +506,4 @@
 
 </html>
 
-<script>
-    // Sample data for form fields
-const sampleData = {
-    prodi: "Sistem Informasi",
-    doswal: "",
-    surat_ditujukan_kepada: "",
-    nama_lembaga: "",
-    alamat: "",
-    keperluan: "PKL Magang",
-    tembusan: "",
-    date: "2024-11-05", // Current date in YYYY-MM-DD format
-    koprodi: "Pak Hendra",
-    dosbing: "",
-    nip_koprodi: "198505152010121002",
-    nip_dosbing: ""
-};
-
-// Function to fill all form fields
-function autofillForm() {
-    // Loop through all properties in sampleData
-    Object.keys(sampleData).forEach(fieldId => {
-        const inputElement = document.getElementById(fieldId);
-        if (inputElement) {
-            inputElement.value = sampleData[fieldId];
-        }
-    });
-}
-
-
-// Automatically fill the form when the page loads
-document.addEventListener('DOMContentLoaded', autofillForm);
-</script>
 

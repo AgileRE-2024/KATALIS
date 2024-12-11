@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User; 
+use Illuminate\Support\Facades\Auth;
+
 
 class UserController extends Controller
 {
@@ -27,5 +29,70 @@ class UserController extends Controller
             'message' => 'NIM not found',
         ]);
     }
+
+    public function show()
+    {
+        $user = Auth::user();
+
+        if (!$user) {
+            abort(404, 'User tidak ditemukan');
+        }
+
+        return view('/mahasiswa/profilds', compact('user'));
+    }
+
+    public function showInfoPKL()
+    {
+        $user = Auth::user();
+
+        if (!$user) {
+            abort(404, 'User tidak ditemukan');
+        }
+
+        $surats = \DB::table('surat_users')
+            ->join('surats', 'surat_users.id_surat', '=', 'surats.id_surat')
+            ->where('surat_users.nim', $user->nim)
+            ->orderBy('surats.created_at', 'desc') // Atau gunakan 'surats.id_surat' jika perlu
+            ->get();
+
+        // Mengambil surat terbaru (pertama dalam hasil query)
+        $suratTerbaru = $surats->first(); // Mengambil surat terbaru
+
+        return view('/mahasiswa/informasipkl', compact('user', 'suratTerbaru'));
+    }
+
+    public function reject($suratId)
+    {
+        $user = Auth::user();
+
+        // Pastikan user ada
+        if (!$user) {
+            abort(404, 'User tidak ditemukan');
+        }
+
+        // Temukan semua surat_users berdasarkan id_surat
+        $suratUsers = \DB::table('surat_users')
+                        ->where('id_surat', $suratId)
+                        ->get(); // Ambil semua data surat_users yang memiliki id_surat yang sama
+
+        // Pastikan surat_users tidak kosong
+        if ($suratUsers->isNotEmpty()) {
+            // Ubah is_active menjadi 2 untuk semua surat dengan id_surat yang sama
+            \DB::table('surat_users')
+                ->where('id_surat', $suratId)
+                ->update(['is_active' => 2]);
+
+            // Menghapus id_dosen pada semua user yang memiliki id_surat yang sama
+            \DB::table('users')
+                ->whereIn('nim', $suratUsers->pluck('nim')) // Ambil semua nim yang terkait dengan id_surat
+                ->update(['dosen_id' => null]); // Hapus id_dosen
+        } else {
+            return redirect()->route('worda')->with('error', 'Surat tidak ditemukan.');
+        }
+
+        // Redirect ke halaman pengajuan surat
+        return redirect()->route('worda')->with('success', 'Surat ditolak dan id_dosen dihapus.');
+    }
+
 
 }

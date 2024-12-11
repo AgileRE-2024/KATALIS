@@ -9,6 +9,9 @@ use App\Models\Dosen;
 use App\Models\Koordinator;
 use Illuminate\Support\Facades\Auth;
 
+use App\Http\Controllers\KoordinatorController;
+
+
 class HakAkses
 {
     /**

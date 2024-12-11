@@ -57,14 +57,6 @@
             </a>
         </li>
 
-        <!-- Laporan -->
-        <li class="nav-item">
-            <a class="nav-link" href="laporanfiks">
-                <i class="ti-clipboard menu-icon"></i>
-                <span class="menu-title">Laporan</span>
-            </a>
-        </li>
-
         <!-- Seminar -->
         <li class="nav-item">
             <a class="nav-link" data-toggle="collapse" href="#seminar" aria-expanded="false" aria-controls="seminar">

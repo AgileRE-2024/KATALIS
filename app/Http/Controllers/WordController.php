@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use Mpdf\Mpdf;
 use Illuminate\Http\Request;
-use App\Models\Mhs;
+use App\Models\Surat;
+use App\Models\SuratUser;
+use Illuminate\Support\Facades\Auth;
 
 
 class WordController extends Controller
@@ -12,7 +14,20 @@ class WordController extends Controller
 
     public function display(Request $request)
     {
-       return view('auto_proposal/auto_proposal');
+        $user = Auth::user();
+
+        if (!$user) {
+            abort(404, 'User tidak ditemukan');
+        }
+
+        $surats = \DB::table('surat_users')
+            ->join('surats', 'surat_users.id_surat', '=', 'surats.id_surat')
+            ->join('users', 'surat_users.nim', '=', 'users.nim') // Join dengan tabel users untuk mendapatkan dosen_id
+            ->where('surat_users.nim', $user->nim)
+            ->orderBy('surats.created_at', 'desc')
+            ->get();
+
+        return view('auto_proposal/auto_proposal', compact('user', 'surats'));
     }
 
     public function store(Request $request)
@@ -38,19 +53,22 @@ class WordController extends Controller
             'surat_ditujukan_kepada' => $request->surat_ditujukan_kepada,
             'nama_lembaga' => $request->nama_lembaga,
             'alamat' => $request->alamat,
+            
 
             'keperluan' => $request->keperluan,
-            'wkt_pelaksanaan' => $request->wkt_pelaksanaan,
+            'tanggal_mulai' => $request->tanggal_mulai,
+            'tanggal_selesai' => $request->tanggal_selesai,
             'tembusan' => $request->tembusan,
 
-            'ko_prodi' => $request->ko_prodi,
+            'koprodi' => $request->koprodi,
             'nip_koprodi' => $request->nip_koprodi,
             'dosbing' => $request->dosbing,
             'nip_dosbing' => $request->nip_dosbing,
 
+
             'rowCount' => $request->row_count-1,
         ]);
-        
+
         return redirect()->route('wordb/view/pdf');
     }
 
@@ -74,11 +92,72 @@ class WordController extends Controller
 
     public function view_pdf(Request $request)
     {
-        $formData = $request->session()->get('form_data');
+        $formData = $request->session()->get('form_data', []);
         
         $mpdf = new \Mpdf\Mpdf();
         $mpdf->WriteHTML(view('auto_proposal/hasil', compact('formData')));
         $mpdf->Output();
+
+        
+        // Generate a unique filename
+        $uniq = hexdec(uniqid());
+        $filename = 'proposal_' . $uniq . '.pdf';
+        
+        // Full path where the file will be saved
+        $filepath = ('../storage/app/public/' . $filename);
+        
+        // Save the PDF to the storage/app/ directory
+        $mpdf->Output($filepath, 'F');
+
+        // Insert filename into database
+        $pdfRecord = new Surat();
+        $pdfRecord->id_surat = $uniq;
+        $pdfRecord->filename = $filename;
+        $pdfRecord->filepath = $filepath;
+        $pdfRecord->creator = $request->user()->nim;
+        $pdfRecord->prodi = $formData['prodi'];
+        $pdfRecord->doswal_name = $formData['doswal'];
+        $pdfRecord->wkt_start = $formData['tanggal_mulai'];
+        $pdfRecord->wkt_end = $formData['tanggal_selesai'];
+        $pdfRecord->koprodi_name = $formData['koprodi'];
+        $pdfRecord->koprodi_nip = $formData['nip_koprodi'];
+
+        $pdfRecord->surat_ditujukan_kepada = $formData['surat_ditujukan_kepada'];
+        $pdfRecord->nama_lembaga = $formData['nama_lembaga'];
+        $pdfRecord->alamat = $formData['alamat'];
+        $pdfRecord->keperluan = $formData['keperluan'];
+
+        $pdfRecord->save();
+
+        // Collect NIMs
+        $nims = array_filter([
+            $formData['nim'] ?? null,
+            $formData['nim2'] ?? null,
+            $formData['nim3'] ?? null
+        ]);
+
+        // Save NIMs to database
+        foreach ($nims as $nim) {
+            SuratUser::create([
+                'nim' => $nim,
+                'id_surat' => $uniq,
+                'is_active' => 1,
+            ]);
+        }
+        
+
+
+        // Optional: Clear the session data after processing
+        $request->session()->forget('form_data');
+
+        // Optional: Return a response or redirect with the filename
+        return response()->download($filepath, $filename);
+                
+    
     }
+
+    public function masukdb(Request $request)
+    {}
+        
 }
 

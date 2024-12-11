@@ -66,4 +66,12 @@ public function index()
         // Kirim data ke view
         return view('dosen.profile', compact('dosen'));
     }
+
+    public function isi()
+    {
+        // Fetch all pengajuan (application) data with related information
+
+        $dosens = Dosen::all();
+        return view('pov_koor/daftarDosen', compact('dosens'));
+    }
 }
