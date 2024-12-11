@@ -76,7 +76,6 @@
                             @csrf
 
                             <!-- Periode PKL (Date Input) -->
-                            {{-- <h4>Periode PKL:</h4> --}}
                             <div class="row">
                                 <div class="col-md-6">
                                     <h4>Periode Start:</h4>
@@ -101,11 +100,21 @@
 
                             <!-- Proposal (File Upload) -->
                             <h4>Proposal:</h4>
-                            <input type="file" class="form-control mb-3" name="proposal" accept=".pdf" required>
+                            @if ($user->proposal_pkl)
+                                <p><a href="{{ asset('storage/' . $user->proposal_pkl) }}" target="_blank">Lihat Proposal</a></p>
+                            @else
+                                <p>Belum diunggah</p>
+                                <input type="file" class="form-control mb-3" name="proposal" accept=".pdf" required>
+                            @endif
 
                             <!-- Surat Penerimaan (File Upload) -->
                             <h4>Surat Penerimaan:</h4>
-                            <input type="file" class="form-control mb-3" name="surat_penerimaan" accept=".pdf" required>
+                            @if ($user->surat_penerimaan)
+                                <p><a href="{{ asset('storage/' . $user->surat_penerimaan) }}" target="_blank">Lihat Surat Penerimaan</a></p>
+                            @else
+                                <p>Belum diunggah</p>
+                                <input type="file" class="form-control mb-3" name="surat_penerimaan" accept=".pdf" required>
+                            @endif
 
                             <button type="submit" class="btn btn-primary">Diterima dan Update Data</button>
 

@@ -75,9 +75,7 @@ Route::group(['middleware' => ['auth', 'hakakses:users']], function() {
     
     
     Route::get('/jadwalBimbingan', [JadwalKonsultasiController::class, 'index']);
-    Route::post('/jadwalBimbingan', [JadwalKonsultasiController::class, 'store']);
-    
-    
+    Route::post('/jadwalBimbingan', [JadwalKonsultasiController::class, 'store'])->name('jadwal.store');
     Route::get('/kartuKendaliBimbingan', [BimbinganController::class, 'index']);
     Route::post('/kartuKendaliBimbingan', [BimbinganController::class, 'store']);
 

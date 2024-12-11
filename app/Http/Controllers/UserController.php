@@ -94,5 +94,41 @@ class UserController extends Controller
         return redirect()->route('worda')->with('success', 'Surat ditolak dan id_dosen dihapus.');
     }
 
+    public function updateData(Request $request)
+    {
+        $request->validate([
+            'proposal' => 'required|mimes:pdf',
+            'surat_penerimaan' => 'required|mimes:pdf',
+        ]);
+
+        $user = Auth::user(); // Ambil pengguna yang sedang login
+
+        // Proses unggah file proposal
+        if ($request->hasFile('proposal')) {
+            $proposalPath = $request->file('proposal')->storeAs(
+                'proposals',
+                time() . '_' . $request->file('proposal')->getClientOriginalName(),
+                'public'
+            );
+            $user->proposal_pkl = $proposalPath;
+        }
+
+        // Proses unggah file surat penerimaan
+        if ($request->hasFile('surat_penerimaan')) {
+            $suratPath = $request->file('surat_penerimaan')->storeAs(
+                'surat_penerimaan',
+                time() . '_' . $request->file('surat_penerimaan')->getClientOriginalName(),
+                'public'
+            );
+            $user->surat_penerimaan = $suratPath;
+        }
+
+        $user->save(); // Simpan data ke database
+
+        return redirect()->back()->with('success', 'Data berhasil diperbarui.');
+    }
+
+
+
 
 }

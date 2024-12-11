@@ -7,12 +7,13 @@ use Illuminate\Http\Request;
 use App\Models\JadwalKonsultasi;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
+use Log;
 
 class JadwalKonsultasiController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth'); 
+        $this->middleware('auth');
     }
 
     public function index()
@@ -54,59 +55,69 @@ class JadwalKonsultasiController extends Controller
 
     public function store(Request $request)
     {
-        // Ambil ID user yang sedang login
-        $user_id = Auth::id();
-
-        // Validasi input
-        $request->validate([
+        $validated = $request->validate([
             'tanggal_konsultasi' => 'required|date',
             'waktu_konsultasi' => 'required|date_format:H:i',
             'topik' => 'required|string|max:255',
+            'hasil_bimbingan' => 'nullable|file|mimes:png|max:2048',
+            'dokumentasi_bimbingan' => 'nullable|file|mimes:png|max:2048',
         ]);
 
-        // Simpan data ke database
+
+        $hasilBimbinganPath = $request->file('hasil_bimbingan')
+            ? $request->file('hasil_bimbingan')->store('hasil_bimbingan', 'public')
+            : null;
+
+        $dokumentasiBimbinganPath = $request->file('dokumentasi_bimbingan')
+            ? $request->file('dokumentasi_bimbingan')->store('dokumentasi_bimbingan', 'public')
+            : null;
+
         JadwalKonsultasi::create([
-            'user_id' => Auth::id(), 
-            'tanggal_konsultasi' => $request->tanggal_konsultasi,
-            'waktu_konsultasi' => $request->waktu_konsultasi,
-            'topik' => $request->topik,
+            'user_id' => Auth::id(),
+            'tanggal_konsultasi' => $validated['tanggal_konsultasi'],
+            'waktu_konsultasi' => $validated['waktu_konsultasi'],
+            'topik' => $validated['topik'],
+            'hasil_bimbingan' => $hasilBimbinganPath,
+            'dokumentasi_bimbingan' => $dokumentasiBimbinganPath,
             'status' => JadwalKonsultasi::STATUS_MENUNGGU,
         ]);
 
         return redirect()->back()->with('success', 'Jadwal konsultasi berhasil ditambahkan.');
     }
 
-    public function uploadHasil(Request $request, $id)
-    {
-        $request->validate([
-            'hasil_bimbingan' => 'required|image|mimes:jpeg,png,jpg|max:2048',
-        ]);
 
-        if ($request->file('hasil_bimbingan')) {
-            $path = $request->file('hasil_bimbingan')->store('hasil_bimbingan', 'public');
-            $jadwal = JadwalKonsultasi::find($id);
-            $jadwal->hasil_bimbingan = $path;
-            $jadwal->save();
-        }
 
-        return redirect()->back()->with('success', 'Hasil Bimbingan berhasil diunggah');
-    }
+    // public function uploadHasil(Request $request, $id)
+    // {
+    //     $request->validate([
+    //         'hasil_bimbingan' => 'required|image|mimes:jpeg,png,jpg|max:2048',
+    //     ]);
 
-    public function uploadDokumentasi(Request $request, $id)
-    {
-        $request->validate([
-            'dokumentasi_bimbingan' => 'required|image|mimes:jpeg,png,jpg|max:2048',
-        ]);
+    //     if ($request->file('hasil_bimbingan')) {
+    //         $path = $request->file('hasil_bimbingan')->store('hasil_bimbingan', 'public');
+    //         $jadwal = JadwalKonsultasi::find($id);
+    //         $jadwal->hasil_bimbingan = $path;
+    //         $jadwal->save();
+    //     }
 
-        if ($request->file('dokumentasi_bimbingan')) {
-            $path = $request->file('dokumentasi_bimbingan')->store('dokumentasi_bimbingan', 'public');
-            $jadwal = JadwalKonsultasi::find($id);
-            $jadwal->dokumentasi_bimbingan = $path;
-            $jadwal->save();
-        }
+    //     return redirect()->back()->with('success', 'Hasil Bimbingan berhasil diunggah');
+    // }
 
-        return redirect()->back()->with('success', 'Dokumentasi Bimbingan berhasil diunggah');
-    }
+    // public function uploadDokumentasi(Request $request, $id)
+    // {
+    //     $request->validate([
+    //         'dokumentasi_bimbingan' => 'required|image|mimes:jpeg,png,jpg|max:2048',
+    //     ]);
+
+    //     if ($request->file('dokumentasi_bimbingan')) {
+    //         $path = $request->file('dokumentasi_bimbingan')->store('dokumentasi_bimbingan', 'public');
+    //         $jadwal = JadwalKonsultasi::find($id);
+    //         $jadwal->dokumentasi_bimbingan = $path;
+    //         $jadwal->save();
+    //     }
+
+    //     return redirect()->back()->with('success', 'Dokumentasi Bimbingan berhasil diunggah');
+    // }
 
     public function updateStatus(Request $request, $id)
     {
