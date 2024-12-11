@@ -82,14 +82,6 @@
 
 <!-- CSS -->
 <style>
-    .main-panel {
-    flex-grow: 1; /* Membuat konten utama mengambil sisa ruang */
-    transition: margin-left 0.3s; /* Animasi saat sidebar dibuka/ditutup */
-}
-
-.sidebar-minimized + .main-panel {
-    margin-left: 80px; /* Margin yang sesuai saat sidebar diminimalkan */
-}
     .sidebar {
         width: 300px; /* Memperbesar lebar sidebar */
         transition: width 0.3s;
