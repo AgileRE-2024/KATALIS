@@ -22,7 +22,7 @@ class HakAkses
      * @param  string  $table
      * @return \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse
      */
-    public function handle(Request $request, Closure $next, string $table)
+    public function handle(Request $request, Closure $next, string $role)
     {
         $user = Auth::user();
 
@@ -31,31 +31,32 @@ class HakAkses
             return redirect('/loginfix')->with('error', 'Silakan login terlebih dahulu.');
         }
 
-        // Cek keberadaan pengguna di tabel yang sesuai
-        switch ($table) {
+        // Periksa role berdasarkan guard
+        switch ($role) {
             case 'users':
-                // Cek apakah pengguna ada di tabel users
-                if (User::where('id', $user->id)->exists()) {
+                if (Auth::guard('web')->check()) {
                     return $next($request);
                 }
                 break;
 
             case 'dosen':
-                // Cek apakah pengguna ada di tabel dosen
-                if (Dosen::where('id', $user->id)->exists()) {
+                if (Auth::guard('dosen')->check()) {
                     return $next($request);
                 }
                 break;
 
             case 'koordinator':
-                // Cek apakah pengguna ada di tabel koordinator
-                if (Koordinator::where('id', $user->id)->exists()) {
+                if (Auth::guard('koordinator')->check()) {
                     return $next($request);
                 }
                 break;
+
+            default:
+                return redirect('/loginfix')->with('error', 'Role tidak dikenali.');
         }
 
-        // Jika tidak ada akses, redirect ke halaman login
         return redirect('/loginfix')->with('error', 'Akses ditolak.');
+
     }
+
 }

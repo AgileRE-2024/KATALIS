@@ -40,6 +40,16 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
+
+        'dosen' => [
+            'driver' => 'session',
+            'provider' => 'dosens',
+        ],
+
+        'koordinator' => [
+            'driver' => 'session',
+            'provider' => 'koordinators',
+        ],
     ],
 
     /*
@@ -65,6 +75,16 @@ return [
             'model' => App\Models\User::class,
         ],
 
+        'dosens' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Dosen::class,
+        ],
+
+        'koordinators' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Koordinator::class,
+        ],
+
         // 'users' => [
         //     'driver' => 'database',
         //     'table' => 'users',
@@ -86,14 +106,14 @@ return [
     |
     */
 
-    'passwords' => [
-        'users' => [
-            'provider' => 'users',
-            'table' => 'password_resets',
-            'expire' => 60,
-            'throttle' => 60,
-        ],
-    ],
+    // 'passwords' => [
+    //     'users' => [
+    //         'provider' => 'users',
+    //         'table' => 'password_resets',
+    //         'expire' => 60,
+    //         'throttle' => 60,
+    //     ],
+    // ],
 
     /*
     |--------------------------------------------------------------------------
@@ -106,6 +126,6 @@ return [
     |
     */
 
-    'password_timeout' => 10800,
+    // 'password_timeout' => 10800,
 
 ];

@@ -43,12 +43,9 @@ Route::post('/loginfix', [LoginController::class, 'login']);
 Route::get('/loginfix', [LoginController::class, 'showLoginForm'])->name('loginfix');
 Route::get('/register', [RegisterController::class, 'showRegistrationForm'])->name('register');
 Route::post('/registeruser', [RegisterController::class, 'registeruser'])->name('registeruser');
-Route::post('/logout', function () {
-Auth::logout(); 
-    return redirect('/loginfix');
-})->name('logout');
+Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
-Route::group(['middleware' => ['auth', 'hakakses:users']], function() {
+Route::group(['middleware' => ['auth:web', 'hakakses:users']], function() {
     Route::get('/dashboard', [DashboardMahasiswaController::class, 'index'])->name('dashboard')->middleware('auth');
 
     Route::get('/formPengajuanDosbing', function () {
@@ -109,8 +106,8 @@ Route::group(['middleware' => ['auth', 'hakakses:users']], function() {
 });
 
 // Rute untuk Dosen
-Route::group(['middleware' => ['auth', 'hakakses:dosen']], function() {
-    Route::get('/dashboardDosen', [DashboardDosenController::class, 'index'])->name('dashboardDosen')->middleware('auth');
+Route::group(['middleware' => ['auth:dosen', 'hakakses:dosen']], function() {
+    Route::get('/dashboardDosen', [DashboardDosenController::class, 'index'])->name('dashboardDosen');
 
 
     Route::get('/anakBimbing', [DosenController::class, 'index'])->name("anakBimbing");
@@ -122,18 +119,15 @@ Route::group(['middleware' => ['auth', 'hakakses:dosen']], function() {
         return view('tambahMahasiswa');
     });
 
-    Route::get('/dosenprofil', [DashboardDosenController::class, 'index1'])->name('profildosen')->middleware('auth');
+    Route::get('/dosenprofil', [DashboardDosenController::class, 'index1'])->name('profildosen')->middleware('auth:dosen');
 
-    // Route::get('/jadwalBimbinganDosen', function () {
-    //     return view('/dosen/jadwalBimbinganDosen');
-    // });
     Route::get('/jadwalBimbinganDosen', [JadwalKonsultasiController::class, 'index1'])->name('jadwal.bimbingan');
 
     Route::post('/jadwalBimbinganDosen/{id}/update-status', [JadwalKonsultasiController::class, 'updateStatus'])->name('jadwal.updateStatus');
 
     Route::get('/get-user', [UserController::class, 'getUser'])->name('getUser');
 
-    Route::get('/tambahbimbing', function () {
+    Route::get('/tambahbimbing', action: function () {
         return view('tambahbimbing');
     });
 
@@ -155,7 +149,7 @@ Route::group(['middleware' => ['auth', 'hakakses:dosen']], function() {
 });
 
 // Rute untuk Koordinator
-Route::group(['middleware' => ['auth', 'hakakses:koordinator']], function() {
+Route::group(['middleware' => ['auth:koordinator', 'hakakses:koordinator']], function() {
     Route::get('/dashboardKoor', function () {
         return view('pov_koor/dashboardKoor');
     })->name('dashboardKoor');

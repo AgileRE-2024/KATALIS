@@ -25,12 +25,18 @@ class JadwalKonsultasiController extends Controller
 
     public function index1()
     {
-        // Ambil data jadwal bimbingan dengan nama mahasiswa
-        $jadwals = JadwalKonsultasi::with('user')->get();
+        $dosen = auth()->user(); // Mendapatkan dosen yang sedang login
+        if (!$dosen) {
+            return redirect()->route('loginfix');
+        }
 
-        // Kirim ke view
+        // Ambil semua jadwal konsultasi milik dosen yang sedang login
+        $jadwals = $dosen->jadwalKonsultasi;
+
+        // Return the view with the jadwals data
         return view('dosen.jadwalBimbinganDosen', compact('jadwals'));
     }
+
 
     public function dosen($user_id)
     {
@@ -85,39 +91,6 @@ class JadwalKonsultasiController extends Controller
         return redirect()->back()->with('success', 'Jadwal konsultasi berhasil ditambahkan.');
     }
 
-
-
-    // public function uploadHasil(Request $request, $id)
-    // {
-    //     $request->validate([
-    //         'hasil_bimbingan' => 'required|image|mimes:jpeg,png,jpg|max:2048',
-    //     ]);
-
-    //     if ($request->file('hasil_bimbingan')) {
-    //         $path = $request->file('hasil_bimbingan')->store('hasil_bimbingan', 'public');
-    //         $jadwal = JadwalKonsultasi::find($id);
-    //         $jadwal->hasil_bimbingan = $path;
-    //         $jadwal->save();
-    //     }
-
-    //     return redirect()->back()->with('success', 'Hasil Bimbingan berhasil diunggah');
-    // }
-
-    // public function uploadDokumentasi(Request $request, $id)
-    // {
-    //     $request->validate([
-    //         'dokumentasi_bimbingan' => 'required|image|mimes:jpeg,png,jpg|max:2048',
-    //     ]);
-
-    //     if ($request->file('dokumentasi_bimbingan')) {
-    //         $path = $request->file('dokumentasi_bimbingan')->store('dokumentasi_bimbingan', 'public');
-    //         $jadwal = JadwalKonsultasi::find($id);
-    //         $jadwal->dokumentasi_bimbingan = $path;
-    //         $jadwal->save();
-    //     }
-
-    //     return redirect()->back()->with('success', 'Dokumentasi Bimbingan berhasil diunggah');
-    // }
 
     public function updateStatus(Request $request, $id)
     {
