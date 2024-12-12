@@ -57,11 +57,7 @@ class LoginController extends Controller
 
         if (Auth::guard('dosen')->attempt($credentials)) {
             $request->session()->regenerate();
-            \Log::info('Active Guard:', [
-                'web' => Auth::guard('web')->check(),
-                'dosen' => Auth::guard('dosen')->check(),
-                'koordinator' => Auth::guard('koordinator')->check(),
-            ]);
+            // dd(Auth::guard('dosen')->user());
             return redirect('dashboardDosen');
         }
 

@@ -16,6 +16,7 @@ class JadwalKonsultasi extends Model
         'status',
         'hasil_bimbingan',
         'dokumentasi_bimbingan',
+        'dosen_id',
     ];
 
     const STATUS_MENUNGGU = 'Waiting Approval';

@@ -58,15 +58,6 @@ public function index()
         return response()->json(['message' => 'Data dosen berhasil ditambahkan!'], 201);
     }
 
-    // public function show($id)
-    // {
-    //     // Ambil data dosen beserta relasi users
-    //     $dosen = Dosen::with('users')->findOrFail($id);
-
-    //     // Kirim data ke view
-    //     return view('dosen.dosenprofile', compact('dosen'));
-    // }
-
     public function isi()
     {
         // Fetch all pengajuan (application) data with related information

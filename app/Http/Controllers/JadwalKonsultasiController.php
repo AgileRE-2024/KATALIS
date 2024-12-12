@@ -25,13 +25,19 @@ class JadwalKonsultasiController extends Controller
 
     public function index1()
     {
-        $dosen = auth()->user(); // Mendapatkan dosen yang sedang login
+        $dosen = Auth::guard('dosen')->user(); // Mendapatkan dosen yang sedang login
         if (!$dosen) {
             return redirect()->route('loginfix');
         }
 
         // Ambil semua jadwal konsultasi milik dosen yang sedang login
-        $jadwals = $dosen->jadwalKonsultasi;
+        $jadwals = JadwalKonsultasi::whereHas('user', function ($query) use ($dosen) {
+            $query->where('dosen_id', $dosen->id);
+        })
+            ->orderBy('tanggal_konsultasi', 'asc')
+            ->orderBy('waktu_konsultasi', 'asc')
+            ->get();
+
 
         // Return the view with the jadwals data
         return view('dosen.jadwalBimbinganDosen', compact('jadwals'));
