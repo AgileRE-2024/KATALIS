@@ -119,7 +119,12 @@
                             <button type="submit" class="btn btn-primary">Diterima dan Update Data</button>
 
                             <!-- Tombol Ditolak -->
-                            <a href="{{ route('reject', ['suratId' => $suratTerbaru->id_surat]) }}" class="btn btn-light">Ditolak</a>
+                            @if ($suratTerbaru)
+                                <a href="{{ route('reject', ['suratId' => $suratTerbaru->id_surat]) }}" class="btn btn-light">Ditolak</a>
+                            @else
+                                <p>Data surat tidak tersedia.</p>
+                            @endif
+
 
                             
                         </form>

@@ -158,6 +158,36 @@
         border: none;
         outline: none;
     }
+
+    .readonly {
+    background-color: #f5f5f5;
+    border: 1px solid #ddd;
+    cursor: not-allowed;
+}
+
+    .remove-row {
+        padding: 0 6px;
+        margin-left: auto;
+        font-size: 18px;
+        line-height: 1;
+    }
+
+    #addButtonRow {
+        background-color: #f8f9fa;
+    }
+
+    #addButtonRow td {
+        padding: 10px;
+    }
+
+    .btn-sm {
+        padding: 0.25rem 0.5rem;
+        font-size: 0.875rem;
+        line-height: 1.5;
+        border-radius: 0.2rem;
+    }
+
+
 </style>
 
 </head>
@@ -340,16 +370,20 @@
                                             <tr>
                                                 <td>1</td>
                                                 <td>
-                                                    <input type="text" id="nim" name="nim" placeholder="Masukkan NIM">
+                                                    <input type="text" id="nim" name="nim" value="{{ Auth::user()->nim }}" readonly class="readonly">
                                                 </td>
                                                 <td>
-                                                    <input type="text" class="readonly" id="name" name="name" readonly>
+                                                    <input type="text" class="readonly" id="name" name="name" value="{{ Auth::user()->name }}" readonly>
                                                 </td>
                                                 <td>
-                                                    <input type="text" class="readonly" id="no_hp" name="no_hp" readonly>
+                                                    <input type="text" class="readonly" id="no_hp" name="no_hp" value="{{ Auth::user()->no_hp }}" readonly>
                                                 </td>
                                             </tr>
-                                            
+                                            <tr id="addButtonRow">
+                                                <td colspan="4" class="text-center">
+                                                    <button type="button" id="addRowBtn" class="btn btn-primary btn-sm">+ Tambah Anggota</button>
+                                                </td>
+                                            </tr>
                                             <input type="hidden" name="row_count" id="rowCount">
                                         </tbody>
                                     </table>
@@ -402,10 +436,13 @@
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
+   <script>
+    document.addEventListener('DOMContentLoaded', function() {
         const table = document.getElementById('myTable');
-        let rowCounter = 1; // Starting with 3 since we already have 3 rows
+        const tbody = table.querySelector('tbody');
+        const addButtonRow = document.getElementById('addButtonRow');
+        const addRowBtn = document.getElementById('addRowBtn');
+        let rowCounter = 1; // Start with 1 since we have the logged-in user
 
         function createNewRow(rowNum) {
             const newRow = document.createElement('tr');
@@ -419,9 +456,32 @@
                 </td>
                 <td>
                     <input type="text" class="readonly" id="no_hp${rowNum}" name="no_hp${rowNum}" readonly>
+                    <button type="button" class="btn btn-danger btn-sm ml-auto remove-row">×</button>
                 </td>
             `;
+
+            // Add event listener for the remove button
+            const removeBtn = newRow.querySelector('.remove-row');
+            removeBtn.addEventListener('click', function() {
+                newRow.remove();
+                renumberRows();
+                updateRowCount();
+            });
+
             return newRow;
+        }
+
+        function renumberRows() {
+            const rows = tbody.querySelectorAll('tr:not(#addButtonRow)');
+            rows.forEach((row, index) => {
+                row.querySelector('td:first-child').textContent = index + 1;
+            });
+        }
+
+        function updateRowCount() {
+            const rowCountInput = document.getElementById('rowCount');
+            const rows = tbody.querySelectorAll('tr:not(#addButtonRow)');
+            rowCountInput.value = rows.length;
         }
 
         function handleNimInput(event) {
@@ -429,34 +489,22 @@
                 event.preventDefault();
                 const currentRow = event.target.closest('tr');
                 const nim = event.target.value;
-                const suffix = event.target.name.replace('nim', '');
                 
                 // Get the corresponding name and phone inputs
-                const nameInput = currentRow.querySelector(`[name="name${suffix}"]`);
-                const phoneInput = currentRow.querySelector(`[name="no_hp${suffix}"]`);
+                const nameInput = currentRow.querySelector('input[name^="name"]');
+                const phoneInput = currentRow.querySelector('input[name^="no_hp"]');
 
                 fetch(`/get-user?nim=${nim}`)
-                    .then(response => response.json())
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error(`HTTP error! status: ${response.status}`);
+                        }
+                        return response.json();
+                    })
                     .then(data => {
                         if (data.success) {
                             nameInput.value = data.data.name || '';
                             phoneInput.value = data.data.no_hp || '';
-                            
-                            // Check if this is the last row
-                            const allRows = table.querySelectorAll('tbody tr');
-                            if (currentRow === allRows[allRows.length - 1]) {
-                                // Add new row
-                                rowCounter++;
-                                const newRow = createNewRow(rowCounter);
-                                table.querySelector('tbody').appendChild(newRow);
-                                
-                                // Add event listener to new NIM input
-                                const newNimInput = newRow.querySelector(`[name="nim${rowCounter}"]`);
-                                newNimInput.addEventListener('keydown', handleNimInput);
-                                
-                                // Update hidden row count
-                                document.getElementById('rowCount').value = rowCounter;
-                            }
                         } else {
                             alert('Data tidak ditemukan');
                             nameInput.value = '';
@@ -464,22 +512,28 @@
                         }
                     })
                     .catch(error => {
-                        console.error('Error:', error);
-                        alert('Terjadi kesalahan saat mengambil data.');
+                        console.error('Detailed error:', error);
+                        alert(`Error details: ${error.message}`);
                     });
             }
         }
 
-        // Add event listeners to existing NIM inputs
-        const tableRows = table.querySelectorAll('tbody tr');
-        tableRows.forEach((row) => {
-            const nimInput = row.querySelector('input[name^="nim"]');
-            nimInput.addEventListener('keydown', handleNimInput);
+        // Add Row Button Click Handler
+        addRowBtn.addEventListener('click', function() {
+            rowCounter++;
+            const newRow = createNewRow(rowCounter);
+            tbody.insertBefore(newRow, addButtonRow);
+            
+            // Add event listener to new NIM input
+            const newNimInput = newRow.querySelector('input[name^="nim"]');
+            newNimInput.addEventListener('keydown', handleNimInput);
+            
+            updateRowCount();
         });
 
         // Set initial row count
-        document.getElementById('rowCount').value = rowCounter;
-        });
+        updateRowCount();
+    });
     </script>
 
     
