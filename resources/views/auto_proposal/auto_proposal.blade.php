@@ -52,7 +52,7 @@
 
     /* Detail Informasi Siswa */
     .student-details {
-        margin-top: 100px;
+        margin-top: 30px;
         display: flex;
         justify-content: space-between;
         text-align: left;

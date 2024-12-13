@@ -52,7 +52,7 @@
 
     /* Detail Informasi Siswa */
     .student-details {
-        margin-top: 100px;
+        margin-top: 50px;
         display: flex;
         justify-content: space-between;
         text-align: left;
@@ -183,7 +183,7 @@
                                 
                                 <div class="card-body">
                                     
-                                    <h4 class="card-title">Pengajuan Surat</h4>
+                                    <h4 class="card-title">Assign Dosbing</h4>
 
                                     <form class ="forms-sample" action="{{route('store.2form')}}" method="POST" id=tableForm>
                                         @csrf
