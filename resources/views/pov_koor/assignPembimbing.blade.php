@@ -38,7 +38,7 @@
                                                     <td class="text-center">{{ $pengajuan->id_surat }}</td>
                                                     <td class="text-center">{{ $pengajuan->user->name }}</td>
                                                     <td class="text-center">{{ $pengajuan->nim }}</td>
-                                                    <td class="text-center"></td>
+                                                    <td class="text-center">{{ $pengajuan->surat->nama_lembaga }}</td>
                                                     <td class="text-center">
                                                         {{ \Carbon\Carbon::parse($pengajuan->surat->wkt_start)->format('d F Y') }}<br>
                                                         - {{ \Carbon\Carbon::parse($pengajuan->surat->wkt_end)->format('d F Y') }}
