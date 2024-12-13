@@ -69,6 +69,8 @@ Route::group(['middleware' => ['auth:web', 'hakakses:users']], function() {
     Route::get('/laporanfiks', function () {
         return view('/mahasiswa/laporanfiks');
     });
+
+    Route::get('/get-user', [UserController::class, 'getUser'])->name('getUser');
     
     
     Route::get('/jadwalBimbingan', [JadwalKonsultasiController::class, 'index']);
@@ -125,7 +127,7 @@ Route::group(['middleware' => ['auth:dosen', 'hakakses:dosen']], function() {
 
     Route::post('/jadwalBimbinganDosen/{id}/update-status', [JadwalKonsultasiController::class, 'updateStatus'])->name('jadwal.updateStatus');
 
-    Route::get('/get-user', [UserController::class, 'getUser'])->name('getUser');
+    // Route::get('/get-user', [UserController::class, 'getUser'])->name('getUser');
 
     Route::get('/tambahbimbing', action: function () {
         return view('tambahbimbing');
