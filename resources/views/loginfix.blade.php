@@ -155,9 +155,6 @@
 
       <button type="submit" class="btn-get-started scrollto">Login</button>
     </form>
-    <p>
-      <a href="/register">Don't have an account?</a>
-    </p>
   </div>
 </body>
 </html>
