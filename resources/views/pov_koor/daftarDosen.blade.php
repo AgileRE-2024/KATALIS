@@ -34,7 +34,7 @@
                                                 <td class="text-center">{{ $dosen->name }}</td>
                                                 <td class="text-center">{{ $dosen->nip }}</td>
                                                 <td class="text-center">{{ $dosen->bidang_keahlian }}</td>
-                                                <td class="text-center"></td>
+                                                <td class="text-center">{{ $dosen->mahasiswa_bimbingan_count }}</td>
                                             </tr>
                                             @endforeach
                                             

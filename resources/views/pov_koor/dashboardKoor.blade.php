@@ -150,7 +150,7 @@
 
             <div class="main-panel">
                 <div class="welcome-message">
-                    Welcome, Aamir!
+                    Welcome, {{ $koor ? $koor->name : 'Guest' }}
                 </div>
 
                 <!-- Card Container -->

@@ -2,6 +2,29 @@
 <html lang="en">
 
 @include('components.head')
+<style>
+    .badge {
+        display: inline-block;
+        padding: 5px 10px;
+        font-size: 14px;
+        font-weight: bold;
+        border-radius: 20px;
+        /* Membuat kotak melengkung */
+        color: #fff;
+        /* Warna teks putih */
+        text-align: center;
+    }
+
+    .badge-success {
+        background-color: #28a745;
+        /* Warna hijau */
+    }
+
+    .badge-danger {
+        background-color: #dc3545;
+        /* Warna merah */
+    }
+</style>
 
 <body>
     <div class="container-scroller">
@@ -25,30 +48,41 @@
                                                 <th class="text-center">ID Pengajuan</th>
                                                 <th class="text-center">Nama Mahasiswa</th>
                                                 <th class="text-center">NIM</th>
-                                                <th class="text-center">Tempat Magang</th>
                                                 <th class="text-center" style="width: 100px;">Periode Magang</th>
                                                 <th class="text-center">Assign Dosen Pembimbing</th>
+                                                <th class="text-center">Status</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                        @foreach($pengajuans as $index => $pengajuan)
-                                            @if(empty($pengajuan->surat->dosbing_name))
+                                            @foreach ($pengajuans as $index => $pengajuan)
                                                 <tr class="kelompok-{{ ceil(($index + 1) / 2) }}">
                                                     <td class="text-center">{{ $index + 1 }}</td>
                                                     <td class="text-center">{{ $pengajuan->id_surat }}</td>
                                                     <td class="text-center">{{ $pengajuan->user->name }}</td>
                                                     <td class="text-center">{{ $pengajuan->nim }}</td>
-                                                    <td class="text-center"></td>
                                                     <td class="text-center">
                                                         {{ \Carbon\Carbon::parse($pengajuan->surat->wkt_start)->format('d F Y') }}<br>
-                                                        - {{ \Carbon\Carbon::parse($pengajuan->surat->wkt_end)->format('d F Y') }}
+                                                        -
+                                                        {{ \Carbon\Carbon::parse($pengajuan->surat->wkt_end)->format('d F Y') }}
                                                     </td>
                                                     <td class="text-center">
-                                                        <a href="{{route ('getSurat', [$pengajuan->id_surat])}}">Assign Dosbing</a>
+                                                        @if (empty($pengajuan->surat->dosbing_name))
+                                                            <a href="{{ route('getSurat', [$pengajuan->id_surat]) }}">Assign
+                                                                Dosbing</a>
+                                                        @else
+                                                            <p>-</p>
+                                                        @endif
+
+                                                    </td>
+                                                    <td class="text-center">
+                                                        @if (!empty($pengajuan->surat->dosbing_name))
+                                                            <span class="badge badge-success">Sudah di Assign</span>
+                                                        @else
+                                                            <span class="badge badge-danger">Belum di Assign</span>
+                                                        @endif
                                                     </td>
                                                 </tr>
-                                            @endif
-                                        @endforeach
+                                            @endforeach
 
                                         </tbody>
                                     </table>

@@ -14,6 +14,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\DosenController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\DashboardDosenController;
+use App\Http\Controllers\DashboardKoorController;
 
 
 
@@ -152,9 +153,7 @@ Route::group(['middleware' => ['auth:dosen', 'hakakses:dosen']], function() {
 
 // Rute untuk Koordinator
 Route::group(['middleware' => ['auth:koordinator', 'hakakses:koordinator']], function() {
-    Route::get('/dashboardKoor', function () {
-        return view('pov_koor/dashboardKoor');
-    })->name('dashboardKoor');
+    Route::get('/dashboardKoor', [DashboardKoorController::class, 'index'])->name('dashboardKoor');
     
     Route::get('/profil', function () {
         return view('profil');

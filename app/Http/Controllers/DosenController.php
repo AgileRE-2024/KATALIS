@@ -60,9 +60,10 @@ public function index()
 
     public function isi()
     {
-        // Fetch all pengajuan (application) data with related information
+        // Fetch all dosens with the count of mahasiswaBimbingan
+        $dosens = Dosen::withCount('mahasiswaBimbingan')->get();
 
-        $dosens = Dosen::all();
         return view('pov_koor/daftarDosen', compact('dosens'));
     }
+
 }
