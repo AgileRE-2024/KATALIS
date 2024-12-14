@@ -17,5 +17,12 @@ class SeminarApplication extends Model
         'tanggal_seminar',
         'laporan_pkl',
         'bukti_persetujuan',
+        'grade',
+        'status_lulus',
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
 }

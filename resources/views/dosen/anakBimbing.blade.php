@@ -37,7 +37,7 @@
                                             <td>{{ $mahasiswa->nim }}</td>
                                             <td>
                                                 <a href="{{ route('dosen.detilPKL', ['nim' => $mahasiswa->nim]) }}" class="hover-link">
-                                                    {{ $mahasiswa->name }}
+                                                    click here
                                                 </a>
                                             </td>
                                             <td>

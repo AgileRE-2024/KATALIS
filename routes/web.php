@@ -15,6 +15,7 @@ use App\Http\Controllers\DosenController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\DashboardDosenController;
 use App\Http\Controllers\DashboardKoorController;
+use App\Http\Controllers\SeminarController;
 
 
 
@@ -147,9 +148,12 @@ Route::group(['middleware' => ['auth:dosen', 'hakakses:dosen']], function() {
         return view('/dosen/laporanDosen');
     });
 
-    Route::get('/seminarDosen', function () {
-        return view('/dosen/seminarDosen');
-    });
+    Route::get('/seminarDosen', [SeminarController::class, 'indexDosen'])->name('dosen.seminar.index');
+    Route::post('/update-kelulusan/{id}', [SeminarController::class, 'updateKelulusan']);
+    Route::get('/laporan-seminar', [SeminarController::class, 'laporanSeminar'])->name('laporan-seminar');
+    Route::post('/dosen/seminar/save-grade', [SeminarController::class, 'saveGrade'])->name('dosen.seminar.saveGrade');
+
+
 });
 
 // Rute untuk Koordinator

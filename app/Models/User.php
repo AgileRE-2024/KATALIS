@@ -65,6 +65,11 @@ class User extends Authenticatable
                     ->using(SuratUser::class); 
     }
 
+    public function seminarApplications()
+    {
+        return $this->hasMany(SeminarApplication::class, 'user_id');
+    }
+
 
 }
 

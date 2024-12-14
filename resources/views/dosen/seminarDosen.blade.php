@@ -20,33 +20,44 @@
 
           <div class="row">
             <div class="col-md-12">
-              <!-- Search Input -->
-              <div class="form-group" style="width: 30%;">
-                <input type="text" class="form-control" id="searchMahasiswa" onkeyup="filterMahasiswa()" placeholder="Masukkan nama mahasiswa...">
-              </div>
 
+              <!-- Tabel Seminar -->
               <table class="table table-striped table-bordered">
                 <thead>
                   <tr>
                     <th>Nama Mahasiswa</th>
                     <th>Tanggal Seminar</th>
-                    <th>Status Kelulusan</th>
                     <th>Aksi</th>
+                    <th>Status Kelulusan</th>
                     <th>Grade</th>
-                    <th>Status Penilaian</th>
                   </tr>
                 </thead>
                 <tbody id="daftarSeminar">
-                  <!-- Daftar Seminar akan dimuat di sini -->
+                  @foreach($seminarApplications as $seminar)
+                  <tr>
+                    <td>{{ $seminar->user->name }}</td>
+                    <td>{{ $seminar->tanggal_seminar }}</td>
+                    <td>
+                      @if ($seminar->first()?->laporan_pkl)
+                        <a href="{{ asset('storage/' . $seminar->first()->laporan_pkl) }}" target="_blank">
+                          Lihat Laporan
+                        </a>
+                      @else
+                        -
+                      @endif
+                    </td>
+                    <td>{{ $seminar->status_lulus }}</td>
+                    <td>
+                      @if($seminar->grade)
+                        {{ $seminar->grade }}
+                      @else
+                        <button class="btn btn-warning btn-sm" onclick="showInputNilaiModal({{ $seminar->id }})">Input Nilai</button>
+                      @endif
+                    </td>
+                  </tr>
+                  @endforeach
                 </tbody>
               </table>
-
-              <!-- Pagination -->
-              <nav aria-label="Page navigation">
-                <ul class="pagination" id="pagination">
-                  <!-- Pagination items will be injected here -->
-                </ul>
-              </nav>
             </div>
           </div>
 
@@ -67,33 +78,31 @@
         </div>
         <div class="modal-body">
           <form id="penilaianForm">
-            <div class="form-group">
-              <label for="mahasiswaId">ID Mahasiswa</label>
-              <input type="text" class="form-control" id="mahasiswaId" disabled>
-            </div>
+            @csrf <!-- Token keamanan untuk permintaan POST -->
+            <input type="hidden" id="seminarId" name="seminar_id">
             <div class="form-group">
               <label for="mahasiswaName">Nama Mahasiswa</label>
               <input type="text" class="form-control" id="mahasiswaName" disabled>
             </div>
             <div class="form-group">
-              <label for="kehadiran">Kehadiran, Disiplin, dan Etika (1-100,20%)</label>
-              <input type="number" class="form-control" id="kehadiran" required>
+              <label for="kehadiran">Kehadiran, Disiplin, dan Etika (1-100, 20%)</label>
+              <input type="number" class="form-control" id="kehadiran" name="kehadiran" required>
             </div>
             <div class="form-group">
-              <label for="pemahaman">Pemahaman Masalah dan Solusi (1-100,20%)</label>
-              <input type="number" class="form-control" id="pemahaman" required>
+              <label for="pemahaman">Pemahaman Masalah dan Solusi (1-100, 20%)</label>
+              <input type="number" class="form-control" id="pemahaman" name="pemahaman" required>
             </div>
             <div class="form-group">
-              <label for="kerjaTim">Kerja Tim (1-100,20%)</label>
-              <input type="number" class="form-control" id="kerjaTim" required>
+              <label for="kerjaTim">Kerja Tim (1-100, 20%)</label>
+              <input type="number" class="form-control" id="kerjaTim" name="kerja_tim" required>
             </div>
             <div class="form-group">
-              <label for="luaran">Luaran dari Tempat PKL (1-100,20%)</label>
-              <input type="number" class="form-control" id="luaran" required>
+              <label for="luaran">Luaran dari Tempat PKL (1-100, 20%)</label>
+              <input type="number" class="form-control" id="luaran" name="luaran" required>
             </div>
             <div class="form-group">
-              <label for="laporan">Buku Laporan Praktik Kerja Lapangan (1-100,20%)</label>
-              <input type="number" class="form-control" id="laporan" required>
+              <label for="laporan">Buku Laporan Praktik Kerja Lapangan (1-100, 20%)</label>
+              <input type="number" class="form-control" id="laporan" name="laporan" required>
             </div>
           </form>
         </div>
@@ -105,169 +114,90 @@
     </div>
   </div>
 
-  <script src="vendors/js/vendor.bundle.base.js"></script>
+
+  <!-- Scripts -->
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
   <script>
-    const mahasiswaPerPage = 5; // Number of students per page
-    let currentPage = 1;
+    // Function to open modal and populate data
+    function showInputNilaiModal(seminarId) {
+    const row = event.target.closest('tr');
+    const mahasiswaName = row.cells[0].textContent; // Get student name from first column
+    
+    document.getElementById("seminarId").value = seminarId;
+    document.getElementById("mahasiswaName").value = mahasiswaName;
+    
+    // Reset form
+    document.getElementById("penilaianForm").reset();
+    
+    $('#inputNilaiModal').modal('show');
+}
 
-    // Fungsi untuk memuat data seminar dari localStorage dan menampilkan halaman yang sesuai
-    function muatDataSeminar() {
-      let daftarSeminar = JSON.parse(localStorage.getItem("daftarSeminar")) || [];
-      let daftarSeminarDiv = document.getElementById("daftarSeminar");
-      let paginationDiv = document.getElementById("pagination");
-
-      // Bersihkan konten sebelum mengisi ulang
-      daftarSeminarDiv.innerHTML = "";
-      paginationDiv.innerHTML = "";
-
-      // Menghitung total halaman
-      const totalPages = Math.ceil(daftarSeminar.length / mahasiswaPerPage);
-      const startIndex = (currentPage - 1) * mahasiswaPerPage;
-      const endIndex = Math.min(startIndex + mahasiswaPerPage, daftarSeminar.length);
-
-      // Menampilkan data seminar untuk halaman tertentu
-      for (let i = startIndex; i < endIndex; i++) {
-        const seminar = daftarSeminar[i];
-        let row = document.createElement("tr");
-
-        row.innerHTML = `
-            <td>${seminar.nama}</td>
-            <td>${seminar.tanggal}</td>
-            <td>
-                <button class="btn btn-${seminar.status === 'Lulus' ? 'success' : 'danger'} btn-sm" onclick="toggleStatus(${seminar.id})">
-                    ${seminar.status || 'Belum Ditetapkan'}
-                </button>
-            </td>
-            <td>
-                <button class="btn btn-custom btn-sm" onclick="lihatLaporan(${seminar.id})">Lihat Laporan</button>
-            </td>
-            <td>${seminar.grade || `<button class="btn btn-custom btn-sm" onclick="showInputNilaiModal(${seminar.id})">Input Nilai</button>`}</td>
-            <td>${seminar.nilai === null ? 'Belum Dinilai' : 'Sudah Dinilai'}</td>
-        `;
-
-        daftarSeminarDiv.appendChild(row);
-      }
-
-      // Menampilkan pagination
-      for (let page = 1; page <= totalPages; page++) {
-        let pageItem = document.createElement("li");
-        pageItem.className = "page-item";
-        pageItem.innerHTML = `<a class="page-link" href="#" onclick="changePage(${page})">${page}</a>`;
-        paginationDiv.appendChild(pageItem);
-      }
-    }
-
-    // Fungsi untuk mengubah halaman
-    function changePage(page) {
-      currentPage = page;
-      muatDataSeminar();
-    }
-
-    // Show the modal for inputting grades
-    function showInputNilaiModal(id) {
-      const daftarSeminar = JSON.parse(localStorage.getItem("daftarSeminar")) || [];
-      const mahasiswa = daftarSeminar.find(m => m.id === id);
-      
-      if (mahasiswa) {
-          document.getElementById("mahasiswaId").value = mahasiswa.id;
-          document.getElementById("mahasiswaName").value = mahasiswa.nama;
-          $('#inputNilaiModal').modal('show'); // Use jQuery to show the modal
-      }
-    }
-
-    // Save the grade and close the modal
+    // Save nilai via AJAX
     document.getElementById("saveNilaiButton").addEventListener("click", function() {
-      const mahasiswaId = document.getElementById("mahasiswaId").value;
-      const kehadiran = parseFloat(document.getElementById("kehadiran").value) || 0;
-      const pemahaman = parseFloat(document.getElementById("pemahaman").value) || 0;
-      const kerjaTim = parseFloat(document.getElementById("kerjaTim").value) || 0;
-      const luaran = parseFloat(document.getElementById("luaran").value) || 0;
-      const laporan = parseFloat(document.getElementById("laporan").value) || 0;
+    const seminarId = document.getElementById("seminarId").value;
+    const kehadiran = parseFloat(document.getElementById("kehadiran").value) || 0;
+    const pemahaman = parseFloat(document.getElementById("pemahaman").value) || 0;
+    const kerjaTim = parseFloat(document.getElementById("kerjaTim").value) || 0;
+    const luaran = parseFloat(document.getElementById("luaran").value) || 0;
+    const laporan = parseFloat(document.getElementById("laporan").value) || 0;
 
-      let daftarSeminar = JSON.parse(localStorage.getItem("daftarSeminar")) || [];
-      const mahasiswa = daftarSeminar.find(m => m.id == mahasiswaId);
+    // Validate inputs before sending
+    if (!seminarId || kehadiran < 0 || kehadiran > 100 || 
+        pemahaman < 0 || pemahaman > 100 || 
+        kerjaTim < 0 || kerjaTim > 100 ||
+        luaran < 0 || luaran > 100 ||
+        laporan < 0 || laporan > 100) {
+        alert('Semua nilai harus diisi dan berada di antara 0-100');
+        return;
+    }
 
-      if (mahasiswa) {
-          mahasiswa.nilai = {
-              kehadiran,
-              pemahaman,
-              kerjaTim,
-              luaran,
-              laporan
-          }; // Update nilai in the seminar object
+    // Show loading state
+    const saveButton = document.getElementById("saveNilaiButton");
+    saveButton.disabled = true;
+    saveButton.textContent = 'Menyimpan...';
 
-          // Hitung nilai akhir
-          const totalNilai = (kehadiran * 0.2) + (pemahaman * 0.2) + (kerjaTim * 0.2) + (luaran * 0.2) + (laporan * 0.2);
-
-          // Konversi nilai akhir ke dalam huruf
-          let grade;
-          if (totalNilai >= 86) {
-              grade = 'A';
-          } else if (totalNilai >= 78) {
-              grade = 'AB';
-          } else if (totalNilai >= 70) {
-              grade = 'B';
-          } else if (totalNilai >= 62) {
-              grade = 'BC';
-          } else if (totalNilai >= 54) {
-              grade = 'C';
-          } else if (totalNilai >= 40) {
-              grade = 'D';
-          } else {
-              grade = 'E';
-          }
-
-          // Update status dan grade
-          if (grade === 'A' || grade === 'AB' || grade === 'B' || grade === 'BC' || grade === 'C' || grade === 'D') {
-              mahasiswa.status = 'Lulus';
-          } else {
-              mahasiswa.status = 'Tidak Lulus';
-          }
-          mahasiswa.grade = grade; // Store the grade in the seminar object
-          localStorage.setItem("daftarSeminar", JSON.stringify(daftarSeminar));
-          alert("Nilai berhasil disimpan!");
-
-          // Update tampilan tabel
-          muatDataSeminar(); // Refresh the table data
-          $('#inputNilaiModal').modal('hide'); // Close the modal
-      }
+    $.ajax({
+        url: "{{ route('dosen.seminar.saveGrade') }}",
+        type: "POST",
+        data: {
+            _token: "{{ csrf_token() }}",
+            seminar_id: seminarId,
+            kehadiran,
+            pemahaman,
+            kerja_tim: kerjaTim,
+            luaran,
+            laporan,
+        },
+        success: function(response) {
+            alert(response.message || 'Nilai berhasil disimpan!');
+            $('#inputNilaiModal').modal('hide');
+            location.reload();
+        },
+        error: function(xhr, status, error) {
+            let errorMessage = 'Terjadi kesalahan saat menyimpan nilai.';
+            
+            if (xhr.responseJSON && xhr.responseJSON.message) {
+                errorMessage = xhr.responseJSON.message;
+            }
+            
+            if (xhr.responseJSON && xhr.responseJSON.errors) {
+                errorMessage += '\n' + Object.values(xhr.responseJSON.errors).join('\n');
+            }
+            
+            alert(errorMessage);
+            console.error("Error:", error);
+            console.error("Response:", xhr.responseText);
+        },
+        complete: function() {
+            // Reset button state
+            saveButton.disabled = false;
+            saveButton.textContent = 'Simpan Nilai';
+        }
     });
+});
 
-    // Inisialisasi data seminar saat halaman dimuat
-    document.addEventListener("DOMContentLoaded", function() {
-      if (!localStorage.getItem("daftarSeminar")) {
-        inisialisasiData();
-      }
-      muatDataSeminar();
-    });
 
-    function filterMahasiswa() {
-      const searchValue = document.getElementById('searchMahasiswa').value.toLowerCase();
-      const rows = document.querySelectorAll("#daftarSeminar tr");
-
-      rows.forEach(row => {
-          const nameCell = row.cells[0].textContent.toLowerCase();
-          row.style.display = nameCell.includes(searchValue) ? "" : "none";
-      });
-    }
-
-    function toggleStatus(id) {
-      let daftarSeminar = JSON.parse(localStorage.getItem("daftarSeminar")) || [];
-      const mahasiswa = daftarSeminar.find(m => m.id === id);
-      
-      if (mahasiswa) {
-          mahasiswa.status = mahasiswa.status === 'Lulus' ? 'Tidak Lulus' : 'Lulus';
-          localStorage.setItem("daftarSeminar", JSON.stringify(daftarSeminar));
-          muatDataSeminar();
-      }
-    }
-
-    function lihatLaporan(id) {
-      // Logika untuk melihat laporan
-      alert('Laporan belum tersedia.');
-    }
   </script>
 </body>
 </html>
