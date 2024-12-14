@@ -55,8 +55,7 @@ class UserController extends Controller
             ->orderBy('surats.created_at', 'desc') // Atau gunakan 'surats.id_surat' jika perlu
             ->get();
 
-        // Mengambil surat terbaru (pertama dalam hasil query)
-        $suratTerbaru = $surats->first(); // Mengambil surat terbaru
+        $suratTerbaru = $surats->first(); 
 
         return view('/mahasiswa/informasipkl', compact('user', 'suratTerbaru'));
     }

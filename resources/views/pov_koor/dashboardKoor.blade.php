@@ -170,14 +170,14 @@
                         <div class="small-card card-light-green">
                             <div class="card-body">
                                 <p class="card-title">Jumlah PKL Aktif</p>
-                                <p class="card-content">30</p>
+                                <p class="card-content">{{ $jumlahPKLAktif ?? 0 }}</p>
                             </div>
                         </div>
 
                         <div class="small-card card-light-danger">
                             <div class="card-body">
                                 <p class="card-title">Jumlah Pembimbing Harus Ditentukan</p>
-                                <p class="card-content">5</p>
+                                <p class="card-content">{{ $jumlahAssign ?? 0 }}</p>
                             </div>
                         </div>
                     </div>

@@ -13,20 +13,40 @@ use App\Models\User;
 
 class DosenController extends Controller
 {
-public function index()
-{
-    $dosen = auth()->user();
-    if(!$dosen){
-        return redirect()->route('loginfix');
+    public function index()
+    {
+        $dosen = auth()->user();
+        if(!$dosen){
+            return redirect()->route('loginfix');
+        }
+
+        $mahasiswaBimbingan = User::where('dosen_id', $dosen->id)
+            ->with(['logbooks', 'jadwalKonsultasi' ,'seminar'])->get();
+
+        return view('dosen.anakBimbing', compact('mahasiswaBimbingan'));
     }
 
-    $mahasiswaBimbingan = User::where('dosen_id', $dosen->id)
-        ->with(['logbooks', 'jadwalKonsultasi' ,'seminar'])->get();
+    public function detilPKL($nim)
+    {
+        $mahasiswa = User::where('nim', $nim)
+            ->with(['surats']) // Relasi surat untuk mendapatkan data tempat PKL
+            ->firstOrFail();
 
-    \Log::info($mahasiswaBimbingan);
+        if (!$mahasiswa) {
+            abort(404, 'User tidak ditemukan');
+        }
 
-    return view('dosen.anakBimbing', compact('mahasiswaBimbingan'));
-}
+        $surats = \DB::table('surat_users')
+            ->join('surats', 'surat_users.id_surat', '=', 'surats.id_surat')
+            ->where('surat_users.nim', $mahasiswa->nim)
+            ->orderBy('surats.created_at', 'desc') // Atau gunakan 'surats.id_surat' jika perlu
+            ->get();
+
+        $suratTerbaru = $surats->first();
+
+        return view('dosen.detilPKL', compact('mahasiswa', 'suratTerbaru'));
+    }
+
 
 
     // Menyimpan data dosen baru

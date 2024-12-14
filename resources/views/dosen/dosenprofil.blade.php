@@ -131,9 +131,6 @@
                 <div class="content-wrapper">
                     <!-- Profile Section -->
                     <div class="profile-card">
-                        <!-- Foto Profil -->
-                        <img src="./assets/images/faces/face26.jpg" alt="Foto Profil" class="profile-photo">
-                        
                         <!-- Informasi Dosen (Nama, Jabatan, NIP) di tengah -->
                         <div class="profile-info">
                             <h2>{{ $dosen->name }}</h2>

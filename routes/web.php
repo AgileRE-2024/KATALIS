@@ -116,6 +116,7 @@ Route::group(['middleware' => ['auth:dosen', 'hakakses:dosen']], function() {
     Route::get('/anakBimbing', [DosenController::class, 'index'])->name("anakBimbing");
     Route::get('/detilLogbook/{user_id}', [LogbookController::class, 'dosen'])->name('detilLogbook');
     Route::get('/detilBimbingan/{user_id}', [JadwalKonsultasiController::class, 'dosen'])->name('detilBimbingan');
+    Route::get('/detilPkl/{nim}', [DosenController::class, 'detilPKL'])->name('dosen.detilPKL');
 
 
     Route::get('/tambahMahasiswa', function () {
@@ -154,6 +155,7 @@ Route::group(['middleware' => ['auth:dosen', 'hakakses:dosen']], function() {
 // Rute untuk Koordinator
 Route::group(['middleware' => ['auth:koordinator', 'hakakses:koordinator']], function() {
     Route::get('/dashboardKoor', [DashboardKoorController::class, 'index'])->name('dashboardKoor');
+    
     
     Route::get('/profil', function () {
         return view('profil');

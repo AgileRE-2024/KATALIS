@@ -30,6 +30,7 @@ class Surat extends Model
         'nama_lembaga',
         'alamat',
         'keperluan',
+        'status_assign',
     ];
 
     public function id_surat()

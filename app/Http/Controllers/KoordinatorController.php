@@ -7,6 +7,7 @@ use App\Models\SuratUser;
 use App\Models\Surat;
 use App\Models\Dosen;
 use App\Models\User;
+use Illuminate\Support\Facades\DB;
 
 
 use Mpdf\Mpdf;
@@ -54,9 +55,19 @@ class KoordinatorController extends Controller
 
     public function index2()
     {
-        $pengajuans = SuratUser::all();
-        return view('pov_koor/pklAktif', compact('pengajuans'));
+        $pengajuans = SuratUser::whereHas('surat', function ($query) {
+            $query->whereNotNull('dosbing_name');
+        })
+            ->get()
+            ->groupBy('nim')
+            ->map(function ($group) {
+                return $group->sortByDesc('id')->first();
+            });
+
+        return view('pov_koor/pklAktif', ['pengajuans' => $pengajuans->values()]);
     }
+
+
 
     public function getSurat($id_surat){
         $data = Surat::where('id_surat', $id_surat)->first();

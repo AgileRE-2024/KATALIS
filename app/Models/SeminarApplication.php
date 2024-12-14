@@ -10,6 +10,7 @@ class SeminarApplication extends Model
     use HasFactory;
 
     protected $fillable = [
+        'user_id',
         'judul_pkl',
         'tempat_pkl',
         'dosen_pembimbing',
