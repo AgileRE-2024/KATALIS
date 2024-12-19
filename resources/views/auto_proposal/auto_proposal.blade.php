@@ -277,7 +277,7 @@
                                             </div>
 
                                                 <div class="form-group">
-                                                    <label for="doswal" class="form-label">doswal:</label>
+                                                    <label for="doswal" class="form-label">Dosen Wali:</label>
                                                     <input id="doswal" class="form-field" name="doswal" contenteditable="false"></input>
                                                 </div>
 
@@ -302,17 +302,17 @@
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="koprodi" class="form-label">koprodi:</label>
+                                                    <label for="koprodi" class="form-label">Kepala Prodi:</label>
                                                     <input id="koprodi" name="koprodi" class="form-field" contenteditable="false"></input>
                                                 </div>
 
                                                 <div class="form-group">
-                                                    <label for="nip_koprodi" class="form-label">nip_koprodi:</label>
+                                                    <label for="nip_koprodi" class="form-label">NIP Kepala Prodi:</label>
                                                     <input id="nip_koprodi" name="nip_koprodi" class="form-field" contenteditable="false"></input>
                                                 </div>
 
                                                 <div class="form-group">
-                                                    <label for="dosbing" class="form-label">dosbing:</label>
+                                                    <label for="dosbing" class="form-label">Dosen Pembimbing:</label>
                                                     <input id="dosbing" name="dosbing" class="form-field" contenteditable="false" disabled></input>
                                                 </div>
                                             </div>
@@ -322,23 +322,23 @@
 
                                                 <div class="form-group">
 
-                                                    <label for="surat_ditujukan_kepada" class="form-label">surat_ditujukan_kepada:</label>
+                                                    <label for="surat_ditujukan_kepada" class="form-label">Surat Ditujukan Kepada:</label>
                                                     <input id="surat_ditujukan_kepada" name="surat_ditujukan_kepada" class="form-field" contenteditable="false"></input>
 
                                                 </div>
 
                                                 <div class="form-group">
-                                                    <label for="nama_lembaga" class="form-label">nama_lembaga:</label>
+                                                    <label for="nama_lembaga" class="form-label">Nama Lembaga:</label>
                                                     <input id="nama_lembaga" name="nama_lembaga" class="form-field" contenteditable="false"></input>
                                                 </div>
 
                                                 <div class="form-group">
-                                                    <label for="alamat" class="form-label">alamat:</label>
+                                                    <label for="alamat" class="form-label">Alamat:</label>
                                                     <input id="alamat" name="alamat" class="form-field" contenteditable="false"></input>
                                                 </div>
 
                                                 <div class="form-group">
-                                                    <label for="keperluan" class="form-label">keperluan:</label>
+                                                    <label for="keperluan" class="form-label">Keperluan:</label>
                                                     <input id="keperluan" name="keperluan" class="form-field" contenteditable="false"></input>
                                                 </div>
 
