@@ -2,86 +2,162 @@
 
 namespace App\Http\Controllers;
 
+use Mpdf\Mpdf;
 use Illuminate\Http\Request;
-use App\Models\Mhs;
+use App\Models\Surat;
+use App\Models\SuratUser;
+use Illuminate\Support\Facades\Auth;
 
 
 class WordController extends Controller
 {
-    public function display(){
-        $data = Mhs::all();
-        return view('auto_proposal/auto_proposal', ['dete' => $data]);
 
+    public function display(Request $request)
+    {
+        $user = Auth::user();
 
+        if (!$user) {
+            abort(404, 'User tidak ditemukan');
+        }
+
+        $surats = \DB::table('surat_users')
+            ->join('surats', 'surat_users.id_surat', '=', 'surats.id_surat')
+            ->join('users', 'surat_users.nim', '=', 'users.nim') // Join dengan tabel users untuk mendapatkan dosen_id
+            ->where('surat_users.nim', $user->nim)
+            ->orderBy('surats.created_at', 'desc')
+            ->get();
+
+        return view('auto_proposal/auto_proposal', compact('user', 'surats'));
     }
 
-    public function index(Request $request){
-        $nama = $request->nama;
-        $nim = $request->nim;
-        $notelp = $request->notelp;
-        $prodi = $request->prodi;
-        $doswal = $request->doswal;
-        $surat_ditujukan_kepada = $request->surat_ditujukan_kepada;
-        $nama_lembaga = $request->nama_lembaga;
-        $alamat = $request->alamat;
-        $keperluan = $request->keperluan;
-        $waktu_pelaksanaan = $request->waktu_pelaksanaan;
-        $tembusan = $request->tembusan;
-        $date = $request->date;
-        $ko_prodi = $request->ko_prodi;
-        $dosbing = $request->dosbing;
-        $nip_koprodi = $request->nip_koprodi;
-        $nip_dosbing = $request->nip_dosbing;
-        $jumlah_mahasiswa = $request->jumlah_mahasiswa;
+    public function store(Request $request)
+    {
+        // Store form data in session
+        $request->session()->put('form_data', [
+            'prodi' => $request->prodi,
+            'doswal' => $request->doswal,
+
+            'nim' => $request->nim,
+            'name' => $request->name,
+            'no_hp' => $request->no_hp,
+
+            'nim2' => $request->nim2,
+            'name2' => $request->name2,
+            'no_hp2' => $request->no_hp2,
+
+            // TEMPORARY DOANG! HARUS GANTI
+            'nim3' => $request->nim3,
+            'name3' => $request->name3,
+            'no_hp3' => $request->no_hp3,
+
+            'surat_ditujukan_kepada' => $request->surat_ditujukan_kepada,
+            'nama_lembaga' => $request->nama_lembaga,
+            'alamat' => $request->alamat,
+            
+
+            'keperluan' => $request->keperluan,
+            'tanggal_mulai' => $request->tanggal_mulai,
+            'tanggal_selesai' => $request->tanggal_selesai,
+            'tembusan' => $request->tembusan,
+
+            'koprodi' => $request->koprodi,
+            'nip_koprodi' => $request->nip_koprodi,
+            'dosbing' => $request->dosbing,
+            'nip_dosbing' => $request->nip_dosbing,
 
 
-
-        $template_file = match ($jumlah_mahasiswa) {
-            '1' => 'auto_proposal/PERMOHONAN_SURAT_PENELITIAN.docx',
-            '2' => 'auto_proposal/PERMOHONAN_SURAT_PENELITIAN (2).docx',
-            '3' => 'auto_proposal/PERMOHONAN_SURAT_PENELITIAN (3).docx',
-            default => 'auto_proposal/PERMOHONAN_SURAT_PENELITIAN.docx',
-        };
-
-
-        // Optional fields with default empty string
-        $nama2 = $request->input('nama2', '');
-        $nama3 = $request->input('nama3', '');
-        $nim2 = $request->input('nim2', '');
-        $nim3 = $request->input('nim3', '');
-        $notelp2 = $request->input('notelp2', '');
-        $notelp3 = $request->input('notelp3', '');
-
-
-        $phpWord = new \PhpOffice\PhpWord\TemplateProcessor($template_file);
-
-        $phpWord->setValues([
-            'nama' => $nama,
-            'nama2' => $nama2,
-            'nama3' => $nama3,
-            'nim' => $nim,
-            'nim2' => $nim2,
-            'nim3' => $nim3,
-            'notelp' => $notelp,
-            'notelp2' => $notelp3,
-            'notelp3' => $notelp3,
-            'prodi' => $prodi,
-            'doswal' => $doswal,
-            'surat_ditujukan_kepada' => $surat_ditujukan_kepada,
-            'nama_lembaga' => $nama_lembaga,
-            'alamat' => $alamat,
-            'keperluan' => $keperluan,
-            'waktu_pelaksanaan' => $waktu_pelaksanaan,
-            'tembusan' => $tembusan,
-            'date' => $date,
-            'ko_prodi' => $ko_prodi,
-            'dosbing' => $dosbing,
-            'nip_koprodi' => $nip_koprodi,
-            'nip_dosbing' => $nip_dosbing
-
+            'rowCount' => $request->row_count,
         ]);
-        
-        $phpWord->saveAs('auto_proposal/hasilEdit.docx');
+
+        return redirect()->route('wordb/view/pdf');
     }
+
+    public function index(Request $request)
+    {
+        // Retrieve the data from session
+        $formData = $request->session()->get('form_data');
+        
+        // Pass data to the view
+        return view('auto_proposal/hasil', compact('formData'));
+    }
+
+    public function download_pdf(Request $request)
+    {
+        $formData = $request->session()->get('form_data');
+
+        $mpdf = new \Mpdf\Mpdf();
+        $mpdf->WriteHTML(view('auto_proposal/hasil', compact('formData')));
+        $mpdf->Output('PERMOHONAN_SURAT_PENELITIAN', 'D');
+    }
+
+    public function view_pdf(Request $request)
+    {
+        $formData = $request->session()->get('form_data', []);
+        
+        $mpdf = new \Mpdf\Mpdf();
+        $mpdf->WriteHTML(view('auto_proposal/hasil', compact('formData')));
+        $mpdf->Output();
+
+        
+        // Generate a unique filename
+        $uniq = hexdec(uniqid());
+        $filename = 'proposal_' . $uniq . '.pdf';
+        
+        // Full path where the file will be saved
+        $filepath = ('../storage/app/public/' . $filename);
+        
+        // Save the PDF to the storage/app/ directory
+        $mpdf->Output($filepath, 'F');
+
+        // Insert filename into database
+        $pdfRecord = new Surat();
+        $pdfRecord->id_surat = $uniq;
+        $pdfRecord->filename = $filename;
+        $pdfRecord->filepath = $filepath;
+        $pdfRecord->creator = $request->user()->nim;
+        $pdfRecord->prodi = $formData['prodi'];
+        $pdfRecord->doswal_name = $formData['doswal'];
+        $pdfRecord->wkt_start = $formData['tanggal_mulai'];
+        $pdfRecord->wkt_end = $formData['tanggal_selesai'];
+        $pdfRecord->koprodi_name = $formData['koprodi'];
+        $pdfRecord->koprodi_nip = $formData['nip_koprodi'];
+
+        $pdfRecord->surat_ditujukan_kepada = $formData['surat_ditujukan_kepada'];
+        $pdfRecord->nama_lembaga = $formData['nama_lembaga'];
+        $pdfRecord->alamat = $formData['alamat'];
+        $pdfRecord->keperluan = $formData['keperluan'];
+
+        $pdfRecord->save();
+
+        // Collect NIMs
+        $nims = array_filter([
+            $formData['nim'] ?? null,
+            $formData['nim2'] ?? null,
+            $formData['nim3'] ?? null
+        ]);
+
+        // Save NIMs to database
+        foreach ($nims as $nim) {
+            SuratUser::create([
+                'nim' => $nim,
+                'id_surat' => $uniq,
+                'is_active' => 1,
+            ]);
+        }
+        
+
+
+        // Optional: Clear the session data after processing
+        $request->session()->forget('form_data');
+
+        // Optional: Return a response or redirect with the filename
+        return response()->download($filepath, $filename);
+                
+    
+    }
+
+    public function masukdb(Request $request)
+    {}
+        
 }
 

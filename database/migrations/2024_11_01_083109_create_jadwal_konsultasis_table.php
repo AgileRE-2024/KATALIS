@@ -18,7 +18,7 @@ return new class extends Migration
             $table->date('tanggal_konsultasi');
             $table->time('waktu_konsultasi');
             $table->string('topik');
-            $table->string('status')->default('Menunggu Persetujuan'); // status default
+            $table->enum('status', ['Disetujui', 'Menunggu Persetujuan', 'Ditolak'])->default('Menunggu Persetujuan'); // status default
             $table->timestamps();
             $table->string('hasil_bimbingan')->nullable();
             $table->string('dokumentasi_bimbingan')->nullable();

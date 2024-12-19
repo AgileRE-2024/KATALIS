@@ -57,14 +57,6 @@
             </a>
         </li>
 
-        <!-- Laporan -->
-        <li class="nav-item">
-            <a class="nav-link" href="laporanfiks">
-                <i class="ti-clipboard menu-icon"></i>
-                <span class="menu-title">Laporan</span>
-            </a>
-        </li>
-
         <!-- Seminar -->
         <li class="nav-item">
             <a class="nav-link" data-toggle="collapse" href="#seminar" aria-expanded="false" aria-controls="seminar">
@@ -90,6 +82,14 @@
 
 <!-- CSS -->
 <style>
+    .main-panel {
+    flex-grow: 1; /* Membuat konten utama mengambil sisa ruang */
+    transition: margin-left 0.3s; /* Animasi saat sidebar dibuka/ditutup */
+}
+
+.sidebar-minimized + .main-panel {
+    margin-left: 80px; /* Margin yang sesuai saat sidebar diminimalkan */
+}
     .sidebar {
         width: 300px; /* Memperbesar lebar sidebar */
         transition: width 0.3s;

@@ -11,7 +11,10 @@ class User extends Authenticatable
 {
     use HasFactory, Notifiable, HasApiTokens;
 
+    protected $guard = 'web';
+
     protected $fillable = [
+        'dosen_id',
         'name',
         'username',
         'email',
@@ -21,11 +24,18 @@ class User extends Authenticatable
         'alamat',
         'no_hp',
         'tanggal_lahir',
+        'proposal_pkl',
+        'surat_penerimaan'
     ];
 
     protected $hidden = [
         'password',
     ];
+
+    public function nim()
+    {
+        return $this->hasMany(SuratUser::class, 'nim', 'nim');
+    }
 
     public function jadwalKonsultasi()
     {
@@ -46,7 +56,20 @@ class User extends Authenticatable
 
     public function dosen()
     {
-        return $this->belongsTo(Dosen::class);
+        return $this->belongsTo(Dosen::class, 'dosen_id', 'id');
     }
+
+    public function surats()
+    {
+        return $this->belongsToMany(Surat::class, 'surat_users', 'nim', 'id_surat')
+                    ->using(SuratUser::class); 
+    }
+
+    public function seminarApplications()
+    {
+        return $this->hasMany(SeminarApplication::class, 'user_id');
+    }
+
+
 }
 

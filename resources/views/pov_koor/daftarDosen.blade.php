@@ -29,34 +29,15 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
-                                                <td class="text-center">1</td>
-                                                <td class="text-center">Pak Indra</td>
-                                                <td class="text-center">12345678</td>
-                                                <td class="text-center">Data Science</td>
-                                                <td class="text-center">5</td>
+                                            @foreach($dosens as $index => $dosen)
+                                                <td class="text-center">{{ $index + 1 }}</td>
+                                                <td class="text-center">{{ $dosen->name }}</td>
+                                                <td class="text-center">{{ $dosen->nip }}</td>
+                                                <td class="text-center">{{ $dosen->bidang_keahlian }}</td>
+                                                <td class="text-center">{{ $dosen->mahasiswa_bimbingan_count }}</td>
                                             </tr>
-                                            <tr>
-                                                <td class="text-center">2</td>
-                                                <td class="text-center">Pak Badrus</td>
-                                                <td class="text-center">87654321</td>
-                                                <td class="text-center">Machine Learning</td>
-                                                <td class="text-center">3</td>
-                                            </tr>
-                                            <tr>
-                                                <td class="text-center">3</td>
-                                                <td class="text-center">Pak Faried</td>
-                                                <td class="text-center">23456789</td>
-                                                <td class="text-center">Software Engineering</td>
-                                                <td class="text-center">4</td>
-                                            </tr>
-                                            <tr>
-                                                <td class="text-center">4</td>
-                                                <td class="text-center">Bu Siti</td>
-                                                <td class="text-center">34567890</td>
-                                                <td class="text-center">Cyber Security</td>
-                                                <td class="text-center">6</td>
-                                            </tr>
+                                            @endforeach
+                                            
                                         </tbody>
                                     </table>
                                 </div>

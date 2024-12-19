@@ -7,12 +7,13 @@ use Illuminate\Http\Request;
 use App\Models\JadwalKonsultasi;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
+use Log;
 
 class JadwalKonsultasiController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth'); 
+        $this->middleware('auth');
     }
 
     public function index()
@@ -21,6 +22,27 @@ class JadwalKonsultasiController extends Controller
         $jadwal_konsultasis = $user->jadwalKonsultasi;
         return view('mahasiswa/jadwalBimbingan', compact('jadwal_konsultasis'));
     }
+
+    public function index1()
+    {
+        $dosen = Auth::guard('dosen')->user(); // Mendapatkan dosen yang sedang login
+        if (!$dosen) {
+            return redirect()->route('loginfix');
+        }
+
+        // Ambil semua jadwal konsultasi milik dosen yang sedang login
+        $jadwals = JadwalKonsultasi::whereHas('user', function ($query) use ($dosen) {
+            $query->where('dosen_id', $dosen->id);
+        })
+            ->orderBy('tanggal_konsultasi', 'asc')
+            ->orderBy('waktu_konsultasi', 'asc')
+            ->get();
+
+
+        // Return the view with the jadwals data
+        return view('dosen.jadwalBimbinganDosen', compact('jadwals'));
+    }
+
 
     public function dosen($user_id)
     {
@@ -45,56 +67,54 @@ class JadwalKonsultasiController extends Controller
 
     public function store(Request $request)
     {
-        // Ambil ID user yang sedang login
-        $user_id = Auth::id();
-
-        // Validasi input
-        $request->validate([
+        $validated = $request->validate([
             'tanggal_konsultasi' => 'required|date',
             'waktu_konsultasi' => 'required|date_format:H:i',
             'topik' => 'required|string|max:255',
+            'hasil_bimbingan' => 'nullable|file|mimes:png|max:2048',
+            'dokumentasi_bimbingan' => 'nullable|file|mimes:png|max:2048',
         ]);
 
-        // Simpan data ke database
+
+        $hasilBimbinganPath = $request->file('hasil_bimbingan')
+            ? $request->file('hasil_bimbingan')->store('hasil_bimbingan', 'public')
+            : null;
+
+        $dokumentasiBimbinganPath = $request->file('dokumentasi_bimbingan')
+            ? $request->file('dokumentasi_bimbingan')->store('dokumentasi_bimbingan', 'public')
+            : null;
+
         JadwalKonsultasi::create([
-            'user_id' => Auth::id(), 
-            'tanggal_konsultasi' => $request->tanggal_konsultasi,
-            'waktu_konsultasi' => $request->waktu_konsultasi,
-            'topik' => $request->topik,
+            'user_id' => Auth::id(),
+            'tanggal_konsultasi' => $validated['tanggal_konsultasi'],
+            'waktu_konsultasi' => $validated['waktu_konsultasi'],
+            'topik' => $validated['topik'],
+            'hasil_bimbingan' => $hasilBimbinganPath,
+            'dokumentasi_bimbingan' => $dokumentasiBimbinganPath,
+            'status' => JadwalKonsultasi::STATUS_MENUNGGU,
         ]);
 
         return redirect()->back()->with('success', 'Jadwal konsultasi berhasil ditambahkan.');
     }
 
-    public function uploadHasil(Request $request, $id)
+
+    public function updateStatus(Request $request, $id)
     {
         $request->validate([
-            'hasil_bimbingan' => 'required|image|mimes:jpeg,png,jpg|max:2048',
+            'status' => 'required|string|in:Approved,Waiting Approval,Revised',
         ]);
 
-        if ($request->file('hasil_bimbingan')) {
-            $path = $request->file('hasil_bimbingan')->store('hasil_bimbingan', 'public');
-            $jadwal = JadwalKonsultasi::find($id);
-            $jadwal->hasil_bimbingan = $path;
-            $jadwal->save();
+        $jadwal = JadwalKonsultasi::findOrFail($id);
+
+        // Validasi apakah dosen yang login adalah pembimbing mahasiswa ini
+        if ($jadwal->user->dosen_id != Auth::id()) {
+            return redirect()->back()->with('error', 'Anda tidak memiliki akses untuk mengubah status jadwal ini.');
         }
 
-        return redirect()->back()->with('success', 'Hasil Bimbingan berhasil diunggah');
+        $jadwal->status = $request->status;
+        $jadwal->save();
+
+        return redirect()->back()->with('success', 'Status jadwal berhasil diperbarui.');
     }
 
-    public function uploadDokumentasi(Request $request, $id)
-    {
-        $request->validate([
-            'dokumentasi_bimbingan' => 'required|image|mimes:jpeg,png,jpg|max:2048',
-        ]);
-
-        if ($request->file('dokumentasi_bimbingan')) {
-            $path = $request->file('dokumentasi_bimbingan')->store('dokumentasi_bimbingan', 'public');
-            $jadwal = JadwalKonsultasi::find($id);
-            $jadwal->dokumentasi_bimbingan = $path;
-            $jadwal->save();
-        }
-
-        return redirect()->back()->with('success', 'Dokumentasi Bimbingan berhasil diunggah');
-    }
 }

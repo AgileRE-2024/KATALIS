@@ -131,36 +131,34 @@
                 <div class="content-wrapper">
                     <!-- Profile Section -->
                     <div class="profile-card">
-                        <!-- Foto Profil -->
-                        <img src="./assets/images/faces/face26.jpg" alt="Foto Profil" class="profile-photo">
-
-                        <!-- Informasi Siswa (Nama, NIM) di tengah -->
+                        <!-- Informasi Dosen (Nama, NIP) -->
                         <div class="profile-info">
-                            <h2>Nabila S.Si, M.Si</h2>
-                            <h4>NIP: 19820101827291</h4>
+                            <h2>{{ $user->dosen->name ?? 'Tidak Ada Data Dosen' }}</h2>
+                            <h4>NIP: {{ $user->dosen->nip ?? 'N/A' }}</h4>
                         </div>
 
                         <!-- Garis Pembatas -->
                         <div class="divider"></div>
 
-                        <!-- Detail Informasi Siswa -->
+                        <!-- Detail Informasi Dosen -->
                         <div class="student-details">
                             <!-- Kolom Pertama (3 Informasi) -->
                             <div class="column">
-                                <p><strong>Nama:</strong> Nabila S.Si, M.Si</p>
-                                <p><strong>NIP:</strong> 19820101827291</p>
-                                <p><strong>Email:</strong> nabila@example.com</p>
+                                <p><strong>Nama:</strong> {{ $user->dosen->name ?? 'N/A' }}</p>
+                                <p><strong>NIP:</strong> {{ $user->dosen->nip ?? 'N/A' }}</p>
+                                <p><strong>Email:</strong> {{ $user->dosen->email ?? 'N/A' }}</p>
                             </div>
 
                             <!-- Kolom Kedua (2 Informasi) -->
                             <div class="column">
-                                <p><strong>Nomor HP:</strong> 08123456789</p>
-                                <p><strong>Alamat:</strong> Jl. Bunga No. 123</p>
+                                <p><strong>Nomor HP:</strong> {{ $user->dosen->no_hp ?? 'N/A' }}</p>
+                                <p><strong>Bidang Keahlian:</strong> {{ $user->dosen->bidang_keahlian ?? 'N/A' }}</p>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+
         </div>
     </div>
 

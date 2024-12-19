@@ -11,21 +11,21 @@
         <!-- Dashboard -->
         <li class="nav-item">
             <a class="nav-link" href="assignPembimbing">
-                <i class="ti-home menu-icon"></i>
+                <i class="ti-id-badge menu-icon"></i>
                 <span class="menu-title">Penentuan Pembimbing</span>
             </a>
         </li>
         <!-- Dashboard -->
         <li class="nav-item">
             <a class="nav-link" href="daftarDosen">
-                <i class="ti-home menu-icon"></i>
+                <i class="ti-user menu-icon"></i>
                 <span class="menu-title">Daftar Dosen</span>
             </a>
         </li>
         <!-- Dashboard -->
         <li class="nav-item">
             <a class="nav-link" href="pklAktif">
-                <i class="ti-home menu-icon"></i>
+                <i class="ti-map-alt menu-icon"></i>
                 <span class="menu-title">PKL Aktif</span>
             </a>
         </li>
@@ -37,6 +37,14 @@
 
 <!-- CSS -->
 <style>
+    .main-panel {
+    flex-grow: 1; /* Membuat konten utama mengambil sisa ruang */
+    transition: margin-left 0.3s; /* Animasi saat sidebar dibuka/ditutup */
+}
+
+.sidebar-minimized + .main-panel {
+    margin-left: 80px; /* Margin yang sesuai saat sidebar diminimalkan */
+}
     .sidebar {
         width: 300px; /* Memperbesar lebar sidebar */
         transition: width 0.3s;

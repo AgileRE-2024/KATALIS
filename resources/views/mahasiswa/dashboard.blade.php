@@ -195,7 +195,7 @@
                                 <div class="card small-card card-light-green">
                                     <div class="card-body">
                                         <p class="card-title">Deadline Laporan</p>
-                                        <p class="card-content">30 September 2024</p>
+                                        <p class="card-content">{{ $deadlineLaporan !== 'Tidak Ada Data' ? $deadlineLaporan : 'Tidak Ada Deadline Laporan' }}</p>
                                     </div>
                                 </div>
                             </div>
@@ -204,7 +204,7 @@
                                 <div class="card small-card card-light-danger">
                                     <div class="card-body">
                                         <p class="card-title">Hari Tersisa PKL</p>
-                                        <p class="card-content">45 Hari</p>
+                                        <p class="card-content">{{ $hariTersisa > 0 ? $hariTersisa . ' Hari' : 'Sudah Berakhir' }}</p>
                                     </div>
                                 </div>
                             </div>
@@ -214,7 +214,7 @@
                                 <div class="card small-card card-light-warning">
                                     <div class="card-body">
                                         <p class="card-title">Jumlah Logbook</p>
-                                        <p class="card-content">15</p>
+                                        <p class="card-content">{{ $jumlahLogbook > 0 ? $jumlahLogbook : 'Belum Ada Logbook' }}</p>
                                     </div>
                                 </div>
                             </div>
@@ -223,13 +223,13 @@
                                 <div class="card small-card card-light-primary">
                                     <div class="card-body">
                                         <p class="card-title">Konsultasi Dilakukan</p>
-                                        <p class="card-content">5</p>
+                                        <p class="card-content">{{ $jumlahKonsultasi > 0 ? $jumlahKonsultasi : 'Belum Ada Konsultasi' }}</p>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
+
 
 
                 <!-- Footer -->

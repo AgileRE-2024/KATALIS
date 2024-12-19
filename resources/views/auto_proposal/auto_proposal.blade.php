@@ -4,143 +4,197 @@
 <head>
     @include('components.head')
     <style>
-        /* Custom CSS for sidebar */
-        .sidebar {
-            width: 250px; /* Set desired sidebar width */
-            transition: width 0.3s ease; /* Smooth transition for width change */
-        }
-
-        /* For minimized sidebar */
-        .sidebar.minimized {
-            width: 80px; /* Width when minimized */
-        }
-
-        /* Make sure the content area stretches to fill the remaining space */
-        .main-panel {
-            flex-grow: 1; /* Allow main panel to grow */
-            background-color: #f5f7ff; /* Set background color matching content */
-            padding: 20px; /* Optional padding */
-            margin-left: 10px; /* Prevent content from touching sidebar */
-        }
-
-        /* Center the content */
-        .content-wrapper {
-            max-width: 1200px; /* Set max-width for the content */
-            margin: 0 auto; /* Center the content */
-        }
-
-        /* Optional: Adjust background color of the right empty space */
-        .page-body-wrapper {
-            background-color: #f8f9fa; /* Set to the same color as main-panel */
-        }
-
-        /* Garis Pembatas */
-        .divider {
-            width: 100%;
-            height: 2px;
-            background-color: #ddd;
-            margin: 20px 0;
-        }
-
-        /* Detail Informasi Siswa */
-        .student-details {
-            margin-top: 100px;
-            display: flex;
-            justify-content: space-between;
-            text-align: left;
-            padding-left: 20px;
-            flex-wrap: wrap;
-        }
-
-        .student-details .column {
-            width: 48%;
-            margin-bottom: 15px;
-        }
-
-        .student-details p {
-            font-size: 16px;
-            margin-bottom: 50px;
-        }
-
-        .student-details p strong {
-            font-weight: bold;
-        }
-
-        /* Media Query untuk Responsivitas */
-        @media (max-width: 768px) {
-            .student-details .column {
-                width: 100%;
-            }
-        }
-
-        .form-group {
-      display: flex;
-      align-items: center;
-      margin-bottom: 16px;
-      font-size: 16px
+    /* Custom CSS for sidebar */
+    .sidebar {
+        width: 250px; /* Set desired sidebar width */
+        transition: width 0.3s ease; /* Smooth transition for width change */
     }
 
-    .form-label {
+    /* For minimized sidebar */
+    .sidebar.minimized {
+        width: 80px; /* Width when minimized */
+    }
+
+    /* Make sure the content area stretches to fill the remaining space */
+    .main-panel {
+        flex-grow: 1; /* Allow main panel to grow */
+        background-color: #f5f7ff; /* Set background color matching content */
+        padding: 20px; /* Optional padding */
+        margin-left: 10px; /* Prevent content from touching sidebar */
+    }
+
+    /* Center the content */
+    .content-wrapper {
+        max-width: 1200px; /* Set max-width for the content */
+        margin: 0 auto; /* Center the content */
+    }
+
+    /* Optional: Adjust background color of the right empty space */
+    .page-body-wrapper {
+        background-color: #f8f9fa; /* Set to the same color as main-panel */
+    }
+
+    .card-title {
+    margin-bottom: 10px; /* Kurangi jarak bawah judul */
+}
+
+.forms-sample {
+    margin-top: 100; /* Kurangi jarak atas form */
+}
+
+    /* Garis Pembatas */
+    .divider {
+        width: 100%;
+        height: 2px;
+        background-color: #ddd;
+        margin: 20px 0;
+    }
+
+    /* Detail Informasi Siswa */
+    .student-details {
+        margin-top: 30px;
+        display: flex;
+        justify-content: space-between;
+        text-align: left;
+        padding-left: 20px;
+        flex-wrap: wrap;
+    }
+
+    .student-details .column {
+        width: 48%;
+        margin-bottom: 15px;
+    }
+
+    .student-details p {
+        font-size: 16px;
+        margin-bottom: 50px;
+    }
+
+    .student-details p strong {
+        font-weight: bold;
+    }
+
+    /* Media Query untuk Responsivitas */
+    @media (max-width: 768px) {
+    .student-details {
+        flex-direction: column;
+    }
+
+    .student-details .column {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+}
+
+    /* Form Group Styling */
+    .form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 16px;
+    font-size: 16px;
+}
+
+.form-label {
+    margin-bottom: 8px;
     font-family: 'Arial', sans-serif;
     font-size: 16px;
-      width: 100px;
-      font-weight: bold;
-      
+    font-weight: bold;
+}
+
+.form-field {
+    flex: 1;
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+    background-color: #fff;
+    box-sizing: border-box; /* Pastikan padding tidak menambah ukuran */
+}
+
+
+    /* Menambahkan border dan background untuk input yang harus diisi */
+    .form-field.required {
+        background-color: #e9f7fc; /* Warna latar belakang lebih cerah untuk input wajib */
+        border-color: #0077b6;
     }
 
-    .form-field {
-      flex: 1;
-      padding: 8px 8px;
-      border: none;
-      border-bottom: 1px solid transparent;
-      font-size: 14px;
-      background-color: transparent;
-      cursor: default;
-    }
+    .form-field:focus {
+    border-color: #0077b6;
+    outline: none;
 
-    .form-field.editable {
-      border-color: #0077b6;
-      cursor: text;
-    }
+    .hidden {
+    display: none;
+}
 
+}
+
+    /* Table Styling */
     table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 20px 0;
-            font-family: Arial, sans-serif;
-        }
-        
+        width: 100%;
+        border-collapse: collapse;
+        margin: 20px 0;
+        font-family: Arial, sans-serif;
+    }
+
     th, td {
         border: 1px solid #ddd;
         padding: 8px;
         text-align: left;
     }
-    
+
     th {
         background-color: #f2f2f2;
     }
-    
+
     input {
         width: 90%;
         padding: 5px;
         border: 1px solid #ddd;
         border-radius: 4px;
     }
-    
+
     .readonly {
-        background-color: #f5f5f5;
+        border: none;
+        outline: none;
+    }
+
+    .readonly {
+    background-color: #f5f5f5;
+    border: 1px solid #ddd;
+    cursor: not-allowed;
+}
+
+    .remove-row {
+        padding: 0 6px;
+        margin-left: auto;
+        font-size: 18px;
+        line-height: 1;
+    }
+
+    #addButtonRow {
+        background-color: #f8f9fa;
+    }
+
+    #addButtonRow td {
+        padding: 10px;
+    }
+
+    .btn-sm {
+        padding: 0.25rem 0.5rem;
+        font-size: 0.875rem;
+        line-height: 1.5;
+        border-radius: 0.2rem;
     }
 
 
-    </style>
+</style>
 
 </head>
 
 <body>
     
     <div class="container-scroller">
-       
-        
         @include('components.navbar')
 
         <div class="container-fluid page-body-wrapper">
@@ -159,22 +213,68 @@
                                 
                                 <div class="card-body">
                                     
-                                    <h4 class="card-title">Pengajuan Surat (dobel klik to change) </h4>
+                                    <h4 class="card-title">Histori Pengajuan Surat</h4>
 
-                                    <form class ="forms-sample" action="{{route('worda.index')}}" method="POST">
+                                    <table id="statusPengajuanTable" class="table table-bordered">
+                                        <thead>
+                                            <tr>
+                                                <th>Tujuan Pengajuan</th>
+                                                <th>Status Pengajuan</th>
+                                                <th>Download Pengajuan</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                        @foreach ($surats as $surat)
+                                            <tr>
+                                                <td id="tanggalPengajuan">{{ $surat->nama_lembaga ?? 'Tidak ada informasi' }}</td>
+                                                
+                                                <td id="statusPengajuan1">
+                                                    @if ($surat->is_active == 1 && !$surat->dosen_id)
+                                                        <!-- Status Pending -->
+                                                        <p>Status: Pending</p>
+                                                    @elseif ($surat->is_active == 1 && $surat->dosen_id)
+                                                        <!-- Status Pengajuan Selesai -->
+                                                        <p>Status: Pengajuan Selesai</p>
+                                                    @elseif ($surat->is_active == 2)
+                                                        <!-- Status PKL Ditolak -->
+                                                        <p>Status: PKL Ditolak</p>
+                                                    @else
+                                                        <p>Status: Tidak Dikenal</p>
+                                                    @endif
+                                                </td>
+                                                
+                                                <td>
+                                                    <a href="#" id="lihatPengajuan1">
+                                                        @if ($surat)
+                                                            <p>
+                                                                <a href="{{ asset('storage/' . str_replace('../storage/app/public/', '', $surat->filepath)) }}" target="_blank">
+                                                                    Download Surat
+                                                                </a>
+                                                            </p>
+                                                        @else
+                                                            <p>Surat tidak ditemukan.</p>
+                                                        @endif
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                        @endforeach
+
+                                    </tbody>
+
+                                    </table>
+
+                                    <h4 class="card-title">Pengajuan Surat Baru</h4>
+
+                                    <form class ="forms-sample" action="{{route('store.form')}}" method="POST" id=tableForm>
                                         @csrf
 
                                         <div class="student-details">
-
                                             <!-- Kolom Pertama -->
                                             <div class="column">
-
-                                            
-
-                                                <div class="form-group">
-                                                    <label for="prodi" class="form-label">Prodi:</label>
-                                                    <input type="text" id="prodi" class="form-field" name="prodi" contenteditable="false"></input>
-                                                </div>
+                                            <div class="form-group">
+                                                <label for="prodi" class="form-label">Prodi:</label>
+                                                <input type="text" id="prodi" class="form-field" name="prodi" readonly>
+                                            </div>
 
                                                 <div class="form-group">
                                                     <label for="doswal" class="form-label">doswal:</label>
@@ -182,10 +282,25 @@
                                                 </div>
 
                                                 <div class="form-group">
-                                                    <label for="wkt_pelaksanaan" class="form-label">wkt_pelaksanaan:</label>
-                                                    <input id="wkt_pelaksanaan" name="wkt_pelaksanaan" class="form-field" contenteditable="false"></input>
-                                                </div>
+                                                    <label for="wkt_pelaksanaan" class="form-label">Waktu Pelaksanaan:</label>
+                                                    <div style="display: flex; gap: 10px;">
 
+                                                        <input type="date" 
+                                                        id="tanggal_mulai" 
+                                                        name="tanggal_mulai" 
+                                                        class="form-control"
+                                                        value="2023-03-21" 
+                                                        required> 
+                                                    
+                                                        <input type="date" 
+                                                        id="tanggal_selesai" 
+                                                        name="tanggal_selesai" 
+                                                        class="form-control"
+                                                        value="2023-03-21" 
+                                                        required> 
+
+                                                    </div>
+                                                </div>
                                                 <div class="form-group">
                                                     <label for="koprodi" class="form-label">koprodi:</label>
                                                     <input id="koprodi" name="koprodi" class="form-field" contenteditable="false"></input>
@@ -198,11 +313,8 @@
 
                                                 <div class="form-group">
                                                     <label for="dosbing" class="form-label">dosbing:</label>
-                                                    <input id="dosbing" name="dosbing" class="form-field" contenteditable="false"></input>
+                                                    <input id="dosbing" name="dosbing" class="form-field" contenteditable="false" disabled></input>
                                                 </div>
-                                                
-                                            
-
                                             </div>
 
                                             <!-- Kolom Kedua -->
@@ -243,89 +355,9 @@
                                                     });
                                                     });
                                                 </script>
-
-
-
-
-
-
-
-
-
                                             </div>
-
-
-
-
-
                                         </div>
-
-                                        <div class="form-group">
-                                            <button type="submit" class="btn btn-primary mr-2">Kirim</button>
-                                            <button type="reset" class="btn btn-light">Reset</button>
-                                        </div>
-
-                                        <!-- Garis Pembatas -->
-                                    <div class="divider"></div>
-                                
-                                <div class="form-group mb-3">
-                                            <label for="jumlah_mahasiswa">Jumlah Mahasiswa:</label>
-                                            <select class="form-control" id="jumlah_mahasiswa" name="jumlah_mahasiswa" onchange="showFields()">
-                                                <option value="1">1</option>
-                                                <option value="2">2</option>
-                                                <option value="3">3</option>
-                                            </select>
-                                </div>
-
-                                <!-- Student 1 (Always visible) -->
-                                <div class="form-group mb-3">
-                                            <label for="nama">Nama Lengkap Ketua:</label>
-                                            <input type="text" class="form-control" id="nama" name="nama">
-                                        </div>
-                                        <div class="form-group mb-3">
-                                            <label for="nim">NIM Ketua:</label>
-                                            <input type="text" class="form-control" id="nim" name="nim">
-                                        </div>
-                                        <div class="form-group mb-3">
-                                            <label for="notelp">Notelp:</label>
-                                            <input type="text" class="form-control" id="notelp" name="notelp">
-                                        </div>
-
-                                        <!-- Student 2 (Initially hidden) -->
-                                        <div id="student2" style="display: none;">
-                                            <div class="form-group mb-3">
-                                                <label for="nama2">Nama Lengkap 2:</label>
-                                                <input type="text" class="form-control" id="nama2" name="nama2">
-                                            </div>
-                                            <div class="form-group mb-3">
-                                                <label for="nim2">NIM 2:</label>
-                                                <input type="text" class="form-control" id="nim2" name="nim2">
-                                            </div>
-                                            <div class="form-group mb-3">
-                                                <label for="notelp2">Notelp2:</label>
-                                            <input type="text" class="form-control" id="notelp2" name="notelp2">
-                                        </div>
-                                        </div>
-
-                                        <!-- Student 3 (Initially hidden) -->
-                                        <div id="student3" style="display: none;">
-                                            <div class="form-group mb-3">
-                                                <label for="nama3">Nama Lengkap 3:</label>
-                                                <input type="text" class="form-control" id="nama3" name="nama3">
-                                            </div>
-                                            <div class="form-group mb-3">
-                                                <label for="nim3">NIM 3:</label>
-                                                <input type="text" class="form-control" id="nim3" name="nim3">
-                                            </div>
-                                            <div class="form-group mb-3">
-                                            <label for="notelp3">Notelp3:</label>
-                                            <input type="text" class="form-control" id="notelp3" name="notelp3">
-                                        </div>
-                                    </div>
-
-                                    <div class="divider"></div>
-
-                                    <table>
+                                        <table id="myTable">
                                         <thead>
                                             <tr>
                                                 <th>No</th>
@@ -337,47 +369,175 @@
                                         <tbody>
                                             <tr>
                                                 <td>1</td>
-                                                <td><input type="text" placeholder="Enter NIM"></td>
-                                                <td class="readonly">John Doe</td>
-                                                <td class="readonly">081234567890</td>
+                                                <td>
+                                                    <input type="text" id="nim" name="nim" value="{{ Auth::user()->nim }}" readonly class="readonly">
+                                                </td>
+                                                <td>
+                                                    <input type="text" class="readonly" id="name" name="name" value="{{ Auth::user()->name }}" readonly>
+                                                </td>
+                                                <td>
+                                                    <input type="text" class="readonly" id="no_hp" name="no_hp" value="{{ Auth::user()->no_hp }}" readonly>
+                                                </td>
                                             </tr>
-                                            <tr>
-                                                <td>2</td>
-                                                <td><input type="text" placeholder="Enter NIM"></td>
-                                                <td class="readonly">Jane Smith</td>
-                                                <td class="readonly">081234567891</td>
+                                            <tr id="addButtonRow">
+                                                <td colspan="4" class="text-center">
+                                                    <button type="button" id="addRowBtn" class="btn btn-primary btn-sm">+ Tambah Anggota</button>
+                                                </td>
                                             </tr>
-                                            <tr>
-                                                <td>3</td>
-                                                <td><input type="text" placeholder="Enter NIM"></td>
-                                                <td class="readonly">Bob Johnson</td>
-                                                <td class="readonly">081234567892</td>
-                                            </tr>
+                                            <input type="hidden" name="row_count" id="rowCount">
                                         </tbody>
                                     </table>
+                                        <div class="form-group">
+                                            
+                                            <button type="submit" class="btn btn-primary mr-2">Kirim</button>
+                                            <button type="reset" class="btn btn-light">Reset</button>
+                                        </div>
 
-
-
-                                    </form>
-
+                                        
+                                    <div class="divider"></div>
                                     
 
+                                    <script>
+                                        // Fungsi untuk mengatur tombol download berdasarkan status
+                                        function updateDownloadButton(rowNumber) {
+                                            const status = document.getElementById(`statusPengajuan${rowNumber}`).innerText;
+                                            const downloadBtn = document.getElementById(`downloadBtn${rowNumber}`);
+                                            downloadBtn.disabled = status !== "Disetujui";
+                                        }
 
+                                        // Fungsi untuk mengunduh file (placeholder)
+                                        function downloadFile(rowNumber) {
+                                            alert(`Mengunduh file untuk pengajuan #${rowNumber}`);
+                                        }
 
+                                        // Fungsi untuk mengatur tautan "Lihat Pengajuan"
+                                        function setLihatPengajuanLink(rowNumber, link) {
+                                            const lihatPengajuan = document.getElementById(`lihatPengajuan${rowNumber}`);
+                                            lihatPengajuan.href = link || "#";
+                                            lihatPengajuan.target = "_blank"; // Membuka di tab baru
+                                        }
 
+                                        // Contoh: Mengatur tautan untuk pengajuan pertama
+                                        setLihatPengajuanLink(1, "https://example.com/histori-pengajuan");
+                                    </script>
+                                    </form>
                                 </div>
+                                
                             </div>
                         </div>
                     </div>
                 </div>
                 <div>
-                            
-                        
             </div>
             <!-- main-panel ends -->
         </div>
         <!-- page-body-wrapper ends -->
     </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+   <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const table = document.getElementById('myTable');
+        const tbody = table.querySelector('tbody');
+        const addButtonRow = document.getElementById('addButtonRow');
+        const addRowBtn = document.getElementById('addRowBtn');
+        let rowCounter = 1; // Start with 1 since we have the logged-in user
+
+        function createNewRow(rowNum) {
+            const newRow = document.createElement('tr');
+            newRow.innerHTML = `
+                <td>${rowNum}</td>
+                <td>
+                    <input type="text" id="nim${rowNum}" name="nim${rowNum}" placeholder="Masukkan NIM">
+                </td>
+                <td>
+                    <input type="text" class="readonly" id="name${rowNum}" name="name${rowNum}" readonly>
+                </td>
+                <td>
+                    <input type="text" class="readonly" id="no_hp${rowNum}" name="no_hp${rowNum}" readonly>
+                    <button type="button" class="btn btn-danger btn-sm ml-auto remove-row">×</button>
+                </td>
+            `;
+
+            // Add event listener for the remove button
+            const removeBtn = newRow.querySelector('.remove-row');
+            removeBtn.addEventListener('click', function() {
+                newRow.remove();
+                renumberRows();
+                updateRowCount();
+            });
+
+            return newRow;
+        }
+
+        function renumberRows() {
+            const rows = tbody.querySelectorAll('tr:not(#addButtonRow)');
+            rows.forEach((row, index) => {
+                row.querySelector('td:first-child').textContent = index + 1;
+            });
+        }
+
+        function updateRowCount() {
+            const rowCountInput = document.getElementById('rowCount');
+            const rows = tbody.querySelectorAll('tr:not(#addButtonRow)');
+            rowCountInput.value = rows.length;
+        }
+
+        function handleNimInput(event) {
+            if (event.key === 'Enter') {
+                event.preventDefault();
+                const currentRow = event.target.closest('tr');
+                const nim = event.target.value;
+                
+                // Get the corresponding name and phone inputs
+                const nameInput = currentRow.querySelector('input[name^="name"]');
+                const phoneInput = currentRow.querySelector('input[name^="no_hp"]');
+
+                fetch(`/get-user?nim=${nim}`)
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error(`HTTP error! status: ${response.status}`);
+                        }
+                        return response.json();
+                    })
+                    .then(data => {
+                        if (data.success) {
+                            nameInput.value = data.data.name || '';
+                            phoneInput.value = data.data.no_hp || '';
+                        } else {
+                            alert('Data tidak ditemukan');
+                            nameInput.value = '';
+                            phoneInput.value = '';
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Detailed error:', error);
+                        alert(`Error details: ${error.message}`);
+                    });
+            }
+        }
+
+        // Add Row Button Click Handler
+        addRowBtn.addEventListener('click', function() {
+            rowCounter++;
+            const newRow = createNewRow(rowCounter);
+            tbody.insertBefore(newRow, addButtonRow);
+            
+            // Add event listener to new NIM input
+            const newNimInput = newRow.querySelector('input[name^="nim"]');
+            newNimInput.addEventListener('keydown', handleNimInput);
+            
+            updateRowCount();
+        });
+
+        // Set initial row count
+        updateRowCount();
+    });
+    </script>
+
+    
+
 
 </body>
 
@@ -386,19 +546,18 @@
 <script>
     // Sample data for form fields
 const sampleData = {
-    prodi: "Teknik Informatika",
-    doswal: "Dr. Ahmad Suherman, S.Kom., M.Kom.",
-    surat_ditujukan_kepada: "Kepala Departemen Teknik Informatika",
-    nama_lembaga: "Universitas Teknologi Digital",
-    alamat: "Jl. Pendidikan No. 123, Jakarta Pusat",
-    keperluan: "Pengajuan Proposal Tugas Akhir",
-    waktu_pelaksanaan: "1 Januari 2025 - 30 Juni 2025",
-    tembusan: "1. Wakil Dekan\n2. Kepala Program Studi",
+    prodi: "Sistem Informasi",
+    doswal: "",
+    surat_ditujukan_kepada: "",
+    nama_lembaga: "",
+    alamat: "",
+    keperluan: "PKL Magang",
+    tembusan: "",
     date: "2024-11-05", // Current date in YYYY-MM-DD format
-    ko_prodi: "Dr. Sarah Wijaya, M.T.",
-    dosbing: "Prof. Dr. Budi Santoso, M.Sc.",
+    koprodi: "Pak Hendra",
+    dosbing: "",
     nip_koprodi: "198505152010121002",
-    nip_dosbing: "197603242005011004"
+    nip_dosbing: ""
 };
 
 // Function to fill all form fields
@@ -412,15 +571,8 @@ function autofillForm() {
     });
 }
 
-// Add autofill button to the form
-const formGroup = document.querySelector('.form-group:last-child');
-const autofillButton = document.createElement('button');
-autofillButton.type = 'button';
-autofillButton.className = 'btn btn-secondary ml-2';
-autofillButton.textContent = 'Autofill';
-autofillButton.onclick = autofillForm;
-formGroup.appendChild(autofillButton);
 
 // Automatically fill the form when the page loads
 document.addEventListener('DOMContentLoaded', autofillForm);
 </script>
+

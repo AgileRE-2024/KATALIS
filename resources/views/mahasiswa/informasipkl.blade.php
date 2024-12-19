@@ -65,44 +65,68 @@
                     <h2>Informasi PKL</h2>
 
                     <div class="info-card">
-                        <!-- Nama Perusahaan (Static) -->
                         <h4>Nama Perusahaan:</h4>
-                        <p>PT. Maju Sejahtera</p>
+                        <p>{{ $suratTerbaru->nama_lembaga ?? 'Tidak ada informasi' }}</p>
 
-                        <!-- Alamat Perusahaan (Static) -->
                         <h4>Alamat Perusahaan:</h4>
-                        <p>Jl. Kebon Jeruk No. 5, Jakarta</p>
+                        <p>{{ $suratTerbaru->alamat ?? 'Tidak ada informasi' }}</p>
 
                         <!-- Form Input for Editable Fields -->
-                        <form method="POST" action="{{ url('/submit-informasi-pkl') }}" enctype="multipart/form-data">
+                        <form method="POST" action="{{ route('updateData') }}" enctype="multipart/form-data">
                             @csrf
 
-                            <!-- Role (Input) -->
-                            <h4>Role:</h4>
-                            <input type="text" class="form-control mb-3" name="role" placeholder="Masukkan Role Anda" required>
-
                             <!-- Periode PKL (Date Input) -->
-                            <h4>Periode PKL:</h4>
                             <div class="row">
                                 <div class="col-md-6">
-                                    <input type="date" class="form-control mb-3" name="periode_start" required>
+                                    <h4>Periode Start:</h4>
+                                    <p>{{ $suratTerbaru->wkt_start ?? 'Tidak ada informasi' }}</p>
                                 </div>
                                 <div class="col-md-6">
-                                    <input type="date" class="form-control mb-3" name="periode_end" required>
+                                    <h4>Periode Berakhir:</h4>
+                                    <p>{{ $suratTerbaru->wkt_end ?? 'Tidak ada informasi' }}</p>
                                 </div>
                             </div>
 
                             <!-- Surat Permohonan (File Upload) -->
                             <h4>Surat Permohonan:</h4>
-                            <input type="file" class="form-control mb-3" name="surat_permohonan" accept=".pdf" required>
+                            @if ($suratTerbaru)
+                                <p>
+                                    <a href="{{ asset('storage/' . str_replace('../storage/app/public/', '', $suratTerbaru->filepath)) }}">{{ $suratTerbaru->filename ?? 'Tidak ada Surat' }}</a>
+                                    </a>
+                                </p>
+                            @else
+                                <p>Surat tidak ditemukan.</p>
+                            @endif
+
+                            <!-- Proposal (File Upload) -->
+                            <h4>Proposal:</h4>
+                            @if ($user->proposal_pkl)
+                                <p><a href="{{ asset('storage/' . $user->proposal_pkl) }}" target="_blank">Lihat Proposal</a></p>
+                            @else
+                                <p>Belum diunggah</p>
+                                <input type="file" class="form-control mb-3" name="proposal" accept=".pdf" required>
+                            @endif
 
                             <!-- Surat Penerimaan (File Upload) -->
                             <h4>Surat Penerimaan:</h4>
-                            <input type="file" class="form-control mb-3" name="surat_penerimaan" accept=".pdf" required>
+                            @if ($user->surat_penerimaan)
+                                <p><a href="{{ asset('storage/' . $user->surat_penerimaan) }}" target="_blank">Lihat Surat Penerimaan</a></p>
+                            @else
+                                <p>Belum diunggah</p>
+                                <input type="file" class="form-control mb-3" name="surat_penerimaan" accept=".pdf" required>
+                            @endif
 
-                            <!-- Submit and Cancel Buttons -->
-                            <button type="submit" class="btn btn-primary">Simpan Informasi PKL</button>
-                            <a href="{{ url('/') }}" class="btn btn-light">Batal</a>
+                            <button type="submit" class="btn btn-primary">Diterima dan Update Data</button>
+
+                            <!-- Tombol Ditolak -->
+                            @if ($suratTerbaru)
+                                <a href="{{ route('reject', ['suratId' => $suratTerbaru->id_surat]) }}" class="btn btn-light">Ditolak</a>
+                            @else
+                                <p>Data surat tidak tersedia.</p>
+                            @endif
+
+
+                            
                         </form>
                     </div>
 

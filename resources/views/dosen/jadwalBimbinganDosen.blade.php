@@ -28,10 +28,30 @@
                     <th>Tanggal Konsultasi</th>
                     <th>Waktu Konsultasi</th>
                     <th>Topik</th>
-                    <th>Hasil Bimbingan</th>
-                    <th>Dokumentasi Bimbingan</th>
+                    <th>Status</th>
                   </tr>
                 </thead>
+                <tbody>
+                  @foreach ($jadwals as $jadwal)
+                    <tr>
+                      <td>{{ $jadwal->user->name }}</td>
+                      <td>{{ $jadwal->user->nim }}</td>
+                      <td>{{ $jadwal->tanggal_konsultasi }}</td>
+                      <td>{{ $jadwal->waktu_konsultasi }}</td>
+                      <td>{{ $jadwal->topik }}</td>
+                      <td>
+                          <form action="{{ route('jadwal.updateStatus', $jadwal->id) }}" method="POST">
+                              @csrf
+                              <select name="status" onchange="this.form.submit()">
+                                  <option value="Waiting Approval" {{ $jadwal->status == 'Waiting Approval' ? 'selected' : '' }}>Waiting Approval</option>
+                                  <option value="Approved" {{ $jadwal->status == 'Approved' ? 'selected' : '' }}>Approved</option>
+                                  <option value="Revised" {{ $jadwal->status == 'Revised' ? 'selected' : '' }}>Revised</option>
+                              </select>
+                          </form>
+                      </td>
+                    </tr>
+                  @endforeach
+                </tbody>
               </table>
             </div>
           </div>
@@ -42,51 +62,5 @@
   </div>
 
   <script src="vendors/js/vendor.bundle.base.js"></script>
-  <script>
-    // Fungsi untuk memuat data jadwal bimbingan dari localStorage
-    function muatDataJadwal() {
-      let daftarJadwal = JSON.parse(localStorage.getItem("daftarJadwal")) || [
-        { nama: "Alice Johnson", nim: "12345678", tanggal: "2024-10-15", status: "Sudah" },
-        { nama: "David Brown", nim: "23456789", tanggal: "2024-10-16", status: "Belum" },
-        { nama: "Emily White", nim: "34567890", tanggal: "2024-10-17", status: "Sudah" },
-        { nama: "Frank Green", nim: "45678901", tanggal: "2024-10-18", status: "Belum" },
-        { nama: "Grace Lee", nim: "56789012", tanggal: "2024-10-19", status: "Sudah" },
-      ];
-
-      let tableBody = document.getElementById("jadwalTableBody");
-
-      // Bersihkan tabel sebelum mengisi ulang
-      tableBody.innerHTML = "";
-
-      daftarJadwal.forEach(function(jadwal, index) {
-        let row = document.createElement("tr");
-
-        row.innerHTML = `
-          <td>${jadwal.nama}</td>
-          <td>${jadwal.nim}</td>
-          <td>${jadwal.tanggal}</td>
-          <td>${jadwal.waktu || "10:00 - 11:00"}</td>
-          <td>
-            <button class="btn btn-${jadwal.status === 'Sudah' ? 'success' : 'warning'} btn-sm" onclick="toggleStatus(${index})">${jadwal.status}</button>
-          </td>
-        `;
-
-        tableBody.appendChild(row);
-      });
-    }
-
-    // Fungsi untuk toggle status bimbingan
-    function toggleStatus(index) {
-      let daftarJadwal = JSON.parse(localStorage.getItem("daftarJadwal")) || [];
-      daftarJadwal[index].status = daftarJadwal[index].status === "Sudah" ? "Belum" : "Sudah";
-      localStorage.setItem("daftarJadwal", JSON.stringify(daftarJadwal));
-      muatDataJadwal();
-    }
-
-    // Panggil fungsi muat data saat halaman diload
-    window.onload = function() {
-      muatDataJadwal();
-    };
-  </script>
 </body>
 </html>
